@@ -1,7 +1,8 @@
 const cors = require("cors");
 const express = require("express");
 const morgan = require("morgan");
-const empleadoRoutes = require("../routes/empleado.routes");
+const empleadosRoutes = require("../routes/empleado.routes");
+const empresasRoutes = require("../routes/empresa.routes");
 
 // Inicialización
 const app = express();
@@ -18,7 +19,8 @@ app.use(
 );
 
 // routes
-app.use("/empleados", empleadoRoutes);
+app.use("/empleados", empleadosRoutes);
+app.use("/empresas", empresasRoutes);
 
 // export
 module.exports = app;

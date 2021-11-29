@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../index");
 
-class Empleado extends Model {}
+class Contacto extends Model {}
 
-Empleado.init(
+Contacto.init(
   {
     nombre: {
       type: DataTypes.STRING(45),
@@ -17,12 +17,8 @@ Empleado.init(
       type: DataTypes.STRING(90),
       allowNull: false,
     },
-    correo: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
   },
-  { sequelize, modelName: "empleado" }
+  { sequelize, modelName: "contacto" }
 );
 
-module.exports = Empleado;
+module.exports = Contacto;
