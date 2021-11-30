@@ -1,11 +1,15 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-// import userReducer from "./reducers/user.reducer";
+import contactoReducer from "./reducers/contacto.reducer";
+import empleadoReducer from "./reducers/empleado.reducer";
+import empresaReducer from "./reducers/empresa.reducer";
 
 // combine reducer
 const rootReducer = combineReducers({
-  //   userStatus: userReducer,
+  contactos: contactoReducer,
+  empleados: empleadoReducer,
+  empresas: empresaReducer,
 });
 
 // store config
@@ -19,5 +23,4 @@ const generateStore = () => {
   return store;
 };
 
-// export
 export default generateStore;

@@ -77,3 +77,8 @@ thead th {
 .MuiToolbar-root {
   min-height: 50px;
 }
+
+.rowSpan {
+  color: var(--gray-300);
+  cursor: default;
+}

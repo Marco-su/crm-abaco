@@ -4,8 +4,12 @@ import generateStore from "./store";
 
 import Sidebar from "./components/navigation/Sidebar";
 import Topbar from "./components/navigation/Topbar";
-import Empleados from "./views/Empleados";
 import Home from "./views/Home";
+import Empleados from "./views/Empleados";
+import Empresas from "./views/Empresas";
+import Contactos from "./views/Contactos";
+import Prospectos from "./views/Prospectos";
+import Clientes from "./views/Clientes";
 
 import("./assets/css/App.css");
 
@@ -22,7 +26,11 @@ const App = () => {
             <main>
               <Routes>
                 <Route index path="/" element={<Home />} />
-                <Route path="empleados" element={<Empleados />} />
+                <Route path="/empleados" element={<Empleados />} />
+                <Route path="/empresas" element={<Empresas />} />
+                <Route path="/prospectos" element={<Prospectos />} />
+                <Route path="/clientes" element={<Clientes />} />
+                <Route path="/contactos" element={<Contactos />} />
               </Routes>
             </main>
           </Router>

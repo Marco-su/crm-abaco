@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEmpleados } from "../../store/actions/empleado.actions";
+import { getContactos } from "../../store/actions/contacto.actions";
 
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";
@@ -62,24 +62,6 @@ const headCells = [
     numeric: true,
     disablePadding: false,
     label: "Cargo",
-  },
-  {
-    id: "telefono",
-    numeric: true,
-    disablePadding: false,
-    label: "Teléfono",
-  },
-  {
-    id: "movil",
-    numeric: true,
-    disablePadding: false,
-    label: "Móvil",
-  },
-  {
-    id: "correo",
-    numeric: true,
-    disablePadding: false,
-    label: "Correo",
   },
 ];
 
@@ -207,10 +189,10 @@ export default function EnhancedTable() {
 
   const dispatch = useDispatch();
 
-  const rows = useSelector((store) => store.empleados.lista);
+  const rows = useSelector((store) => store.contactos.lista);
 
   useEffect(() => {
-    dispatch(getEmpleados());
+    dispatch(getContactos());
   }, [dispatch]);
 
   const handleRequestSort = (e, property) => {
@@ -312,13 +294,6 @@ export default function EnhancedTable() {
                         {row.nombre} {row.apellido}
                       </TableCell>
                       <TableCell>{row.cargo}</TableCell>
-                      <TableCell>{row.telefono}</TableCell>
-                      <TableCell>{row.movil}</TableCell>
-                      <TableCell>
-                        {row.correo || (
-                          <span className="rowSpan">No especificado</span>
-                        )}
-                      </TableCell>
                     </TableRow>
                   );
                 })}

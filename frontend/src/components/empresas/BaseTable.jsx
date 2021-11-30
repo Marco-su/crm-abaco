@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getEmpleados } from "../../store/actions/empleado.actions";
+import { useDispatch } from "react-redux";
 
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";
@@ -58,28 +57,16 @@ const headCells = [
     label: "Nombre completo",
   },
   {
-    id: "cargo",
-    numeric: true,
+    id: "vertical",
+    numeric: false,
     disablePadding: false,
-    label: "Cargo",
+    label: "Vertical",
   },
   {
-    id: "telefono",
-    numeric: true,
+    id: "tipo",
+    numeric: false,
     disablePadding: false,
-    label: "Teléfono",
-  },
-  {
-    id: "movil",
-    numeric: true,
-    disablePadding: false,
-    label: "Móvil",
-  },
-  {
-    id: "correo",
-    numeric: true,
-    disablePadding: false,
-    label: "Correo",
+    label: "Tipo",
   },
 ];
 
@@ -198,7 +185,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable() {
+export default function EnhancedTable({ getInitial, rows }) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("nombre");
   const [selected, setSelected] = useState([]);
@@ -207,11 +194,9 @@ export default function EnhancedTable() {
 
   const dispatch = useDispatch();
 
-  const rows = useSelector((store) => store.empleados.lista);
-
   useEffect(() => {
-    dispatch(getEmpleados());
-  }, [dispatch]);
+    dispatch(getInitial());
+  }, [dispatch, getInitial]);
 
   const handleRequestSort = (e, property) => {
     console.log(property);
@@ -309,16 +294,10 @@ export default function EnhancedTable() {
                         scope="row"
                         padding="none"
                       >
-                        {row.nombre} {row.apellido}
+                        {row.nombre}
                       </TableCell>
-                      <TableCell>{row.cargo}</TableCell>
-                      <TableCell>{row.telefono}</TableCell>
-                      <TableCell>{row.movil}</TableCell>
-                      <TableCell>
-                        {row.correo || (
-                          <span className="rowSpan">No especificado</span>
-                        )}
-                      </TableCell>
+                      <TableCell>{row.vertical}</TableCell>
+                      <TableCell>{row.tipo}</TableCell>
                     </TableRow>
                   );
                 })}

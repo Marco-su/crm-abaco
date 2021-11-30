@@ -4,11 +4,16 @@ const {
   crearEmpleado,
   modificarEmpleado,
   eliminiarEmpleado,
+  leerEmpleado,
 } = require("../controllers/empleado.controller");
 
 const router = Router();
 
 router.route("/").get(traerEmpleados).post(crearEmpleado);
-router.route("/:id").put(modificarEmpleado).delete(eliminiarEmpleado);
+router
+  .route("/:id")
+  .get(leerEmpleado)
+  .put(modificarEmpleado)
+  .delete(eliminiarEmpleado);
 
 module.exports = router;
