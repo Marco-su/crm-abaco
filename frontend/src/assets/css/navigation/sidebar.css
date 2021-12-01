@@ -2,7 +2,7 @@
   width: var(--sidebar-width);
   height: calc(100vh - 50px);
   position: sticky;
-  top: 53px;
+  top: 50px;
   padding: 1.3rem;
   z-index: 998;
   box-shadow: var(--box-shadow);

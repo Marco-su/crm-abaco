@@ -6,4 +6,7 @@ module.exports = {
   password: process.env.DB_PASSWORD || "",
   host: process.env.DB_HOST || "localhost",
   dialect: process.env.DB_DIALECT || "mysql",
+
+  seederStorage: "json",
+  seederStoragePath: "sequelizeData.json",
 };

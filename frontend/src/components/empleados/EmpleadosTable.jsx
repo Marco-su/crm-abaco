@@ -203,7 +203,7 @@ export default function EnhancedTable() {
   const [orderBy, setOrderBy] = useState("nombre");
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(15);
 
   const dispatch = useDispatch();
 
@@ -336,7 +336,7 @@ export default function EnhancedTable() {
         </TableContainer>
 
         <TablePagination
-          rowsPerPageOptions={[10, 20, 30, 50, 100]}
+          rowsPerPageOptions={[15, 20, 30, 50]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}

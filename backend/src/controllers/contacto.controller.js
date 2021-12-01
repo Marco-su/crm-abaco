@@ -17,7 +17,12 @@ contactoController.crearContacto = (req, res) => {
 };
 
 contactoController.leerContacto = (req, res) => {
-  Contacto.findByPk(req.params.id)
+  Contacto.findOne({
+    include: {
+      association: "empresa",
+    },
+    where: { id: req.params.id },
+  })
     .then((contacto) => res.json(contacto))
     .catch((err) => res.send(`Error al traer contacto: ${err}`));
 };

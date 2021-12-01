@@ -1,4 +1,4 @@
-const { Empresa } = require("../database");
+const { Empresa, Contacto } = require("../database");
 
 const empresasController = {};
 
@@ -16,7 +16,6 @@ empresasController.traerProspectos = (req, res) => {
   Empresa.findAll({
     include: {
       association: "contactos",
-      attributes: { exclude: ["createdAt", "updatedAt"] },
     },
     where: {
       tipo: "Prospecto",
@@ -30,7 +29,6 @@ empresasController.traerClientes = (req, res) => {
   Empresa.findAll({
     include: {
       association: "contactos",
-      attributes: { exclude: ["createdAt", "updatedAt"] },
     },
     where: {
       tipo: "Cliente",
@@ -41,7 +39,9 @@ empresasController.traerClientes = (req, res) => {
 };
 
 empresasController.crearEmpresa = (req, res) => {
-  Empresa.create(req.body)
+  Empresa.create(req.body, {
+    include: "contactos",
+  })
     .then((empresa) => res.json(empresa))
     .catch((err) => res.send(`Error al crear empresa: ${err}`));
 };
@@ -50,7 +50,6 @@ empresasController.leerEmpresa = (req, res) => {
   Empresa.findOne({
     include: {
       association: "contactos",
-      attributes: { exclude: ["createdAt", "updatedAt"] },
     },
     where: { id: req.params.id },
   })

@@ -1,0 +1,29 @@
+"use strict";
+const faker = require("faker");
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    const empleadosArray = [];
+
+    for (let i = 0; i < 100; i++) {
+      empleadosArray.push({
+        nombre: faker.name.firstName(),
+        apellido: faker.name.lastName(),
+        cargo: faker.random.arrayElement([
+          "Gerente",
+          "Gerente de ventas",
+          "Desarrollador",
+        ]),
+        correo: faker.internet.email(),
+        created_at: faker.date.recent(),
+        updated_at: faker.date.recent(),
+      });
+    }
+
+    await queryInterface.bulkInsert("empleados", empleadosArray, {});
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete("empleados", null, {});
+  },
+};
