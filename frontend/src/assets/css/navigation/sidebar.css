@@ -7,6 +7,7 @@
   z-index: 998;
   box-shadow: var(--box-shadow);
   overflow-y: auto;
+  background: #fefefe;
 }
 
 .menuSection {

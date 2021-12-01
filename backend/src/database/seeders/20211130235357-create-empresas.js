@@ -10,8 +10,8 @@ module.exports = {
         nombre: faker.company.catchPhrase(),
         vertical: faker.company.companySuffix(),
         tipo: faker.random.arrayElement(["Prospecto", "Cliente"]),
-        created_at: faker.date.recent(),
-        updated_at: faker.date.recent(),
+        createdAt: faker.date.recent(),
+        updatedAt: faker.date.recent(),
       });
     }
 

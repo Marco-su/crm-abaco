@@ -70,6 +70,10 @@ main {
 }
 
 /* Tables */
+table {
+  white-space: nowrap;
+}
+
 thead th {
   font-weight: bold !important;
 }
@@ -81,4 +85,45 @@ thead th {
 .rowSpan {
   color: var(--gray-300);
   cursor: default;
+}
+
+/* icon buttons */
+.iconBtn {
+  color: var(--gray-600);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all var(--transition-time) ease;
+}
+
+.iconBtn:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: var(--gray-700);
+}
+
+.cellIcons {
+  padding: 0 !important;
+  padding-right: 0.5rem !important;
+  text-align: end;
+}
+
+.cellIcons button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cellIcons button .deleteIcon {
+  color: var(--gray-200);
+  transition: all var(--transition-time) ease;
+}
+
+.cellIcons button:hover .deleteIcon {
+  color: var(--gray-700);
 }

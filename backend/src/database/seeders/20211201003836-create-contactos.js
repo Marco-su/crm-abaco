@@ -17,9 +17,10 @@ module.exports = {
           "Gerente de ventas",
           "Desarrollador",
         ]),
-        empresa_id: empresa.id,
-        created_at: faker.date.recent(),
-        updated_at: faker.date.recent(),
+        correo: faker.internet.email(),
+        empresaId: empresa.id,
+        createdAt: faker.date.recent(),
+        updatedAt: faker.date.recent(),
       });
     });
 

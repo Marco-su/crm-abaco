@@ -1,40 +1,36 @@
 "use strict";
 const { Model } = require("sequelize");
-
 module.exports = (sequelize, DataTypes) => {
-  class Empleado extends Model {
+  class TelefonoEmpleado extends Model {
     static associate(models) {
-      this.hasMany(models.TelefonoEmpleado, {
-        as: "telefonos",
+      this.belongsTo(models.Empleado, {
+        as: "empleado",
         foreignKey: { name: "empleadoId", allowNull: false },
         onDelete: "CASCADE",
       });
     }
   }
 
-  Empleado.init(
+  TelefonoEmpleado.init(
     {
-      nombre: {
-        type: DataTypes.STRING(45),
+      codPais: {
+        type: DataTypes.STRING(10),
         allowNull: false,
       },
-      apellido: {
-        type: DataTypes.STRING(45),
-        allowNull: false,
-      },
-      cargo: {
+      numero: {
         type: DataTypes.STRING(60),
         allowNull: false,
       },
-      correo: {
-        type: DataTypes.STRING(100),
+      tipo: {
+        type: DataTypes.STRING(20),
         allowNull: false,
       },
     },
     {
       sequelize,
-      modelName: "Empleado",
+      modelName: "TelefonoEmpleado",
     }
   );
-  return Empleado;
+
+  return TelefonoEmpleado;
 };

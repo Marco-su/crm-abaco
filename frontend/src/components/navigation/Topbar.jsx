@@ -10,13 +10,13 @@ const Topbar = () => {
 
       <div className="topright">
         <div className="iconBox">
-          <button className="icon">
+          <button className="iconBtn">
             <NotificationsNone />
           </button>
-          <button className="icon">
+          <button className="iconBtn">
             <Settings />
           </button>
-          <button className="icon">
+          <button className="iconBtn">
             <Person />
           </button>
         </div>

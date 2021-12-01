@@ -16,10 +16,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
-import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { visuallyHidden } from "@mui/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -117,6 +117,7 @@ const EnhancedTableHead = ({
             </TableSortLabel>
           </TableCell>
         ))}
+        <TableCell></TableCell>
       </TableRow>
     </TableHead>
   );
@@ -132,7 +133,7 @@ EnhancedTableHead.propTypes = {
 };
 
 const EnhancedTableToolbar = (props) => {
-  const { numSelected } = props;
+  const { numSelected, titulo } = props;
 
   return (
     <Toolbar
@@ -166,15 +167,15 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          Empleados
+          {titulo}
         </Typography>
       )}
 
       {numSelected > 0 ? (
         <Tooltip title="Eliminar Seleccionados">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
+          <button className="iconBtn">
+            <FontAwesomeIcon icon={faTrash} className="deleteIcon" />
+          </button>
         </Tooltip>
       ) : null}
     </Toolbar>
@@ -185,7 +186,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable({ getInitial, rows }) {
+export default function EnhancedTable({ getInitial, rows, titulo }) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("nombre");
   const [selected, setSelected] = useState([]);
@@ -252,7 +253,7 @@ export default function EnhancedTable({ getInitial, rows }) {
   return (
     <Box>
       <Paper sx={{ width: "100%", mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} titulo={titulo} />
         <TableContainer>
           <Table aria-labelledby="tableTitle" size="small">
             <EnhancedTableHead
@@ -298,6 +299,14 @@ export default function EnhancedTable({ getInitial, rows }) {
                       </TableCell>
                       <TableCell>{row.vertical}</TableCell>
                       <TableCell>{row.tipo}</TableCell>
+                      <TableCell className="cellIcons">
+                        <button>
+                          <FontAwesomeIcon
+                            icon={faTrash}
+                            className="deleteIcon"
+                          />
+                        </button>
+                      </TableCell>
                     </TableRow>
                   );
                 })}

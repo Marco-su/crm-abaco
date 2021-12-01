@@ -1,12 +1,10 @@
-const { Empresa, Contacto } = require("../database");
+const { Empresa } = require("../database");
 
 const empresasController = {};
 
 empresasController.traerEmpresas = (req, res) => {
   Empresa.findAll({
-    include: {
-      association: "contactos",
-    },
+    include: [{ all: true, nested: true }],
   })
     .then((empresas) => res.json(empresas))
     .catch((err) => res.send(`Error al cargar empresas: ${err}`));
@@ -14,9 +12,7 @@ empresasController.traerEmpresas = (req, res) => {
 
 empresasController.traerProspectos = (req, res) => {
   Empresa.findAll({
-    include: {
-      association: "contactos",
-    },
+    include: [{ all: true, nested: true }],
     where: {
       tipo: "Prospecto",
     },
@@ -27,9 +23,7 @@ empresasController.traerProspectos = (req, res) => {
 
 empresasController.traerClientes = (req, res) => {
   Empresa.findAll({
-    include: {
-      association: "contactos",
-    },
+    include: [{ all: true, nested: true }],
     where: {
       tipo: "Cliente",
     },
@@ -40,7 +34,7 @@ empresasController.traerClientes = (req, res) => {
 
 empresasController.crearEmpresa = (req, res) => {
   Empresa.create(req.body, {
-    include: "contactos",
+    include: [{ all: true, nested: true }],
   })
     .then((empresa) => res.json(empresa))
     .catch((err) => res.send(`Error al crear empresa: ${err}`));
@@ -48,9 +42,7 @@ empresasController.crearEmpresa = (req, res) => {
 
 empresasController.leerEmpresa = (req, res) => {
   Empresa.findOne({
-    include: {
-      association: "contactos",
-    },
+    include: [{ all: true, nested: true }],
     where: { id: req.params.id },
   })
     .then((empresa) => res.json(empresa))

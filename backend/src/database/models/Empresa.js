@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       // empresa tiene contactos 1:n
       this.hasMany(models.Contacto, {
         as: "contactos",
-        foreignKey: { name: "empresa_id", allowNull: false },
+        foreignKey: { name: "empresaId", allowNull: false },
         onDelete: "CASCADE",
       });
     }
@@ -31,7 +31,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Empresa",
-      underscored: true,
     }
   );
 

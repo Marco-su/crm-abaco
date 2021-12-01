@@ -17,9 +17,15 @@ db.connection = new Sequelize(
 db.Empleado = require("./models/Empleado")(db.connection, DataTypes);
 db.Contacto = require("./models/Contacto")(db.connection, DataTypes);
 db.Empresa = require("./models/Empresa")(db.connection, DataTypes);
+db.TelefonoEmpleado = require("./models/TelefonoEmpleado")(
+  db.connection,
+  DataTypes
+);
 
 // Asociación de modelos (relaciones)
 db.Empresa.associate(db);
 db.Contacto.associate(db);
+db.Empleado.associate(db);
+db.TelefonoEmpleado.associate(db);
 
 module.exports = db;

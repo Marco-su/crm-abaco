@@ -15,8 +15,8 @@ module.exports = {
           "Desarrollador",
         ]),
         correo: faker.internet.email(),
-        created_at: faker.date.recent(),
-        updated_at: faker.date.recent(),
+        createdAt: faker.date.recent(),
+        updatedAt: faker.date.recent(),
       });
     }
 

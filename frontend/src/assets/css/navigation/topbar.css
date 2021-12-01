@@ -22,22 +22,6 @@
   justify-content: space-between;
 }
 
-#topbar .iconBox .icon {
-  color: var(--gray-600);
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  transition: all var(--transition-time) ease;
+#topbar .iconBox .iconBtn {
   margin: 0 5px;
-}
-
-#topbar .iconBox .icon:hover {
-  background-color: var(--gray-100);
-  color: var(--gray-700);
 }

@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const empleadosRoutes = require("../routes/empleado.routes");
 const empresasRoutes = require("../routes/empresa.routes");
 const contactosRoutes = require("../routes/contacto.routes");
+const telefonoRoutes = require("../routes/telefono.routes");
 
 // Inicialización
 const app = express();
@@ -23,6 +24,7 @@ app.use(
 app.use("/empleados", empleadosRoutes);
 app.use("/empresas", empresasRoutes);
 app.use("/contactos", contactosRoutes);
+app.use("/telefonos", telefonoRoutes);
 
 // export
 module.exports = app;

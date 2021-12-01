@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       // un contacto pertenece a una empresa n:1
       this.belongsTo(models.Empresa, {
         as: "empresa",
-        foreignKey: { name: "empresa_id", allowNull: false },
+        foreignKey: { name: "empresaId", allowNull: false },
         onDelete: "CASCADE",
       });
     }
@@ -27,11 +27,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(60),
         allowNull: false,
       },
+      correo: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+      },
     },
     {
       sequelize,
       modelName: "Contacto",
-      underscored: true,
     }
   );
 

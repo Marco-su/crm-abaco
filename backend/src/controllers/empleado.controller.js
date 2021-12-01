@@ -3,19 +3,26 @@ const { Empleado } = require("../database");
 const empleadoController = {};
 
 empleadoController.traerEmpleados = (req, res) => {
-  Empleado.findAll()
+  Empleado.findAll({
+    include: [{ all: true, nested: true }],
+  })
     .then((empleados) => res.json(empleados))
     .catch((err) => res.send(`Error al cargar empleados: ${err}`));
 };
 
 empleadoController.crearEmpleado = (req, res) => {
-  Empleado.create(req.body)
+  Empleado.create(req.body, {
+    include: [{ all: true, nested: true }],
+  })
     .then((empleado) => res.json(empleado))
     .catch((err) => res.send(`Error al crear empleado: ${err}`));
 };
 
 empleadoController.leerEmpleado = (req, res) => {
-  Empleado.findByPk(req.params.id)
+  Empleado.findOne({
+    include: [{ all: true, nested: true }],
+    where: { id: req.params.id },
+  })
     .then((empleado) => res.json(empleado))
     .catch((err) => res.send(`Error al traer empleado: ${err}`));
 };

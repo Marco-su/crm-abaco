@@ -17,10 +17,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
-import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { visuallyHidden } from "@mui/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -130,6 +130,7 @@ const EnhancedTableHead = ({
             </TableSortLabel>
           </TableCell>
         ))}
+        <TableCell className="cellIcons"></TableCell>
       </TableRow>
     </TableHead>
   );
@@ -185,9 +186,9 @@ const EnhancedTableToolbar = (props) => {
 
       {numSelected > 0 ? (
         <Tooltip title="Eliminar Seleccionados">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
+          <button className="iconBtn">
+            <FontAwesomeIcon icon={faTrash} className="deleteIcon" />
+          </button>
         </Tooltip>
       ) : null}
     </Toolbar>
@@ -207,7 +208,44 @@ export default function EnhancedTable() {
 
   const dispatch = useDispatch();
 
-  const rows = useSelector((store) => store.empleados.lista);
+  function createData(id, nombre, cargo, telefono, movil, correo) {
+    return {
+      id,
+      nombre,
+      cargo,
+      telefono,
+      movil,
+      correo,
+    };
+  }
+
+  const findPhone = (employee) => {
+    const item = employee.telefonos.find((el) => el.tipo === "telefono");
+    return item ? `${item.codPais} ${item.numero}` : "";
+  };
+
+  const findMovile = (employee) => {
+    const item = employee.telefonos.find((el) => el.tipo === "movil");
+    return item ? `${item.codPais} ${item.numero}` : "";
+  };
+
+  const createRows = (list) => {
+    const createdList = [];
+
+    list.forEach((row) => {
+      const nombre = `${row.nombre} ${row.apellido}`;
+      const telefono = findPhone(row);
+      const movil = findMovile(row);
+
+      createdList.push(
+        createData(row.id, nombre, row.cargo, telefono, movil, row.correo)
+      );
+    });
+
+    return createdList;
+  };
+
+  const rows = createRows(useSelector((store) => store.empleados.lista));
 
   useEffect(() => {
     dispatch(getEmpleados());
@@ -314,10 +352,14 @@ export default function EnhancedTable() {
                       <TableCell>{row.cargo}</TableCell>
                       <TableCell>{row.telefono}</TableCell>
                       <TableCell>{row.movil}</TableCell>
-                      <TableCell>
-                        {row.correo || (
-                          <span className="rowSpan">No especificado</span>
-                        )}
+                      <TableCell>{row.correo}</TableCell>
+                      <TableCell className="cellIcons">
+                        <button>
+                          <FontAwesomeIcon
+                            icon={faTrash}
+                            className="deleteIcon"
+                          />
+                        </button>
                       </TableCell>
                     </TableRow>
                   );
