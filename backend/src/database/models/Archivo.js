@@ -3,16 +3,24 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class archivo extends Model {
     static associate(models) {
-      // define association here
+      this.belongsTo(models.Producto, {
+        as: "producto",
+        foreignKey: { name: "productoId", allowNull: false },
+        onDelete: "CASCADE",
+      });
     }
   }
   archivo.init(
     {
-      name: {
-        type: DataTypes.STRING(100),
+      nombre: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       storageName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      tipo: {
         type: DataTypes.STRING,
         allowNull: false,
       },

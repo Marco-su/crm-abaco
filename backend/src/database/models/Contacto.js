@@ -16,19 +16,19 @@ module.exports = (sequelize, DataTypes) => {
   Contacto.init(
     {
       nombre: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       apellido: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       cargo: {
-        type: DataTypes.STRING(60),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       correo: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },

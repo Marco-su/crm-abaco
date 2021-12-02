@@ -1,4 +1,4 @@
-const { Router } = require("express");
+const router = require("express").Router();
 const {
   traerEmpresas,
   traerProspectos,
@@ -8,8 +8,6 @@ const {
   eliminarEmpresa,
   leerEmpresa,
 } = require("../controllers/empresa.controller");
-
-const router = Router();
 
 router.route("/").get(traerEmpresas).post(crearEmpresa);
 router.get("/prospectos", traerProspectos);

@@ -1,10 +1,13 @@
 const cors = require("cors");
 const express = require("express");
 const morgan = require("morgan");
+const path = require("path");
 const empleadosRoutes = require("../routes/empleado.routes");
 const empresasRoutes = require("../routes/empresa.routes");
 const contactosRoutes = require("../routes/contacto.routes");
-const telefonoRoutes = require("../routes/telefono.routes");
+const telefonosRoutes = require("../routes/telefono.routes");
+const productosRoutes = require("../routes/producto.routes");
+const archivosRoutes = require("../routes/archivo.routes");
 
 // Inicialización
 const app = express();
@@ -20,11 +23,15 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, "../public")));
+
 // routes
 app.use("/empleados", empleadosRoutes);
 app.use("/empresas", empresasRoutes);
 app.use("/contactos", contactosRoutes);
-app.use("/telefonos", telefonoRoutes);
+app.use("/telefonos", telefonosRoutes);
+app.use("/productos", productosRoutes);
+app.use("/archivos", archivosRoutes);
 
 // export
 module.exports = app;

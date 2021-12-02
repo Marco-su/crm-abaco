@@ -1,9 +1,7 @@
-const { Router } = require("express");
+const router = require("express").Router();
 const {
   traerTelefonosEmp,
 } = require("../controllers/telefonoEmpleado.controller");
-
-const router = Router();
 
 router.route("/empleados").get(traerTelefonosEmp);
 

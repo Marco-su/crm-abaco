@@ -1,4 +1,4 @@
-const { Router } = require("express");
+const router = require("express").Router();
 const {
   traerEmpleados,
   crearEmpleado,
@@ -6,8 +6,6 @@ const {
   eliminiarEmpleado,
   leerEmpleado,
 } = require("../controllers/empleado.controller");
-
-const router = Router();
 
 router.route("/").get(traerEmpleados).post(crearEmpleado);
 router

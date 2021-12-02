@@ -14,15 +14,15 @@ module.exports = (sequelize, DataTypes) => {
   TelefonoEmpleado.init(
     {
       codPais: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       numero: {
-        type: DataTypes.STRING(60),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       tipo: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },

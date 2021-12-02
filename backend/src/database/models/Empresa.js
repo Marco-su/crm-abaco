@@ -16,15 +16,15 @@ module.exports = (sequelize, DataTypes) => {
   Empresa.init(
     {
       nombre: {
-        type: DataTypes.STRING(150),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       vertical: {
-        type: DataTypes.STRING(150),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       tipo: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },

@@ -3,13 +3,17 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class producto extends Model {
     static associate(models) {
-      // define association here
+      this.hasMany(models.Archivo, {
+        as: "archivos",
+        foreignKey: { name: "productoId", allowNull: false },
+        onDelete: "CASCADE",
+      });
     }
   }
   producto.init(
     {
-      name: {
-        type: DataTypes.STRING(100),
+      nombre: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },
