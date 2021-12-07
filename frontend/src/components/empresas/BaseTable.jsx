@@ -1,5 +1,12 @@
+import "../../assets/css/common/tables.css";
+
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import {
+  toggleUpdate,
+  toggleDelete,
+  toggleDetail,
+} from "../../store/actions/modals.action";
 
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";
@@ -19,7 +26,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Tooltip from "@mui/material/Tooltip";
 import { visuallyHidden } from "@mui/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -148,6 +155,7 @@ const EnhancedTableToolbar = (props) => {
             ),
         }),
       }}
+      className="tableTitle"
     >
       {numSelected > 0 ? (
         <Typography
@@ -191,7 +199,7 @@ export default function EnhancedTable({ getInitial, rows, titulo }) {
   const [orderBy, setOrderBy] = useState("nombre");
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(15);
+  const [rowsPerPage, setRowsPerPage] = useState(30);
 
   const dispatch = useDispatch();
 
@@ -252,7 +260,7 @@ export default function EnhancedTable({ getInitial, rows, titulo }) {
 
   return (
     <Box>
-      <Paper sx={{ width: "100%", mb: 2 }}>
+      <Paper sx={{ width: "100%", mb: 2 }} className="mainTableBox">
         <EnhancedTableToolbar numSelected={selected.length} titulo={titulo} />
         <TableContainer>
           <Table aria-labelledby="tableTitle" size="small">
@@ -300,10 +308,26 @@ export default function EnhancedTable({ getInitial, rows, titulo }) {
                       <TableCell>{row.vertical}</TableCell>
                       <TableCell>{row.tipo}</TableCell>
                       <TableCell className="cellIcons">
-                        <button>
+                        <button
+                          onClick={() =>
+                            dispatch(toggleUpdate("empresa", row.id))
+                          }
+                        >
+                          <FontAwesomeIcon
+                            icon={faPencilAlt}
+                            className="crudIcon editIcon"
+                          />
+                        </button>
+                        <button
+                          onClick={() =>
+                            dispatch(
+                              toggleDelete("empresa", row.id, row.nombre)
+                            )
+                          }
+                        >
                           <FontAwesomeIcon
                             icon={faTrash}
-                            className="deleteIcon"
+                            className="crudIcon deleteIcon"
                           />
                         </button>
                       </TableCell>
@@ -324,7 +348,7 @@ export default function EnhancedTable({ getInitial, rows, titulo }) {
         </TableContainer>
 
         <TablePagination
-          rowsPerPageOptions={[15, 20, 30, 50]}
+          rowsPerPageOptions={[30, 50, 100]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
@@ -335,6 +359,7 @@ export default function EnhancedTable({ getInitial, rows, titulo }) {
             `${from}-${to} de ${count}`
           }
           labelRowsPerPage="Resultados por página"
+          className="tablePagination"
         />
       </Paper>
     </Box>

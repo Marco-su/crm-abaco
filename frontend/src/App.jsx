@@ -10,6 +10,9 @@ import Empresas from "./views/Empresas";
 import Contactos from "./views/Contactos";
 import Prospectos from "./views/Prospectos";
 import Clientes from "./views/Clientes";
+import Productos from "./views/Productos";
+import DeleteModal from "./components/common/DeleteModal";
+import UpdateModal from "./components/common/UpdateModal";
 
 import("./assets/css/App.css");
 
@@ -17,13 +20,16 @@ const App = () => {
   return (
     <div className="App">
       <Provider store={generateStore()}>
-        <Topbar />
+        <Router>
+          <Topbar />
 
-        <div className="mainContainer">
-          <Router>
+          <div className="mainContainer">
             <Sidebar />
 
             <main>
+              <UpdateModal />
+              <DeleteModal />
+
               <Routes>
                 <Route index path="/" element={<Home />} />
                 <Route path="/empleados" element={<Empleados />} />
@@ -31,10 +37,11 @@ const App = () => {
                 <Route path="/prospectos" element={<Prospectos />} />
                 <Route path="/clientes" element={<Clientes />} />
                 <Route path="/contactos" element={<Contactos />} />
+                <Route path="/productos" element={<Productos />} />
               </Routes>
             </main>
-          </Router>
-        </div>
+          </div>
+        </Router>
       </Provider>
     </div>
   );

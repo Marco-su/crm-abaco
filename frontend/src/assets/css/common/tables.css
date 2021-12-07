@@ -1,0 +1,44 @@
+table td,
+table th {
+  max-width: 325px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+thead th {
+  font-weight: bold !important;
+}
+
+.MuiToolbar-root {
+  min-height: 50px;
+}
+
+.MuiPaper-root {
+  box-shadow: var(--box-shadow);
+  margin-bottom: 0 !important;
+}
+
+.rowSpan {
+  color: var(--gray-300);
+  cursor: default;
+}
+
+.mainTableBox {
+  max-height: calc(100vh - 50px - 2rem);
+  overflow-y: auto;
+}
+
+.mainTableBox .tableTitle {
+  position: sticky;
+  top: 0;
+  background: #fefefe;
+  z-index: 2;
+}
+
+.mainTableBox .tablePagination {
+  position: sticky;
+  bottom: 0;
+  background: #fefefe;
+  z-index: 2;
+}

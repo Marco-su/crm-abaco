@@ -13,6 +13,6 @@ export const getContactos = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log("Error al traer contactos", err);
+      console.log("Error al traer contactos:", err);
     });
 };

@@ -10,6 +10,15 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: { name: "empresaId", allowNull: false },
         onDelete: "CASCADE",
       });
+
+      this.hasMany(models.Telefono, {
+        as: "telefonos",
+        foreignKey: { name: "telefonableId", allowNull: false },
+        constraints: false,
+        scope: {
+          telefonableType: "contacto",
+        },
+      });
     }
   }
 

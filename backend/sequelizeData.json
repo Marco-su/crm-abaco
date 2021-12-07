@@ -2,5 +2,6 @@
   "20211130235357-create-empresas.js",
   "20211201003836-create-contactos.js",
   "20211201003910-create-empleados.js",
-  "20211201174841-create-telefonos-empleados.js"
+  "20211201174841-create-telefonos.js",
+  "20211201174835-create-productos.js"
 ]

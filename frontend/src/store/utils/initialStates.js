@@ -1,3 +1,14 @@
+export const modalsInitial = {
+  id: null,
+  updateType: "",
+  updateIsOpen: false,
+  deleteType: "",
+  deleteIsOpen: false,
+  deleteName: "",
+  detailType: "",
+  detailIsOpen: false,
+};
+
 export const contactoInitial = {
   lista: [],
   isEditigTable: false,
@@ -5,6 +16,12 @@ export const contactoInitial = {
 };
 
 export const empleadoInitial = {
+  lista: [],
+  isEditigTable: false,
+  deleteModalOpen: false,
+};
+
+export const productoInitial = {
   lista: [],
   isEditigTable: false,
   deleteModalOpen: false,

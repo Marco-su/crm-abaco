@@ -5,7 +5,6 @@ const path = require("path");
 const empleadosRoutes = require("../routes/empleado.routes");
 const empresasRoutes = require("../routes/empresa.routes");
 const contactosRoutes = require("../routes/contacto.routes");
-const telefonosRoutes = require("../routes/telefono.routes");
 const productosRoutes = require("../routes/producto.routes");
 const archivosRoutes = require("../routes/archivo.routes");
 
@@ -29,7 +28,6 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use("/empleados", empleadosRoutes);
 app.use("/empresas", empresasRoutes);
 app.use("/contactos", contactosRoutes);
-app.use("/telefonos", telefonosRoutes);
 app.use("/productos", productosRoutes);
 app.use("/archivos", archivosRoutes);
 

@@ -18,9 +18,10 @@ archivoController.crearArchivo = (req, res) => {
   Archivo.create(
     {
       nombre: req.body.nombre,
+      productoId: req.body.productoId,
       storageName: req.files[0].filename,
       tipo: req.files[0].mimetype,
-      productoId: 1,
+      size: req.files[0].size,
     },
     { include: [{ all: true, nested: true }] }
   )

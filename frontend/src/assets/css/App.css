@@ -1,4 +1,4 @@
-/* Variables */
+/* VARIABLES */
 :root {
   --red-100: #ff6666;
   --red-200: #ff4c4c;
@@ -30,14 +30,18 @@
   --blue-800: #206ba3;
   --blue-900: #1c5d8e;
   --blue-1000: #18507a;
+  --orange-500: #ff8400;
+  --orange-700: #db7100;
 
   --transition-time: 0.3s;
-  --box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.55);
+
+  --box-shadow: 0px 1px 1px 0px rgb(0, 0, 0, 0.14),
+    0px 1px 3px 1px rgb(0, 0, 0, 0.2);
 
   --sidebar-width: 250px;
 }
 
-/* Scroll bar */
+/* SCROLL BAR */
 ::-webkit-scrollbar {
   width: 9px;
   height: 9px;
@@ -53,7 +57,7 @@
   background: #e6e6e6;
 }
 
-/* Estilos principales */
+/* MAIN STYLES */
 * {
   font-family: "Source Sans Pro", sans-serif !important;
   box-sizing: border-box !important;
@@ -65,34 +69,17 @@
 }
 
 main {
-  padding: 0.5rem 1.5rem;
+  position: relative;
+  padding: 1rem;
   width: calc(100% - var(--sidebar-width));
+  overflow: hidden;
 }
 
-/* Tables */
-table {
-  white-space: nowrap;
-}
-
-thead th {
-  font-weight: bold !important;
-}
-
-.MuiToolbar-root {
-  min-height: 50px;
-}
-
-.rowSpan {
-  color: var(--gray-300);
-  cursor: default;
-}
-
-/* icon buttons */
-.iconBtn {
+/* ICON BUTTONS */
+.iconBtn,
+.backArrowBtn {
   color: var(--gray-600);
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,8 +89,14 @@ thead th {
   transition: all var(--transition-time) ease;
 }
 
-.iconBtn:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+.iconBtn {
+  width: 35px;
+  height: 35px;
+}
+
+.iconBtn:hover,
+.backArrowBtn:hover {
+  background-color: rgba(0, 0, 0, 0.09);
   color: var(--gray-700);
 }
 
@@ -117,13 +110,58 @@ thead th {
   border: none;
   background: none;
   cursor: pointer;
+  margin-left: 0.5rem;
 }
 
-.cellIcons button .deleteIcon {
+.cellIcons button:first-child {
+  margin-left: 0;
+}
+
+.cellIcons button .crudIcon {
   color: var(--gray-200);
   transition: all var(--transition-time) ease;
 }
 
-.cellIcons button:hover .deleteIcon {
-  color: var(--gray-700);
+.cellIcons button:hover .crudIcon.editIcon {
+  color: var(--orange-500);
+}
+
+.cellIcons button:hover .crudIcon.deleteIcon {
+  color: var(--red-300);
+}
+
+/* BUTTONS */
+.cancelBtn,
+.deleteBtn,
+.editBtn,
+.continueBtn {
+  margin-left: 0.7rem;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #fefefe;
+  transition: all var(--transition-time) ease;
+}
+
+.cancelBtn {
+  background-color: var(--blue-600);
+}
+.cancelBtn:hover {
+  background-color: var(--blue-800);
+}
+
+.deleteBtn {
+  background-color: var(--red-600);
+}
+.deleteBtn:hover {
+  background-color: var(--red-800);
+}
+
+.editBtn {
+  background-color: var(--orange-500);
+}
+.editBtn:hover {
+  background-color: var(--orange-700);
 }

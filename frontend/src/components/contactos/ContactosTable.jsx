@@ -1,6 +1,13 @@
+import "../../assets/css/common/tables.css";
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactos } from "../../store/actions/contacto.actions";
+import {
+  toggleUpdate,
+  toggleDelete,
+  toggleDetail,
+} from "../../store/actions/modals.action";
 
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";
@@ -20,7 +27,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Tooltip from "@mui/material/Tooltip";
 import { visuallyHidden } from "@mui/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -143,6 +150,7 @@ const EnhancedTableToolbar = (props) => {
             ),
         }),
       }}
+      className="tableTitle"
     >
       {numSelected > 0 ? (
         <Typography
@@ -186,11 +194,31 @@ export default function EnhancedTable() {
   const [orderBy, setOrderBy] = useState("nombre");
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(15);
+  const [rowsPerPage, setRowsPerPage] = useState(30);
 
   const dispatch = useDispatch();
 
-  const rows = useSelector((store) => store.contactos.lista);
+  const createData = (id, nombre, cargo) => {
+    return {
+      id,
+      nombre,
+      cargo,
+    };
+  };
+
+  const createRows = (list) => {
+    const createdList = [];
+
+    list.forEach((row) => {
+      const nombre = `${row.nombre} ${row.apellido}`;
+
+      createdList.push(createData(row.id, nombre, row.cargo));
+    });
+
+    return createdList;
+  };
+
+  const rows = createRows(useSelector((store) => store.contactos.lista));
 
   useEffect(() => {
     dispatch(getContactos());
@@ -249,7 +277,7 @@ export default function EnhancedTable() {
 
   return (
     <Box>
-      <Paper sx={{ width: "100%", mb: 2 }}>
+      <Paper sx={{ width: "100%", mb: 2 }} className="mainTableBox">
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table aria-labelledby="tableTitle" size="small">
@@ -292,14 +320,31 @@ export default function EnhancedTable() {
                         scope="row"
                         padding="none"
                       >
-                        {row.nombre} {row.apellido}
+                        {row.nombre}
                       </TableCell>
                       <TableCell>{row.cargo}</TableCell>
                       <TableCell className="cellIcons">
-                        <button>
+                        <button
+                          onClick={() =>
+                            dispatch(toggleUpdate("contacto", row.id))
+                          }
+                        >
+                          <FontAwesomeIcon
+                            icon={faPencilAlt}
+                            className="crudIcon editIcon"
+                          />
+                        </button>
+
+                        <button
+                          onClick={() =>
+                            dispatch(
+                              toggleDelete("contacto", row.id, row.nombre)
+                            )
+                          }
+                        >
                           <FontAwesomeIcon
                             icon={faTrash}
-                            className="deleteIcon"
+                            className="crudIcon deleteIcon"
                           />
                         </button>
                       </TableCell>
@@ -320,7 +365,7 @@ export default function EnhancedTable() {
         </TableContainer>
 
         <TablePagination
-          rowsPerPageOptions={[15, 20, 30, 50]}
+          rowsPerPageOptions={[30, 50, 100]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
@@ -331,6 +376,7 @@ export default function EnhancedTable() {
             `${from}-${to} de ${count}`
           }
           labelRowsPerPage="Resultados por página"
+          className="tablePagination"
         />
       </Paper>
     </Box>

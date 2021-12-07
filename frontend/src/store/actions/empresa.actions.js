@@ -13,7 +13,7 @@ export const getEmpresas = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log("Error al traer empresas", err);
+      console.log("Error al traer empresas:", err);
     });
 };
 
@@ -29,7 +29,7 @@ export const getProspectos = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log("Error al traer prospectos", err);
+      console.log("Error al traer prospectos:", err);
     });
 };
 
@@ -44,6 +44,6 @@ export const getClientes = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log("Error al traer clientes", err);
+      console.log("Error al traer clientes:", err);
     });
 };

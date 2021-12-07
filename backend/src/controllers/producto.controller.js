@@ -13,7 +13,6 @@ productoController.traerProductos = (req, res) => {
 };
 
 productoController.crearProducto = (req, res) => {
-  const nombre = req.body.nombre;
   const archivos = [];
 
   req.files.forEach((el) => {
@@ -23,11 +22,16 @@ productoController.crearProducto = (req, res) => {
       .replace(/\.[^/.]+$/, "")
       .slice(0, 150);
 
-    archivos.push({ nombre, storageName: el.filename, tipo: el.mimetype });
+    archivos.push({
+      nombre,
+      storageName: el.filename,
+      tipo: el.mimetype,
+      size: el.size,
+    });
   });
 
   Producto.create(
-    { nombre, archivos },
+    { ...req.body, archivos },
     { include: [{ all: true, nested: true }] }
   )
     .then((producto) => res.json(producto))

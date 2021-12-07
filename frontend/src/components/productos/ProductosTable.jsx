@@ -2,7 +2,7 @@ import "../../assets/css/common/tables.css";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEmpleados } from "../../store/actions/empleado.actions";
+import { getProductos } from "../../store/actions/producto.actions";
 import {
   toggleUpdate,
   toggleDelete,
@@ -62,31 +62,32 @@ const headCells = [
     id: "nombre",
     numeric: false,
     disablePadding: true,
-    label: "Nombre completo",
+    label: "Nombre",
   },
+
   {
-    id: "cargo",
+    id: "descripcion",
     numeric: true,
     disablePadding: false,
-    label: "Cargo",
+    label: "Descripción",
   },
   {
-    id: "telefono",
+    id: "categoria",
     numeric: true,
     disablePadding: false,
-    label: "Teléfono",
+    label: "Categoría",
   },
   {
-    id: "movil",
+    id: "codigo",
     numeric: true,
     disablePadding: false,
-    label: "Móvil",
+    label: "Código",
   },
   {
-    id: "correo",
+    id: "precio",
     numeric: true,
     disablePadding: false,
-    label: "Correo",
+    label: "Precio",
   },
 ];
 
@@ -137,7 +138,7 @@ const EnhancedTableHead = ({
             </TableSortLabel>
           </TableCell>
         ))}
-        <TableCell className="cellIcons"></TableCell>
+        <TableCell></TableCell>
       </TableRow>
     </TableHead>
   );
@@ -188,7 +189,7 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          Empleados
+          Productos
         </Typography>
       )}
 
@@ -216,47 +217,10 @@ export default function EnhancedTable() {
 
   const dispatch = useDispatch();
 
-  const createData = (id, nombre, cargo, telefono, movil, correo) => {
-    return {
-      id,
-      nombre,
-      cargo,
-      telefono,
-      movil,
-      correo,
-    };
-  };
-
-  const findPhone = (employee) => {
-    const item = employee.telefonos.find((el) => el.tipo === "telefono");
-    return item ? `${item.codPais} ${item.numero}` : "";
-  };
-
-  const findMovile = (employee) => {
-    const item = employee.telefonos.find((el) => el.tipo === "movil");
-    return item ? `${item.codPais} ${item.numero}` : "";
-  };
-
-  const createRows = (list) => {
-    const createdList = [];
-
-    list.forEach((row) => {
-      const nombre = `${row.nombre} ${row.apellido}`;
-      const telefono = findPhone(row);
-      const movil = findMovile(row);
-
-      createdList.push(
-        createData(row.id, nombre, row.cargo, telefono, movil, row.correo)
-      );
-    });
-
-    return createdList;
-  };
-
-  const rows = createRows(useSelector((store) => store.empleados.lista));
+  const rows = useSelector((store) => store.productos.lista);
 
   useEffect(() => {
-    dispatch(getEmpleados());
+    dispatch(getProductos());
   }, [dispatch]);
 
   const handleRequestSort = (e, property) => {
@@ -357,14 +321,14 @@ export default function EnhancedTable() {
                       >
                         {row.nombre}
                       </TableCell>
-                      <TableCell>{row.cargo}</TableCell>
-                      <TableCell>{row.telefono}</TableCell>
-                      <TableCell>{row.movil}</TableCell>
-                      <TableCell>{row.correo}</TableCell>
+                      <TableCell>{row.descripcion}</TableCell>
+                      <TableCell>{row.categoria}</TableCell>
+                      <TableCell>{row.codigo}</TableCell>
+                      <TableCell>{row.precio}$</TableCell>
                       <TableCell className="cellIcons">
                         <button
                           onClick={() =>
-                            dispatch(toggleUpdate("empleado", row.id))
+                            dispatch(toggleUpdate("producto", row.id))
                           }
                         >
                           <FontAwesomeIcon
@@ -375,7 +339,7 @@ export default function EnhancedTable() {
                         <button
                           onClick={() =>
                             dispatch(
-                              toggleDelete("empleado", row.id, row.nombre)
+                              toggleDelete("producto", row.id, row.nombre)
                             )
                           }
                         >
