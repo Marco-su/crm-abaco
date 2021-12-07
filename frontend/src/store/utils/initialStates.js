@@ -5,8 +5,6 @@ export const modalsInitial = {
   deleteType: "",
   deleteIsOpen: false,
   deleteName: "",
-  detailType: "",
-  detailIsOpen: false,
 };
 
 export const contactoInitial = {

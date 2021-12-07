@@ -6,6 +6,8 @@ import { toggleUpdate } from "../../store/actions/modals.action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import EmpleadoUpdateForm from "../empleados/EmpleadoUpdateForm";
+import EmpresaUpdateForm from "../empresas/EmpresaUpdateForm";
+import ProductoUpdateForm from "../productos/ProductoUpdateForm";
 
 const UpdateModal = (element) => {
   const dispatch = useDispatch();
@@ -51,6 +53,14 @@ const UpdateModal = (element) => {
 
         {updateType === "empleado" && (
           <EmpleadoUpdateForm>{buttons()}</EmpleadoUpdateForm>
+        )}
+
+        {updateType === "empresa" && (
+          <EmpresaUpdateForm>{buttons()}</EmpresaUpdateForm>
+        )}
+
+        {updateType === "producto" && (
+          <ProductoUpdateForm>{buttons()}</ProductoUpdateForm>
         )}
       </div>
     </div>

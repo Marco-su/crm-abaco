@@ -76,12 +76,12 @@
   text-align: left;
 }
 
-.phoneInputBox {
-  display: flex;
-}
-
 .smallFlag {
   margin-right: 0.3rem;
+}
+
+.phoneInputBox {
+  display: flex !important;
 }
 
 .phoneInputBox > .inputText {

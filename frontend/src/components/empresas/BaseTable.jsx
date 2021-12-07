@@ -2,11 +2,7 @@ import "../../assets/css/common/tables.css";
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  toggleUpdate,
-  toggleDelete,
-  toggleDetail,
-} from "../../store/actions/modals.action";
+import { toggleUpdate, toggleDelete } from "../../store/actions/modals.action";
 
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";
@@ -61,7 +57,7 @@ const headCells = [
     id: "nombre",
     numeric: false,
     disablePadding: true,
-    label: "Nombre completo",
+    label: "Nombre",
   },
   {
     id: "vertical",

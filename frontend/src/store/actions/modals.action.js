@@ -28,19 +28,6 @@ export const toggleDelete =
     });
   };
 
-export const toggleDetail = (detailType, detId) => (dispatch, getState) => {
-  const changes = {
-    detailType,
-    detId,
-    detailIsOpen: !getState().modals.deleteIsOpen,
-  };
-
-  dispatch({
-    type: types.OPEN_DETAIL,
-    payload: changes,
-  });
-};
-
 export const closeModals = () => (dispatch) => {
   dispatch({ type: types.CLOSE_MODALS });
 };

@@ -1,14 +1,17 @@
 import { TextField, MenuItem } from "@mui/material";
+import { useForm } from "react-hook-form";
 
 const ContactoUpdateForm = ({ children }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleChange = (e) => {};
+  const onSubmit = (data) => {};
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="upFormInputsBox">
         <TextField
           className="inputText"
@@ -17,7 +20,18 @@ const ContactoUpdateForm = ({ children }) => {
           maxRows={2}
           size="small"
           // value={value}
-          onChange={handleChange}
+          error={errors.nombre ? true : false}
+          helperText={errors.nombre ? errors.nombre.message : ""}
+          {...register("nombre", {
+            required: {
+              value: true,
+              message: "El contacto debe tener un nombre.",
+            },
+            maxLength: {
+              value: 120,
+              message: "Nombre muy largo (máximo 120 caracteres).",
+            },
+          })}
         />
 
         <TextField
@@ -27,7 +41,18 @@ const ContactoUpdateForm = ({ children }) => {
           maxRows={2}
           size="small"
           // value={value}
-          onChange={handleChange}
+          error={errors.apellido ? true : false}
+          helperText={errors.apellido ? errors.apellido.message : ""}
+          {...register("apellido", {
+            required: {
+              value: true,
+              message: "El contacto debe tener un apellido.",
+            },
+            maxLength: {
+              value: 120,
+              message: "Apellido muy largo (máximo 120 caracteres).",
+            },
+          })}
         />
 
         <TextField
@@ -37,7 +62,14 @@ const ContactoUpdateForm = ({ children }) => {
           // value={value}
           select
           defaultValue="Una"
-          onChange={handleChange}
+          error={errors.cargo ? true : false}
+          helperText={errors.cargo ? errors.cargo.message : ""}
+          {...register("cargo", {
+            required: {
+              value: true,
+              message: "El contacto debe tener un cargo asignado.",
+            },
+          })}
         >
           <MenuItem value="Una">Una opción</MenuItem>
           <MenuItem value="Otra">Otra opcion</MenuItem>

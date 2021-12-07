@@ -3,7 +3,6 @@ const actions = {};
 // Modals
 actions.OPEN_DELETE = "OPEN_DELETE";
 actions.OPEN_UPDATE = "OPEN_UPDATE";
-actions.OPEN_DETAIL = "OPEN_DETAIL";
 actions.CLOSE_MODALS = "CLOSE_MODALS";
 
 // Contactos

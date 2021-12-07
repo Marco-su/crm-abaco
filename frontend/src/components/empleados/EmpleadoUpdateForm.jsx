@@ -1,36 +1,20 @@
-import {
-  TextField,
-  MenuItem,
-  InputLabel,
-  FormControl,
-  Select,
-} from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { countries } from "../../constants/countriesCodes";
-import { alphabeticalOrder } from "../../helpers/alphabeticalOrder";
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    minWidth: 120,
-    marginRight: 10,
-  },
-  menuPaper: {
-    maxHeight: 300,
-  },
-}));
+import { TextField, MenuItem } from "@mui/material";
+import PhoneInput from "../common/PhoneInput";
+import { useForm } from "react-hook-form";
 
 const EmpleadoUpdateForm = ({ children }) => {
-  const orderedCountries = alphabeticalOrder(countries, "code");
-  const classes = useStyles();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
-  const handleChange = (e) => {};
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="upFormInputsBox">
         <TextField
           className="inputText"
@@ -39,7 +23,18 @@ const EmpleadoUpdateForm = ({ children }) => {
           maxRows={2}
           size="small"
           // value={value}
-          onChange={handleChange}
+          error={errors.nombre ? true : false}
+          helperText={errors.nombre ? errors.nombre.message : ""}
+          {...register("nombre", {
+            required: {
+              value: true,
+              message: "El empleado debe tener un nombre.",
+            },
+            maxLength: {
+              value: 120,
+              message: "Nombre muy largo (máximo 120 caracteres).",
+            },
+          })}
         />
 
         <TextField
@@ -49,7 +44,18 @@ const EmpleadoUpdateForm = ({ children }) => {
           maxRows={2}
           size="small"
           // value={value}
-          onChange={handleChange}
+          error={errors.apellido ? true : false}
+          helperText={errors.apellido ? errors.apellido.message : ""}
+          {...register("apellido", {
+            required: {
+              value: true,
+              message: "El empleado debe tener un apellido.",
+            },
+            maxLength: {
+              value: 120,
+              message: "Apellido muy largo (máximo 120 caracteres).",
+            },
+          })}
         />
 
         <TextField
@@ -59,50 +65,32 @@ const EmpleadoUpdateForm = ({ children }) => {
           // value={value}
           select
           defaultValue="Una"
-          onChange={handleChange}
+          error={errors.cargo ? true : false}
+          helperText={errors.cargo ? errors.cargo.message : ""}
+          {...register("cargo", {
+            required: {
+              value: true,
+              message: "El empleado debe tener un cargo asignado.",
+            },
+          })}
         >
           <MenuItem value="Una">Una opción</MenuItem>
           <MenuItem value="Otra">Otra opcion</MenuItem>
         </TextField>
 
-        <div className="phoneInputBox">
-          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Código</InputLabel>
-            <Select
-              label="Código"
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              size="small"
-              defaultValue={57}
-              onChange={handleChange}
-              MenuProps={{ classes: { paper: classes.menuPaper } }}
-            >
-              {orderedCountries.map((el) => (
-                <MenuItem value={el.phone} key={`${el.phone}-${el.code}`}>
-                  <img
-                    className="smallFlag"
-                    loading="lazy"
-                    width="20"
-                    src={`https://flagcdn.com/w20/${el.code.toLowerCase()}.png`}
-                    srcSet={`https://flagcdn.com/w40/${el.code.toLowerCase()}.png 2x`}
-                    alt=""
-                  />
-                  ({el.code}) +{el.phone}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <PhoneInput
+          label="Teléfono"
+          tipo="telefono"
+          register={register}
+          errors={errors}
+        />
 
-          <TextField
-            className="inputText"
-            label="Teléfono"
-            multiline
-            maxRows={2}
-            size="small"
-            // value={value}
-            onChange={handleChange}
-          />
-        </div>
+        <PhoneInput
+          label="Móvil"
+          tipo="movil"
+          register={register}
+          errors={errors}
+        />
 
         <TextField
           className="inputText"
@@ -111,7 +99,18 @@ const EmpleadoUpdateForm = ({ children }) => {
           maxRows={2}
           size="small"
           // value={value}
-          onChange={handleChange}
+          error={errors.correo ? true : false}
+          helperText={errors.correo ? errors.correo.message : ""}
+          {...register("correo", {
+            required: {
+              value: true,
+              message: "El empleado debe tener un correo asignado.",
+            },
+            pattern: {
+              value: /^\S+@\S+\.\S+$/,
+              message: "Correo no válido. Ejemplo válido: usuario@dominio.tld",
+            },
+          })}
         />
       </div>
 

@@ -3,11 +3,7 @@ import "../../assets/css/common/tables.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductos } from "../../store/actions/producto.actions";
-import {
-  toggleUpdate,
-  toggleDelete,
-  toggleDetail,
-} from "../../store/actions/modals.action";
+import { toggleUpdate, toggleDelete } from "../../store/actions/modals.action";
 
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";

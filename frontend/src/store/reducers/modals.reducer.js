@@ -11,16 +11,11 @@ const modalsReducer = (state = modalsInitial, action) => {
       const { deleteType, delId, deleteIsOpen, deleteName } = action.payload;
       return { ...state, deleteType, id: delId, deleteIsOpen, deleteName };
 
-    case types.OPEN_DETAIL:
-      const { detailType, detId, detailIsOpen } = action.payload;
-      return { ...state, detailType, id: detId, detailIsOpen };
-
     case types.CLOSE_MODALS:
       return {
         ...state,
         updateIsOpen: false,
         deleteIsOpen: false,
-        detailIsOpen: false,
       };
 
     default:
