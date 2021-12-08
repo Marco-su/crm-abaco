@@ -1,7 +1,8 @@
 import "../../assets/css/common/tables.css";
 
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router";
 import { toggleUpdate, toggleDelete } from "../../store/actions/modals.action";
 
 import PropTypes from "prop-types";
@@ -190,7 +191,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable({ getInitial, rows, titulo }) {
+export default function EnhancedTable({ getInitial, titulo }) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("nombre");
   const [selected, setSelected] = useState([]);
@@ -198,13 +199,50 @@ export default function EnhancedTable({ getInitial, rows, titulo }) {
   const [rowsPerPage, setRowsPerPage] = useState(30);
 
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const createData = (id, nombre, vertical, tipo) => {
+    return {
+      id,
+      nombre,
+      vertical,
+      tipo,
+    };
+  };
+
+  const createRows = (list) => {
+    const createdList = [];
+
+    list.forEach((row) => {
+      createdList.push(createData(row.id, row.nombre, row.vertical, row.tipo));
+    });
+
+    return createdList;
+  };
+
+  let listToFind = "";
+
+  switch (location.pathname) {
+    case "/prospectos":
+      listToFind = "prospectos";
+      break;
+
+    case "/clientes":
+      listToFind = "clientes";
+      break;
+
+    default:
+      listToFind = "lista";
+      break;
+  }
+
+  const rows = createRows(useSelector((store) => store.empresas[listToFind]));
 
   useEffect(() => {
     dispatch(getInitial());
   }, [dispatch, getInitial]);
 
   const handleRequestSort = (e, property) => {
-    console.log(property);
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
@@ -258,7 +296,7 @@ export default function EnhancedTable({ getInitial, rows, titulo }) {
     <Box>
       <Paper sx={{ width: "100%", mb: 2 }} className="mainTableBox">
         <EnhancedTableToolbar numSelected={selected.length} titulo={titulo} />
-        <TableContainer>
+        <TableContainer className="tableContainer">
           <Table aria-labelledby="tableTitle" size="small">
             <EnhancedTableHead
               numSelected={selected.length}

@@ -21,6 +21,7 @@ module.exports = {
         empresaId: empresa.id,
         createdAt: faker.date.recent(),
         updatedAt: faker.date.recent(),
+        status: "activo",
       });
     });
 

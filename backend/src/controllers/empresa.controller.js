@@ -5,6 +5,7 @@ const empresasController = {};
 empresasController.traerEmpresas = (req, res) => {
   Empresa.findAll({
     include: [{ all: true, nested: true }],
+    where: { status: "activo" },
   })
     .then((empresas) => res.json(empresas))
     .catch((err) => res.send(`Error al cargar empresas: ${err}`));
@@ -15,6 +16,7 @@ empresasController.traerProspectos = (req, res) => {
     include: [{ all: true, nested: true }],
     where: {
       tipo: "Prospecto",
+      status: "activo",
     },
   })
     .then((empresas) => res.json(empresas))
@@ -26,6 +28,7 @@ empresasController.traerClientes = (req, res) => {
     include: [{ all: true, nested: true }],
     where: {
       tipo: "Cliente",
+      status: "activo",
     },
   })
     .then((empresas) => res.json(empresas))

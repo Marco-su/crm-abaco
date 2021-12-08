@@ -1,18 +1,28 @@
-import axios from "axios";
 import types from "../utils/actionNames";
-import { apiBase } from "../../constants/baseUrls";
+import { get, update, disable } from "../utils/axiosCommon";
 
 export const getContactos = () => (dispatch) => {
-  axios({
-    url: `${apiBase}/contactos`,
-  })
-    .then((res) => {
-      dispatch({
-        type: types.GET_CONTACTOS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log("Error al traer contactos:", err);
-    });
+  get(types.GET_CONTACTOS, "contactos", dispatch);
+};
+
+export const updateContacto = (data) => (dispatch) => {
+  update(
+    types.GET_CONTACTOS,
+    "contactos",
+    "contactos",
+    "contacto",
+    data,
+    dispatch
+  );
+};
+
+export const disableContacto = (id) => (dispatch) => {
+  disable(
+    types.GET_CONTACTOS,
+    "contactos",
+    "contactos",
+    "contacto",
+    id,
+    dispatch
+  );
 };

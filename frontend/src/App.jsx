@@ -32,11 +32,19 @@ const App = () => {
 
               <Routes>
                 <Route index path="/" element={<Home />} />
+
+                <Route path="/empleados/:id" element={<Empleados />} />
                 <Route path="/empleados" element={<Empleados />} />
+
+                <Route path="/empresas/:id" element={<Empresas />} />
                 <Route path="/empresas" element={<Empresas />} />
                 <Route path="/prospectos" element={<Prospectos />} />
                 <Route path="/clientes" element={<Clientes />} />
+
+                <Route path="/contactos/:id" element={<Contactos />} />
                 <Route path="/contactos" element={<Contactos />} />
+
+                <Route path="/productos/:id" element={<Productos />} />
                 <Route path="/productos" element={<Productos />} />
               </Routes>
             </main>

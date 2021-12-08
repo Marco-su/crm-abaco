@@ -1,13 +1,22 @@
 table td,
 table th {
-  max-width: 325px;
+  max-width: 300px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
+.tableContainer {
+  overflow: auto;
+  height: calc(100vh - 166px - 2rem);
+}
+
 thead th {
   font-weight: bold !important;
+  position: sticky;
+  top: 0;
+  z-index: 998;
+  background: #fefefe;
 }
 
 .MuiToolbar-root {
@@ -26,7 +35,6 @@ thead th {
 
 .mainTableBox {
   max-height: calc(100vh - 50px - 2rem);
-  overflow-y: auto;
 }
 
 .mainTableBox .tableTitle {

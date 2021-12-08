@@ -8,7 +8,7 @@ export const toggleUpdate = (updateType, upId) => (dispatch, getState) => {
   };
 
   dispatch({
-    type: types.OPEN_UPDATE,
+    type: types.TOGGLE_UPDATE,
     payload: changes,
   });
 };
@@ -23,7 +23,7 @@ export const toggleDelete =
     };
 
     dispatch({
-      type: types.OPEN_DELETE,
+      type: types.TOGGLE_DELETE,
       payload: changes,
     });
   };

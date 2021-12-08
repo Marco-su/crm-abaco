@@ -17,6 +17,7 @@ module.exports = {
         correo: faker.internet.email(),
         createdAt: faker.date.recent(),
         updatedAt: faker.date.recent(),
+        status: "activo",
       });
     }
 

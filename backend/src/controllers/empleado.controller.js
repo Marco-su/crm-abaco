@@ -1,10 +1,11 @@
-const { Empleado } = require("../database");
+const { Empleado, Telefono } = require("../database");
 
 const empleadoController = {};
 
 empleadoController.traerEmpleados = (req, res) => {
   Empleado.findAll({
     include: [{ all: true, nested: true }],
+    where: { status: "activo" },
   })
     .then((empleados) => res.json(empleados))
     .catch((err) => res.send(`Error al cargar empleados: ${err}`));
@@ -20,7 +21,7 @@ empleadoController.crearEmpleado = (req, res) => {
 
 empleadoController.leerEmpleado = (req, res) => {
   Empleado.findOne({
-    include: [{ all: true, nested: true }],
+    include: "telefonos",
     where: { id: req.params.id },
   })
     .then((empleado) => res.json(empleado))
@@ -28,9 +29,17 @@ empleadoController.leerEmpleado = (req, res) => {
 };
 
 empleadoController.modificarEmpleado = (req, res) => {
-  Empleado.update(req.body, { where: { id: req.params.id } })
+  Empleado.update(req.body, {
+    where: { id: req.params.id },
+  })
     .then((response) => res.json(response))
     .catch((err) => res.send(`Error al actualizar empleado: ${err}`));
+
+  if (req.body.telefonos && req.body.telefonos.length > 0) {
+    req.body.telefonos.forEach((el) =>
+      Telefono.update(el, { where: { id: el.id } })
+    );
+  }
 };
 
 empleadoController.eliminiarEmpleado = (req, res) => {

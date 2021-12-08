@@ -1,18 +1,28 @@
-import axios from "axios";
 import types from "../utils/actionNames";
-import { apiBase } from "../../constants/baseUrls";
+import { get, update, disable } from "../utils/axiosCommon";
 
 export const getEmpleados = () => (dispatch) => {
-  axios({
-    url: `${apiBase}/empleados`,
-  })
-    .then((res) => {
-      dispatch({
-        type: types.GET_EMPLEADOS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log("Error al traer empleados:", err);
-    });
+  get(types.GET_EMPLEADOS, "empleados", dispatch);
+};
+
+export const updateEmpleado = (data) => (dispatch) => {
+  update(
+    types.GET_EMPLEADOS,
+    "empleados",
+    "empleados",
+    "empleado",
+    data,
+    dispatch
+  );
+};
+
+export const disableEmpleado = (id) => (dispatch) => {
+  disable(
+    types.GET_EMPLEADOS,
+    "empleados",
+    "empleados",
+    "empleado",
+    id,
+    dispatch
+  );
 };

@@ -21,6 +21,7 @@ module.exports = {
         ]),
         createdAt: faker.date.recent(),
         updatedAt: faker.date.recent(),
+        status: "activo",
       });
     }
 

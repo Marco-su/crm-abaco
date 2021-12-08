@@ -310,7 +310,7 @@ export default function EnhancedTable() {
     <Box>
       <Paper sx={{ width: "100%", mb: 2 }} className="mainTableBox">
         <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
+        <TableContainer className="tableContainer">
           <Table aria-labelledby="tableTitle" size="small">
             <EnhancedTableHead
               numSelected={selected.length}
@@ -354,8 +354,8 @@ export default function EnhancedTable() {
                         {row.nombre}
                       </TableCell>
                       <TableCell>{row.cargo}</TableCell>
-                      <TableCell>{row.telefono}</TableCell>
-                      <TableCell>{row.movil}</TableCell>
+                      <TableCell>+{row.telefono}</TableCell>
+                      <TableCell>+{row.movil}</TableCell>
                       <TableCell>{row.correo}</TableCell>
                       <TableCell className="cellIcons">
                         <button

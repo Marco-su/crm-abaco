@@ -4,9 +4,10 @@ const {
   crearProducto,
   traerProductos,
   eliminarProducto,
+  modificarProducto,
 } = require("../controllers/producto.controller");
 
 router.route("/").get(traerProductos).post(uploader, crearProducto);
-router.route("/:id").delete(eliminarProducto);
+router.route("/:id").put(modificarProducto).delete(eliminarProducto);
 
 module.exports = router;

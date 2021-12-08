@@ -10,7 +10,7 @@ module.exports = {
     // A cada empleado se le agrega un movil y un telefono
     empleados.forEach((empleado) => {
       telefonosArray.push({
-        codPais: faker.random.arrayElement(["+58", "+57", "+1"]),
+        codPais: faker.random.arrayElement(["58", "57", "1"]),
         numero: faker.phone.phoneNumber(),
         tipo: "movil",
         telefonableId: empleado.id,
@@ -21,7 +21,7 @@ module.exports = {
     });
     empleados.forEach((empleado) => {
       telefonosArray.push({
-        codPais: faker.random.arrayElement(["+58", "+57", "+1"]),
+        codPais: faker.random.arrayElement(["58", "57", "1"]),
         numero: faker.phone.phoneNumber(),
         tipo: "telefono",
         telefonableId: empleado.id,

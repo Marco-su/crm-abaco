@@ -1,18 +1,28 @@
-import axios from "axios";
 import types from "../utils/actionNames";
-import { apiBase } from "../../constants/baseUrls";
+import { get, update, disable } from "../utils/axiosCommon";
 
 export const getProductos = () => (dispatch) => {
-  axios({
-    url: `${apiBase}/productos`,
-  })
-    .then((res) => {
-      dispatch({
-        type: types.GET_PRODUCTOS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log("Error al traer productos:", err);
-    });
+  get(types.GET_PRODUCTOS, "productos", dispatch);
+};
+
+export const updateProducto = (data) => (dispatch) => {
+  update(
+    types.GET_PRODUCTOS,
+    "productos",
+    "productos",
+    "producto",
+    data,
+    dispatch
+  );
+};
+
+export const disableProducto = (id) => (dispatch) => {
+  disable(
+    types.GET_PRODUCTOS,
+    "productos",
+    "productos",
+    "producto",
+    id,
+    dispatch
+  );
 };

@@ -1,8 +1,8 @@
 const actions = {};
 
 // Modals
-actions.OPEN_DELETE = "OPEN_DELETE";
-actions.OPEN_UPDATE = "OPEN_UPDATE";
+actions.TOGGLE_DELETE = "TOGGLE_DELETE";
+actions.TOGGLE_UPDATE = "TOGGLE_UPDATE";
 actions.CLOSE_MODALS = "CLOSE_MODALS";
 
 // Contactos

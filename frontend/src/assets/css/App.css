@@ -76,8 +76,9 @@ main {
 }
 
 /* ICON BUTTONS */
-.iconBtn,
-.backArrowBtn {
+.iconBtn {
+  width: 35px;
+  height: 35px;
   color: var(--gray-600);
   border-radius: 50%;
   display: flex;
@@ -89,13 +90,7 @@ main {
   transition: all var(--transition-time) ease;
 }
 
-.iconBtn {
-  width: 35px;
-  height: 35px;
-}
-
-.iconBtn:hover,
-.backArrowBtn:hover {
+.iconBtn:hover {
   background-color: rgba(0, 0, 0, 0.09);
   color: var(--gray-700);
 }
@@ -164,4 +159,8 @@ main {
 }
 .editBtn:hover {
   background-color: var(--orange-700);
+}
+
+.MuiOutlinedInput-input {
+  height: 40px;
 }

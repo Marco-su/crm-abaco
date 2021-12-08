@@ -221,7 +221,6 @@ export default function EnhancedTable() {
   }, [dispatch]);
 
   const handleRequestSort = (e, property) => {
-    console.log(property);
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
@@ -275,7 +274,7 @@ export default function EnhancedTable() {
     <Box>
       <Paper sx={{ width: "100%", mb: 2 }} className="mainTableBox">
         <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
+        <TableContainer className="tableContainer">
           <Table aria-labelledby="tableTitle" size="small">
             <EnhancedTableHead
               numSelected={selected.length}

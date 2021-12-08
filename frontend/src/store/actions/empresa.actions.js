@@ -1,49 +1,88 @@
-import axios from "axios";
 import types from "../utils/actionNames";
-import { apiBase } from "../../constants/baseUrls";
+import { get, update, disable } from "../utils/axiosCommon";
 
 export const getEmpresas = () => (dispatch) => {
-  axios({
-    url: `${apiBase}/empresas`,
-  })
-    .then((res) => {
-      dispatch({
-        type: types.GET_EMPRESAS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log("Error al traer empresas:", err);
-    });
+  get(types.GET_EMPRESAS, "empresas", dispatch);
 };
 
 export const getProspectos = () => (dispatch) => {
-  axios({
-    url: `${apiBase}/empresas/prospectos`,
-  })
-    .then((res) => {
-      console.log(res.data);
-      dispatch({
-        type: types.GET_PROSPECTOS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log("Error al traer prospectos:", err);
-    });
+  get(types.GET_PROSPECTOS, "empresas/prospectos", dispatch);
 };
 
 export const getClientes = () => (dispatch) => {
-  axios({
-    url: `${apiBase}/empresas/clientes`,
-  })
-    .then((res) => {
-      dispatch({
-        type: types.GET_CLIENTES,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log("Error al traer clientes:", err);
-    });
+  get(types.GET_CLIENTES, "empresas/clientes", dispatch);
+};
+
+export const updateEmpresa = (data, path) => (dispatch) => {
+  switch (path) {
+    case "prospectos":
+      update(
+        types.GET_PROSPECTOS,
+        "empresas",
+        "empresas/prospectos",
+        "prospecto",
+        data,
+        dispatch
+      );
+      break;
+
+    case "clientes":
+      update(
+        types.GET_CLIENTES,
+        "empresas",
+        "empresas/clientes",
+        "cliente",
+        data,
+        dispatch
+      );
+      break;
+
+    default:
+      update(
+        types.GET_EMPRESAS,
+        "empresas",
+        "empresas",
+        "empresa",
+        data,
+        dispatch
+      );
+      break;
+  }
+};
+
+export const disableEmpresa = (id, path) => (dispatch) => {
+  switch (path) {
+    case "/prospectos":
+      disable(
+        types.GET_PROSPECTOS,
+        "empresas",
+        "empresas/prospectos",
+        "prospecto",
+        id,
+        dispatch
+      );
+      break;
+
+    case "/clientes":
+      disable(
+        types.GET_CLIENTES,
+        "empresas",
+        "empresas/clientes",
+        "cliente",
+        id,
+        dispatch
+      );
+      break;
+
+    default:
+      disable(
+        types.GET_EMPRESAS,
+        "empresas",
+        "empresas",
+        "empresa",
+        id,
+        dispatch
+      );
+      break;
+  }
 };

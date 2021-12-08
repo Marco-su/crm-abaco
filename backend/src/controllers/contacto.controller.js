@@ -5,6 +5,7 @@ const contactoController = {};
 contactoController.traerContactos = (req, res) => {
   Contacto.findAll({
     include: [{ all: true, nested: true }],
+    where: { status: "activo" },
   })
     .then((contactos) => res.json(contactos))
     .catch((err) => res.send(`Error al cargar contactos: ${err}`));

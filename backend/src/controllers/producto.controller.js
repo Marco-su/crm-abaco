@@ -7,6 +7,7 @@ const productoController = {};
 productoController.traerProductos = (req, res) => {
   Producto.findAll({
     include: [{ all: true, nested: true }],
+    where: { status: "activo" },
   })
     .then((productos) => res.json(productos))
     .catch((err) => res.send(`Error al cargar productos: ${err}`));
@@ -15,20 +16,22 @@ productoController.traerProductos = (req, res) => {
 productoController.crearProducto = (req, res) => {
   const archivos = [];
 
-  req.files.forEach((el) => {
-    const nombre = el.originalname
-      .replace(/\s+/g, " ")
-      .trim()
-      .replace(/\.[^/.]+$/, "")
-      .slice(0, 150);
+  if (req.files) {
+    req.files.forEach((el) => {
+      const nombre = el.originalname
+        .replace(/\s+/g, " ")
+        .trim()
+        .replace(/\.[^/.]+$/, "")
+        .slice(0, 150);
 
-    archivos.push({
-      nombre,
-      storageName: el.filename,
-      tipo: el.mimetype,
-      size: el.size,
+      archivos.push({
+        nombre,
+        storageName: el.filename,
+        tipo: el.mimetype,
+        size: el.size,
+      });
     });
-  });
+  }
 
   Producto.create(
     { ...req.body, archivos },
@@ -36,6 +39,12 @@ productoController.crearProducto = (req, res) => {
   )
     .then((producto) => res.json(producto))
     .catch((err) => res.send(`Error al crear producto: ${err}`));
+};
+
+productoController.modificarProducto = (req, res) => {
+  Producto.update(req.body, { where: { id: req.params.id } })
+    .then((response) => res.json(response))
+    .catch((err) => res.send(`Error al actualizar producto: ${err}`));
 };
 
 productoController.eliminarProducto = (req, res) => {
