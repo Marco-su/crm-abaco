@@ -1,0 +1,44 @@
+.detailView {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.datosDetalle {
+  width: 65%;
+  margin-right: 1rem;
+}
+
+.asideDetails {
+  flex-grow: 1;
+}
+
+.smallSubtitle {
+  color: var(--gray-500);
+  font-size: 14px;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.detalleHeader h1 {
+  font-size: 1.3rem;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.detalleBody {
+  display: flex;
+}
+.detalleBody div {
+  margin-right: 5rem;
+}
+.detalleBody p {
+  margin-bottom: 0;
+}
+
+.detalleBody div:last-child {
+  margin-right: 0;
+}
+
+.productDescBox {
+  margin-top: 0.8rem;
+}

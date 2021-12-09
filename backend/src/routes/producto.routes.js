@@ -3,11 +3,16 @@ const uploader = require("../config/multer");
 const {
   crearProducto,
   traerProductos,
-  eliminarProducto,
+  leerProducto,
   modificarProducto,
+  eliminarProducto,
 } = require("../controllers/producto.controller");
 
 router.route("/").get(traerProductos).post(uploader, crearProducto);
-router.route("/:id").put(modificarProducto).delete(eliminarProducto);
+router
+  .route("/:id")
+  .get(leerProducto)
+  .put(modificarProducto)
+  .delete(eliminarProducto);
 
 module.exports = router;

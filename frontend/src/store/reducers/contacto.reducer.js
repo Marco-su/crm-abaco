@@ -6,6 +6,9 @@ const contactoReducer = (state = contactoInitial, action) => {
     case types.GET_CONTACTOS:
       return { ...state, lista: action.payload };
 
+    case types.GET_SINGLE_CONTACTO:
+      return { ...state, contacto: action.payload };
+
     default:
       return state;
   }

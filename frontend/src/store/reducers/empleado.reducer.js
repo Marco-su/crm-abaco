@@ -6,6 +6,9 @@ const empleadoReducer = (state = empleadoInitial, action) => {
     case types.GET_EMPLEADOS:
       return { ...state, lista: action.payload };
 
+    case types.GET_SINGLE_EMPLEADO:
+      return { ...state, empleado: action.payload };
+
     default:
       return state;
   }

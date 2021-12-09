@@ -4,7 +4,7 @@ const contactoController = {};
 
 contactoController.traerContactos = (req, res) => {
   Contacto.findAll({
-    include: [{ all: true, nested: true }],
+    include: "telefonos",
     where: { status: "activo" },
   })
     .then((contactos) => res.json(contactos))
@@ -13,7 +13,7 @@ contactoController.traerContactos = (req, res) => {
 
 contactoController.crearContacto = (req, res) => {
   Contacto.create(req.body, {
-    include: [{ all: true, nested: true }],
+    include: "telefonos",
   })
     .then((contacto) => res.json(contacto))
     .catch((err) => res.send(`Error al crear contacto: ${err}`));
@@ -21,7 +21,7 @@ contactoController.crearContacto = (req, res) => {
 
 contactoController.leerContacto = (req, res) => {
   Contacto.findOne({
-    include: [{ all: true, nested: true }],
+    include: "telefonos",
     where: { id: req.params.id },
   })
     .then((contacto) => res.json(contacto))

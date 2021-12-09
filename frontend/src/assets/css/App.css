@@ -32,11 +32,13 @@
   --blue-1000: #18507a;
   --orange-500: #ff8400;
   --orange-700: #db7100;
+  --green-500: #80b615;
+  --green-700: #6ba000;
 
   --transition-time: 0.3s;
 
-  --box-shadow: 0px 1px 1px 0px rgb(0, 0, 0, 0.14),
-    0px 1px 3px 1px rgb(0, 0, 0, 0.2);
+  --box-shadow: 0px 1px 2px 0px rgb(0, 0, 0, 0.14),
+    0px 1px 4px 1px rgb(0, 0, 0, 0.2);
 
   --sidebar-width: 250px;
 }
@@ -75,24 +77,51 @@ main {
   overflow: hidden;
 }
 
+.card {
+  box-shadow: var(--box-shadow);
+  border: none;
+}
+
 /* ICON BUTTONS */
-.iconBtn {
-  width: 35px;
-  height: 35px;
-  color: var(--gray-600);
-  border-radius: 50%;
+.iconBtn,
+.redIconBtn,
+.orangeIconBtn,
+.blueIconBtn,
+.greenIconBtn {
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   cursor: pointer;
-  background-color: transparent;
+  width: 35px;
+  height: 35px;
   transition: all var(--transition-time) ease;
 }
 
+.iconBtn {
+  color: var(--gray-600);
+  border-radius: 50%;
+  background-color: transparent;
+}
 .iconBtn:hover {
   background-color: rgba(0, 0, 0, 0.09);
   color: var(--gray-700);
+}
+
+.redIconBtn,
+.orangeIconBtn,
+.blueIconBtn,
+.greenIconBtn {
+  color: #fefefe;
+  border-radius: 0.35rem;
+  opacity: 1;
+}
+
+.redIconBtn {
+  background: linear-gradient(0deg, var(--red-600), var(--red-700));
+}
+.redIconBtn:hover {
+  opacity: 0.75;
 }
 
 .cellIcons {
@@ -100,14 +129,12 @@ main {
   padding-right: 0.5rem !important;
   text-align: end;
 }
-
 .cellIcons button {
   border: none;
   background: none;
   cursor: pointer;
-  margin-left: 0.5rem;
+  margin-left: 0.3rem;
 }
-
 .cellIcons button:first-child {
   margin-left: 0;
 }
@@ -116,20 +143,18 @@ main {
   color: var(--gray-200);
   transition: all var(--transition-time) ease;
 }
-
 .cellIcons button:hover .crudIcon.editIcon {
   color: var(--orange-500);
 }
-
 .cellIcons button:hover .crudIcon.deleteIcon {
   color: var(--red-300);
 }
 
 /* BUTTONS */
-.cancelBtn,
-.deleteBtn,
-.editBtn,
-.continueBtn {
+.blueBtn,
+.redBtn,
+.orangeBtn,
+.greenBtn {
   margin-left: 0.7rem;
   padding: 0.4rem 1rem;
   border-radius: 100px;
@@ -140,27 +165,50 @@ main {
   transition: all var(--transition-time) ease;
 }
 
-.cancelBtn {
+.blueBtn {
   background-color: var(--blue-600);
 }
-.cancelBtn:hover {
+.blueBtn:hover {
   background-color: var(--blue-800);
 }
 
-.deleteBtn {
+.redBtn {
   background-color: var(--red-600);
 }
-.deleteBtn:hover {
+.redBtn:hover {
   background-color: var(--red-800);
 }
 
-.editBtn {
+.orangeBtn {
   background-color: var(--orange-500);
 }
-.editBtn:hover {
+.orangeBtn:hover {
   background-color: var(--orange-700);
 }
 
+.greenBtn {
+  background-color: var(--green-500);
+}
+.greenBtn:hover {
+  background-color: var(--green-700);
+}
+
+.paginationBox {
+  position: relative;
+}
+.tablefooterBtn {
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 1rem;
+}
+
+/* MATERIAL UI CLASSES */
 .MuiOutlinedInput-input {
   height: 40px;
+}
+
+.MuiTablePagination-toolbar p {
+  margin-bottom: 0 !important;
 }

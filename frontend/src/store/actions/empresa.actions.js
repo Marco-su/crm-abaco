@@ -1,5 +1,5 @@
 import types from "../utils/actionNames";
-import { get, update, disable } from "../utils/axiosCommon";
+import { get, update, disable, getSingle } from "../utils/axiosCommon";
 
 export const getEmpresas = () => (dispatch) => {
   get(types.GET_EMPRESAS, "empresas", dispatch);
@@ -11,6 +11,10 @@ export const getProspectos = () => (dispatch) => {
 
 export const getClientes = () => (dispatch) => {
   get(types.GET_CLIENTES, "empresas/clientes", dispatch);
+};
+
+export const getEmpresaById = (id) => (dispatch) => {
+  getSingle(types.GET_SINGLE_EMPRESA, "empresas", id, dispatch);
 };
 
 export const updateEmpresa = (data, path) => (dispatch) => {

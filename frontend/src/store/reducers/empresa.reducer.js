@@ -12,6 +12,9 @@ const empresaReducer = (state = empresaInitial, action) => {
     case types.GET_CLIENTES:
       return { ...state, clientes: action.payload };
 
+    case types.GET_SINGLE_EMPRESA:
+      return { ...state, empresa: action.payload };
+
     default:
       return state;
   }

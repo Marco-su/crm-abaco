@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import generateStore from "./store";
@@ -13,6 +14,10 @@ import Clientes from "./views/Clientes";
 import Productos from "./views/Productos";
 import DeleteModal from "./components/common/DeleteModal";
 import UpdateModal from "./components/common/UpdateModal";
+import DetalleEmpresa from "./views/DetalleEmpresa";
+import DetalleEmpleado from "./views/DetalleEmpleado";
+import DetalleContacto from "./views/DetalleContacto";
+import DetalleProducto from "./views/DetalleProducto";
 
 import("./assets/css/App.css");
 
@@ -33,18 +38,18 @@ const App = () => {
               <Routes>
                 <Route index path="/" element={<Home />} />
 
-                <Route path="/empleados/:id" element={<Empleados />} />
+                <Route path="/empleados/:id" element={<DetalleEmpleado />} />
                 <Route path="/empleados" element={<Empleados />} />
 
-                <Route path="/empresas/:id" element={<Empresas />} />
+                <Route path="/empresas/:id" element={<DetalleEmpresa />} />
                 <Route path="/empresas" element={<Empresas />} />
                 <Route path="/prospectos" element={<Prospectos />} />
                 <Route path="/clientes" element={<Clientes />} />
 
-                <Route path="/contactos/:id" element={<Contactos />} />
+                <Route path="/contactos/:id" element={<DetalleContacto />} />
                 <Route path="/contactos" element={<Contactos />} />
 
-                <Route path="/productos/:id" element={<Productos />} />
+                <Route path="/productos/:id" element={<DetalleProducto />} />
                 <Route path="/productos" element={<Productos />} />
               </Routes>
             </main>

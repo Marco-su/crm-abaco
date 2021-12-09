@@ -19,12 +19,12 @@ const UpdateModal = (element) => {
       <div className="buttonRight">
         <button
           type="button"
-          className="cancelBtn"
+          className="blueBtn"
           onClick={() => dispatch(toggleUpdate("", null))}
         >
           Cancelar
         </button>
-        <button type="submit" className="editBtn">
+        <button type="submit" className="orangeBtn">
           Modificar
         </button>
       </div>

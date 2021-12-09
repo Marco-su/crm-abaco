@@ -41,6 +41,15 @@ productoController.crearProducto = (req, res) => {
     .catch((err) => res.send(`Error al crear producto: ${err}`));
 };
 
+productoController.leerProducto = (req, res) => {
+  Producto.findOne({
+    include: [{ all: true, nested: true }],
+    where: { id: req.params.id },
+  })
+    .then((producto) => res.json(producto))
+    .catch((err) => res.send(`Error al traer producto: ${err}`));
+};
+
 productoController.modificarProducto = (req, res) => {
   Producto.update(req.body, { where: { id: req.params.id } })
     .then((response) => res.json(response))

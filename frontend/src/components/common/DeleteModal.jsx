@@ -104,12 +104,12 @@ const DeleteModal = () => {
 
         <div className="buttonRight">
           <button
-            className="cancelBtn"
+            className="blueBtn"
             onClick={() => dispatch(toggleDelete("", null, ""))}
           >
             Cancelar
           </button>
-          <button onClick={deleteConfirmed} className="deleteBtn">
+          <button onClick={deleteConfirmed} className="redBtn">
             Eliminar
           </button>
         </div>

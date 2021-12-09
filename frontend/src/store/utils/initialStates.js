@@ -9,22 +9,28 @@ export const modalsInitial = {
 
 export const contactoInitial = {
   lista: [],
-  deleteModalOpen: false,
+  contacto: { nombre: "", apellido: "", cargo: "", correo: "", telefonos: [] },
 };
 
 export const empleadoInitial = {
   lista: [],
-  deleteModalOpen: false,
+  empleado: { nombre: "", apellido: "", cargo: "", correo: "", telefonos: [] },
 };
 
 export const productoInitial = {
   lista: [],
-  deleteModalOpen: false,
+  producto: {
+    nombre: "",
+    codigo: "",
+    precio: "",
+    descripcion: "",
+    categoria: "",
+  },
 };
 
 export const empresaInitial = {
   lista: [],
   prospectos: [],
   clientes: [],
-  deleteModalOpen: false,
+  empresa: { nombre: "", vertical: "", tipo: "", etapa: "" },
 };

@@ -1,22 +1,22 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getEmpresaById } from "../store/actions/empresa.actions";
-import DatosEmpresa from "../components/empresas/DatosEmpresa";
+import { getContactoById } from "../store/actions/contacto.actions";
+import DatosContacto from "../components/contactos/DatosContacto";
 import Historial from "../components/common/Historial";
 
-const DetalleEmpresa = () => {
+const DetalleContacto = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getEmpresaById(id));
+    dispatch(getContactoById(id));
   }, [dispatch, id]);
 
   return (
     <div className="detailView">
       <div className="datosDetalle">
-        <DatosEmpresa />
+        <DatosContacto />
       </div>
 
       <div className="asideDetails">
@@ -26,4 +26,4 @@ const DetalleEmpresa = () => {
   );
 };
 
-export default DetalleEmpresa;
+export default DetalleContacto;

@@ -9,6 +9,7 @@ table th {
 .tableContainer {
   overflow: auto;
   height: calc(100vh - 166px - 2rem);
+  border-bottom: 1px solid var(--gray-100);
 }
 
 thead th {
@@ -35,6 +36,9 @@ thead th {
 
 .mainTableBox {
   max-height: calc(100vh - 50px - 2rem);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: var(--box-shadow) !important;
 }
 
 .mainTableBox .tableTitle {
@@ -49,4 +53,17 @@ thead th {
   bottom: 0;
   background: #fefefe;
   z-index: 2;
+}
+
+tbody th a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--blue-700);
+}
+tbody th a:hover {
+  text-decoration: underline;
+}
+
+.mainTableBox .redIconBtn {
+  margin-right: 1rem;
 }

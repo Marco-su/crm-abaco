@@ -6,6 +6,9 @@ const productoReducer = (state = productoInitial, action) => {
     case types.GET_PRODUCTOS:
       return { ...state, lista: action.payload };
 
+    case types.GET_SINGLE_PRODUCTO:
+      return { ...state, producto: action.payload };
+
     default:
       return state;
   }

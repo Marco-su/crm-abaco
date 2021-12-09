@@ -17,6 +17,21 @@ export const get = (type, urlName, dispatch) => {
     });
 };
 
+export const getSingle = (type, urlName, id, dispatch) => {
+  axios({
+    url: `${apiBase}/${urlName}/${id}`,
+  })
+    .then((res) => {
+      dispatch({
+        type,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(`Error al traer ${urlName}:`, err);
+    });
+};
+
 export const update = (getType, urlPut, urlGet, textName, data, dispatch) => {
   axios({
     url: `${apiBase}/${urlPut}/${data.id}`,

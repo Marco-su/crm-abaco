@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getEmpleados } from "../../store/actions/empleado.actions";
 import { toggleUpdate, toggleDelete } from "../../store/actions/modals.action";
+import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";
@@ -18,12 +19,11 @@ import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
 import Tooltip from "@mui/material/Tooltip";
 import { visuallyHidden } from "@mui/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -178,20 +178,15 @@ const EnhancedTableToolbar = (props) => {
             : `${numSelected} empleados seleccionados`}
         </Typography>
       ) : (
-        <Typography
-          sx={{ flex: "1 1 100%" }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
+        <Typography variant="h6" component="div">
           Empleados
         </Typography>
       )}
 
       {numSelected > 0 ? (
         <Tooltip title="Eliminar Seleccionados">
-          <button className="iconBtn">
-            <FontAwesomeIcon icon={faTrash} className="deleteIcon" />
+          <button className="redIconBtn">
+            <FontAwesomeIcon icon={faTrashAlt} className="deleteManyIcon" />
           </button>
         </Tooltip>
       ) : null}
@@ -307,95 +302,95 @@ export default function EnhancedTable() {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box>
-      <Paper sx={{ width: "100%", mb: 2 }} className="mainTableBox">
-        <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer className="tableContainer">
-          <Table aria-labelledby="tableTitle" size="small">
-            <EnhancedTableHead
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
-            <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.id);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+    <div className="mainTableBox">
+      <EnhancedTableToolbar numSelected={selected.length} />
+      <TableContainer className="tableContainer">
+        <Table aria-labelledby="tableTitle" size="small">
+          <EnhancedTableHead
+            numSelected={selected.length}
+            order={order}
+            orderBy={orderBy}
+            onSelectAllClick={handleSelectAllClick}
+            onRequestSort={handleRequestSort}
+            rowCount={rows.length}
+          />
+          <TableBody>
+            {stableSort(rows, getComparator(order, orderBy))
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row, index) => {
+                const isItemSelected = isSelected(row.id);
+                const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.id}
-                      selected={isItemSelected}
+                return (
+                  <TableRow
+                    hover
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={row.id}
+                    selected={isItemSelected}
+                  >
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        onClick={(e) => handleClick(e, row.id)}
+                        color="primary"
+                        checked={isItemSelected}
+                        inputProps={{
+                          "aria-labelledby": labelId,
+                        }}
+                      />
+                    </TableCell>
+                    <TableCell
+                      component="th"
+                      id={labelId}
+                      scope="row"
+                      padding="none"
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          onClick={(e) => handleClick(e, row.id)}
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            "aria-labelledby": labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
+                      <Link to={`/empleados/${row.id}`}>{row.nombre}</Link>
+                    </TableCell>
+                    <TableCell>{row.cargo}</TableCell>
+                    <TableCell>+{row.telefono}</TableCell>
+                    <TableCell>+{row.movil}</TableCell>
+                    <TableCell>{row.correo}</TableCell>
+                    <TableCell className="cellIcons">
+                      <button
+                        onClick={() =>
+                          dispatch(toggleUpdate("empleado", row.id))
+                        }
                       >
-                        {row.nombre}
-                      </TableCell>
-                      <TableCell>{row.cargo}</TableCell>
-                      <TableCell>+{row.telefono}</TableCell>
-                      <TableCell>+{row.movil}</TableCell>
-                      <TableCell>{row.correo}</TableCell>
-                      <TableCell className="cellIcons">
-                        <button
-                          onClick={() =>
-                            dispatch(toggleUpdate("empleado", row.id))
-                          }
-                        >
-                          <FontAwesomeIcon
-                            icon={faPencilAlt}
-                            className="crudIcon editIcon"
-                          />
-                        </button>
-                        <button
-                          onClick={() =>
-                            dispatch(
-                              toggleDelete("empleado", row.id, row.nombre)
-                            )
-                          }
-                        >
-                          <FontAwesomeIcon
-                            icon={faTrash}
-                            className="crudIcon deleteIcon"
-                          />
-                        </button>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: 33 * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                        <FontAwesomeIcon
+                          icon={faPencilAlt}
+                          className="crudIcon editIcon"
+                        />
+                      </button>
+                      <button
+                        onClick={() =>
+                          dispatch(toggleDelete("empleado", row.id, row.nombre))
+                        }
+                      >
+                        <FontAwesomeIcon
+                          icon={faTrashAlt}
+                          className="crudIcon deleteIcon"
+                        />
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            {emptyRows > 0 && (
+              <TableRow
+                style={{
+                  height: 33 * emptyRows,
+                }}
+              >
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <div className="paginationBox">
+        <button className="greenBtn tablefooterBtn">Crear nuevo</button>
 
         <TablePagination
           rowsPerPageOptions={[30, 50, 100]}
@@ -411,7 +406,7 @@ export default function EnhancedTable() {
           labelRowsPerPage="Resultados por página"
           className="tablePagination"
         />
-      </Paper>
-    </Box>
+      </div>
+    </div>
   );
 }
