@@ -1,38 +1,42 @@
 import "../../assets/css/navigation/sidebar.css";
 import { Link } from "react-router-dom";
 import {
-  HomeOutlined,
-  BadgeOutlined,
-  BusinessOutlined,
+  Home,
+  Badge,
+  Business,
   PriceCheck,
-  BusinessCenterOutlined,
-  EventOutlined,
-  CallOutlined,
-  FilterAltOutlined,
-  TrendingUpOutlined,
-  StorefrontOutlined,
-  CurrencyExchangeOutlined,
-  PointOfSaleOutlined,
-  ReportGmailerrorredOutlined,
+  BusinessCenter,
+  Event,
+  Call,
+  FilterAlt,
+  TrendingUp,
+  Storefront,
+  CurrencyExchange,
+  PointOfSale,
+  ReportGmailerrorred,
   EmailOutlined,
-  VideocamOutlined,
-  PermContactCalendarOutlined,
-  BarChartOutlined,
+  Videocam,
+  PermContactCalendar,
+  BarChart,
 } from "@mui/icons-material";
 
 const Sidebar = () => {
   return (
     <div id="sidebar">
       <div className="menuSection">
+        <p>Abaco CRM</p>
+      </div>
+
+      <div className="menuSection">
         <h3>Principal</h3>
         <ul>
           <li>
             <Link to="/">
-              <HomeOutlined />
+              <Home />
               <span>Inicio</span>
             </Link>
             <Link to="/productos">
-              <StorefrontOutlined />
+              <Storefront />
               <span>Productos</span>
             </Link>
           </li>
@@ -44,13 +48,13 @@ const Sidebar = () => {
         <ul>
           <li>
             <Link to="/empresas">
-              <BusinessOutlined />
+              <Business />
               <span>Empresas</span>
             </Link>
           </li>
           <li>
             <Link to="/prospectos">
-              <BusinessCenterOutlined />
+              <BusinessCenter />
               <span>Prospectos</span>
             </Link>
           </li>
@@ -62,7 +66,7 @@ const Sidebar = () => {
           </li>
           <li>
             <Link to="/contactos">
-              <PermContactCalendarOutlined />
+              <PermContactCalendar />
               <span>Contactos</span>
             </Link>
           </li>
@@ -74,25 +78,25 @@ const Sidebar = () => {
         <ul>
           <li>
             <Link to="/empleados">
-              <BadgeOutlined />
+              <Badge />
               <span>Empleados</span>
             </Link>
           </li>
           <li>
             <Link to="/actividades">
-              <EventOutlined />
+              <Event />
               <span>Actividades</span>
             </Link>
           </li>
           <li>
             <Link to="/oportunidades">
-              <CurrencyExchangeOutlined />
+              <CurrencyExchange />
               <span>Oportunidades</span>
             </Link>
           </li>
           <li>
             <Link to="/ventas">
-              <PointOfSaleOutlined />
+              <PointOfSale />
               <span>Ventas</span>
             </Link>
           </li>
@@ -110,13 +114,13 @@ const Sidebar = () => {
           </li>
           <li>
             <Link to="/zoom">
-              <VideocamOutlined />
+              <Videocam />
               <span>Zoom</span>
             </Link>
           </li>
           <li>
             <Link to="/llamadas">
-              <CallOutlined />
+              <Call />
               <span>Llamada</span>
             </Link>
           </li>
@@ -128,19 +132,19 @@ const Sidebar = () => {
         <ul>
           <li>
             <Link to="/embudo">
-              <FilterAltOutlined />
+              <FilterAlt />
               <span>Embudo de ventas</span>
             </Link>
           </li>
           <li>
             <Link to="/rendimiento">
-              <TrendingUpOutlined />
+              <TrendingUp />
               <span>Rendimiento</span>
             </Link>
           </li>
           <li>
             <Link to="/personal">
-              <BarChartOutlined />
+              <BarChart />
               <span>Personal</span>
             </Link>
           </li>
@@ -152,7 +156,7 @@ const Sidebar = () => {
         <ul>
           <li>
             <Link to="/reportes">
-              <ReportGmailerrorredOutlined />
+              <ReportGmailerrorred />
               <span>Reportes</span>
             </Link>
           </li>

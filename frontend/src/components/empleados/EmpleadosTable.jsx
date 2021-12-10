@@ -178,9 +178,7 @@ const EnhancedTableToolbar = (props) => {
             : `${numSelected} empleados seleccionados`}
         </Typography>
       ) : (
-        <Typography variant="h6" component="div">
-          Empleados
-        </Typography>
+        <h1 className="tableTitle">Empleados</h1>
       )}
 
       {numSelected > 0 ? (

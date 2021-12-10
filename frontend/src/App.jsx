@@ -26,10 +26,10 @@ const App = () => {
     <div className="App">
       <Provider store={generateStore()}>
         <Router>
-          <Topbar />
+          <Sidebar />
 
           <div className="mainContainer">
-            <Sidebar />
+            <Topbar />
 
             <main>
               <UpdateModal />

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getContactoById } from "../store/actions/contacto.actions";
 import DatosContacto from "../components/contactos/DatosContacto";
 import Historial from "../components/common/Historial";
+import RelacionesContacto from "../components/contactos/RelacionesContacto";
 
 const DetalleContacto = () => {
   const dispatch = useDispatch();
@@ -15,12 +16,16 @@ const DetalleContacto = () => {
 
   return (
     <div className="detailView">
-      <div className="datosDetalle">
-        <DatosContacto />
-      </div>
+      <DatosContacto />
 
-      <div className="asideDetails">
-        <Historial />
+      <div className="detailsBox">
+        <div className="relationsDetails">
+          <RelacionesContacto />
+        </div>
+
+        <div className="asideDetails">
+          <Historial />
+        </div>
       </div>
     </div>
   );

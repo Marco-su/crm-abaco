@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE",
       });
 
+      this.belongsTo(models.Empleado, {
+        as: "empleado",
+        foreignKey: { name: "empleadoId", allowNull: true },
+        onDelete: "SET NULL",
+      });
+
       this.hasMany(models.Telefono, {
         as: "telefonos",
         foreignKey: { name: "telefonableId", allowNull: false },

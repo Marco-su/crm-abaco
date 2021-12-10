@@ -1,5 +1,14 @@
 /* VARIABLES */
 :root {
+  --main-dark: #111827;
+  --second-dark: #1b2434;
+  --main-green: #10b981;
+  --second-green: #5ecc69;
+  --main-purple: #5048e5;
+  --second-purple: #6e7ad8;
+  --main-blue: #0c66ae;
+  --text-light: #d1d5db;
+
   --red-100: #ff6666;
   --red-200: #ff4c4c;
   --red-300: #ff3232;
@@ -36,11 +45,8 @@
   --green-700: #6ba000;
 
   --transition-time: 0.3s;
-
-  --box-shadow: 0px 1px 2px 0px rgb(0, 0, 0, 0.14),
-    0px 1px 4px 1px rgb(0, 0, 0, 0.2);
-
-  --sidebar-width: 250px;
+  --box-shadow: 0px 1px 4px 1px rgb(0, 0, 0, 0.1);
+  --sidebar-width: 225px;
 }
 
 /* SCROLL BAR */
@@ -66,15 +72,17 @@
   margin: 0;
 }
 
-.mainContainer {
+.App {
   display: flex;
+}
+
+.mainContainer {
+  width: calc(100% - var(--sidebar-width));
 }
 
 main {
   position: relative;
   padding: 1rem;
-  width: calc(100% - var(--sidebar-width));
-  overflow: hidden;
 }
 
 .card {
@@ -96,6 +104,7 @@ main {
   width: 35px;
   height: 35px;
   transition: all var(--transition-time) ease;
+  font-size: 1rem;
 }
 
 .iconBtn {

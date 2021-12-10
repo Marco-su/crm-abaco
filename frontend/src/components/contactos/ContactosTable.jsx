@@ -160,14 +160,7 @@ const EnhancedTableToolbar = (props) => {
             : `${numSelected} empleados seleccionados`}
         </Typography>
       ) : (
-        <Typography
-          sx={{ flex: "1 1 100%" }}
-          variant="h6"
-          className="tableTitle"
-          component="div"
-        >
-          Contactos
-        </Typography>
+        <h1 className="tableTitle">Contactos</h1>
       )}
 
       {numSelected > 0 ? (

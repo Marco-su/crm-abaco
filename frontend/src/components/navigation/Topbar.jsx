@@ -15,11 +15,7 @@ const Topbar = () => {
 
   return (
     <div id="topbar">
-      <div className="topleft">
-        <span>Abaco CRM</span>
-      </div>
-
-      <div className="topright">
+      <div className="topRight">
         <div className="iconBox">
           <button className="iconBtn">
             <NotificationsNone />

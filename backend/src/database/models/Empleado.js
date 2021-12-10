@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) => {
           telefonableType: "empleado",
         },
       });
+
+      this.hasMany(models.Contacto, {
+        as: "contactos",
+        foreignKey: { name: "empleadoId", allowNull: false },
+        onDelete: "SET NULL",
+      });
     }
   }
 

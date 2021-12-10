@@ -1,39 +1,55 @@
 #sidebar {
   width: var(--sidebar-width);
-  height: calc(100vh - 50px);
+  height: 100vh;
   position: sticky;
-  top: 50px;
-  padding: 1.3rem;
+  top: 0;
   z-index: 998;
-  box-shadow: var(--box-shadow);
   overflow-y: auto;
-  background: #fefefe;
+  background: var(--main-dark);
 }
 
 #sidebar .menuSection {
   margin-top: 1rem;
+  padding: 0 1.3rem;
 }
-
 #sidebar .menuSection:first-child {
   margin-top: 0;
+  padding-top: 1.3rem;
+  padding-bottom: 1.3rem;
+  border-bottom: 2px solid var(--second-dark);
+  display: flex;
+  align-items: center;
+}
+#sidebar .menuSection:last-child {
+  padding-bottom: 1.3rem;
+}
+
+#sidebar .menuSection:first-child p {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  font-weight: bold;
+  margin-bottom: 0;
+  cursor: default;
 }
 
 #sidebar .menuSection h3 {
-  color: var(--gray-500);
-  font-size: 14px;
+  color: var(--text-light);
+  font-size: 13px;
   font-weight: bold;
+  letter-spacing: 1px;
 }
 
 #sidebar .menuSection ul {
   list-style: none;
   padding: 0px;
+  margin-bottom: 0;
 }
 
 #sidebar .menuSection ul li a {
-  color: var(--gray-600);
+  color: var(--text-light);
   padding: 6px;
   padding-left: 10px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -43,7 +59,7 @@
 }
 
 #sidebar .menuSection ul li a:hover {
-  color: var(--blue-600);
+  color: var(--main-green);
 }
 
 #sidebar .menuSection ul li a span {

@@ -9,12 +9,27 @@ export const modalsInitial = {
 
 export const contactoInitial = {
   lista: [],
-  contacto: { nombre: "", apellido: "", cargo: "", correo: "", telefonos: [] },
+  contacto: {
+    nombre: "",
+    apellido: "",
+    cargo: "",
+    correo: "",
+    telefonos: [],
+    oportunidades: [],
+  },
 };
 
 export const empleadoInitial = {
   lista: [],
-  empleado: { nombre: "", apellido: "", cargo: "", correo: "", telefonos: [] },
+  empleado: {
+    nombre: "",
+    apellido: "",
+    cargo: "",
+    correo: "",
+    telefonos: [],
+    oportunidades: [],
+    contactos: [],
+  },
 };
 
 export const productoInitial = {
@@ -25,6 +40,7 @@ export const productoInitial = {
     precio: "",
     descripcion: "",
     categoria: "",
+    archivos: [],
   },
 };
 
@@ -32,5 +48,5 @@ export const empresaInitial = {
   lista: [],
   prospectos: [],
   clientes: [],
-  empresa: { nombre: "", vertical: "", tipo: "", etapa: "" },
+  empresa: { nombre: "", vertical: "", tipo: "", etapa: "", contactos: [] },
 };

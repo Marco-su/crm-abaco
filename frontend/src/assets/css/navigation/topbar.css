@@ -1,20 +1,14 @@
-#topbar .topleft {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--blue-600);
-}
-
 #topbar {
   height: 50px;
   padding: 0 1.3rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   position: sticky;
   top: 0;
   z-index: 998;
-  border-bottom: 3px solid var(--blue-700);
-  background-color: #fefefe;
+  box-shadow: var(--box-shadow);
+  background: #fefefe;
 }
 
 #topbar .iconBox {

@@ -1,15 +1,6 @@
-.detailView {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.datosDetalle {
-  width: 65%;
-  margin-right: 1rem;
-}
-
-.asideDetails {
-  flex-grow: 1;
+/* DETAILS */
+.detailView > .card {
+  margin-bottom: 1rem;
 }
 
 .smallSubtitle {
@@ -23,13 +14,15 @@
   font-size: 1.3rem;
   margin-bottom: 0;
   font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .detalleBody {
   display: flex;
+  flex-wrap: wrap;
 }
 .detalleBody div {
-  margin-right: 5rem;
+  margin-right: 4rem;
 }
 .detalleBody p {
   margin-bottom: 0;
@@ -41,4 +34,40 @@
 
 .productDescBox {
   margin-top: 0.8rem;
+}
+
+.detailsBox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* RELATIONS */
+.relationsDetails {
+  margin-right: 1rem;
+  width: calc(65% - 1rem);
+  padding: 1rem;
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  border-radius: 0.3rem;
+}
+
+.relationsDetails .card {
+  box-shadow: none;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 1rem;
+}
+
+.relationsDetails > .card:last-child {
+  margin-bottom: 0;
+}
+
+.relationTitle {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* ASIDE */
+.asideDetails {
+  width: 35%;
 }
