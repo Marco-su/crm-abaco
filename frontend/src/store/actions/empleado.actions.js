@@ -1,5 +1,12 @@
 import types from "../utils/actionNames";
-import { get, getSingle, update, disable } from "../utils/axiosCommon";
+import {
+  get,
+  getSingle,
+  create,
+  update,
+  disable,
+  disableMultiple,
+} from "../utils/axiosCommon";
 
 export const getEmpleados = () => (dispatch) => {
   get(types.GET_EMPLEADOS, "empleados", dispatch);
@@ -7,6 +14,10 @@ export const getEmpleados = () => (dispatch) => {
 
 export const getEmpleadoById = (id) => (dispatch) => {
   getSingle(types.GET_SINGLE_EMPLEADO, "empleados", id, dispatch);
+};
+
+export const createEmpleado = (data, navigate) => (dispatch) => {
+  create(data, "empleados", "empleado", navigate, dispatch);
 };
 
 export const updateEmpleado = (data) => (dispatch) => {
@@ -27,6 +38,16 @@ export const disableEmpleado = (id) => (dispatch) => {
     "empleados",
     "empleado",
     id,
+    dispatch
+  );
+};
+
+export const disableManyEmpleados = (data) => (dispatch) => {
+  disableMultiple(
+    data,
+    types.GET_EMPLEADOS,
+    "empleados",
+    "empleados",
     dispatch
   );
 };

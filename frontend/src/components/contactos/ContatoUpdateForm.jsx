@@ -9,6 +9,7 @@ const ContactoUpdateForm = ({ children }) => {
   // STATES
   const dispatch = useDispatch();
 
+  const updateType = useSelector((store) => store.modals.updateType);
   const contactos = useSelector((store) => store.contactos.lista);
   const contactoId = useSelector((store) => store.modals.id);
 
@@ -23,22 +24,27 @@ const ContactoUpdateForm = ({ children }) => {
 
   // EFFECTS
   useEffect(() => {
-    if (item) {
-      setValue("nombre", item.nombre);
-      setValue("apellido", item.apellido);
-      setValue("cargo", item.cargo);
+    if (updateType === "contacto") {
+      if (item) {
+        setValue("nombre", item.nombre);
+        setValue("apellido", item.apellido);
+        setValue("cargo", item.cargo);
+        setValue("correo", item.correo);
+      }
     }
-  }, [item, contactoId, setValue]);
+  }, [item, contactoId, setValue, updateType]);
 
   // HANDLES
   const onSubmit = (data) => {
     Object.keys(data).forEach((el) => {
-      if (typeof data[el] === "string") {
+      if (typeof data[el] === "string" && el !== "correo") {
         data[el] = capitalizeFirstLetter(data[el]);
       }
     });
 
-    dispatch(updateContacto({ ...data, id: contactoId }));
+    if (updateType === "contacto") {
+      dispatch(updateContacto({ ...data, id: contactoId }));
+    }
   };
 
   // RULES
@@ -68,6 +74,17 @@ const ContactoUpdateForm = ({ children }) => {
     required: {
       value: true,
       message: "El contacto debe tener un cargo asignado.",
+    },
+  });
+
+  const correoRules = register("correo", {
+    required: {
+      value: true,
+      message: "El empleado debe tener un correo asignado.",
+    },
+    pattern: {
+      value: /^\S+@\S+\.\S+$/,
+      message: "Correo no válido. Ejemplo válido: usuario@dominio.tld",
     },
   });
 
@@ -108,6 +125,16 @@ const ContactoUpdateForm = ({ children }) => {
           <MenuItem value="Una">Una opción</MenuItem>
           <MenuItem value="Otra">Otra opcion</MenuItem>
         </TextField>
+
+        <TextField
+          className="inputText"
+          label="Correo"
+          maxRows={2}
+          size="small"
+          error={errors.correo ? true : false}
+          helperText={errors.correo ? errors.correo.message : ""}
+          {...correoRules}
+        />
       </div>
 
       {children}

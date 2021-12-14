@@ -5,9 +5,15 @@ const {
   leerContacto,
   modificarContacto,
   eliminarContacto,
+  deshabilitarContactos,
 } = require("../controllers/contacto.controller");
 
-router.route("/").get(traerContactos).post(crearContacto);
+router
+  .route("/")
+  .get(traerContactos)
+  .put(deshabilitarContactos)
+  .post(crearContacto);
+
 router
   .route("/:id")
   .get(leerContacto)

@@ -7,11 +7,18 @@ const {
   modificarEmpresa,
   eliminarEmpresa,
   leerEmpresa,
+  deshabilitarEmpresas,
 } = require("../controllers/empresa.controller");
 
-router.route("/").get(traerEmpresas).post(crearEmpresa);
+router
+  .route("/")
+  .get(traerEmpresas)
+  .put(deshabilitarEmpresas)
+  .post(crearEmpresa);
+
 router.get("/prospectos", traerProspectos);
 router.get("/clientes", traerClientes);
+
 router
   .route("/:id")
   .get(leerEmpresa)

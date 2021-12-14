@@ -20,29 +20,16 @@ thead th {
   background: #fefefe;
 }
 
-.MuiToolbar-root {
-  min-height: 50px;
-}
-
-.MuiPaper-root {
-  box-shadow: var(--box-shadow);
-  margin-bottom: 0 !important;
-}
-
-.rowSpan {
-  color: var(--gray-300);
-  cursor: default;
-}
-
 .mainTableBox {
   max-height: calc(100vh - 50px - 2rem);
   border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: var(--box-shadow) !important;
+  border: 1px solid var(--gray-200);
 }
 
 .mainTableBox .tableTitle {
   position: sticky;
+  font-size: 1.5rem;
   top: 0;
   background: #fefefe;
   z-index: 2;
@@ -58,12 +45,49 @@ thead th {
 tbody th a {
   text-decoration: none;
   font-weight: bold;
-  color: var(--blue-700);
+  color: var(--main-blue);
 }
 tbody th a:hover {
   text-decoration: underline;
+  color: var(--main-blue);
 }
 
 .mainTableBox .redIconBtn {
   margin-right: 1rem;
+}
+
+.mainTableBox .cellIcons {
+  padding: 0 !important;
+  padding-right: 0.5rem !important;
+  text-align: end;
+}
+.mainTableBox .cellIcons button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-left: 0.3rem;
+}
+.mainTableBox .cellIcons button:first-child {
+  margin-left: 0;
+}
+
+.mainTableBox .cellIcons button .crudIcon {
+  color: var(--gray-200);
+  transition: all var(--transition-time) ease;
+}
+.mainTableBox .cellIcons button:hover .crudIcon.editIcon {
+  color: var(--main-orange);
+}
+.mainTableBox .cellIcons button:hover .crudIcon.deleteIcon {
+  color: var(--red-300);
+}
+
+.paginationBox {
+  position: relative;
+}
+.tablefooterBtn {
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }

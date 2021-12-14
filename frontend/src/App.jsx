@@ -18,6 +18,7 @@ import DetalleEmpresa from "./views/DetalleEmpresa";
 import DetalleEmpleado from "./views/DetalleEmpleado";
 import DetalleContacto from "./views/DetalleContacto";
 import DetalleProducto from "./views/DetalleProducto";
+import DeleteManyModal from "./components/common/DeleteManyModal";
 
 import("./assets/css/App.css");
 
@@ -34,6 +35,7 @@ const App = () => {
             <main>
               <UpdateModal />
               <DeleteModal />
+              <DeleteManyModal />
 
               <Routes>
                 <Route index path="/" element={<Home />} />

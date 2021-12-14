@@ -5,9 +5,15 @@ const {
   modificarEmpleado,
   eliminiarEmpleado,
   leerEmpleado,
+  deshabilitarEmpleados,
 } = require("../controllers/empleado.controller");
 
-router.route("/").get(traerEmpleados).post(crearEmpleado);
+router
+  .route("/")
+  .get(traerEmpleados)
+  .put(deshabilitarEmpleados)
+  .post(crearEmpleado);
+
 router
   .route("/:id")
   .get(leerEmpleado)

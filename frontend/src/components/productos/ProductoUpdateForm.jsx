@@ -1,14 +1,20 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { TextField, MenuItem, InputAdornment } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
-import { updateProducto } from "../../store/actions/producto.actions";
+import {
+  updateProducto,
+  createProducto,
+} from "../../store/actions/producto.actions";
 import { capitalizeFirstLetter } from "../../helpers/firstLetterUppercase";
 
 const ProductoUpdateForm = ({ children }) => {
   // STATES
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const updateType = useSelector((store) => store.modals.updateType);
   const productos = useSelector((store) => store.productos.lista);
   const productoId = useSelector((store) => store.modals.id);
 
@@ -24,25 +30,31 @@ const ProductoUpdateForm = ({ children }) => {
 
   // EFFECTS
   useEffect(() => {
-    if (item) {
-      setValue("nombre", item.nombre);
-      setValue("codigo", item.codigo);
-      setValue("precio", String(item.precio));
-      setValue("descripcion", item.descripcion);
+    if (updateType === "producto") {
+      if (item) {
+        setValue("nombre", item.nombre);
+        setValue("codigo", item.codigo);
+        setValue("precio", String(item.precio));
+        setValue("descripcion", item.descripcion);
+      }
     }
-  }, [item, productoId, setValue]);
+  }, [item, productoId, setValue, updateType]);
 
   // HANDLES
   const onSubmit = (data) => {
     data.precio = data.precio.replace(",", ".");
 
     Object.keys(data).forEach((el) => {
-      if (typeof data[el] === "string") {
+      if (typeof data[el] === "string" && el !== "codigo") {
         data[el] = capitalizeFirstLetter(data[el]);
       }
     });
 
-    dispatch(updateProducto({ ...data, id: productoId }));
+    if (updateType === "producto") {
+      dispatch(updateProducto({ ...data, id: productoId }));
+    } else if (updateType.toLowerCase().includes("create")) {
+      dispatch(createProducto(data, navigate));
+    }
   };
 
   // RULES
@@ -118,7 +130,7 @@ const ProductoUpdateForm = ({ children }) => {
         <Controller
           control={control}
           name="categoria"
-          defaultValue={item.categoria || ""}
+          defaultValue={item ? item.categoria : ""}
           render={({ field }) => (
             <TextField
               {...field}

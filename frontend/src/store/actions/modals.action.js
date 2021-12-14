@@ -1,5 +1,9 @@
 import types from "../utils/actionNames";
 
+export const setSelected = (array) => (dispatch) => {
+  dispatch({ type: types.SET_SELECTED, payload: array });
+};
+
 export const toggleUpdate = (updateType, upId) => (dispatch, getState) => {
   const changes = {
     updateType,
@@ -24,6 +28,21 @@ export const toggleDelete =
 
     dispatch({
       type: types.TOGGLE_DELETE,
+      payload: changes,
+    });
+  };
+
+export const toggleDeleteMany =
+  (deleteManyType, arrayIds) => (dispatch, getState) => {
+    console.log(arrayIds);
+    const changes = {
+      arrayIds,
+      deleteManyType,
+      deleteManyIsOpen: !getState().modals.deleteManyIsOpen,
+    };
+
+    dispatch({
+      type: types.TOGGLE_DELETE_MANY,
       payload: changes,
     });
   };

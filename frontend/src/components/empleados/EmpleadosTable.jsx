@@ -3,7 +3,12 @@ import "../../assets/css/common/tables.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getEmpleados } from "../../store/actions/empleado.actions";
-import { toggleUpdate, toggleDelete } from "../../store/actions/modals.action";
+import {
+  toggleUpdate,
+  toggleDelete,
+  toggleDeleteMany,
+  setSelected,
+} from "../../store/actions/modals.action";
 import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
@@ -149,7 +154,7 @@ EnhancedTableHead.propTypes = {
 };
 
 const EnhancedTableToolbar = (props) => {
-  const { numSelected } = props;
+  const { numSelected, dispatch, selected } = props;
 
   return (
     <Toolbar
@@ -174,7 +179,7 @@ const EnhancedTableToolbar = (props) => {
           component="div"
         >
           {numSelected === 1
-            ? `${numSelected} empleado seleccionados`
+            ? `${numSelected} empleado seleccionado`
             : `${numSelected} empleados seleccionados`}
         </Typography>
       ) : (
@@ -183,7 +188,10 @@ const EnhancedTableToolbar = (props) => {
 
       {numSelected > 0 ? (
         <Tooltip title="Eliminar Seleccionados">
-          <button className="redIconBtn">
+          <button
+            className="redIconBtn"
+            onClick={() => dispatch(toggleDeleteMany("empleado", selected))}
+          >
             <FontAwesomeIcon icon={faTrashAlt} className="deleteManyIcon" />
           </button>
         </Tooltip>
@@ -199,9 +207,10 @@ EnhancedTableToolbar.propTypes = {
 export default function EnhancedTable() {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("nombre");
-  const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(30);
+
+  const selected = useSelector((store) => store.modals.arrayIds);
 
   const dispatch = useDispatch();
 
@@ -258,10 +267,10 @@ export default function EnhancedTable() {
   const handleSelectAllClick = (e) => {
     if (e.target.checked) {
       const newSelecteds = rows.map((n) => n.id);
-      setSelected(newSelecteds);
+      dispatch(setSelected(newSelecteds));
       return;
     }
-    setSelected([]);
+    dispatch(setSelected([]));
   };
 
   const handleClick = (e, id) => {
@@ -281,7 +290,7 @@ export default function EnhancedTable() {
       );
     }
 
-    setSelected(newSelected);
+    dispatch(setSelected(newSelected));
   };
 
   const handleChangePage = (event, newPage) => {
@@ -301,7 +310,11 @@ export default function EnhancedTable() {
 
   return (
     <div className="mainTableBox">
-      <EnhancedTableToolbar numSelected={selected.length} />
+      <EnhancedTableToolbar
+        numSelected={selected.length}
+        dispatch={dispatch}
+        selected={selected}
+      />
       <TableContainer className="tableContainer">
         <Table aria-labelledby="tableTitle" size="small">
           <EnhancedTableHead
@@ -388,7 +401,14 @@ export default function EnhancedTable() {
       </TableContainer>
 
       <div className="paginationBox">
-        <button className="greenBtn tablefooterBtn">Crear nuevo</button>
+        <div className="tablefooterBtn">
+          <button
+            className="greenBtn"
+            onClick={() => dispatch(toggleUpdate("empleadoCreate", null))}
+          >
+            Crear nuevo
+          </button>
+        </div>
 
         <TablePagination
           rowsPerPageOptions={[30, 50, 100]}

@@ -3,6 +3,9 @@ import { modalsInitial } from "../utils/initialStates";
 
 const modalsReducer = (state = modalsInitial, action) => {
   switch (action.type) {
+    case types.SET_SELECTED:
+      return { ...state, arrayIds: action.payload };
+
     case types.TOGGLE_UPDATE:
       const { updateType, upId, updateIsOpen } = action.payload;
       return {
@@ -22,11 +25,20 @@ const modalsReducer = (state = modalsInitial, action) => {
         deleteName,
       };
 
+    case types.TOGGLE_DELETE_MANY:
+      const { deleteManyIsOpen, deleteManyType, arrayIds } = action.payload;
+
+      return {
+        ...state,
+        deleteType: deleteManyType,
+        deleteManyIsOpen,
+        arrayIds,
+      };
+
     case types.CLOSE_MODALS:
       return {
         ...state,
-        updateIsOpen: false,
-        deleteIsOpen: false,
+        arrayIds: [],
       };
 
     default:

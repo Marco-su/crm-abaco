@@ -13,6 +13,9 @@ const UpdateModal = (element) => {
   const dispatch = useDispatch();
   const isOpen = useSelector((store) => store.modals.updateIsOpen);
   const updateType = useSelector((store) => store.modals.updateType);
+  const isCreate = useSelector((store) => store.modals.updateType)
+    .toLowerCase()
+    .includes("create");
 
   const buttons = () => {
     return (
@@ -24,8 +27,8 @@ const UpdateModal = (element) => {
         >
           Cancelar
         </button>
-        <button type="submit" className="orangeBtn">
-          Modificar
+        <button type="submit" className={isCreate ? "greenBtn" : "orangeBtn"}>
+          {isCreate ? "Crear" : "Modificar"}
         </button>
       </div>
     );
@@ -44,22 +47,26 @@ const UpdateModal = (element) => {
         </div>
 
         <div>
-          <p className="title">Editar {updateType}</p>
+          {updateType.includes("Create") ? (
+            <p className="title">Crear {updateType.split("Create")[0]}</p>
+          ) : (
+            <p className="title">Editar {updateType}</p>
+          )}
         </div>
 
-        {updateType === "contacto" && (
+        {(updateType === "contacto" || updateType === "contactoCreate") && (
           <ContactoUpdateForm>{buttons()}</ContactoUpdateForm>
         )}
 
-        {updateType === "empleado" && (
+        {(updateType === "empleado" || updateType === "empleadoCreate") && (
           <EmpleadoUpdateForm>{buttons()}</EmpleadoUpdateForm>
         )}
 
-        {updateType === "empresa" && (
+        {(updateType === "empresa" || updateType === "empresaCreate") && (
           <EmpresaUpdateForm>{buttons()}</EmpresaUpdateForm>
         )}
 
-        {updateType === "producto" && (
+        {(updateType === "producto" || updateType === "productoCreate") && (
           <ProductoUpdateForm>{buttons()}</ProductoUpdateForm>
         )}
       </div>

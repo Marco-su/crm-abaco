@@ -1,12 +1,20 @@
 /* VARIABLES */
 :root {
   --main-dark: #111827;
-  --second-dark: #1b2434;
   --main-green: #10b981;
-  --second-green: #5ecc69;
   --main-purple: #5048e5;
-  --second-purple: #6e7ad8;
   --main-blue: #0c66ae;
+  --main-red: #e50000;
+  --main-orange: #ff8400;
+
+  --second-dark: #1b2434;
+  --second-green: #159b6e;
+  --second-purple: #6e7ad8;
+  --second-blue: #045496;
+  --second-red: #bd0000;
+  --second-orange: #db7100;
+
+  --glass-red: rgba(229, 0, 0, 0.2);
   --text-light: #d1d5db;
 
   --red-100: #ff6666;
@@ -28,7 +36,6 @@
   --gray-700: #4c4c4c;
   --gray-800: #323232;
   --gray-900: #191919;
-  --gray-1000: #000000;
   --blue-100: #94c2e5;
   --blue-200: #7eb6e0;
   --blue-300: #69aadb;
@@ -39,13 +46,9 @@
   --blue-800: #206ba3;
   --blue-900: #1c5d8e;
   --blue-1000: #18507a;
-  --orange-500: #ff8400;
-  --orange-700: #db7100;
-  --green-500: #80b615;
-  --green-700: #6ba000;
 
   --transition-time: 0.3s;
-  --box-shadow: 0px 1px 4px 1px rgb(0, 0, 0, 0.1);
+  --box-shadow: 0px 1px 4px 1px rgb(0, 0, 0, 0.15);
   --sidebar-width: 225px;
 }
 
@@ -103,8 +106,8 @@ main {
   cursor: pointer;
   width: 35px;
   height: 35px;
-  transition: all var(--transition-time) ease;
   font-size: 1rem;
+  transition: all var(--transition-time) ease;
 }
 
 .iconBtn {
@@ -121,42 +124,17 @@ main {
 .orangeIconBtn,
 .blueIconBtn,
 .greenIconBtn {
-  color: #fefefe;
   border-radius: 0.35rem;
   opacity: 1;
 }
 
 .redIconBtn {
-  background: linear-gradient(0deg, var(--red-600), var(--red-700));
+  color: var(--main-red);
+  background: var(--glass-red);
+  opacity: 0.7;
 }
 .redIconBtn:hover {
-  opacity: 0.75;
-}
-
-.cellIcons {
-  padding: 0 !important;
-  padding-right: 0.5rem !important;
-  text-align: end;
-}
-.cellIcons button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  margin-left: 0.3rem;
-}
-.cellIcons button:first-child {
-  margin-left: 0;
-}
-
-.cellIcons button .crudIcon {
-  color: var(--gray-200);
-  transition: all var(--transition-time) ease;
-}
-.cellIcons button:hover .crudIcon.editIcon {
-  color: var(--orange-500);
-}
-.cellIcons button:hover .crudIcon.deleteIcon {
-  color: var(--red-300);
+  opacity: 1;
 }
 
 /* BUTTONS */
@@ -165,7 +143,7 @@ main {
 .orangeBtn,
 .greenBtn {
   margin-left: 0.7rem;
-  padding: 0.4rem 1rem;
+  padding: 0.3rem 1rem;
   border-radius: 100px;
   border: none;
   cursor: pointer;
@@ -175,42 +153,31 @@ main {
 }
 
 .blueBtn {
-  background-color: var(--blue-600);
+  background-color: var(--main-blue);
 }
 .blueBtn:hover {
-  background-color: var(--blue-800);
+  background-color: var(--second-blue);
 }
 
 .redBtn {
-  background-color: var(--red-600);
+  background-color: var(--main-red);
 }
 .redBtn:hover {
-  background-color: var(--red-800);
+  background-color: var(--second-red);
 }
 
 .orangeBtn {
-  background-color: var(--orange-500);
+  background-color: var(--main-orange);
 }
 .orangeBtn:hover {
-  background-color: var(--orange-700);
+  background-color: var(--second-orange);
 }
 
 .greenBtn {
-  background-color: var(--green-500);
+  background-color: var(--main-green);
 }
 .greenBtn:hover {
-  background-color: var(--green-700);
-}
-
-.paginationBox {
-  position: relative;
-}
-.tablefooterBtn {
-  z-index: 3;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 1rem;
+  background-color: var(--second-green);
 }
 
 /* MATERIAL UI CLASSES */

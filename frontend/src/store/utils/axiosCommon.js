@@ -32,6 +32,32 @@ export const getSingle = (type, urlName, id, dispatch) => {
     });
 };
 
+export const create = (data, urlPost, textName, navigate, dispatch) => {
+  axios({
+    url: `${apiBase}/${urlPost}`,
+    method: "POST",
+    data,
+  })
+    .then((res) => {
+      console.log(res.data);
+      if (res.data.id) {
+        dispatch({
+          type: types.TOGGLE_UPDATE,
+          payload: {
+            updateType: "create",
+            updateIsOpen: false,
+            upId: null,
+          },
+        });
+
+        navigate(`/${urlPost}/${res.data.id}`);
+      }
+    })
+    .catch((err) => {
+      console.log(`Error al crear ${textName}:`, err);
+    });
+};
+
 export const update = (getType, urlPut, urlGet, textName, data, dispatch) => {
   axios({
     url: `${apiBase}/${urlPut}/${data.id}`,
@@ -42,7 +68,7 @@ export const update = (getType, urlPut, urlGet, textName, data, dispatch) => {
       if (res.data[0] > 0) {
         dispatch({
           type: types.TOGGLE_UPDATE,
-          payload: res.data,
+          payload: { updateType: "", upId: null, updateIsOpen: false },
         });
       }
     })
@@ -64,7 +90,12 @@ export const disable = (getType, urlPut, urlGet, textName, id, dispatch) => {
       if (res.data[0] > 0) {
         dispatch({
           type: types.TOGGLE_DELETE,
-          payload: res.data,
+          payload: {
+            updateType: "",
+            delId: null,
+            updateIsOpen: false,
+            deleteName: "",
+          },
         });
       }
     })
@@ -73,5 +104,31 @@ export const disable = (getType, urlPut, urlGet, textName, id, dispatch) => {
     })
     .catch((err) => {
       console.log(`Error al eliminar ${textName}:`, err);
+    });
+};
+
+export const disableMultiple = (data, getType, urlPut, urlGet, dispatch) => {
+  axios({
+    url: `${apiBase}/${urlPut}`,
+    method: "PUT",
+    data: { ids: data },
+  })
+    .then((res) => {
+      if (res.data.eliminados > 0) {
+        dispatch({
+          type: types.TOGGLE_DELETE_MANY,
+          payload: {
+            deleteManyType: "",
+            deleteManyIsOpen: false,
+            arrayIds: [],
+          },
+        });
+      }
+    })
+    .then(() => {
+      get(getType, urlGet, dispatch);
+    })
+    .catch((err) => {
+      console.log(`Error al eliminar ${urlPut}:`, err);
     });
 };

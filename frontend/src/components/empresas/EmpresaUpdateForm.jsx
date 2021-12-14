@@ -1,15 +1,20 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { updateEmpresa } from "../../store/actions/empresa.actions";
+import {
+  updateEmpresa,
+  createEmpresa,
+} from "../../store/actions/empresa.actions";
 import { capitalizeFirstLetter } from "../../helpers/firstLetterUppercase";
 
 const EmpresaUpdateForm = ({ children }) => {
   // STATES
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
 
   let listToFind = "";
 
@@ -27,6 +32,7 @@ const EmpresaUpdateForm = ({ children }) => {
       break;
   }
 
+  const updateType = useSelector((store) => store.modals.updateType);
   const empresas = useSelector((store) => store.empresas[listToFind]);
   const empresaId = useSelector((store) => store.modals.id);
 
@@ -41,11 +47,13 @@ const EmpresaUpdateForm = ({ children }) => {
 
   // EFFECTS
   useEffect(() => {
-    if (item) {
-      setValue("nombre", item.nombre);
-      setValue("vertical", item.vertical);
+    if (updateType === "empresa") {
+      if (item) {
+        setValue("nombre", item.nombre);
+        setValue("vertical", item.vertical);
+      }
     }
-  }, [item, setValue, empresaId]);
+  }, [item, setValue, empresaId, updateType]);
 
   // HANDLES
   const onSubmit = (data) => {
@@ -57,18 +65,22 @@ const EmpresaUpdateForm = ({ children }) => {
       }
     });
 
-    switch (location.pathname) {
-      case "/prospectos":
-        dispatch(updateEmpresa(data, "prospectos"));
-        break;
+    if (updateType === "empresa") {
+      switch (location.pathname) {
+        case "/prospectos":
+          dispatch(updateEmpresa(data, "prospectos"));
+          break;
 
-      case "/clientes":
-        dispatch(updateEmpresa(data, "clientes"));
-        break;
+        case "/clientes":
+          dispatch(updateEmpresa(data, "clientes"));
+          break;
 
-      default:
-        dispatch(updateEmpresa(data, "empresas"));
-        break;
+        default:
+          dispatch(updateEmpresa(data, "empresas"));
+          break;
+      }
+    } else if (updateType.toLowerCase().includes("create")) {
+      dispatch(createEmpresa(data, navigate));
     }
   };
 

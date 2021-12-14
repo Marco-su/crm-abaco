@@ -44,9 +44,10 @@ const PhoneInput = ({ label, tipo, errors, control, telf, register }) => {
         <Controller
           control={control}
           name={`cod${tipo}`}
-          defaultValue={telf.codPais.replace("+", "") || ""}
+          defaultValue={telf ? telf.codPais.replace("+", "") || "57" : "57"}
           render={({ field }) => (
             <Select
+              className="selectCountryCode"
               {...field}
               label="Código"
               labelId={`select-${tipo}`}

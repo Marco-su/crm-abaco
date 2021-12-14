@@ -1,15 +1,12 @@
 import "../../assets/css/common/modals.css";
-import "../../assets/css/common/deleteModal.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { toggleDelete } from "../../store/actions/modals.action";
 import { disableContacto } from "../../store/actions/contacto.actions";
 import { disableEmpleado } from "../../store/actions/empleado.actions";
 import { disableProducto } from "../../store/actions/producto.actions";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { disableEmpresa } from "../../store/actions/empresa.actions";
 
 const DeleteModal = () => {

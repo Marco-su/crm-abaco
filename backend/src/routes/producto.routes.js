@@ -6,9 +6,15 @@ const {
   leerProducto,
   modificarProducto,
   eliminarProducto,
+  deshabilitarProductos,
 } = require("../controllers/producto.controller");
 
-router.route("/").get(traerProductos).post(uploader, crearProducto);
+router
+  .route("/")
+  .get(traerProductos)
+  .post(uploader, crearProducto)
+  .put(deshabilitarProductos);
+
 router
   .route("/:id")
   .get(leerProducto)

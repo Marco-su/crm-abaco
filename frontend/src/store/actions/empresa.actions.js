@@ -1,5 +1,12 @@
 import types from "../utils/actionNames";
-import { get, update, disable, getSingle } from "../utils/axiosCommon";
+import {
+  get,
+  update,
+  create,
+  disable,
+  getSingle,
+  disableMultiple,
+} from "../utils/axiosCommon";
 
 export const getEmpresas = () => (dispatch) => {
   get(types.GET_EMPRESAS, "empresas", dispatch);
@@ -15,6 +22,10 @@ export const getClientes = () => (dispatch) => {
 
 export const getEmpresaById = (id) => (dispatch) => {
   getSingle(types.GET_SINGLE_EMPRESA, "empresas", id, dispatch);
+};
+
+export const createEmpresa = (data, navigate) => (dispatch) => {
+  create(data, "empresas", "empresa", navigate, dispatch);
 };
 
 export const updateEmpresa = (data, path) => (dispatch) => {
@@ -85,6 +96,40 @@ export const disableEmpresa = (id, path) => (dispatch) => {
         "empresas",
         "empresa",
         id,
+        dispatch
+      );
+      break;
+  }
+};
+
+export const disableManyEmpresas = (data, path) => (dispatch) => {
+  switch (path) {
+    case "/prospectos":
+      disableMultiple(
+        data,
+        types.GET_PROSPECTOS,
+        "empresas",
+        "empresas/prospectos",
+        dispatch
+      );
+      break;
+
+    case "/clientes":
+      disableMultiple(
+        data,
+        types.GET_CLIENTES,
+        "empresas",
+        "empresas/clientes",
+        dispatch
+      );
+      break;
+
+    default:
+      disableMultiple(
+        data,
+        types.GET_EMPRESAS,
+        "empresas",
+        "empresas",
         dispatch
       );
       break;

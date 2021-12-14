@@ -34,8 +34,8 @@ productoController.crearProducto = (req, res) => {
   }
 
   Producto.create(
-    { ...req.body, archivos },
-    { include: [{ all: true, nested: true }] }
+    { ...req.body, archivos, status: "activo" },
+    { include: ["archivos"] }
   )
     .then((producto) => res.json(producto))
     .catch((err) => res.send(`Error al crear producto: ${err}`));
@@ -54,6 +54,25 @@ productoController.modificarProducto = (req, res) => {
   Producto.update(req.body, { where: { id: req.params.id } })
     .then((response) => res.json(response))
     .catch((err) => res.send(`Error al actualizar producto: ${err}`));
+};
+
+productoController.deshabilitarProductos = async (req, res) => {
+  let success = 0;
+  let errors = 0;
+
+  await req.body.ids.forEach((el, i) => {
+    Producto.update({ status: "inactivo" }, { where: { id: el } })
+      .then((response) => success++)
+      .catch((err) => errors++)
+      .finally(() => {
+        if (i === req.body.ids.length - 1) {
+          res.json({
+            eliminados: success,
+            errores: errors,
+          });
+        }
+      });
+  });
 };
 
 productoController.eliminarProducto = (req, res) => {

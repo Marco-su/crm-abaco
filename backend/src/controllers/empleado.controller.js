@@ -12,9 +12,12 @@ empleadoController.traerEmpleados = (req, res) => {
 };
 
 empleadoController.crearEmpleado = (req, res) => {
-  Empleado.create(req.body, {
-    include: ["telefonos", "contactos"],
-  })
+  Empleado.create(
+    { ...req.body, status: "activo" },
+    {
+      include: ["telefonos", "contactos"],
+    }
+  )
     .then((empleado) => res.json(empleado))
     .catch((err) => res.send(`Error al crear empleado: ${err}`));
 };
@@ -40,6 +43,25 @@ empleadoController.modificarEmpleado = (req, res) => {
       Telefono.update(el, { where: { id: el.id } })
     );
   }
+};
+
+empleadoController.deshabilitarEmpleados = async (req, res) => {
+  let success = 0;
+  let errors = 0;
+
+  await req.body.ids.forEach((el, i) => {
+    Empleado.update({ status: "inactivo" }, { where: { id: el } })
+      .then((response) => success++)
+      .catch((err) => errors++)
+      .finally(() => {
+        if (i === req.body.ids.length - 1) {
+          res.json({
+            eliminados: success,
+            errores: errors,
+          });
+        }
+      });
+  });
 };
 
 empleadoController.eliminiarEmpleado = (req, res) => {

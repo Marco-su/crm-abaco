@@ -3,7 +3,12 @@ import "../../assets/css/common/tables.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactos } from "../../store/actions/contacto.actions";
-import { toggleUpdate, toggleDelete } from "../../store/actions/modals.action";
+import {
+  toggleUpdate,
+  toggleDelete,
+  toggleDeleteMany,
+  setSelected,
+} from "../../store/actions/modals.action";
 import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
@@ -65,6 +70,18 @@ const headCells = [
     numeric: true,
     disablePadding: false,
     label: "Cargo",
+  },
+  {
+    id: "correo",
+    numeric: true,
+    disablePadding: false,
+    label: "Correo",
+  },
+  {
+    id: "empresa",
+    numeric: true,
+    disablePadding: false,
+    label: "Empresa",
   },
 ];
 
@@ -131,7 +148,7 @@ EnhancedTableHead.propTypes = {
 };
 
 const EnhancedTableToolbar = (props) => {
-  const { numSelected } = props;
+  const { numSelected, dispatch, selected } = props;
 
   return (
     <Toolbar
@@ -156,8 +173,8 @@ const EnhancedTableToolbar = (props) => {
           component="div"
         >
           {numSelected === 1
-            ? `${numSelected} empleado seleccionados`
-            : `${numSelected} empleados seleccionados`}
+            ? `${numSelected} contacto seleccionado`
+            : `${numSelected} contactos seleccionados`}
         </Typography>
       ) : (
         <h1 className="tableTitle">Contactos</h1>
@@ -165,7 +182,10 @@ const EnhancedTableToolbar = (props) => {
 
       {numSelected > 0 ? (
         <Tooltip title="Eliminar Seleccionados">
-          <button className="redIconBtn">
+          <button
+            className="redIconBtn"
+            onClick={() => dispatch(toggleDeleteMany("contacto", selected))}
+          >
             <FontAwesomeIcon icon={faTrashAlt} className="deleteManyIcon" />
           </button>
         </Tooltip>
@@ -181,17 +201,21 @@ EnhancedTableToolbar.propTypes = {
 export default function EnhancedTable() {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("nombre");
-  const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(30);
 
+  const selected = useSelector((store) => store.modals.arrayIds);
+
   const dispatch = useDispatch();
 
-  const createData = (id, nombre, cargo) => {
+  const createData = (id, nombre, cargo, correo, empresa, empresaId) => {
     return {
       id,
       nombre,
       cargo,
+      correo,
+      empresa,
+      empresaId,
     };
   };
 
@@ -201,7 +225,16 @@ export default function EnhancedTable() {
     list.forEach((row) => {
       const nombre = `${row.nombre} ${row.apellido}`;
 
-      createdList.push(createData(row.id, nombre, row.cargo));
+      createdList.push(
+        createData(
+          row.id,
+          nombre,
+          row.cargo,
+          row.correo,
+          row.empresa.nombre,
+          row.empresa.id
+        )
+      );
     });
 
     return createdList;
@@ -222,10 +255,10 @@ export default function EnhancedTable() {
   const handleSelectAllClick = (e) => {
     if (e.target.checked) {
       const newSelecteds = rows.map((n) => n.id);
-      setSelected(newSelecteds);
+      dispatch(setSelected(newSelecteds));
       return;
     }
-    setSelected([]);
+    dispatch(setSelected([]));
   };
 
   const handleClick = (e, id) => {
@@ -245,7 +278,7 @@ export default function EnhancedTable() {
       );
     }
 
-    setSelected(newSelected);
+    dispatch(setSelected(newSelected));
   };
 
   const handleChangePage = (event, newPage) => {
@@ -265,7 +298,11 @@ export default function EnhancedTable() {
 
   return (
     <div className="mainTableBox">
-      <EnhancedTableToolbar numSelected={selected.length} />
+      <EnhancedTableToolbar
+        numSelected={selected.length}
+        dispatch={dispatch}
+        selected={selected}
+      />
       <TableContainer className="tableContainer">
         <Table aria-labelledby="tableTitle" size="small">
           <EnhancedTableHead
@@ -310,6 +347,9 @@ export default function EnhancedTable() {
                       <Link to={`/contactos/${row.id}`}>{row.nombre}</Link>
                     </TableCell>
                     <TableCell>{row.cargo}</TableCell>
+                    <TableCell>{row.correo}</TableCell>
+                    <TableCell>{row.empresa}</TableCell>
+
                     <TableCell className="cellIcons">
                       <button
                         onClick={() =>
@@ -350,8 +390,6 @@ export default function EnhancedTable() {
       </TableContainer>
 
       <div className="paginationBox">
-        <button className="greenBtn tablefooterBtn">Crear nuevo</button>
-
         <TablePagination
           rowsPerPageOptions={[30, 50, 100]}
           component="div"

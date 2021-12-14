@@ -4,7 +4,7 @@ const contactoController = {};
 
 contactoController.traerContactos = (req, res) => {
   Contacto.findAll({
-    include: "telefonos",
+    include: ["telefonos", "empresa"],
     where: { status: "activo" },
   })
     .then((contactos) => res.json(contactos))
@@ -12,16 +12,19 @@ contactoController.traerContactos = (req, res) => {
 };
 
 contactoController.crearContacto = (req, res) => {
-  Contacto.create(req.body, {
-    include: "telefonos",
-  })
+  Contacto.create(
+    { ...req.body, status: "activo" },
+    {
+      include: ["telefonos", "empresa"],
+    }
+  )
     .then((contacto) => res.json(contacto))
     .catch((err) => res.send(`Error al crear contacto: ${err}`));
 };
 
 contactoController.leerContacto = (req, res) => {
   Contacto.findOne({
-    include: "telefonos",
+    include: ["telefonos", "empresa"],
     where: { id: req.params.id },
   })
     .then((contacto) => res.json(contacto))
@@ -32,6 +35,25 @@ contactoController.modificarContacto = (req, res) => {
   Contacto.update(req.body, { where: { id: req.params.id } })
     .then((response) => res.json(response))
     .catch((err) => res.send(`Error al actualizar contacto: ${err}`));
+};
+
+contactoController.deshabilitarContactos = async (req, res) => {
+  let success = 0;
+  let errors = 0;
+
+  await req.body.ids.forEach((el, i) => {
+    Contacto.update({ status: "inactivo" }, { where: { id: el } })
+      .then((response) => success++)
+      .catch((err) => errors++)
+      .finally(() => {
+        if (i === req.body.ids.length - 1) {
+          res.json({
+            eliminados: success,
+            errores: errors,
+          });
+        }
+      });
+  });
 };
 
 contactoController.eliminarContacto = (req, res) => {
