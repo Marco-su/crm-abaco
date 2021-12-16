@@ -390,6 +390,15 @@ export default function EnhancedTable() {
       </TableContainer>
 
       <div className="paginationBox">
+        <div className="tablefooterBtn">
+          <button
+            className="greenBtn"
+            onClick={() => dispatch(toggleUpdate("contactoCreate", null))}
+          >
+            Crear nuevo
+          </button>
+        </div>
+
         <TablePagination
           rowsPerPageOptions={[30, 50, 100]}
           component="div"
@@ -398,10 +407,9 @@ export default function EnhancedTable() {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-          labelDisplayedRows={({ from, to, count }) =>
-            `${from}-${to} de ${count}`
-          }
-          labelRowsPerPage="Resultados por página"
+          // labelDisplayedRows={({ from, to, count }) =>
+          //   `${from}-${to} de ${count}`
+          // }
           className="tablePagination"
         />
       </div>

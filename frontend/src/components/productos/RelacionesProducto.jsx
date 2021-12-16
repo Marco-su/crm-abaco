@@ -8,7 +8,9 @@ const RelacionesEmpresas = () => {
       <CardArchivos
         lista={useSelector((store) => store.productos.producto.archivos)}
       />
-      <CardOportunidades lista={[]} />
+      <CardOportunidades
+        lista={useSelector((store) => store.productos.producto.oportunidades)}
+      />
     </>
   );
 };

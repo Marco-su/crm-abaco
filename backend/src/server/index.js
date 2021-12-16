@@ -1,4 +1,5 @@
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");

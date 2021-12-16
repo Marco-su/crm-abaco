@@ -8,6 +8,7 @@ const {
   eliminarEmpresa,
   leerEmpresa,
   deshabilitarEmpresas,
+  buscarEmpresa,
 } = require("../controllers/empresa.controller");
 
 router
@@ -18,6 +19,7 @@ router
 
 router.get("/prospectos", traerProspectos);
 router.get("/clientes", traerClientes);
+router.post("/search", buscarEmpresa);
 
 router
   .route("/:id")

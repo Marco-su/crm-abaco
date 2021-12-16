@@ -1,22 +1,19 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class archivo extends Model {
+  class Etapa extends Model {
     static associate(models) {
-      this.belongsTo(models.Producto, {
-        as: "producto",
-        foreignKey: { name: "productoId", allowNull: false },
+      this.hasMany(models.Oportunidad, {
+        as: "oportunidades",
+        foreignKey: { name: "oportunidadId", allowNull: true },
         onDelete: "CASCADE",
       });
     }
   }
-  archivo.init(
+
+  Etapa.init(
     {
       nombre: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      storageName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -24,15 +21,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      size: {
+      paso: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
     {
       sequelize,
-      modelName: "Archivo",
+      modelName: "Etapa",
     }
   );
-  return archivo;
+  return Etapa;
 };

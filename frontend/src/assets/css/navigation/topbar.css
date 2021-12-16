@@ -7,8 +7,6 @@
   position: sticky;
   top: 0;
   z-index: 998;
-  box-shadow: var(--box-shadow);
-  background: #fefefe;
 }
 
 #topbar .iconBox {

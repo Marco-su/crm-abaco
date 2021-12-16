@@ -8,6 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: { name: "productoId", allowNull: false },
         onDelete: "CASCADE",
       });
+
+      this.hasMany(models.Archivo, {
+        as: "oportunidades",
+        foreignKey: { name: "productoId", allowNull: false },
+        onDelete: "CASCADE",
+      });
     }
   }
   producto.init(
@@ -39,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "producto",
+      modelName: "Producto",
     }
   );
   return producto;

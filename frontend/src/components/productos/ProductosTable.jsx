@@ -184,9 +184,7 @@ const EnhancedTableToolbar = (props) => {
             : `${numSelected} productos seleccionados`}
         </Typography>
       ) : (
-        <Typography variant="h6" component="div">
-          Productos
-        </Typography>
+        <h1 className="tableTitle">Contactos</h1>
       )}
 
       {numSelected > 0 ? (
@@ -384,10 +382,9 @@ export default function EnhancedTable() {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-          labelDisplayedRows={({ from, to, count }) =>
-            `${from}-${to} de ${count}`
-          }
-          labelRowsPerPage="Resultados por página"
+          // labelDisplayedRows={({ from, to, count }) =>
+          //   `${from}-${to} de ${count}`
+          // }
           className="tablePagination"
         />
       </div>

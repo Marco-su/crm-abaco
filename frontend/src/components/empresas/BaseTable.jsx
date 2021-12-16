@@ -405,10 +405,9 @@ export default function EnhancedTable({ getInitial, titulo }) {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-          labelDisplayedRows={({ from, to, count }) =>
-            `${from}-${to} de ${count}`
-          }
-          labelRowsPerPage="Resultados por página"
+          // labelDisplayedRows={({ from, to, count }) =>
+          //   `${from}-${to} de ${count}`
+          // }
           className="tablePagination"
         />
       </div>

@@ -1,13 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { TextField, MenuItem } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { updateContacto } from "../../store/actions/contacto.actions";
+import { useNavigate } from "react-router-dom";
+import {
+  updateContacto,
+  createContacto,
+} from "../../store/actions/contacto.actions";
 import { capitalizeFirstLetter } from "../../helpers/firstLetterUppercase";
+import SearchEmpresaImput from "../common/SearchEmpresaInput";
 
 const ContactoUpdateForm = ({ children }) => {
   // STATES
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [realValue, setRealValue] = useState(null);
 
   const updateType = useSelector((store) => store.modals.updateType);
   const contactos = useSelector((store) => store.contactos.lista);
@@ -17,6 +25,7 @@ const ContactoUpdateForm = ({ children }) => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
     setValue,
   } = useForm();
 
@@ -30,20 +39,55 @@ const ContactoUpdateForm = ({ children }) => {
         setValue("apellido", item.apellido);
         setValue("cargo", item.cargo);
         setValue("correo", item.correo);
+
+        setRealValue({
+          id: item.empresa.id,
+          nombre: item.empresa.nombre,
+        });
       }
     }
   }, [item, contactoId, setValue, updateType]);
 
   // HANDLES
   const onSubmit = (data) => {
+    if (!realValue.id) {
+      setError("empresa", {
+        type: "manual",
+        message: "Debes asignar una empresa",
+      });
+
+      return;
+    } else {
+      data.empresaId = realValue.id;
+    }
+
     Object.keys(data).forEach((el) => {
-      if (typeof data[el] === "string" && el !== "correo") {
+      if (
+        typeof data[el] === "string" &&
+        el !== "correo" &&
+        el !== "empresaId"
+      ) {
         data[el] = capitalizeFirstLetter(data[el]);
       }
     });
 
+    const { nombre, apellido, cargo, correo, empresaId } = data;
+
     if (updateType === "contacto") {
-      dispatch(updateContacto({ ...data, id: contactoId }));
+      dispatch(
+        updateContacto({
+          nombre,
+          apellido,
+          cargo,
+          correo,
+          empresaId,
+          id: contactoId,
+        })
+      );
+    } else if (updateType.toLowerCase().includes("create")) {
+      dispatch(
+        createContacto({ nombre, apellido, cargo, correo, empresaId }, navigate)
+      );
     }
   };
 
@@ -85,6 +129,13 @@ const ContactoUpdateForm = ({ children }) => {
     pattern: {
       value: /^\S+@\S+\.\S+$/,
       message: "Correo no válido. Ejemplo válido: usuario@dominio.tld",
+    },
+  });
+
+  const empresaRules = register("empresa", {
+    required: {
+      value: true,
+      message: "Debes asignar una empresa",
     },
   });
 
@@ -134,6 +185,13 @@ const ContactoUpdateForm = ({ children }) => {
           error={errors.correo ? true : false}
           helperText={errors.correo ? errors.correo.message : ""}
           {...correoRules}
+        />
+
+        <SearchEmpresaImput
+          realValue={realValue}
+          setRealValue={setRealValue}
+          error={errors.empresa}
+          rules={empresaRules}
         />
       </div>
 

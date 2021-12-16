@@ -8,7 +8,7 @@ table th {
 
 .tableContainer {
   overflow: auto;
-  height: calc(100vh - 166px - 2rem);
+  height: calc(100vh - 166px - 1rem);
   border-bottom: 1px solid var(--gray-100);
 }
 
@@ -21,17 +21,17 @@ thead th {
 }
 
 .mainTableBox {
-  max-height: calc(100vh - 50px - 2rem);
-  border-radius: 0.5rem;
+  max-height: calc(100vh - 50px - 1rem);
+  border-radius: var(--border-radius);
   overflow: hidden;
-  border: 1px solid var(--gray-200);
+  box-shadow: var(--box-shadow);
+  background-color: #fff;
 }
 
 .mainTableBox .tableTitle {
   position: sticky;
   font-size: 1.5rem;
   top: 0;
-  background: #fefefe;
   z-index: 2;
 }
 

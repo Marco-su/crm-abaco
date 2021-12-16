@@ -43,6 +43,7 @@ export const productoInitial = {
     descripcion: "",
     categoria: "",
     archivos: [],
+    oportunidades: [],
   },
 };
 
@@ -50,5 +51,12 @@ export const empresaInitial = {
   lista: [],
   prospectos: [],
   clientes: [],
-  empresa: { nombre: "", vertical: "", tipo: "", etapa: "", contactos: [] },
+  empresa: {
+    nombre: "",
+    vertical: "",
+    tipo: "",
+    etapa: "",
+    contactos: [],
+    oportunidades: [],
+  },
 };

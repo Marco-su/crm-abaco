@@ -1,6 +1,6 @@
 /* DETAILS */
 .detailView > .card {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .smallSubtitle {
@@ -14,7 +14,6 @@
   font-size: 1.3rem;
   margin-bottom: 0;
   font-weight: bold;
-  letter-spacing: 1px;
 }
 
 .detalleBody {
@@ -44,12 +43,12 @@
 
 /* RELATIONS */
 .relationsDetails {
-  margin-right: 1rem;
-  width: calc(65% - 1rem);
+  margin-right: 1.5rem;
+  width: calc(65% - 1.5rem);
   padding: 1rem;
   box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
   overflow: hidden;
-  border-radius: 0.3rem;
 }
 
 .relationsDetails .card {
@@ -64,7 +63,6 @@
 
 .relationTitle {
   font-weight: bold;
-  letter-spacing: 1px;
 }
 
 /* ASIDE */

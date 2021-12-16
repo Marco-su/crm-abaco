@@ -22,6 +22,7 @@ export const getSingle = (type, urlName, id, dispatch) => {
     url: `${apiBase}/${urlName}/${id}`,
   })
     .then((res) => {
+      console.log(res.data);
       dispatch({
         type,
         payload: res.data,

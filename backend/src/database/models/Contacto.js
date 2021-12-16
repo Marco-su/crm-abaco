@@ -25,6 +25,12 @@ module.exports = (sequelize, DataTypes) => {
           telefonableType: "contacto",
         },
       });
+
+      this.hasMany(models.Oportunidad, {
+        as: "oportunidades",
+        foreignKey: { name: "contactoId", allowNull: false },
+        onDelete: "CASCADE",
+      });
     }
   }
 

@@ -4,7 +4,7 @@ const contactoController = {};
 
 contactoController.traerContactos = (req, res) => {
   Contacto.findAll({
-    include: ["telefonos", "empresa"],
+    include: ["telefonos", "empresa", "oportunidades"],
     where: { status: "activo" },
   })
     .then((contactos) => res.json(contactos))
@@ -15,7 +15,7 @@ contactoController.crearContacto = (req, res) => {
   Contacto.create(
     { ...req.body, status: "activo" },
     {
-      include: ["telefonos", "empresa"],
+      include: ["telefonos", "empresa", "oportunidades"],
     }
   )
     .then((contacto) => res.json(contacto))
@@ -24,7 +24,7 @@ contactoController.crearContacto = (req, res) => {
 
 contactoController.leerContacto = (req, res) => {
   Contacto.findOne({
-    include: ["telefonos", "empresa"],
+    include: ["telefonos", "empresa", "oportunidades"],
     where: { id: req.params.id },
   })
     .then((contacto) => res.json(contacto))

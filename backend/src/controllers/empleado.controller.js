@@ -4,7 +4,7 @@ const empleadoController = {};
 
 empleadoController.traerEmpleados = (req, res) => {
   Empleado.findAll({
-    include: ["telefonos", "contactos"],
+    include: ["telefonos", "contactos", "oportunidades"],
     where: { status: "activo" },
   })
     .then((empleados) => res.json(empleados))
@@ -15,7 +15,7 @@ empleadoController.crearEmpleado = (req, res) => {
   Empleado.create(
     { ...req.body, status: "activo" },
     {
-      include: ["telefonos", "contactos"],
+      include: ["telefonos", "contactos", "oportunidades"],
     }
   )
     .then((empleado) => res.json(empleado))
@@ -24,7 +24,7 @@ empleadoController.crearEmpleado = (req, res) => {
 
 empleadoController.leerEmpleado = (req, res) => {
   Empleado.findOne({
-    include: ["telefonos", "contactos"],
+    include: ["telefonos", "contactos", "oportunidades"],
     where: { id: req.params.id },
   })
     .then((empleado) => res.json(empleado))

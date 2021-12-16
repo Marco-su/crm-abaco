@@ -4,9 +4,14 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Empresa extends Model {
     static associate(models) {
-      // empresa tiene contactos 1:n
       this.hasMany(models.Contacto, {
         as: "contactos",
+        foreignKey: { name: "empresaId", allowNull: false },
+        onDelete: "CASCADE",
+      });
+
+      this.hasMany(models.Oportunidad, {
+        as: "oportunidades",
         foreignKey: { name: "empresaId", allowNull: false },
         onDelete: "CASCADE",
       });

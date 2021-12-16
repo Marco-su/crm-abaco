@@ -20,6 +20,8 @@ db.Empresa = require("./models/Empresa")(db.connection, DataTypes);
 db.Producto = require("./models/Producto")(db.connection, DataTypes);
 db.Archivo = require("./models/Archivo")(db.connection, DataTypes);
 db.Telefono = require("./models/Telefono")(db.connection, DataTypes);
+db.Oportunidad = require("./models/Oportunidad")(db.connection, DataTypes);
+db.Etapa = require("./models/Etapa")(db.connection, DataTypes);
 
 // Asociación de modelos (relaciones)
 db.Empresa.associate(db);
@@ -28,5 +30,7 @@ db.Empleado.associate(db);
 db.Producto.associate(db);
 db.Archivo.associate(db);
 db.Telefono.associate(db);
+db.Etapa.associate(db);
+db.Oportunidad.associate(db);
 
 module.exports = db;

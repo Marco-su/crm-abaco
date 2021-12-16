@@ -15,7 +15,13 @@ module.exports = (sequelize, DataTypes) => {
 
       this.hasMany(models.Contacto, {
         as: "contactos",
-        foreignKey: { name: "empleadoId", allowNull: false },
+        foreignKey: { name: "empleadoId", allowNull: true },
+        onDelete: "SET NULL",
+      });
+
+      this.hasMany(models.Oportunidad, {
+        as: "oportunidades",
+        foreignKey: { name: "empleadoId", allowNull: true },
         onDelete: "SET NULL",
       });
     }

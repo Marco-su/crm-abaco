@@ -43,7 +43,7 @@ productoController.crearProducto = (req, res) => {
 
 productoController.leerProducto = (req, res) => {
   Producto.findOne({
-    include: [{ all: true, nested: true }],
+    include: ["archivos", "oportunidades"],
     where: { id: req.params.id },
   })
     .then((producto) => res.json(producto))

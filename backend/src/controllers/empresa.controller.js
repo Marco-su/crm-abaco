@@ -1,10 +1,11 @@
+const { Op } = require("sequelize");
 const { Empresa } = require("../database");
 
 const empresasController = {};
 
 empresasController.traerEmpresas = (req, res) => {
   Empresa.findAll({
-    include: [{ all: true, nested: true }],
+    include: ["oportunidades", "contactos"],
     where: { status: "activo" },
   })
     .then((empresas) => res.json(empresas))
@@ -13,7 +14,7 @@ empresasController.traerEmpresas = (req, res) => {
 
 empresasController.traerProspectos = (req, res) => {
   Empresa.findAll({
-    include: [{ all: true, nested: true }],
+    include: ["oportunidades", "contactos"],
     where: {
       tipo: "Prospecto",
       status: "activo",
@@ -25,7 +26,7 @@ empresasController.traerProspectos = (req, res) => {
 
 empresasController.traerClientes = (req, res) => {
   Empresa.findAll({
-    include: [{ all: true, nested: true }],
+    include: ["oportunidades", "contactos"],
     where: {
       tipo: "Cliente",
       status: "activo",
@@ -35,24 +36,34 @@ empresasController.traerClientes = (req, res) => {
     .catch((err) => res.send(`Error al cargar clientes: ${err}`));
 };
 
-empresasController.crearEmpresa = (req, res) => {
-  Empresa.create(
-    { ...req.body, tipo: "prospecto", status: "activo", etapa: "En gestion" },
-    {
-      include: [{ all: true, nested: true }],
-    }
-  )
-    .then((empresa) => res.json(empresa))
-    .catch((err) => res.send(`Error al crear empresa: ${err}`));
-};
-
 empresasController.leerEmpresa = (req, res) => {
   Empresa.findOne({
-    include: [{ all: true, nested: true }],
+    include: ["oportunidades", "contactos"],
     where: { id: req.params.id },
   })
     .then((empresa) => res.json(empresa))
     .catch((err) => res.send(`Error al traer empresa: ${err}`));
+};
+
+empresasController.buscarEmpresa = (req, res) => {
+  Empresa.findAll({
+    limit: 30,
+    attributes: ["id", "nombre"],
+    where: { nombre: { [Op.like]: `%${req.body.term}%` } },
+  })
+    .then((empresas) => res.json(empresas))
+    .catch((err) => res.send(`Error al traer empresas: ${err}`));
+};
+
+empresasController.crearEmpresa = (req, res) => {
+  Empresa.create(
+    { ...req.body, tipo: "prospecto", status: "activo", etapa: "En gestion" },
+    {
+      include: ["oportunidades", "contactos"],
+    }
+  )
+    .then((empresa) => res.json(empresa))
+    .catch((err) => res.send(`Error al crear empresa: ${err}`));
 };
 
 empresasController.modificarEmpresa = (req, res) => {

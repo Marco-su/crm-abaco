@@ -1,21 +1,24 @@
 /* VARIABLES */
 :root {
   --main-dark: #111827;
-  --main-green: #10b981;
+  --main-green: #019b4e;
   --main-purple: #5048e5;
-  --main-blue: #0c66ae;
+  --main-blue: #0260ad;
   --main-red: #e50000;
   --main-orange: #ff8400;
 
-  --second-dark: #1b2434;
-  --second-green: #159b6e;
+  --second-dark: #3e464f;
+  --second-green: #15854d;
   --second-purple: #6e7ad8;
   --second-blue: #045496;
   --second-red: #bd0000;
   --second-orange: #db7100;
 
+  --third-blue: #4d85e7;
+
   --glass-red: rgba(229, 0, 0, 0.2);
-  --text-light: #d1d5db;
+  --text-light: #e2e6ec;
+  --text-gray: #767c8b;
 
   --red-100: #ff6666;
   --red-200: #ff4c4c;
@@ -48,8 +51,9 @@
   --blue-1000: #18507a;
 
   --transition-time: 0.3s;
-  --box-shadow: 0px 1px 4px 1px rgb(0, 0, 0, 0.15);
-  --sidebar-width: 225px;
+  --box-shadow: 0px 2px 5px 1px rgb(0, 0, 0, 0.15);
+  --sidebar-width: 245px;
+  --border-radius: 1rem;
 }
 
 /* SCROLL BAR */
@@ -79,6 +83,17 @@
   display: flex;
 }
 
+body {
+  background: rgb(238, 241, 250);
+  background: linear-gradient(
+    135deg,
+    rgb(255, 255, 255) 10%,
+    rgb(244, 245, 250) 20%,
+    rgb(244, 245, 250) 85%,
+    rgb(255, 255, 255) 100%
+  );
+}
+
 .mainContainer {
   width: calc(100% - var(--sidebar-width));
 }
@@ -86,10 +101,13 @@
 main {
   position: relative;
   padding: 1rem;
+  padding-top: 0;
 }
 
 .card {
   box-shadow: var(--box-shadow);
+  overflow: hidden;
+  border-radius: var(--border-radius);
   border: none;
 }
 
@@ -187,4 +205,9 @@ main {
 
 .MuiTablePagination-toolbar p {
   margin-bottom: 0 !important;
+}
+
+.MuiAutocomplete-inputRoot {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }

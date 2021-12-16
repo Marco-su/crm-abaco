@@ -5,7 +5,11 @@
   top: 0;
   z-index: 998;
   overflow-y: auto;
-  background: var(--main-dark);
+  direction: rtl;
+}
+
+#sidebar > div {
+  direction: ltr;
 }
 
 #sidebar .menuSection {
@@ -16,7 +20,6 @@
   margin-top: 0;
   padding-top: 1.3rem;
   padding-bottom: 1.3rem;
-  border-bottom: 2px solid var(--second-dark);
   display: flex;
   align-items: center;
 }
@@ -26,17 +29,17 @@
 
 #sidebar .menuSection:first-child p {
   font-size: 1.5rem;
-  color: var(--text-light);
+  color: var(--main-blue);
   font-weight: bold;
   margin-bottom: 0;
   cursor: default;
 }
 
 #sidebar .menuSection h3 {
-  color: var(--text-light);
+  color: var(--text-gray);
   font-size: 13px;
   font-weight: bold;
-  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 #sidebar .menuSection ul {
@@ -46,22 +49,30 @@
 }
 
 #sidebar .menuSection ul li a {
-  color: var(--text-light);
+  color: var(--text-gray);
+  font-weight: bold;
   padding: 6px;
-  padding-left: 10px;
+  padding-left: 0.9rem;
   font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 100px;
   transition: all var(--transition-time) ease;
   text-decoration: none;
 }
-
 #sidebar .menuSection ul li a:hover {
-  color: var(--main-green);
+  color: var(--main-blue);
+}
+
+#sidebar .active {
+  background: var(--main-blue);
+  color: var(--text-light) !important;
+}
+#sidebar .active:hover {
+  background: var(--second-blue);
 }
 
 #sidebar .menuSection ul li a span {
-  margin-left: 0.4rem;
+  margin-left: 0.7rem;
 }
