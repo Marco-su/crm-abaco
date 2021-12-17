@@ -16,17 +16,16 @@ const DetalleContacto = () => {
 
   return (
     <div className="detailView">
-      <DatosContacto />
-
-      <div className="detailsBox">
-        <div className="relationsDetails">
-          <RelacionesContacto />
-        </div>
-
-        <div className="asideDetails">
-          <Historial />
-        </div>
+      <div className="box">
+        <h2 className="title">Contacto</h2>
       </div>
+
+      <div className="contactoHistBox">
+        <DatosContacto />
+        <Historial />
+      </div>
+
+      <RelacionesContacto />
     </div>
   );
 };

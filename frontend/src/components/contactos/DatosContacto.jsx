@@ -1,28 +1,46 @@
 import "../../assets/css/common/detalle.css";
 import { useSelector } from "react-redux";
-import { Card, CardHeader, CardBody } from "reactstrap";
+import { EmailOutlined, CallOutlined } from "@mui/icons-material";
 
 const DatosContacto = () => {
   return (
-    <Card>
-      <CardHeader className="detalleHeader">
-        <p className="smallSubtitle">Contacto</p>
+    <div className="box">
+      <section>
         <h1>
           {useSelector((store) => store.contactos.contacto.nombre)}{" "}
           {useSelector((store) => store.contactos.contacto.apellido)}
         </h1>
-      </CardHeader>
-      <CardBody className="detalleBody">
-        <div>
-          <p className="smallSubtitle">Cargo</p>
-          <p>{useSelector((store) => store.contactos.contacto.cargo)}</p>
-        </div>
-        <div>
-          <p className="smallSubtitle">Correo</p>
-          <p>{useSelector((store) => store.contactos.contacto.correo)}</p>
-        </div>
-      </CardBody>
-    </Card>
+        <p className="gray">
+          {useSelector((store) => store.contactos.contacto.cargo)}
+        </p>
+      </section>
+
+      <div className="contactList">
+        <button>
+          <div>
+            <EmailOutlined />
+            <h2>Correo</h2>
+          </div>
+          <div>
+            <p className="gray">
+              {useSelector((store) => store.contactos.contacto.correo)}
+            </p>
+          </div>
+        </button>
+
+        <button>
+          <div>
+            <CallOutlined />
+            <h2>Teléfono</h2>
+          </div>
+          <div>
+            <p className="gray">
+              {useSelector((store) => store.contactos.contacto.correo)}
+            </p>
+          </div>
+        </button>
+      </div>
+    </div>
   );
 };
 

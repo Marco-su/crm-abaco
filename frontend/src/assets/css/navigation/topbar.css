@@ -1,12 +1,21 @@
 #topbar {
-  height: 50px;
+  height: var(--topbar-height);
   padding: 0 1.3rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 998;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+#topbar p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--main-dark);
+  margin-bottom: 0;
 }
 
 #topbar .iconBox {

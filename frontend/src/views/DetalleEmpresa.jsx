@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { getEmpresaById } from "../store/actions/empresa.actions";
 import DatosEmpresa from "../components/empresas/DatosEmpresa";
 import Historial from "../components/common/Historial";
@@ -16,17 +17,19 @@ const DetalleEmpresa = () => {
 
   return (
     <div className="detailView">
-      <DatosEmpresa />
-
-      <div className="detailsBox">
-        <div className="relationsDetails">
-          <RelacionesEmpresas />
-        </div>
-
-        <div className="asideDetails">
-          <Historial />
-        </div>
+      <div className="box">
+        <p className="gray">Empresa</p>
+        <h2 className="title">
+          {useSelector((store) => store.empresas.empresa.nombre)}
+        </h2>
       </div>
+
+      <div className="contactoHistBox">
+        <DatosEmpresa />
+        <Historial />
+      </div>
+
+      <RelacionesEmpresas />
     </div>
   );
 };

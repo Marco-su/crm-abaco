@@ -1,14 +1,19 @@
 table td,
 table th {
-  max-width: 300px;
+  max-width: 285px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
+table tbody tr:last-child th,
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
 .tableContainer {
   overflow: auto;
-  height: calc(100vh - 166px - 1rem);
+  height: calc(100vh - 126px - 1rem - var(--topbar-height));
   border-bottom: 1px solid var(--gray-100);
 }
 
@@ -17,7 +22,7 @@ thead th {
   position: sticky;
   top: 0;
   z-index: 998;
-  background: #fefefe;
+  background: #fff;
 }
 
 .mainTableBox {
@@ -25,12 +30,11 @@ thead th {
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: var(--box-shadow);
-  background-color: #fff;
 }
 
 .mainTableBox .tableTitle {
   position: sticky;
-  font-size: 1.5rem;
+  font-size: 18px;
   top: 0;
   z-index: 2;
 }
@@ -38,16 +42,14 @@ thead th {
 .mainTableBox .tablePagination {
   position: sticky;
   bottom: 0;
-  background: #fefefe;
   z-index: 2;
 }
 
-tbody th a {
+tbody a {
   text-decoration: none;
-  font-weight: bold;
   color: var(--main-blue);
 }
-tbody th a:hover {
+tbody a:hover {
   text-decoration: underline;
   color: var(--main-blue);
 }

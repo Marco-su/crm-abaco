@@ -15,14 +15,20 @@ const Topbar = () => {
 
   return (
     <div id="topbar">
+      <div className="topLeft">
+        <p>Abaco CRM</p>
+      </div>
+
       <div className="topRight">
         <div className="iconBox">
           <button className="iconBtn">
             <NotificationsNone />
           </button>
+
           <button className="iconBtn">
             <Settings />
           </button>
+
           <button className="iconBtn">
             <Person />
           </button>

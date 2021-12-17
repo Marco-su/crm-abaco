@@ -1,3 +1,43 @@
+const emptyModel = {
+  contacto: {
+    nombre: "",
+    apellido: "",
+    cargo: "",
+    correo: "",
+    telefonos: [],
+    oportunidades: [],
+  },
+
+  empleado: {
+    nombre: "",
+    apellido: "",
+    cargo: "",
+    correo: "",
+    telefonos: [],
+    oportunidades: [],
+    contactos: [],
+  },
+
+  producto: {
+    nombre: "",
+    codigo: "",
+    precio: "",
+    descripcion: "",
+    categoria: "",
+    archivos: [],
+    oportunidades: [],
+  },
+
+  empresa: {
+    nombre: "",
+    vertical: "",
+    tipo: "",
+    etapa: "",
+    contactos: [],
+    oportunidades: [],
+  },
+};
+
 export const modalsInitial = {
   id: null,
   updateType: "",
@@ -11,52 +51,33 @@ export const modalsInitial = {
 
 export const contactoInitial = {
   lista: [],
-  contacto: {
-    nombre: "",
-    apellido: "",
-    cargo: "",
-    correo: "",
-    telefonos: [],
-    oportunidades: [],
-  },
+  contacto: emptyModel.contacto,
 };
 
 export const empleadoInitial = {
   lista: [],
-  empleado: {
-    nombre: "",
-    apellido: "",
-    cargo: "",
-    correo: "",
-    telefonos: [],
-    oportunidades: [],
-    contactos: [],
-  },
+  empleado: emptyModel.empleado,
 };
 
 export const productoInitial = {
   lista: [],
-  producto: {
-    nombre: "",
-    codigo: "",
-    precio: "",
-    descripcion: "",
-    categoria: "",
-    archivos: [],
-    oportunidades: [],
-  },
+  producto: emptyModel.producto,
 };
 
 export const empresaInitial = {
   lista: [],
   prospectos: [],
   clientes: [],
-  empresa: {
+  empresa: emptyModel.empresa,
+};
+
+export const oportunidadInitial = {
+  lista: [],
+  oportunidad: {
     nombre: "",
-    vertical: "",
-    tipo: "",
+    empresa: emptyModel.empresa,
+    contacto: emptyModel.contacto,
+    empleado: emptyModel.empleado,
     etapa: "",
-    contactos: [],
-    oportunidades: [],
   },
 };

@@ -1,6 +1,10 @@
 import "../../assets/css/common/detalle.css";
 import { useSelector } from "react-redux";
-import { Card, CardHeader, CardBody } from "reactstrap";
+import {
+  EmailOutlined,
+  CallOutlined,
+  PhoneAndroidOutlined,
+} from "@mui/icons-material";
 
 const DatosEmpleado = () => {
   const telf = useSelector((store) =>
@@ -11,43 +15,59 @@ const DatosEmpleado = () => {
   );
 
   return (
-    <Card>
-      <CardHeader className="detalleHeader">
-        <p className="smallSubtitle">Empleado</p>
+    <div className="box">
+      <section>
         <h1>
           {useSelector((store) => store.empleados.empleado.nombre)}{" "}
           {useSelector((store) => store.empleados.empleado.apellido)}
         </h1>
-      </CardHeader>
-      <CardBody className="detalleBody">
-        <div>
-          <p className="smallSubtitle">Cargo</p>
-          <p>{useSelector((store) => store.empleados.empleado.cargo)}</p>
-        </div>
-        <div>
-          <p className="smallSubtitle">Correo</p>
-          <p>{useSelector((store) => store.empleados.empleado.correo)}</p>
-        </div>
-        <div>
-          <p className="smallSubtitle">Telefono</p>
-          {telf ? (
-            <p>
-              +{telf.codPais}
-              {telf.numero}
+        <p className="gray">
+          {useSelector((store) => store.empleados.empleado.cargo)}
+        </p>
+      </section>
+
+      <div className="contactList">
+        <button>
+          <div>
+            <EmailOutlined />
+            <h2>Correo</h2>
+          </div>
+          <div>
+            <p className="gray">
+              {useSelector((store) => store.empleados.empleado.correo)}
             </p>
-          ) : null}
-        </div>
-        <div>
-          <p className="smallSubtitle">Movil</p>
-          {movil ? (
-            <p>
-              +{movil.codPais}
-              {movil.numero}
-            </p>
-          ) : null}
-        </div>
-      </CardBody>
-    </Card>
+          </div>
+        </button>
+
+        <button>
+          <div>
+            <CallOutlined />
+            <h2>Teléfono</h2>
+          </div>
+          <div>
+            {telf ? (
+              <p className="gray">
+                +{telf.codPais} {telf.numero}
+              </p>
+            ) : null}
+          </div>
+        </button>
+
+        <button>
+          <div>
+            <PhoneAndroidOutlined />
+            <h2>Móvil</h2>
+          </div>
+          <div>
+            {movil ? (
+              <p className="gray">
+                +{movil.codPais} {movil.numero}
+              </p>
+            ) : null}
+          </div>
+        </button>
+      </div>
+    </div>
   );
 };
 

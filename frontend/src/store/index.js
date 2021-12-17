@@ -6,6 +6,7 @@ import contactoReducer from "./reducers/contacto.reducer";
 import empleadoReducer from "./reducers/empleado.reducer";
 import empresaReducer from "./reducers/empresa.reducer";
 import productoReducer from "./reducers/productos.reducer";
+import oportunidadReducer from "./reducers/oportunidad.reducer";
 
 // combine reducer
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   empleados: empleadoReducer,
   productos: productoReducer,
   empresas: empresaReducer,
+  oportunidades: oportunidadReducer,
 });
 
 // store config

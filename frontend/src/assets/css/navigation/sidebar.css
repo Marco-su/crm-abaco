@@ -1,45 +1,44 @@
-#sidebar {
-  width: var(--sidebar-width);
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  z-index: 998;
-  overflow-y: auto;
-  direction: rtl;
+#sidebar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
 }
 
-#sidebar > div {
-  direction: ltr;
+#sidebar {
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--topbar-height) - 10px);
+  position: sticky;
+  top: var(--topbar-height);
+  z-index: 998;
+  overflow: auto;
 }
 
 #sidebar .menuSection {
-  margin-top: 1rem;
-  padding: 0 1.3rem;
+  margin: 1rem;
+  border-bottom: 1px solid var(--text-light);
+  padding: 0.4rem 0;
 }
-#sidebar .menuSection:first-child {
-  margin-top: 0;
-  padding-top: 1.3rem;
-  padding-bottom: 1.3rem;
-  display: flex;
-  align-items: center;
-}
+
 #sidebar .menuSection:last-child {
-  padding-bottom: 1.3rem;
+  border-bottom: none;
+}
+
+#sidebar .menuSection:first-child {
+  margin-top: calc(1rem - 10px);
 }
 
 #sidebar .menuSection:first-child p {
   font-size: 1.5rem;
-  color: var(--main-blue);
+  color: var(--main-dark);
   font-weight: bold;
   margin-bottom: 0;
   cursor: default;
 }
 
 #sidebar .menuSection h3 {
-  color: var(--text-gray);
-  font-size: 13px;
-  font-weight: bold;
-  text-transform: uppercase;
+  color: var(--main-dark);
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 0.4rem;
 }
 
 #sidebar .menuSection ul {
@@ -50,27 +49,26 @@
 
 #sidebar .menuSection ul li a {
   color: var(--text-gray);
-  font-weight: bold;
-  padding: 6px;
-  padding-left: 0.9rem;
-  font-size: 1rem;
+  padding: 0.7rem 1.1rem;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
-  border-radius: 100px;
+  border-radius: var(--border-radius);
   transition: all var(--transition-time) ease;
   text-decoration: none;
+  margin: 8px 0;
 }
+
 #sidebar .menuSection ul li a:hover {
-  color: var(--main-blue);
+  background: var(--glass-blue);
+  color: var(--main-blue) !important;
 }
 
 #sidebar .active {
-  background: var(--main-blue);
-  color: var(--text-light) !important;
-}
-#sidebar .active:hover {
-  background: var(--second-blue);
+  background: var(--glass-blue);
+  color: var(--main-blue) !important;
 }
 
 #sidebar .menuSection ul li a span {

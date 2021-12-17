@@ -8,6 +8,7 @@ const empresasRoutes = require("../routes/empresa.routes");
 const contactosRoutes = require("../routes/contacto.routes");
 const productosRoutes = require("../routes/producto.routes");
 const archivosRoutes = require("../routes/archivo.routes");
+const oportunidadesRoutes = require("../routes/oportunidad.routes");
 
 // Inicialización
 const app = express();
@@ -31,6 +32,7 @@ app.use("/empresas", empresasRoutes);
 app.use("/contactos", contactosRoutes);
 app.use("/productos", productosRoutes);
 app.use("/archivos", archivosRoutes);
+app.use("/oportunidades", oportunidadesRoutes);
 
 // export
 module.exports = app;

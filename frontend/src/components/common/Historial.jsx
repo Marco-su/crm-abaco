@@ -1,11 +1,12 @@
-import { Card, CardHeader, CardBody } from "reactstrap";
-
 const Historial = () => {
   return (
-    <Card>
-      <CardHeader className="relationTitle">Historial</CardHeader>
-      <CardBody>No hay nada que mostrar</CardBody>
-    </Card>
+    <div className="box">
+      <section className="relationTitle">
+        <h2>Historial</h2>
+      </section>
+
+      <div className="text-center">No hay nada que mostrar</div>
+    </div>
   );
 };
 

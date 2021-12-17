@@ -37,4 +37,7 @@ actions.CREATE_EMPRESA = "CREATE_EMPRESA";
 actions.UPDATE_EMPRESA = "UPDATE_EMPRESA";
 actions.DELETE_EMPRESA = "DELETE_EMPRESA";
 
+// Oportunidades
+actions.GET_OPORTUNIDADES = "GET_OPORTUNIDADES";
+
 export default actions;

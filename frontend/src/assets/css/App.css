@@ -1,8 +1,8 @@
 /* VARIABLES */
 :root {
   --main-dark: #111827;
-  --main-green: #019b4e;
-  --main-purple: #5048e5;
+  --main-green: #00a753;
+  --main-purple: #5e35b1;
   --main-blue: #0260ad;
   --main-red: #e50000;
   --main-orange: #ff8400;
@@ -14,11 +14,19 @@
   --second-red: #bd0000;
   --second-orange: #db7100;
 
-  --third-blue: #4d85e7;
+  --third-blue: #2196f3;
 
   --glass-red: rgba(229, 0, 0, 0.2);
+  --glass-purple: rgba(94, 53, 177, 0.12);
+  --glass-blue: rgb(2, 96, 173, 0.1);
+  --glass-green: rgba(0, 167, 83, 0.15);
+  --glass-orange: rgba(255, 132, 0, 0.15);
+
   --text-light: #e2e6ec;
   --text-gray: #767c8b;
+  --text-blue: #2196f3;
+
+  --background-blue: #ebf7ff;
 
   --red-100: #ff6666;
   --red-200: #ff4c4c;
@@ -51,15 +59,16 @@
   --blue-1000: #18507a;
 
   --transition-time: 0.3s;
-  --box-shadow: 0px 2px 5px 1px rgb(0, 0, 0, 0.15);
+  --box-shadow: 0px 1px 5px 1px rgb(0, 0, 0, 0.15);
   --sidebar-width: 245px;
-  --border-radius: 1rem;
+  --topbar-height: 60px;
+  --border-radius: 0.6rem;
 }
 
 /* SCROLL BAR */
 ::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-thumb {
   background: #b3afb3;
@@ -74,41 +83,20 @@
 
 /* MAIN STYLES */
 * {
-  font-family: "Source Sans Pro", sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   box-sizing: border-box !important;
   margin: 0;
 }
 
-.App {
+.mainContainer {
   display: flex;
 }
 
-body {
-  background: rgb(238, 241, 250);
-  background: linear-gradient(
-    135deg,
-    rgb(255, 255, 255) 10%,
-    rgb(244, 245, 250) 20%,
-    rgb(244, 245, 250) 85%,
-    rgb(255, 255, 255) 100%
-  );
-}
-
-.mainContainer {
-  width: calc(100% - var(--sidebar-width));
-}
-
 main {
+  width: calc(100% - var(--sidebar-width));
   position: relative;
   padding: 1rem;
   padding-top: 0;
-}
-
-.card {
-  box-shadow: var(--box-shadow);
-  overflow: hidden;
-  border-radius: var(--border-radius);
-  border: none;
 }
 
 /* ICON BUTTONS */
@@ -161,7 +149,7 @@ main {
 .orangeBtn,
 .greenBtn {
   margin-left: 0.7rem;
-  padding: 0.3rem 1rem;
+  padding: 4px 1rem;
   border-radius: 100px;
   border: none;
   cursor: pointer;
@@ -210,4 +198,46 @@ main {
 .MuiAutocomplete-inputRoot {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+
+/* BOXES */
+.box {
+  background: #fff;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  border: 1px solid rgba(156, 210, 255, 0.46);
+  margin-bottom: 20px;
+}
+
+.box h1,
+.box h2 {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+.box h2.title {
+  font-size: 18px;
+}
+
+.box p.gray {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: var(--text-gray);
+}
+
+/* TEXT */
+.greenFilled,
+.orangeFilled {
+  padding: 0 8px;
+  border-radius: 100px;
+}
+
+.greenFilled {
+  color: var(--main-green);
+  background: var(--glass-green);
+}
+
+.orangeFilled {
+  color: var(--main-orange);
+  background: var(--glass-orange);
 }

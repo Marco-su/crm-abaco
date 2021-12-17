@@ -1,29 +1,38 @@
 import "../../assets/css/common/detalle.css";
 import { useSelector } from "react-redux";
-import { Card, CardHeader, CardBody } from "reactstrap";
 
 const DatosEmpresa = () => {
+  const tipo = useSelector((store) => store.empresas.empresa.tipo);
+
   return (
-    <Card>
-      <CardHeader className="detalleHeader">
-        <p className="smallSubtitle">Empresa</p>
-        <h1>{useSelector((store) => store.empresas.empresa.nombre)}</h1>
-      </CardHeader>
-      <CardBody className="detalleBody">
+    <div className="box">
+      <section>
+        <h2>Información</h2>
+      </section>
+
+      <div className="detailsContent">
         <div>
-          <p className="smallSubtitle">Tipo</p>
-          <p>{useSelector((store) => store.empresas.empresa.tipo)}</p>
+          <p>Tipo de empresa</p>
+          <p className={tipo === "Cliente" ? "greenFilled" : "orangeFilled"}>
+            {tipo}
+          </p>
         </div>
+
         <div>
-          <p className="smallSubtitle">Vertical</p>
-          <p>{useSelector((store) => store.empresas.empresa.vertical)}</p>
+          <p>Vertical de negocios</p>
+          <p className="gray">
+            {useSelector((store) => store.empresas.empresa.vertical)}
+          </p>
         </div>
+
         <div>
-          <p className="smallSubtitle">Etapa</p>
-          <p>{useSelector((store) => store.empresas.empresa.etapa)}</p>
+          <p>Etapa actual de la empresa</p>
+          <p className="gray">
+            {useSelector((store) => store.empresas.empresa.etapa)}
+          </p>
         </div>
-      </CardBody>
-    </Card>
+      </div>
+    </div>
   );
 };
 

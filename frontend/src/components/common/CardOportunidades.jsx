@@ -1,28 +1,20 @@
-import { Card, CardHeader, CardBody } from "reactstrap";
-
 const CardOportunidades = ({ lista }) => {
-  const showBody = () => {
-    return (
-      <CardBody>
-        {lista.map((el) => (
-          <div key={el.id}></div>
-        ))}
-      </CardBody>
-    );
-  };
-
   return (
-    <Card>
-      <CardHeader className="relationTitle">
-        Oportunidades ({lista.length})
-      </CardHeader>
+    <div className="box">
+      <section>
+        <h2>Oportunidades ({lista.length})</h2>
+      </section>
 
       {lista.length > 0 ? (
-        showBody()
+        <div>
+          {lista.map((el) => (
+            <div key={el.id}></div>
+          ))}
+        </div>
       ) : (
-        <CardBody className="text-center">Crear una nueva oportunidad</CardBody>
+        <div className="text-center">Crear una nueva oportunidad</div>
       )}
-    </Card>
+    </div>
   );
 };
 

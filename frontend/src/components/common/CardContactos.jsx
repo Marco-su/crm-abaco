@@ -1,37 +1,29 @@
-import { Card, CardHeader, CardBody } from "reactstrap";
-
 const CardContactos = ({ lista }) => {
-  const showBody = () => {
-    return (
-      <CardBody>
-        {lista.map((el) => (
-          <div key={el.id} className="detalleBody">
-            <div>
-              <p className="smallSubtitle">Cargo</p>
-              <p>{el.cargo}</p>
-            </div>
-            <div>
-              <p className="smallSubtitle">Correo</p>
-              <p>{el.correo}</p>
-            </div>
-          </div>
-        ))}
-      </CardBody>
-    );
-  };
-
   return (
-    <Card>
-      <CardHeader className="relationTitle">
-        Contactos ({lista.length})
-      </CardHeader>
+    <div className="box">
+      <section>
+        <h2>Contactos ({lista.length})</h2>
+      </section>
 
       {lista.length > 0 ? (
-        showBody()
+        <div>
+          {lista.map((el) => (
+            <div key={el.id} className="detalleBody">
+              <div>
+                <p className="smallSubtitle">Cargo</p>
+                <p>{el.cargo}</p>
+              </div>
+              <div>
+                <p className="smallSubtitle">Correo</p>
+                <p>{el.correo}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
-        <CardBody className="text-center">Crear un nuevo contacto</CardBody>
+        <div className="text-center">Crear un nuevo contacto</div>
       )}
-    </Card>
+    </div>
   );
 };
 
