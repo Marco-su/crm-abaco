@@ -1,8 +1,6 @@
 const { Email, Empleado } = require("../database");
-const { ImapFlow } = require("imapflow");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-const chalk = require("chalk");
 
 const emailController = {};
 
