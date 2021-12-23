@@ -52,26 +52,26 @@ emailController.sendEmail = (req, res) => {
   }
 };
 
-emailController.receiveEmails = async (req, res) => {
-  const client = new ImapFlow({
-    host: "imap.gmail.com",
-    port: 993,
-    secure: true,
-    auth: {
-      user: "garland.mcclure71@ethereal.email",
-      pass: "mW6e4wWWnEd3H4hT5B",
-    },
-  });
+// emailController.receiveEmails = async (req, res) => {
+//   const client = new ImapFlow({
+//     host: "imap.gmail.com",
+//     port: 993,
+//     secure: true,
+//     auth: {
+//       user: "garland.mcclure71@ethereal.email",
+//       pass: "mW6e4wWWnEd3H4hT5B",
+//     },
+//   });
 
-  await client.connect();
-  let lock = await client.getMailboxLock("INBOX");
+//   await client.connect();
+//   let lock = await client.getMailboxLock("INBOX");
 
-  try {
-  } catch (error) {
-  } finally {
-  }
+//   try {
+//   } catch (error) {
+//   } finally {
+//   }
 
-  await client.logout();
-};
+//   await client.logout();
+// };
 
 module.exports = emailController;
