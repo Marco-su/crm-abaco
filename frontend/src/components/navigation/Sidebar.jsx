@@ -1,5 +1,9 @@
 import "../../assets/css/navigation/sidebar.css";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { cerrarSesion } from "../../store/actions/empleado.actions";
 import {
   HomeOutlined,
   BadgeOutlined,
@@ -18,9 +22,24 @@ import {
   VideocamOutlined,
   PermContactCalendarOutlined,
   BarChartOutlined,
+  DisabledByDefaultOutlined,
+  LogoutOutlined,
 } from "@mui/icons-material";
 
 const Sidebar = () => {
+  const isAuth = useSelector((store) => store.global.isAuth);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  if (!isAuth) {
+    return <></>;
+  }
+
+  const handleClick = () => {
+    dispatch(cerrarSesion(navigate));
+  };
+
   return (
     <div id="sidebar">
       <div className="menuSection">
@@ -30,42 +49,6 @@ const Sidebar = () => {
             <NavLink to="/">
               <HomeOutlined />
               <span>Inicio</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/productos">
-              <StorefrontOutlined />
-              <span>Productos</span>
-            </NavLink>
-          </li>
-        </ul>
-      </div>
-
-      <div className="menuSection">
-        <h3>Empresas</h3>
-        <ul>
-          <li>
-            <NavLink to="/empresas">
-              <BusinessOutlined />
-              <span>Empresas</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/prospectos">
-              <BusinessCenterOutlined />
-              <span>Prospectos</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/clientes">
-              <PriceCheckOutlined />
-              <span>Clientes</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/contactos">
-              <PermContactCalendarOutlined />
-              <span>Contactos</span>
             </NavLink>
           </li>
         </ul>
@@ -96,6 +79,42 @@ const Sidebar = () => {
             <NavLink to="/ventas">
               <PointOfSaleOutlined />
               <span>Ventas</span>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+
+      <div className="menuSection">
+        <h3>Empresas</h3>
+        <ul>
+          <li>
+            <NavLink to="/empresas">
+              <BusinessOutlined />
+              <span>Empresas</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/prospectos">
+              <BusinessCenterOutlined />
+              <span>Prospectos</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/clientes">
+              <PriceCheckOutlined />
+              <span>Clientes</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/productos">
+              <StorefrontOutlined />
+              <span>Productos</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/contactos">
+              <PermContactCalendarOutlined />
+              <span>Contactos</span>
             </NavLink>
           </li>
         </ul>
@@ -157,6 +176,24 @@ const Sidebar = () => {
               <ReportGmailerrorredOutlined />
               <span>Reportes</span>
             </NavLink>
+          </li>
+          <li>
+            <NavLink to="/reportes">
+              <DisabledByDefaultOutlined />
+              <span>Inactivos</span>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+
+      <div className="menuSection">
+        <h3>Cuenta</h3>
+        <ul>
+          <li>
+            <button onClick={handleClick}>
+              <LogoutOutlined />
+              <span>Cerrar sesión</span>
+            </button>
           </li>
         </ul>
       </div>

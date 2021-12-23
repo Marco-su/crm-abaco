@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: { name: "empleadoId", allowNull: true },
         onDelete: "SET NULL",
       });
+
+      this.belongsToMany(models.Role, {
+        through: "empleado_role",
+      });
     }
   }
 
@@ -49,11 +53,24 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      emailFirma: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      emailPassword: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       sequelize,
       modelName: "Empleado",
     }
   );
+
   return Empleado;
 };

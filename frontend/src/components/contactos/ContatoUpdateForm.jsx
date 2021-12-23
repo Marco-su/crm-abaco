@@ -146,7 +146,9 @@ const ContactoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Nombre"
-          maxRows={2}
+          inputProps={{
+            autoComplete: "off",
+          }}
           size="small"
           error={errors.nombre ? true : false}
           helperText={errors.nombre ? errors.nombre.message : ""}
@@ -156,7 +158,9 @@ const ContactoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Apellido"
-          maxRows={2}
+          inputProps={{
+            autoComplete: "off",
+          }}
           size="small"
           error={errors.apellido ? true : false}
           helperText={errors.apellido ? errors.apellido.message : ""}
@@ -180,7 +184,6 @@ const ContactoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Correo"
-          maxRows={2}
           size="small"
           error={errors.correo ? true : false}
           helperText={errors.correo ? errors.correo.message : ""}

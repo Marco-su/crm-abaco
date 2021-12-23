@@ -119,7 +119,9 @@ const ProductoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Nombre"
-          maxRows={2}
+          inputProps={{
+            autoComplete: "off",
+          }}
           size="small"
           name="nombre"
           error={errors.nombre ? true : false}
@@ -155,7 +157,6 @@ const ProductoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Código de producto"
-          maxRows={2}
           size="small"
           name="codigo"
           error={errors.codigo ? true : false}
@@ -166,7 +167,6 @@ const ProductoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Precio"
-          maxRows={2}
           size="small"
           name="precio"
           InputProps={{

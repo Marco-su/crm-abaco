@@ -258,7 +258,6 @@ export default function EnhancedTable() {
   }, [dispatch]);
 
   const handleRequestSort = (e, property) => {
-    console.log(property);
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);

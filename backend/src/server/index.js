@@ -9,9 +9,13 @@ const contactosRoutes = require("../routes/contacto.routes");
 const productosRoutes = require("../routes/producto.routes");
 const archivosRoutes = require("../routes/archivo.routes");
 const oportunidadesRoutes = require("../routes/oportunidad.routes");
+const authRoutes = require("../routes/auth.routes");
+const emailRoutes = require("../routes/email.routes");
+const { createInitialUser } = require("../helpers/initialSetup");
 
 // Inicialización
 const app = express();
+createInitialUser();
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -33,6 +37,8 @@ app.use("/contactos", contactosRoutes);
 app.use("/productos", productosRoutes);
 app.use("/archivos", archivosRoutes);
 app.use("/oportunidades", oportunidadesRoutes);
+app.use("/auth", authRoutes);
+app.use("/mail", emailRoutes);
 
 // export
 module.exports = app;

@@ -4,14 +4,7 @@ import App from "./App.jsx";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { esES } from "@mui/material/locale";
 
-const theme = createTheme(
-  {
-    palette: {
-      primary: { main: "#0260ad" },
-    },
-  },
-  esES
-);
+const theme = createTheme({}, esES);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -34,7 +34,6 @@ export const toggleDelete =
 
 export const toggleDeleteMany =
   (deleteManyType, arrayIds) => (dispatch, getState) => {
-    console.log(arrayIds);
     const changes = {
       arrayIds,
       deleteManyType,

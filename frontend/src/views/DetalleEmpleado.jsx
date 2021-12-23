@@ -15,7 +15,7 @@ const DetalleEmpleado = () => {
   }, [dispatch, id]);
 
   return (
-    <div className="detailView">
+    <div className="detailView viewContainer">
       <div className="box">
         <h2 className="title">Empleado</h2>
       </div>

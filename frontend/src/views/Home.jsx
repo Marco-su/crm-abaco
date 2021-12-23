@@ -1,5 +1,14 @@
+import Login from "../components/home/Login";
+import { useSelector } from "react-redux";
+
 const Home = () => {
-  return <div id="Home"></div>;
+  const isAuth = useSelector((store) => store.global.isAuth);
+
+  if (!isAuth) {
+    return <Login />;
+  }
+
+  return <></>;
 };
 
 export default Home;

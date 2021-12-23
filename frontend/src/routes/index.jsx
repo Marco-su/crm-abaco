@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import CheckAuth from "./CheckAuth";
 
 import Home from "../views/Home";
 import Empleados from "../views/Empleados";
@@ -12,28 +13,33 @@ import DetalleEmpresa from "../views/DetalleEmpresa";
 import DetalleEmpleado from "../views/DetalleEmpleado";
 import DetalleContacto from "../views/DetalleContacto";
 import DetalleProducto from "../views/DetalleProducto";
+import Correo from "../views/Correo";
 
 const RoutesComponent = () => {
   return (
     <Routes>
       <Route index path="/" element={<Home />} />
 
-      <Route path="/empleados/:id" element={<DetalleEmpleado />} />
-      <Route path="/empleados" element={<Empleados />} />
+      <Route element={<CheckAuth />}>
+        <Route path="/empleados/:id" element={<DetalleEmpleado />} />
+        <Route path="/empleados" element={<Empleados />} />
 
-      <Route path="/empresas/:id" element={<DetalleEmpresa />} />
-      <Route path="/empresas" element={<Empresas />} />
-      <Route path="/prospectos" element={<Prospectos />} />
-      <Route path="/clientes" element={<Clientes />} />
+        <Route path="/empresas/:id" element={<DetalleEmpresa />} />
+        <Route path="/empresas" element={<Empresas />} />
+        <Route path="/prospectos" element={<Prospectos />} />
+        <Route path="/clientes" element={<Clientes />} />
 
-      <Route path="/contactos/:id" element={<DetalleContacto />} />
-      <Route path="/contactos" element={<Contactos />} />
+        <Route path="/contactos/:id" element={<DetalleContacto />} />
+        <Route path="/contactos" element={<Contactos />} />
 
-      <Route path="/productos/:id" element={<DetalleProducto />} />
-      <Route path="/productos" element={<Productos />} />
+        <Route path="/productos/:id" element={<DetalleProducto />} />
+        <Route path="/productos" element={<Productos />} />
 
-      <Route path="/oportunidades/:id" element={<DetalleProducto />} />
-      <Route path="/oportunidades" element={<Oportunidades />} />
+        <Route path="/oportunidades/:id" element={<DetalleProducto />} />
+        <Route path="/oportunidades" element={<Oportunidades />} />
+
+        <Route path="/correo" element={<Correo />} />
+      </Route>
     </Routes>
   );
 };

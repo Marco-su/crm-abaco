@@ -38,6 +38,10 @@ const emptyModel = {
   },
 };
 
+export const globalInitial = {
+  isAuth: localStorage.getItem("token") ? true : false,
+};
+
 export const modalsInitial = {
   id: null,
   updateType: "",

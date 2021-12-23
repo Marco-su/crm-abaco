@@ -2,6 +2,13 @@ import axios from "axios";
 import { apiBase } from "../../constants/baseUrls";
 import types from "../utils/actionNames";
 
+axios.interceptors.request.use(function (config) {
+  const token = localStorage.getItem("token");
+  config.headers["x-access-token"] = token;
+
+  return config;
+});
+
 export const get = (type, urlName, dispatch) => {
   axios({
     url: `${apiBase}/${urlName}`,
@@ -22,7 +29,6 @@ export const getSingle = (type, urlName, id, dispatch) => {
     url: `${apiBase}/${urlName}/${id}`,
   })
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type,
         payload: res.data,
@@ -40,7 +46,6 @@ export const create = (data, urlPost, textName, navigate, dispatch) => {
     data,
   })
     .then((res) => {
-      console.log(res.data);
       if (res.data.id) {
         dispatch({
           type: types.TOGGLE_UPDATE,

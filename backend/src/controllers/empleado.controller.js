@@ -2,30 +2,21 @@ const { Empleado, Telefono } = require("../database");
 
 const empleadoController = {};
 
-empleadoController.traerEmpleados = (req, res) => {
+empleadoController.traerEmpleados = async (req, res) => {
   Empleado.findAll({
     include: ["telefonos", "contactos", "oportunidades"],
     where: { status: "activo" },
+    attributes: { exclude: ["password", "emailPassword"] },
   })
     .then((empleados) => res.json(empleados))
     .catch((err) => res.send(`Error al cargar empleados: ${err}`));
-};
-
-empleadoController.crearEmpleado = (req, res) => {
-  Empleado.create(
-    { ...req.body, status: "activo" },
-    {
-      include: ["telefonos", "contactos", "oportunidades"],
-    }
-  )
-    .then((empleado) => res.json(empleado))
-    .catch((err) => res.send(`Error al crear empleado: ${err}`));
 };
 
 empleadoController.leerEmpleado = (req, res) => {
   Empleado.findOne({
     include: ["telefonos", "contactos", "oportunidades"],
     where: { id: req.params.id },
+    attributes: { exclude: ["password", "emailPassword"] },
   })
     .then((empleado) => res.json(empleado))
     .catch((err) => res.send(`Error al traer empleado: ${err}`));

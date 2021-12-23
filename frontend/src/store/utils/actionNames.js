@@ -1,5 +1,11 @@
 const actions = {};
 
+// Global
+actions.SET_IS_AUTH = "SET_IS_AUTH";
+
+// Email
+actions.SEND_EMAIL = "SEND_EMAIL";
+
 // Modals
 actions.SET_SELECTED = "SET_SELECTED";
 actions.TOGGLE_DELETE = "TOGGLE_DELETE";

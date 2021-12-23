@@ -81,7 +81,9 @@ const PhoneInput = ({ label, tipo, errors, control, telf, register }) => {
       <TextField
         className="inputText"
         label={label}
-        maxRows={2}
+        inputProps={{
+          autoComplete: "off",
+        }}
         size="small"
         error={errors[`numero${tipo}`] ? true : false}
         helperText={

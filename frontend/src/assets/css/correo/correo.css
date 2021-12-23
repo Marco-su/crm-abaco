@@ -1,0 +1,38 @@
+.correoView,
+.correoView .emailSection,
+.correoView form {
+  display: flex;
+  flex-direction: column;
+}
+
+.correoView > .box {
+  margin-right: 20px;
+}
+
+.correoView .editorMain {
+  padding: 0 1rem;
+}
+
+.correoView .inputText {
+  width: 100%;
+}
+
+.correoView .public-DraftStyleDefault-ltr {
+  margin: 0.5rem 0;
+}
+
+.correoView .emailSection,
+.correoView form,
+.correoView .editorBox {
+  flex-grow: 1;
+}
+
+.correoView .emailButtonBox {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--text-light);
+}
+
+.correoView .public-DraftEditor-content {
+  min-height: calc(100vh - 570px);
+}

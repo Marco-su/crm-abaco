@@ -7,9 +7,11 @@ import empleadoReducer from "./reducers/empleado.reducer";
 import empresaReducer from "./reducers/empresa.reducer";
 import productoReducer from "./reducers/productos.reducer";
 import oportunidadReducer from "./reducers/oportunidad.reducer";
+import globalReducer from "./reducers/global.reducer";
 
 // combine reducer
 const rootReducer = combineReducers({
+  global: globalReducer,
   modals: modalsReducer,
   contactos: contactoReducer,
   empleados: empleadoReducer,

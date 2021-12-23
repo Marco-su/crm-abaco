@@ -74,3 +74,30 @@
 #sidebar .menuSection ul li a span {
   margin-left: 0.7rem;
 }
+
+/* TEMPORAL --------------------------------------------------- */
+#sidebar button {
+  color: var(--text-gray);
+  padding: 0.7rem 1.1rem;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-time) ease;
+  text-decoration: none;
+  margin: 8px 0;
+  width: 100%;
+  border: none;
+  background: none;
+}
+
+#sidebar button:hover {
+  background: var(--glass-blue);
+  color: var(--main-blue) !important;
+}
+
+#sidebar .menuSection ul li button span {
+  margin-left: 0.7rem;
+}

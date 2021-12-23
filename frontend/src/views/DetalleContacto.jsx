@@ -15,7 +15,7 @@ const DetalleContacto = () => {
   }, [dispatch, id]);
 
   return (
-    <div className="detailView">
+    <div className="detailView viewContainer">
       <div className="box">
         <h2 className="title">Contacto</h2>
       </div>

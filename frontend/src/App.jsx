@@ -5,11 +5,7 @@ import generateStore from "./store";
 
 import Sidebar from "./components/navigation/Sidebar";
 import Topbar from "./components/navigation/Topbar";
-
-import DeleteModal from "./components/common/DeleteModal";
-import UpdateModal from "./components/common/UpdateModal";
-import DeleteManyModal from "./components/common/DeleteManyModal";
-import RoutesComponent from "./routes";
+import Main from "./components/common/Main";
 
 import("./assets/css/App.css");
 
@@ -23,13 +19,7 @@ const App = () => {
           <div className="mainContainer">
             <Sidebar />
 
-            <main>
-              <UpdateModal />
-              <DeleteModal />
-              <DeleteManyModal />
-
-              <RoutesComponent />
-            </main>
+            <Main />
           </div>
         </Router>
       </Provider>

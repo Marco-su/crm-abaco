@@ -1,21 +1,6 @@
 /* MAIN */
-.detailView {
-  background-color: var(--glass-blue);
-  padding-top: 20px;
-  padding-left: 20px;
-  overflow: hidden;
-  border-radius: var(--border-radius);
-  min-height: 100%;
-}
-
 .detailView .box {
   margin-right: 20px;
-}
-
-.detailView .box section {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--text-light);
-  margin-bottom: 1rem;
 }
 
 /* CONTACT */

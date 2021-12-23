@@ -82,10 +82,9 @@
 }
 
 /* MAIN STYLES */
-* {
+*:not(.editorMain span) {
   font-family: "Roboto", sans-serif !important;
   box-sizing: border-box !important;
-  margin: 0;
 }
 
 .mainContainer {
@@ -97,6 +96,26 @@ main {
   position: relative;
   padding: 1rem;
   padding-top: 0;
+}
+
+main.fullWindow {
+  width: 100vw;
+  height: 100vh;
+}
+
+.viewContainer {
+  background-color: var(--glass-blue);
+  padding-top: 20px;
+  padding-left: 20px;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  min-height: 100%;
+}
+
+.box section {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--text-light);
+  margin-bottom: 1rem;
 }
 
 /* ICON BUTTONS */
@@ -219,12 +238,6 @@ main {
   font-size: 18px;
 }
 
-.box p.gray {
-  margin-bottom: 0;
-  font-size: 14px;
-  color: var(--text-gray);
-}
-
 /* TEXT */
 .greenFilled,
 .orangeFilled {
@@ -240,4 +253,10 @@ main {
 .orangeFilled {
   color: var(--main-orange);
   background: var(--glass-orange);
+}
+
+.gray {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: var(--text-gray);
 }

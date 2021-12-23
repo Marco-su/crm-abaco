@@ -114,7 +114,9 @@ const EmpresaUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Nombre"
-          maxRows={2}
+          inputProps={{
+            autoComplete: "off",
+          }}
           size="small"
           error={errors.nombre ? true : false}
           helperText={errors.nombre ? errors.nombre.message : ""}
@@ -124,7 +126,9 @@ const EmpresaUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Vertical"
-          maxRows={2}
+          inputProps={{
+            autoComplete: "off",
+          }}
           size="small"
           error={errors.vertical ? true : false}
           helperText={errors.vertical ? errors.vertical.message : ""}

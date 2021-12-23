@@ -20,6 +20,8 @@ const EmpleadoUpdateForm = ({ children }) => {
   const empleados = useSelector((store) => store.empleados.lista);
   const empleadoId = useSelector((store) => store.modals.id);
 
+  const isCreate = updateType.toLowerCase().includes("create");
+
   const {
     register,
     handleSubmit,
@@ -60,7 +62,12 @@ const EmpleadoUpdateForm = ({ children }) => {
   // HANDLES
   const onSubmit = (data) => {
     Object.keys(data).forEach((el) => {
-      if (typeof data[el] === "string") {
+      if (
+        typeof data[el] === "string" &&
+        el !== "correo" &&
+        el !== "password" &&
+        el !== "emailPassword"
+      ) {
         data[el] = capitalizeFirstLetter(data[el]);
       }
     });
@@ -82,7 +89,7 @@ const EmpleadoUpdateForm = ({ children }) => {
       ];
 
       dispatch(updateEmpleado({ ...data, id: empleadoId }));
-    } else if (updateType.toLowerCase().includes("create")) {
+    } else if (isCreate) {
       data.telefonos = [
         {
           codPais: data.codmovil,
@@ -137,7 +144,33 @@ const EmpleadoUpdateForm = ({ children }) => {
     },
     pattern: {
       value: /^\S+@\S+\.\S+$/,
-      message: "Correo no válido. Ejemplo válido: usuario@dominio.tld",
+      message: "Correo no válido. Ejemplo válido: usuario@mail.com",
+    },
+  });
+
+  const passwordRules = register("password", {
+    required: {
+      value: true,
+      message: "Ingresa una contraseña.",
+    },
+    maxLength: {
+      value: 120,
+      message: "Contraseña muy larga (máximo 120 caracteres).",
+    },
+    minLength: {
+      value: 4,
+      message: "Contraseña muy corta (mínimo 4 caracteres).",
+    },
+  });
+
+  const emailPassRules = register("emailPassword", {
+    maxLength: {
+      value: 120,
+      message: "Contraseña muy larga (máximo 120 caracteres).",
+    },
+    minLength: {
+      value: 4,
+      message: "Contraseña muy corta (mínimo 4 caracteres).",
     },
   });
 
@@ -148,7 +181,9 @@ const EmpleadoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Nombre"
-          maxRows={2}
+          inputProps={{
+            autoComplete: "off",
+          }}
           size="small"
           error={errors.nombre ? true : false}
           helperText={errors.nombre ? errors.nombre.message : ""}
@@ -158,7 +193,9 @@ const EmpleadoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Apellido"
-          maxRows={2}
+          inputProps={{
+            autoComplete: "off",
+          }}
           size="small"
           error={errors.apellido ? true : false}
           helperText={errors.apellido ? errors.apellido.message : ""}
@@ -200,12 +237,40 @@ const EmpleadoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Correo electrónico"
-          maxRows={2}
+          inputProps={{
+            autoComplete: "off",
+          }}
           size="small"
           error={errors.correo ? true : false}
           helperText={errors.correo ? errors.correo.message : ""}
           {...correoRules}
         />
+
+        {isCreate ? (
+          <TextField
+            className="inputText"
+            label="Contraseña"
+            size="small"
+            error={errors.password ? true : false}
+            helperText={errors.password ? errors.password.message : ""}
+            type="password"
+            {...passwordRules}
+          />
+        ) : null}
+
+        {isCreate ? (
+          <TextField
+            className="inputText"
+            label="Contraseña de aplicaciones (email)"
+            size="small"
+            error={errors.emailPassword ? true : false}
+            helperText={
+              errors.emailPassword ? errors.emailPassword.message : ""
+            }
+            type="password"
+            {...emailPassRules}
+          />
+        ) : null}
       </div>
 
       {children}
