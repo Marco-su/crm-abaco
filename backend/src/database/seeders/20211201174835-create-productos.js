@@ -13,7 +13,7 @@ module.exports = {
           min: 1000,
           max: 100000,
         }),
-        descripcion: faker.lorem.paragraph(),
+        descripcion: faker.lorem.sentence(),
         categoria: faker.random.arrayElement([
           "Desarrollo de software",
           "Redes",
