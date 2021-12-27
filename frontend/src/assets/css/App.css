@@ -206,7 +206,8 @@ main.fullWindow {
 }
 
 /* MATERIAL UI CLASSES */
-.MuiOutlinedInput-input {
+input[type="text"],
+input[type="password"] {
   height: 40px;
 }
 
