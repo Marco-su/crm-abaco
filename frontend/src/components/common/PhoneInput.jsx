@@ -14,18 +14,7 @@ import { alphabeticalOrder } from "../../helpers/alphabeticalOrder";
 const PhoneInput = ({ label, tipo, errors, control, telf, register }) => {
   const orderedCountries = alphabeticalOrder(countries, "code");
 
-  const codigoRules = {
-    required: {
-      value: true,
-      message: "Código requerido",
-    },
-  };
-
   const numeroRules = register(`numero${tipo}`, {
-    required: {
-      value: true,
-      message: "Número telefónico requerido.",
-    },
     maxLength: {
       value: 60,
       message: "Número muy largo (máximo 60 caracteres).",
@@ -70,7 +59,6 @@ const PhoneInput = ({ label, tipo, errors, control, telf, register }) => {
               ))}
             </Select>
           )}
-          rules={codigoRules}
         />
 
         {errors[`cod${tipo}`] ? (
@@ -81,9 +69,6 @@ const PhoneInput = ({ label, tipo, errors, control, telf, register }) => {
       <TextField
         className="inputText"
         label={label}
-        inputProps={{
-          autoComplete: "off",
-        }}
         size="small"
         error={errors[`numero${tipo}`] ? true : false}
         helperText={

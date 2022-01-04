@@ -29,6 +29,7 @@ import Tooltip from "@mui/material/Tooltip";
 import { visuallyHidden } from "@mui/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "@mui/material";
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -401,12 +402,13 @@ export default function EnhancedTable() {
 
       <div className="paginationBox">
         <div className="tablefooterBtn">
-          <button
-            className="greenBtn"
+          <Button
+            className="ms-3"
+            variant="contained"
             onClick={() => dispatch(toggleUpdate("empleadoCreate", null))}
           >
             Crear nuevo
-          </button>
+          </Button>
         </div>
 
         <TablePagination

@@ -26,7 +26,7 @@
   --text-gray: #767c8b;
   --text-blue: #2196f3;
 
-  --background-blue: #ebf7ff;
+  --background-blue: #e3f2fd;
 
   --red-100: #ff6666;
   --red-200: #ff4c4c;
@@ -62,7 +62,7 @@
   --box-shadow: 0px 1px 5px 1px rgb(0, 0, 0, 0.15);
   --sidebar-width: 245px;
   --topbar-height: 60px;
-  --border-radius: 0.6rem;
+  --border-radius: 0.75rem;
 }
 
 /* SCROLL BAR */
@@ -104,7 +104,7 @@ main.fullWindow {
 }
 
 .viewContainer {
-  background-color: var(--glass-blue);
+  background-color: var(--background-blue);
   padding-top: 20px;
   padding-left: 20px;
   overflow: hidden;
@@ -118,97 +118,18 @@ main.fullWindow {
   margin-bottom: 1rem;
 }
 
-/* ICON BUTTONS */
-.iconBtn,
-.redIconBtn,
-.orangeIconBtn,
-.blueIconBtn,
-.greenIconBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  width: 35px;
-  height: 35px;
-  font-size: 1rem;
-  transition: all var(--transition-time) ease;
-}
-
-.iconBtn {
-  color: var(--gray-600);
-  border-radius: 50%;
-  background-color: transparent;
-}
-.iconBtn:hover {
-  background-color: rgba(0, 0, 0, 0.09);
-  color: var(--gray-700);
-}
-
-.redIconBtn,
-.orangeIconBtn,
-.blueIconBtn,
-.greenIconBtn {
-  border-radius: 0.35rem;
-  opacity: 1;
-}
-
-.redIconBtn {
-  color: var(--main-red);
-  background: var(--glass-red);
-  opacity: 0.7;
-}
-.redIconBtn:hover {
-  opacity: 1;
-}
-
 /* BUTTONS */
-.blueBtn,
-.redBtn,
-.orangeBtn,
-.greenBtn {
-  margin-left: 0.7rem;
-  padding: 4px 1rem;
-  border-radius: 100px;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  color: #fefefe;
-  transition: all var(--transition-time) ease;
-}
-
-.blueBtn {
-  background-color: var(--main-blue);
-}
-.blueBtn:hover {
-  background-color: var(--second-blue);
-}
-
-.redBtn {
-  background-color: var(--main-red);
-}
-.redBtn:hover {
-  background-color: var(--second-red);
-}
-
-.orangeBtn {
-  background-color: var(--main-orange);
-}
-.orangeBtn:hover {
-  background-color: var(--second-orange);
-}
-
-.greenBtn {
-  background-color: var(--main-green);
-}
-.greenBtn:hover {
-  background-color: var(--second-green);
+button:not(.contactButton) {
+  border-radius: 1000px !important;
+  padding-bottom: 3px !important;
 }
 
 /* MATERIAL UI CLASSES */
 input[type="text"],
-input[type="password"] {
-  height: 40px;
+input[type="password"],
+input[type="number"],
+select {
+  height: 40px !important;
 }
 
 .MuiTablePagination-toolbar p {
@@ -232,11 +153,20 @@ input[type="password"] {
 .box h1,
 .box h2 {
   margin-bottom: 0;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .box h2.title {
   font-size: 18px;
+}
+
+.tittleIconBox {
+  display: flex;
+  align-items: center;
+}
+
+.tittleIconBox svg {
+  margin-right: 0.6rem;
 }
 
 /* TEXT */

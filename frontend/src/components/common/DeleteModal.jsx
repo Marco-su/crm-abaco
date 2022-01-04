@@ -8,6 +8,7 @@ import { disableContacto } from "../../store/actions/contacto.actions";
 import { disableEmpleado } from "../../store/actions/empleado.actions";
 import { disableProducto } from "../../store/actions/producto.actions";
 import { disableEmpresa } from "../../store/actions/empresa.actions";
+import { Button } from "@mui/material";
 
 const DeleteModal = () => {
   const dispatch = useDispatch();
@@ -100,15 +101,20 @@ const DeleteModal = () => {
         </div>
 
         <div className="buttonRight">
-          <button
-            className="blueBtn"
+          <Button
+            variant="contained"
             onClick={() => dispatch(toggleDelete("", null, ""))}
           >
             Cancelar
-          </button>
-          <button onClick={deleteConfirmed} className="redBtn">
+          </Button>
+          <Button
+            className="ms-2"
+            variant="contained"
+            color="error"
+            onClick={deleteConfirmed}
+          >
             Eliminar
-          </button>
+          </Button>
         </div>
       </div>
     </div>

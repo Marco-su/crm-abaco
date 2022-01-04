@@ -62,12 +62,12 @@
 }
 
 #sidebar .menuSection ul li a:hover {
-  background: var(--glass-blue);
+  background: var(--background-blue);
   color: var(--main-blue) !important;
 }
 
 #sidebar .active {
-  background: var(--glass-blue);
+  background: var(--background-blue);
   color: var(--main-blue) !important;
 }
 
@@ -94,7 +94,7 @@
 }
 
 #sidebar button:hover {
-  background: var(--glass-blue);
+  background: var(--background-blue);
   color: var(--main-blue) !important;
 }
 

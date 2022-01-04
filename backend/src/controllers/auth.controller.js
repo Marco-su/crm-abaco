@@ -36,7 +36,7 @@ authController.register = (req, res) => {
           status: "activo",
         },
         {
-          include: ["telefonos", "contactos", "oportunidades"],
+          include: ["telefonos"],
         }
       )
         .then((empleado) => {

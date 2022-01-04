@@ -48,6 +48,9 @@ const EmpleadoUpdateForm = ({ children }) => {
         setValue("apellido", item.apellido);
         setValue("cargo", item.cargo);
         setValue("correo", item.correo);
+        setValue("dni", item.dni);
+        setValue("web", item.web);
+        setValue("empleados", item.empleados);
 
         if (telf) {
           setValue("numerotelefono", telf.numero);
@@ -62,31 +65,58 @@ const EmpleadoUpdateForm = ({ children }) => {
   // HANDLES
   const onSubmit = (data) => {
     Object.keys(data).forEach((el) => {
-      if (
-        typeof data[el] === "string" &&
-        el !== "correo" &&
-        el !== "password" &&
-        el !== "emailPassword"
-      ) {
+      if (el === "nombre" || el === "apellido") {
         data[el] = capitalizeFirstLetter(data[el]);
       }
     });
 
+    console.log(data);
+
     if (updateType === "empleado") {
-      data.telefonos = [
-        {
-          id: movil.id,
-          codPais: data.codmovil,
-          numero: data.numeromovil,
-          tipo: "movil",
-        },
-        {
-          id: telf.id,
-          codPais: data.codtelefono,
-          numero: data.numerotelefono,
-          tipo: "telefono",
-        },
-      ];
+      let movilUpdate = [];
+      let telfUpdate = [];
+
+      if (movil) {
+        movilUpdate = [
+          {
+            id: movil.id,
+            codPais: data.codmovil,
+            numero: data.numeromovil,
+            tipo: "movil",
+          },
+        ];
+      } else if (data.numeromovil) {
+        movilUpdate = [
+          {
+            codPais: data.codmovil,
+            numero: data.numeromovil,
+            tipo: "movil",
+          },
+        ];
+      }
+
+      if (telf) {
+        telfUpdate = [
+          {
+            id: telf.id,
+            codPais: data.codtelefono,
+            numero: data.numerotelefono,
+            tipo: "telefono",
+          },
+        ];
+      } else if (data.numerotelefono) {
+        telfUpdate = [
+          {
+            codPais: data.codtelefono,
+            numero: data.numerotelefono,
+            tipo: "telefono",
+          },
+        ];
+      }
+
+      data.telefonos = [...movilUpdate, ...telfUpdate];
+
+      console.log(data);
 
       dispatch(updateEmpleado({ ...data, id: empleadoId }));
     } else if (isCreate) {
@@ -114,8 +144,8 @@ const EmpleadoUpdateForm = ({ children }) => {
       message: "El empleado debe tener un nombre.",
     },
     maxLength: {
-      value: 120,
-      message: "Nombre muy largo (máximo 120 caracteres).",
+      value: 255,
+      message: "Nombre muy largo (máximo 255 caracteres).",
     },
   });
 
@@ -125,8 +155,8 @@ const EmpleadoUpdateForm = ({ children }) => {
       message: "El empleado debe tener un apellido.",
     },
     maxLength: {
-      value: 120,
-      message: "Apellido muy largo (máximo 120 caracteres).",
+      value: 255,
+      message: "Apellido muy largo (máximo 255 caracteres).",
     },
   });
 
@@ -135,22 +165,53 @@ const EmpleadoUpdateForm = ({ children }) => {
       value: true,
       message: "El empleado debe tener un cargo asignado.",
     },
+    maxLength: {
+      value: 255,
+      message: "Cargo muy largo (máximo 255 caracteres).",
+    },
   });
 
   const correoRules = register("correo", {
-    required: {
-      value: true,
-      message: "El empleado debe tener un correo asignado.",
-    },
     pattern: {
       value: /^\S+@\S+\.\S+$/,
       message: "Correo no válido. Ejemplo válido: usuario@mail.com",
     },
   });
 
+  const dniRules = register("dni", {
+    maxLength: {
+      value: 255,
+      message: "DNI muy largo (máximo 255 caracteres).",
+    },
+  });
+
+  const webRules = register("web", {
+    maxLength: {
+      value: 1000,
+      message: "URL muy larga (máximo 1000 caracteres).",
+    },
+    pattern: {
+      value:
+        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
+      message: "URL no válida. Ejemplo válido: http://dominio.com",
+    },
+  });
+
+  const empleadosRules = register("empleados", {
+    max: {
+      value: 1000000,
+      message:
+        "Número de empleados muy grande para procesar (máximo un millon)",
+    },
+    min: {
+      value: 0,
+      message: "No se admiten números negativos",
+    },
+  });
+
   const passwordRules = register("password", {
     required: {
-      value: true,
+      value: isCreate ? true : false,
       message: "Ingresa una contraseña.",
     },
     maxLength: {
@@ -176,14 +237,11 @@ const EmpleadoUpdateForm = ({ children }) => {
 
   // RENDER
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <div className="upFormInputsBox">
         <TextField
           className="inputText"
           label="Nombre"
-          inputProps={{
-            autoComplete: "off",
-          }}
           size="small"
           error={errors.nombre ? true : false}
           helperText={errors.nombre ? errors.nombre.message : ""}
@@ -193,13 +251,28 @@ const EmpleadoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Apellido"
-          inputProps={{
-            autoComplete: "off",
-          }}
           size="small"
           error={errors.apellido ? true : false}
           helperText={errors.apellido ? errors.apellido.message : ""}
           {...apellidoRules}
+        />
+
+        <TextField
+          className="inputText"
+          label="DNI"
+          size="small"
+          error={errors.dni ? true : false}
+          helperText={errors.dni ? errors.dni.message : ""}
+          {...dniRules}
+        />
+
+        <TextField
+          className="inputText"
+          label="Sitio Web"
+          size="small"
+          error={errors.web ? true : false}
+          helperText={errors.web ? errors.web.message : ""}
+          {...webRules}
         />
 
         <TextField
@@ -215,6 +288,16 @@ const EmpleadoUpdateForm = ({ children }) => {
           <MenuItem value="Una">Una opción</MenuItem>
           <MenuItem value="Otra">Otra opcion</MenuItem>
         </TextField>
+
+        <TextField
+          className="inputText"
+          label="Empleados a cargo"
+          type="number"
+          size="small"
+          error={errors.empleados ? true : false}
+          helperText={errors.empleados ? errors.empleados.message : ""}
+          {...empleadosRules}
+        />
 
         <PhoneInput
           label="Teléfono"
@@ -237,9 +320,6 @@ const EmpleadoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Correo electrónico"
-          inputProps={{
-            autoComplete: "off",
-          }}
           size="small"
           error={errors.correo ? true : false}
           helperText={errors.correo ? errors.correo.message : ""}
@@ -261,7 +341,7 @@ const EmpleadoUpdateForm = ({ children }) => {
         {isCreate ? (
           <TextField
             className="inputText"
-            label="Contraseña de aplicaciones (email)"
+            label="Contraseña de correo o de aplicaciones."
             size="small"
             error={errors.emailPassword ? true : false}
             helperText={

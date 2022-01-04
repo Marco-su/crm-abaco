@@ -16,7 +16,7 @@ const DatosContacto = () => {
       </section>
 
       <div className="contactList">
-        <button>
+        <button className="contactButton">
           <div>
             <EmailOutlined />
             <h2>Correo</h2>
@@ -28,7 +28,7 @@ const DatosContacto = () => {
           </div>
         </button>
 
-        <button>
+        <button className="contactButton">
           <div>
             <CallOutlined />
             <h2>Teléfono</h2>

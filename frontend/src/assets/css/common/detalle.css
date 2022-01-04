@@ -3,6 +3,16 @@
   margin-right: 20px;
 }
 
+.detailView .detailTitleBox {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.detailView .detailTitleBox h2 {
+  flex-grow: 1;
+}
+
 /* CONTACT */
 .detailView .box .contactList {
   display: flex;

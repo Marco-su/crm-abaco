@@ -14,7 +14,6 @@ db.connection = new Sequelize(
 );
 
 // Vinculacion de modelos a base de datos
-
 db.Empleado = require("./models/Empleado")(db.connection, DataTypes);
 db.Role = require("./models/Role")(db.connection, DataTypes);
 db.Contacto = require("./models/Contacto")(db.connection, DataTypes);
@@ -25,6 +24,9 @@ db.Telefono = require("./models/Telefono")(db.connection, DataTypes);
 db.Oportunidad = require("./models/Oportunidad")(db.connection, DataTypes);
 db.Etapa = require("./models/Etapa")(db.connection, DataTypes);
 db.Email = require("./models/Email")(db.connection, DataTypes);
+db.Direccion = require("./models/Direccion")(db.connection, DataTypes);
+db.Permiso = require("./models/Permiso")(db.connection, DataTypes);
+db.ClienteCrm = require("./models/Clientecrm")(db.connection, DataTypes);
 
 // Asociación de modelos (relaciones)
 db.Empresa.associate(db);
@@ -36,5 +38,8 @@ db.Archivo.associate(db);
 db.Telefono.associate(db);
 db.Oportunidad.associate(db);
 db.Etapa.associate(db);
+db.Direccion.associate(db);
+db.Permiso.associate(db);
+db.ClienteCrm.associate(db);
 
 module.exports = db;

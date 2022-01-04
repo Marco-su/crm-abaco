@@ -46,15 +46,33 @@ module.exports = (sequelize, DataTypes) => {
       },
       cargo: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       correo: {
         type: DataTypes.STRING,
+        allowNull: true,
+      },
+      dni: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      web: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      empleados: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      origen: {
+        type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "Marketing",
       },
       status: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "No contactado",
       },
     },
     {

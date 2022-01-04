@@ -88,9 +88,84 @@ tbody a:hover {
 .paginationBox {
   position: relative;
 }
-.tablefooterBtn {
+
+/* -------------------------------------------- */
+body
+  div:last-child[role="tooltip"]
+  > div
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div
+  > div:first-child
+  > label {
+  display: none;
+}
+
+.mainTableBox1 {
+  height: calc(100vh - var(--topbar-height) - 10px - 1rem);
+  width: 100%;
+  background-color: var(--background-blue);
+  padding: 20px;
+  border-radius: var(--border-radius);
+}
+
+.mainTableBox1 .mainTableBox2 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.mainTableBox1 .mainTableBox3 {
+  flex-grow: 1;
+}
+
+.mainTableBox1 .mainTableBox3 > div {
+  border: none;
+  background: #fff;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border: 1px solid rgba(156, 210, 255, 0.46);
+  border-top: none;
+  padding: 0 calc(1rem - 5px);
+}
+
+.mainTableBox1 .mainTableBox3 > div > div:last-child > div > div:first-child {
+  color: #fff;
+}
+
+.mainTableBox1 .tableTitle {
+  font-size: 20px;
+  z-index: 2;
+  margin: 0;
+  background: #fff;
+  padding: 1rem;
+  padding-bottom: 0.3rem;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  border: 1px solid rgba(156, 210, 255, 0.46);
+  border-bottom: none;
+}
+
+.mainTableBox1 .tablefooterBtn {
   z-index: 3;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 0rem;
+  bottom: 11px;
+}
+
+.mainTableBox1 .mainTableBox3 button {
+  border: none;
+  background: none;
+}
+
+.mainTableBox1 .mainTableBox3 .crudIcon {
+  color: var(--gray-200);
+  transition: all var(--transition-time) ease;
+  border: none;
+  background: none;
+}
+.mainTableBox1 .mainTableBox3 button:hover .crudIcon.editIcon {
+  color: var(--main-orange);
+}
+.mainTableBox1 .mainTableBox3 button:hover .crudIcon.deleteIcon {
+  color: var(--red-300);
 }

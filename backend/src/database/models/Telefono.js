@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: { name: "telefonableId", allowNull: false },
         constraints: false,
       });
+
+      this.belongsTo(models.Empresa, {
+        as: "empresa",
+        foreignKey: { name: "telefonableId", allowNull: false },
+        constraints: false,
+      });
     }
   }
 

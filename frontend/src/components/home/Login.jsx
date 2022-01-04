@@ -2,7 +2,7 @@ import "../../assets/css/home/login.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { TextField, FormHelperText } from "@mui/material";
+import { TextField, FormHelperText, Button } from "@mui/material";
 import {
   Person,
   Key,
@@ -124,9 +124,9 @@ const Login = () => {
           </div>
 
           <div className="buttonBox">
-            <button className="blueBtn" type="submit">
+            <Button variant="contained" type="submit">
               Acceder
-            </button>
+            </Button>
           </div>
 
           <div className="copyrightBox">

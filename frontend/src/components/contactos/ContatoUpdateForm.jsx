@@ -27,6 +27,7 @@ const ContactoUpdateForm = ({ children }) => {
     formState: { errors },
     setError,
     setValue,
+    clearErrors,
   } = useForm();
 
   const item = contactos.find((el) => el.id === contactoId);
@@ -39,7 +40,6 @@ const ContactoUpdateForm = ({ children }) => {
         setValue("apellido", item.apellido);
         setValue("cargo", item.cargo);
         setValue("correo", item.correo);
-
         setRealValue({
           id: item.empresa.id,
           nombre: item.empresa.nombre,
@@ -48,9 +48,13 @@ const ContactoUpdateForm = ({ children }) => {
     }
   }, [item, contactoId, setValue, updateType]);
 
+  console.log(realValue);
+
   // HANDLES
   const onSubmit = (data) => {
-    if (!realValue.id) {
+    console.log(data);
+
+    if (!realValue || !realValue.id) {
       setError("empresa", {
         type: "manual",
         message: "Debes asignar una empresa",
@@ -121,6 +125,37 @@ const ContactoUpdateForm = ({ children }) => {
     },
   });
 
+  const dniRules = register("dni", {
+    maxLength: {
+      value: 255,
+      message: "DNI muy largo (máximo 255 caracteres).",
+    },
+  });
+
+  const webRules = register("web", {
+    maxLength: {
+      value: 1000,
+      message: "URL muy larga (máximo 1000 caracteres).",
+    },
+    pattern: {
+      value:
+        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
+      message: "URL no válida. Ejemplo válido: http://dominio.com",
+    },
+  });
+
+  const empleadosRules = register("empleados", {
+    max: {
+      value: 1000000,
+      message:
+        "Número de empleados muy grande para procesar (máximo un millon)",
+    },
+    min: {
+      value: 0,
+      message: "No se admiten números negativos",
+    },
+  });
+
   const correoRules = register("correo", {
     required: {
       value: true,
@@ -132,23 +167,13 @@ const ContactoUpdateForm = ({ children }) => {
     },
   });
 
-  const empresaRules = register("empresa", {
-    required: {
-      value: true,
-      message: "Debes asignar una empresa",
-    },
-  });
-
   // RENDER
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <div className="upFormInputsBox">
         <TextField
           className="inputText"
           label="Nombre"
-          inputProps={{
-            autoComplete: "off",
-          }}
           size="small"
           error={errors.nombre ? true : false}
           helperText={errors.nombre ? errors.nombre.message : ""}
@@ -158,13 +183,28 @@ const ContactoUpdateForm = ({ children }) => {
         <TextField
           className="inputText"
           label="Apellido"
-          inputProps={{
-            autoComplete: "off",
-          }}
           size="small"
           error={errors.apellido ? true : false}
           helperText={errors.apellido ? errors.apellido.message : ""}
           {...apellidoRules}
+        />
+
+        <TextField
+          className="inputText"
+          label="DNI"
+          size="small"
+          error={errors.dni ? true : false}
+          helperText={errors.dni ? errors.dni.message : ""}
+          {...dniRules}
+        />
+
+        <TextField
+          className="inputText"
+          label="Sitio Web"
+          size="small"
+          error={errors.web ? true : false}
+          helperText={errors.web ? errors.web.message : ""}
+          {...webRules}
         />
 
         <TextField
@@ -190,11 +230,21 @@ const ContactoUpdateForm = ({ children }) => {
           {...correoRules}
         />
 
+        <TextField
+          className="inputText"
+          label="Empleados a cargo"
+          type="number"
+          size="small"
+          error={errors.empleados ? true : false}
+          helperText={errors.empleados ? errors.empleados.message : ""}
+          {...empleadosRules}
+        />
+
         <SearchEmpresaImput
           realValue={realValue}
           setRealValue={setRealValue}
           error={errors.empresa}
-          rules={empresaRules}
+          clearErrors={clearErrors}
         />
       </div>
 

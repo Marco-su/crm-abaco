@@ -26,14 +26,40 @@ empleadoController.modificarEmpleado = (req, res) => {
   Empleado.update(req.body, {
     where: { id: req.params.id },
   })
-    .then((response) => res.json(response))
-    .catch((err) => res.send(`Error al actualizar empleado: ${err}`));
+    .then((response) => {
+      if (
+        req.body.telefonos &&
+        req.body.telefonos.length > 0 &&
+        req.body.telefonos[0].id
+      ) {
+        req.body.telefonos.forEach((el, index, array) => {
+          Telefono.update(el, { where: { id: el.id } });
 
-  if (req.body.telefonos && req.body.telefonos.length > 0) {
-    req.body.telefonos.forEach((el) =>
-      Telefono.update(el, { where: { id: el.id } })
-    );
-  }
+          if (index === array.length - 1) {
+            res.json(response);
+          }
+        });
+      }
+
+      if (
+        req.body.telefonos &&
+        req.body.telefonos.length > 0 &&
+        !req.body.telefonos[0].id
+      ) {
+        req.body.telefonos.forEach((el, index, array) => {
+          Telefono.create({
+            ...el,
+            telefonableType: "empleado",
+            telefonableId: req.params.id,
+          });
+
+          if (index === array.length - 1) {
+            res.json(response);
+          }
+        });
+      }
+    })
+    .catch((err) => res.send(`Error al actualizar empleado: ${err}`));
 };
 
 empleadoController.deshabilitarEmpleados = async (req, res) => {

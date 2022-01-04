@@ -17,6 +17,8 @@ module.exports = {
         correo: faker.internet.email(),
         createdAt: faker.date.recent(),
         updatedAt: faker.date.recent(),
+        password:
+          "$2a$10$07qvuOYAvA.KKZeK4F2UsOQcztQZy/KHp.2PlUqWaPdpfGReitWR.",
         status: "activo",
       });
     }

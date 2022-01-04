@@ -1,47 +1,71 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import CircularProgress from "@mui/material/CircularProgress";
+import UseDebounce from "../../Hooks/UseDebounce";
+import axios from "axios";
+import { apiBase } from "../../constants/baseUrls";
 
-function sleep(delay = 0) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
-
-export default function Asynchronous() {
+const Destinatarios = ({
+  errors,
+  errorName,
+  clearErrors,
+  setInputArray,
+  label,
+}) => {
+  // STATES
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
-  const loading = open && options.length === 0;
+  const [isLoading, setIsLoading] = React.useState(false);
 
+  const [inputValue, setInputValue] = React.useState("");
+  const debouncedSearchTerm = UseDebounce(inputValue, 500);
+
+  // EFECTS
   React.useEffect(() => {
     let active = true;
 
-    if (!loading) {
-      return undefined;
+    if (debouncedSearchTerm !== "") {
+      const token = localStorage.getItem("token");
+      setIsLoading(true);
+
+      axios({
+        url: `${apiBase}/mail/destinatarios`,
+        method: "POST",
+        headers: { "x-access-token": token },
+        data: { term: debouncedSearchTerm },
+      })
+        .then((res) => {
+          if (active) {
+            setOptions(res.data);
+          }
+        })
+        .catch((err) => {
+          if (active) {
+            setOptions([]);
+            console.log("Error en busqueda de emails", err);
+          }
+        })
+        .finally(() => {
+          if (active) {
+            setIsLoading(false);
+          }
+        });
+    } else {
+      setOptions([]);
     }
-
-    (async () => {
-      await sleep(1e3); // For demo purposes.
-
-      if (active) {
-        setOptions([...topFilms]);
-      }
-    })();
 
     return () => {
       active = false;
     };
-  }, [loading]);
+    // eslint-disable-next-line
+  }, [debouncedSearchTerm]);
 
-  React.useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
-
+  // RENDER
   return (
     <Autocomplete
+      multiple
+      size="small"
+      className="mb-3"
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -49,78 +73,34 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false);
       }}
-      isOptionEqualToValue={(option, value) => option.title === value.title}
-      getOptionLabel={(option) => option.title}
+      isOptionEqualToValue={(option, value) => option.correo === value.correo}
+      getOptionLabel={(option) => option.correo}
       options={options}
-      loading={loading}
+      loading={isLoading}
+      onChange={(e, newValue) => {
+        setInputArray(newValue.map((el) => el.correo));
+        if (errors) {
+          clearErrors(errorName);
+        }
+      }}
+      onInputChange={(e, newInputValue) => {
+        setInputValue(newInputValue);
+      }}
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Destinatario"
+          label={label}
           InputProps={{
             ...params.InputProps,
-            endAdornment: (
-              <>
-                {loading ? (
-                  <CircularProgress color="inherit" size={20} />
-                ) : null}
-                {params.InputProps.endAdornment}
-              </>
-            ),
           }}
+          error={errors && errors[errorName] ? true : false}
+          helperText={
+            errors && errors[errorName] ? errors[errorName].message : ""
+          }
         />
       )}
     />
   );
-}
+};
 
-// Top films as rated by IMDb users. http://www.imdb.com/chart/top
-const topFilms = [
-  { title: "The Shawshank Redemption", year: 1994 },
-  { title: "The Godfather", year: 1972 },
-  { title: "The Godfather: Part II", year: 1974 },
-  { title: "The Dark Knight", year: 2008 },
-  { title: "12 Angry Men", year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: "Pulp Fiction", year: 1994 },
-  {
-    title: "The Lord of the Rings: The Return of the King",
-    year: 2003,
-  },
-  { title: "The Good, the Bad and the Ugly", year: 1966 },
-  { title: "Fight Club", year: 1999 },
-  {
-    title: "The Lord of the Rings: The Fellowship of the Ring",
-    year: 2001,
-  },
-  {
-    title: "Star Wars: Episode V - The Empire Strikes Back",
-    year: 1980,
-  },
-  { title: "Forrest Gump", year: 1994 },
-  { title: "Inception", year: 2010 },
-  {
-    title: "The Lord of the Rings: The Two Towers",
-    year: 2002,
-  },
-  { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-  { title: "Goodfellas", year: 1990 },
-  { title: "The Matrix", year: 1999 },
-  { title: "Seven Samurai", year: 1954 },
-  {
-    title: "Star Wars: Episode IV - A New Hope",
-    year: 1977,
-  },
-  { title: "City of God", year: 2002 },
-  { title: "Se7en", year: 1995 },
-  { title: "The Silence of the Lambs", year: 1991 },
-  { title: "It's a Wonderful Life", year: 1946 },
-  { title: "Life Is Beautiful", year: 1997 },
-  { title: "The Usual Suspects", year: 1995 },
-  { title: "Léon: The Professional", year: 1994 },
-  { title: "Spirited Away", year: 2001 },
-  { title: "Saving Private Ryan", year: 1998 },
-  { title: "Once Upon a Time in the West", year: 1968 },
-  { title: "American History X", year: 1998 },
-  { title: "Interstellar", year: 2014 },
-];
+export default Destinatarios;

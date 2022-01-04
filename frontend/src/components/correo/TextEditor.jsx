@@ -2,6 +2,7 @@ import { useState } from "react";
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
+import es from "../../helpers/es";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const TextEditor = ({ setEmailHtml }) => {
@@ -20,6 +21,10 @@ const TextEditor = ({ setEmailHtml }) => {
   return (
     <div className="editorBox">
       <Editor
+        localization={{
+          locale: "es",
+          translations: es,
+        }}
         editorState={editorState}
         editorClassName="editorMain"
         toolbarClassName="editorToolbar"

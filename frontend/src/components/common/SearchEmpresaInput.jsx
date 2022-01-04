@@ -9,7 +9,12 @@ import {
 import UseDebounce from "../../Hooks/UseDebounce";
 import { apiBase } from "../../constants/baseUrls";
 
-const SearchEmpresaImput = ({ realValue, setRealValue, error, rules }) => {
+const SearchEmpresaImput = ({
+  realValue,
+  setRealValue,
+  error,
+  clearErrors,
+}) => {
   const [options, setOptions] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
@@ -48,16 +53,16 @@ const SearchEmpresaImput = ({ realValue, setRealValue, error, rules }) => {
         isOptionEqualToValue={(option, value) => option.id === value.id}
         onChange={(e, newValue) => {
           setRealValue(newValue);
+          clearErrors("empresa");
         }}
         inputValue={inputValue}
         onInputChange={(e, newInputValue) => {
           setInputValue(newInputValue);
         }}
-        id="controllable"
         options={options}
         getOptionLabel={(option) => (option ? option.nombre : "")}
         renderInput={(params) => (
-          <TextField {...params} label="Empresa" size="small" {...rules} />
+          <TextField {...params} label="Empresa" size="small" />
         )}
       />
 

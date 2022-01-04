@@ -8,6 +8,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import EmpleadoUpdateForm from "../empleados/EmpleadoUpdateForm";
 import EmpresaUpdateForm from "../empresas/EmpresaUpdateForm";
 import ProductoUpdateForm from "../productos/ProductoUpdateForm";
+import { Button } from "@mui/material";
 
 const UpdateModal = (element) => {
   const dispatch = useDispatch();
@@ -20,16 +21,20 @@ const UpdateModal = (element) => {
   const buttons = () => {
     return (
       <div className="buttonRight">
-        <button
-          type="button"
-          className="blueBtn"
+        <Button
+          variant="contained"
           onClick={() => dispatch(toggleUpdate("", null))}
         >
           Cancelar
-        </button>
-        <button type="submit" className={isCreate ? "greenBtn" : "orangeBtn"}>
+        </Button>
+        <Button
+          className="ms-2 text-white"
+          variant="contained"
+          type="submit"
+          color={isCreate ? "success" : "warning"}
+        >
           {isCreate ? "Crear" : "Modificar"}
-        </button>
+        </Button>
       </div>
     );
   };

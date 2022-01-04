@@ -8,6 +8,7 @@ import { disableManyContactos } from "../../store/actions/contacto.actions";
 import { disableManyEmpleados } from "../../store/actions/empleado.actions";
 import { disableManyProductos } from "../../store/actions/producto.actions";
 import { disableManyEmpresas } from "../../store/actions/empresa.actions";
+import { Button } from "@mui/material";
 
 const DeleteManyModal = () => {
   const dispatch = useDispatch();
@@ -64,15 +65,20 @@ const DeleteManyModal = () => {
           </p>
 
           <div className="buttonRight">
-            <button
-              className="blueBtn"
+            <Button
+              variant="contained"
               onClick={() => dispatch(toggleDeleteMany("", {}))}
             >
               Cancelar
-            </button>
-            <button onClick={deleteConfirmed} className="redBtn">
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={deleteConfirmed}
+              className="ms-2"
+            >
               Eliminar
-            </button>
+            </Button>
           </div>
         </div>
       </div>

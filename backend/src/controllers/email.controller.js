@@ -1,8 +1,38 @@
-const { Email, Empleado } = require("../database");
+const { Email, Empleado, Contacto } = require("../database");
+const { Op } = require("sequelize");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 
 const emailController = {};
+
+emailController.buscarDestinatarios = (req, res) => {
+  let empleados = [];
+  let contactos = [];
+
+  try {
+    Promise.all([
+      Empleado.findAll({
+        limit: 25,
+        attributes: ["correo"],
+        where: { correo: { [Op.like]: `%${req.body.term}%` } },
+      }).then((res) => (empleados = res)),
+
+      Contacto.findAll({
+        limit: 25,
+        attributes: ["correo"],
+        where: { correo: { [Op.like]: `%${req.body.term}%` } },
+      }).then((res) => (contactos = res)),
+
+      //
+    ]).then(() => {
+      res.send([...contactos, ...empleados]);
+    });
+
+    //
+  } catch (error) {
+    res.send("Error al buscar correos");
+  }
+};
 
 emailController.sendEmail = (req, res) => {
   try {
@@ -20,7 +50,7 @@ emailController.sendEmail = (req, res) => {
         if (!empleado)
           return res.json("No se encontró usuarion con este token");
 
-        const { to, subject, html } = req.body;
+        const { to, subject, html, cc, bcc } = req.body;
 
         const transport = nodemailer.createTransport({
           host: "smtp.gmail.com",
@@ -36,6 +66,8 @@ emailController.sendEmail = (req, res) => {
           .sendMail({
             from: `${empleado.nombre} de Abaco Systems Technologies <${empleado.correo}>`,
             to,
+            cc,
+            bcc,
             subject,
             html,
           })

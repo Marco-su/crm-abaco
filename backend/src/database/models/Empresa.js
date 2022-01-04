@@ -15,6 +15,21 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: { name: "empresaId", allowNull: false },
         onDelete: "CASCADE",
       });
+
+      this.hasOne(models.Telefono, {
+        as: "telefono",
+        foreignKey: { name: "telefonableId", allowNull: false },
+        constraints: false,
+        scope: {
+          telefonableType: "empresa",
+        },
+      });
+
+      this.hasMany(models.Direccion, {
+        as: "direcciones",
+        foreignKey: { name: "empresaId", allowNull: false },
+        onDelete: "CASCADE",
+      });
     }
   }
 
@@ -26,19 +41,41 @@ module.exports = (sequelize, DataTypes) => {
       },
       vertical: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       tipo: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "Prospecto",
       },
       status: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "activo",
+      },
+      web: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      empleados: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      propiedad: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      ingresos_anuales: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
       },
       etapa: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      nota: {
+        type: DataTypes.TEXT,
+        allowNull: true,
       },
     },
     {

@@ -5,6 +5,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsToMany(models.Empleado, {
         through: "empleado_role",
+        scope: "empleados",
+      });
+
+      this.belongsToMany(models.Permiso, {
+        through: "permiso_role",
+        scope: "permisos",
+      });
+
+      this.belongsToMany(models.ClienteCrm, {
+        through: "clientecrm_role",
+        scope: "clientes",
       });
     }
   }

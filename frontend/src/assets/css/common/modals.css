@@ -19,20 +19,33 @@
   opacity: 1;
 }
 
-.viewportModalContent .title {
-  font-weight: bold;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-}
-
 .viewportModal .viewportModalContent {
   background: #fefefe;
   border-radius: 0.5rem;
-  width: 55%;
+  width: 800px;
   padding: 2rem 3rem;
   text-align: center;
   position: relative;
   border-radius: var(--border-radius);
+}
+
+.viewportModal .viewportModalContent form > div:first-child {
+  max-height: calc(90vh - 4rem - 100px);
+  padding-top: 5px;
+  overflow-y: auto;
+}
+
+.viewportModalContent .title {
+  font-weight: bold;
+  font-size: 23px;
+  margin-bottom: 1rem;
+}
+
+.viewportModal form h2 {
+  font-size: 1rem;
+  text-align: left;
+  margin-top: 2rem;
+  margin-bottom: 10px;
 }
 
 .closeTimesBtnBox {
@@ -63,6 +76,7 @@
 
 .buttonRight {
   text-align: end;
+  margin-top: 1rem;
 }
 
 .upFormInputsBox {

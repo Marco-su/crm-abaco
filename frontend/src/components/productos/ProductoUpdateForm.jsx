@@ -114,14 +114,11 @@ const ProductoUpdateForm = ({ children }) => {
 
   //RENDER
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <div className="upFormInputsBox">
         <TextField
           className="inputText"
           label="Nombre"
-          inputProps={{
-            autoComplete: "off",
-          }}
           size="small"
           name="nombre"
           error={errors.nombre ? true : false}

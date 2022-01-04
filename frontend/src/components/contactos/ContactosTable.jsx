@@ -1,5 +1,4 @@
 import "../../assets/css/common/tables.css";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactos } from "../../store/actions/contacto.actions";
@@ -10,25 +9,27 @@ import {
   setSelected,
 } from "../../store/actions/modals.action";
 import { Link } from "react-router-dom";
-
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
-import TableSortLabel from "@mui/material/TableSortLabel";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Checkbox from "@mui/material/Checkbox";
-import Tooltip from "@mui/material/Tooltip";
 import { visuallyHidden } from "@mui/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  Button,
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  TableSortLabel,
+  Toolbar,
+  Typography,
+  Checkbox,
+  Tooltip,
+} from "@mui/material";
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -391,12 +392,13 @@ export default function EnhancedTable() {
 
       <div className="paginationBox">
         <div className="tablefooterBtn">
-          <button
-            className="greenBtn"
+          <Button
+            className="ms-3"
+            variant="contained"
             onClick={() => dispatch(toggleUpdate("contactoCreate", null))}
           >
             Crear nuevo
-          </button>
+          </Button>
         </div>
 
         <TablePagination

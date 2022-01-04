@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
 
       this.belongsToMany(models.Role, {
         through: "empleado_role",
+        scope: "roles",
       });
     }
   }
@@ -47,17 +48,29 @@ module.exports = (sequelize, DataTypes) => {
       },
       correo: {
         type: DataTypes.STRING,
+        allowNull: true,
+      },
+      dni: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      web: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      empleados: {
+        type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
       },
       status: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "activo",
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue:
-          "$2a$10$07qvuOYAvA.KKZeK4F2UsOQcztQZy/KHp.2PlUqWaPdpfGReitWR.",
       },
       emailFirma: {
         type: DataTypes.TEXT,
