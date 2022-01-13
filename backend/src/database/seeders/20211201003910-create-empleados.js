@@ -20,6 +20,7 @@ module.exports = {
         password:
           "$2a$10$07qvuOYAvA.KKZeK4F2UsOQcztQZy/KHp.2PlUqWaPdpfGReitWR.",
         status: "activo",
+        asociadoId: 1,
       });
     }
 

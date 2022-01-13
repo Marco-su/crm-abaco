@@ -228,12 +228,12 @@ export default function EnhancedTable() {
 
   const findPhone = (employee) => {
     const item = employee.telefonos.find((el) => el.tipo === "telefono");
-    return item ? `${item.codPais} ${item.numero}` : "";
+    return item ? `+${item.codPais} ${item.numero}` : "";
   };
 
   const findMovile = (employee) => {
     const item = employee.telefonos.find((el) => el.tipo === "movil");
-    return item ? `${item.codPais} ${item.numero}` : "";
+    return item ? `+${item.codPais} ${item.numero}` : "";
   };
 
   const createRows = (list) => {

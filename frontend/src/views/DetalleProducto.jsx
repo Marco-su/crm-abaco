@@ -3,9 +3,13 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getProductoById } from "../store/actions/producto.actions";
+import { setDetailViewType } from "../store/actions/global.actions";
 import DatosProducto from "../components/productos/DatosProducto";
 import RelacionesProducto from "../components/productos/RelacionesProducto";
 import Historial from "../components/common/Historial";
+import { Tooltip, IconButton } from "@mui/material";
+import { CalendarViewDay, ViewCompact } from "@mui/icons-material/";
+import DetailAccordion from "../components/productos/DetailAccordion";
 
 const DetalleProducto = () => {
   const dispatch = useDispatch();
@@ -15,24 +19,50 @@ const DetalleProducto = () => {
     dispatch(getProductoById(id));
   }, [dispatch, id]);
 
+  const viewType = useSelector((store) => store.global.detailViewType);
+
   return (
     <div className="detailView viewContainer">
-      <div className="box">
-        <p className="gray">Producto</p>
-        <h2 className="title mb-3">
-          {useSelector((store) => store.productos.producto.nombre)}
-        </h2>
+      <div className="box detailTitleBox">
+        <div>
+          <h2 className="title">Producto</h2>
+        </div>
 
-        <p className="gray">Descripción</p>
-        <p>{useSelector((store) => store.productos.producto.descripcion)}</p>
+        <div>
+          <Tooltip title="Vista amplia">
+            <IconButton
+              color={viewType === "amplia" ? "primary" : "info"}
+              component="span"
+              onClick={() => dispatch(setDetailViewType("amplia"))}
+            >
+              <ViewCompact />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Vista de editor">
+            <IconButton
+              color={viewType === "compacta" ? "primary" : "info"}
+              component="span"
+              onClick={() => dispatch(setDetailViewType("compacta"))}
+            >
+              <CalendarViewDay />
+            </IconButton>
+          </Tooltip>
+        </div>
       </div>
 
-      <div className="contactoHistBox">
-        <DatosProducto />
-        <Historial />
-      </div>
+      {viewType === "amplia" ? (
+        <div>
+          <div className="contactoHistBox">
+            <DatosProducto />
+            <Historial />
+          </div>
 
-      <RelacionesProducto />
+          <RelacionesProducto />
+        </div>
+      ) : null}
+
+      {viewType === "compacta" ? <DetailAccordion /> : null}
     </div>
   );
 };

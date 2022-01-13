@@ -16,7 +16,7 @@ const DatosEmpleado = () => {
 
   return (
     <div className="box">
-      <section>
+      <section className="information">
         <h1>
           {useSelector((store) => store.empleados.empleado.nombre)}{" "}
           {useSelector((store) => store.empleados.empleado.apellido)}

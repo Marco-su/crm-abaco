@@ -40,6 +40,7 @@ const emptyModel = {
 
 export const globalInitial = {
   isAuth: localStorage.getItem("token") ? true : false,
+  detailViewType: "amplia",
 };
 
 export const modalsInitial = {

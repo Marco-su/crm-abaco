@@ -1,6 +1,6 @@
 #topbar {
   height: var(--topbar-height);
-  padding: 0 1.3rem;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,5 +24,42 @@
 }
 
 #topbar .iconBox .iconBtn {
-  margin: 0 5px;
+  margin-left: 15px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--border-radius) !important;
+  transition: all 0.2s ease;
+}
+
+#topbar .iconBox .iconBtn:hover {
+  box-shadow: 1px 1px 4px 1px rgb(0, 0, 0, 0.1);
+}
+
+#topbar .iconBox .iconBtn.profile {
+  color: var(--main-blue);
+  background-color: var(--glass-blue);
+}
+#topbar .iconBox .iconBtn.profile:hover {
+  background-color: var(--glass-blue-2);
+}
+
+#topbar .iconBox .iconBtn.settings {
+  color: var(--main-orange);
+  background-color: var(--glass-orange);
+}
+#topbar .iconBox .iconBtn.settings:hover {
+  background-color: var(--glass-orange-2);
+}
+
+#topbar .iconBox .iconBtn.notifications {
+  color: var(--main-purple);
+  background-color: var(--glass-purple);
+}
+#topbar .iconBox .iconBtn.notifications:hover {
+  background-color: var(--glass-purple-2);
 }

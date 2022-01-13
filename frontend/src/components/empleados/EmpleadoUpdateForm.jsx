@@ -185,18 +185,6 @@ const EmpleadoUpdateForm = ({ children }) => {
     },
   });
 
-  const webRules = register("web", {
-    maxLength: {
-      value: 1000,
-      message: "URL muy larga (máximo 1000 caracteres).",
-    },
-    pattern: {
-      value:
-        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
-      message: "URL no válida. Ejemplo válido: http://dominio.com",
-    },
-  });
-
   const empleadosRules = register("empleados", {
     max: {
       value: 1000000,
@@ -264,15 +252,6 @@ const EmpleadoUpdateForm = ({ children }) => {
           error={errors.dni ? true : false}
           helperText={errors.dni ? errors.dni.message : ""}
           {...dniRules}
-        />
-
-        <TextField
-          className="inputText"
-          label="Sitio Web"
-          size="small"
-          error={errors.web ? true : false}
-          helperText={errors.web ? errors.web.message : ""}
-          {...webRules}
         />
 
         <TextField

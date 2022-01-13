@@ -6,6 +6,9 @@ const globalReducer = (state = globalInitial, action) => {
     case types.SET_IS_AUTH:
       return { ...state, isAuth: action.payload };
 
+    case types.SET_DETAIL_VIEW_TYPE:
+      return { ...state, detailViewType: action.payload };
+
     default:
       return state;
   }

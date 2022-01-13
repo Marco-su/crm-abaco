@@ -24,14 +24,20 @@
   border-radius: 0.5rem;
   width: 800px;
   padding: 2rem 3rem;
+  padding-right: 0;
   text-align: center;
   position: relative;
   border-radius: var(--border-radius);
 }
 
+.viewportModal .viewportModalContent > div:nth-child(2) {
+  padding-right: 3rem;
+}
+
 .viewportModal .viewportModalContent form > div:first-child {
   max-height: calc(90vh - 4rem - 100px);
   padding-top: 5px;
+  padding-right: 3rem;
   overflow-y: auto;
 }
 
@@ -77,11 +83,12 @@
 .buttonRight {
   text-align: end;
   margin-top: 1rem;
+  margin-right: 3rem;
 }
 
 .upFormInputsBox {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
   margin-bottom: 1rem;
 }
@@ -113,6 +120,7 @@
   border-left: 3px solid #f85c2d;
   color: #f85c2d;
   margin: 1.5rem 0;
+  margin-right: 3rem;
 }
 
 .viewportModalContent .deleteMessage p:first-child {

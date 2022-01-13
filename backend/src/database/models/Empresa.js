@@ -39,14 +39,38 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      nit: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      representante: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      correo: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       vertical: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      propiedad: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      empleados: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      ingresos_anuales: {
         type: DataTypes.STRING,
         allowNull: true,
       },
       tipo: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "Prospecto",
+        defaultValue: "prospecto",
       },
       status: {
         type: DataTypes.STRING,
@@ -57,25 +81,30 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      empleados: {
-        type: DataTypes.INTEGER,
+      facebook: {
+        type: DataTypes.TEXT,
         allowNull: true,
       },
-      propiedad: {
-        type: DataTypes.STRING,
+      linkedin: {
+        type: DataTypes.TEXT,
         allowNull: true,
       },
-      ingresos_anuales: {
-        type: DataTypes.INTEGER,
+      twitter: {
+        type: DataTypes.TEXT,
         allowNull: true,
       },
-      etapa: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      instagram: {
+        type: DataTypes.TEXT,
+        allowNull: true,
       },
       nota: {
         type: DataTypes.TEXT,
         allowNull: true,
+      },
+      etapa: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: "sin evaluar",
       },
     },
     {

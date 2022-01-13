@@ -1,16 +1,17 @@
 /* MAIN */
 .detailView .box {
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
 .detailView .detailTitleBox {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
 }
 
-.detailView .detailTitleBox h2 {
-  flex-grow: 1;
+.detailView .detailTitleBox > div:last-child {
+  align-self: flex-start;
 }
 
 /* CONTACT */
@@ -104,4 +105,21 @@
 
 .detailView .contactoHistBox .productDescBox {
   display: inline-block;
+}
+
+/* DETAIL ACCORDION */
+.detailView .detailAccordion {
+  padding-right: 15px;
+}
+
+.detailView .detailAccordion > div,
+.detailView .detailAccordion > form div {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.detailView .detailAccordion h2 {
+  font-size: 17px;
+  display: flex;
+  align-items: center;
 }

@@ -11,19 +11,15 @@ const archivosRoutes = require("../routes/archivo.routes");
 const oportunidadesRoutes = require("../routes/oportunidad.routes");
 const authRoutes = require("../routes/auth.routes");
 const emailRoutes = require("../routes/email.routes");
-const {
-  createInitialUser,
-  createInitialCrmUser,
-} = require("../helpers/initialSetup");
+const { createInitialUser } = require("../helpers/initialSetup");
 
 // Inicialización
 const app = express();
 createInitialUser();
-createInitialCrmUser();
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(morgan("tiny"));
 
 app.use(

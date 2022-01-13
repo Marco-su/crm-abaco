@@ -1,7 +1,7 @@
 import "../../assets/css/common/tables.css";
 
 // HOOKS AND FUNCTIONS
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactos } from "../../store/actions/contacto.actions";
 import {
@@ -36,8 +36,6 @@ const CustomToolbar = () => {
 
 const Table = () => {
   // STATES
-  const [selected, setSelected] = useState([]);
-
   const dispatch = useDispatch();
 
   const columns = [
@@ -56,8 +54,8 @@ const Table = () => {
     { field: "Cargo", width: 200 },
     { field: "Correo", width: 300 },
     { field: "Empresa", width: 320 },
-    { field: "Teléfono", width: 150 },
-    { field: "Móvil", width: 150 },
+    { field: "Teléfono", width: 140 },
+    { field: "Móvil", width: 140 },
 
     {
       field: "Acciones",
@@ -127,7 +125,7 @@ const Table = () => {
               Toolbar: CustomToolbar,
             }}
             onSelectionModelChange={(newSelection) => {
-              setSelected(newSelection);
+              dispatch(setSelected(newSelection));
             }}
           />
         </div>

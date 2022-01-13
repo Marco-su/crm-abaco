@@ -37,9 +37,7 @@ emailController.buscarDestinatarios = (req, res) => {
 emailController.sendEmail = (req, res) => {
   try {
     const token = req.headers["x-access-token"];
-
     if (!token) return res.json("Sin token en headers");
-
     const decoded = jwt.verify(token, process.env.SECRET);
 
     Empleado.findOne({

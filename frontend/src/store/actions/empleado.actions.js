@@ -42,6 +42,7 @@ const login = (data, navigate, dispatch) => {
     data,
   })
     .then((res) => {
+      console.log(res);
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
 
@@ -80,7 +81,7 @@ export const iniciarSesion = (data, navigate) => (dispatch) => {
 export const cerrarSesion = (navigate) => (dispatch) => {
   localStorage.removeItem("token");
   navigate("/");
-  
+
   dispatch({
     type: types.SET_IS_AUTH,
     payload: false,

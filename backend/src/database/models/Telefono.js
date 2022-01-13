@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       codPais: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       numero: {
         type: DataTypes.STRING,
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       tipo: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       telefonableId: {
         type: DataTypes.INTEGER,

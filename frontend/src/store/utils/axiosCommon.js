@@ -64,6 +64,22 @@ export const create = (data, urlPost, textName, navigate, dispatch) => {
     });
 };
 
+export const createMultiple = (data, urlPost, navigate, dispatch) => {
+  axios({
+    url: `${apiBase}/${urlPost}`,
+    method: "POST",
+    data,
+  })
+    .then((res) => {
+      if (res.data) {
+        navigate(`/empresas`);
+      }
+    })
+    .catch((err) => {
+      console.log("Error al crear masivamente:", err);
+    });
+};
+
 export const update = (getType, urlPut, urlGet, textName, data, dispatch) => {
   axios({
     url: `${apiBase}/${urlPut}/${data.id}`,

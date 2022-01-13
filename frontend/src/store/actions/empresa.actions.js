@@ -6,6 +6,7 @@ import {
   disable,
   getSingle,
   disableMultiple,
+  createMultiple,
 } from "../utils/axiosCommon";
 
 export const getEmpresas = () => (dispatch) => {
@@ -26,6 +27,10 @@ export const getEmpresaById = (id) => (dispatch) => {
 
 export const createEmpresa = (data, navigate) => (dispatch) => {
   create(data, "empresas", "empresa", navigate, dispatch);
+};
+
+export const bulkCreateEmpresa = (data, navigate) => (dispatch) => {
+  createMultiple(data, "empresas/prospectos", navigate, dispatch);
 };
 
 export const updateEmpresa = (data, path) => (dispatch) => {

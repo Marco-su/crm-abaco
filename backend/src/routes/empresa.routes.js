@@ -9,6 +9,7 @@ const {
   leerEmpresa,
   deshabilitarEmpresas,
   buscarEmpresa,
+  creacionMasiva,
 } = require("../controllers/empresa.controller");
 
 router
@@ -18,6 +19,7 @@ router
   .post(crearEmpresa);
 
 router.get("/prospectos", traerProspectos);
+router.post("/prospectos", creacionMasiva);
 router.get("/clientes", traerClientes);
 router.post("/search", buscarEmpresa);
 

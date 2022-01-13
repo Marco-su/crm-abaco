@@ -1,4 +1,4 @@
-import OportunidadesTable from "../components/oportunidades/OportunidadesTable";
+import OportunidadesTable from "../components/oportunidades/Table";
 
 const Oportunidades = () => {
   return <OportunidadesTable />;

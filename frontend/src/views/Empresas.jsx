@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { getEmpresas } from "../store/actions/empresa.actions";
-import EmpresasTable from "../components/empresas/BaseTable";
+import EmpresasTable from "../components/empresas/Table";
 
 const Empresas = () => {
   const rows = useSelector((store) => store.empresas.lista);

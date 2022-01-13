@@ -1,4 +1,4 @@
-import EmpleadosTable from "../components/empleados/EmpleadosTable";
+import EmpleadosTable from "../components/empleados/Table";
 
 const Empleados = () => {
   return <EmpleadosTable />;

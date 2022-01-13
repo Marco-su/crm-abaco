@@ -12,6 +12,9 @@ const theme = createTheme(
       primary: {
         main: blue[700],
       },
+      secondary: {
+        main: "#5e35b1",
+      },
       success: {
         main: green[600],
       },

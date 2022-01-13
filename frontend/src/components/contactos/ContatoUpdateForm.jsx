@@ -48,12 +48,8 @@ const ContactoUpdateForm = ({ children }) => {
     }
   }, [item, contactoId, setValue, updateType]);
 
-  console.log(realValue);
-
   // HANDLES
   const onSubmit = (data) => {
-    console.log(data);
-
     if (!realValue || !realValue.id) {
       setError("empresa", {
         type: "manual",
@@ -128,7 +124,7 @@ const ContactoUpdateForm = ({ children }) => {
   const dniRules = register("dni", {
     maxLength: {
       value: 255,
-      message: "DNI muy largo (máximo 255 caracteres).",
+      message: "Documento de identidad muy largo (máximo 255 caracteres).",
     },
   });
 
@@ -191,7 +187,7 @@ const ContactoUpdateForm = ({ children }) => {
 
         <TextField
           className="inputText"
-          label="DNI"
+          label="Documento de Identidad"
           size="small"
           error={errors.dni ? true : false}
           helperText={errors.dni ? errors.dni.message : ""}

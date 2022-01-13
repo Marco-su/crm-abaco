@@ -3,9 +3,10 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Role extends Model {
     static associate(models) {
-      this.belongsToMany(models.Empleado, {
-        through: "empleado_role",
-        scope: "empleados",
+      this.belongsTo(models.Empleado, {
+        as: "empleado",
+        foreignKey: { name: "rolableId", allowNull: false },
+        constraints: false,
       });
 
       this.belongsToMany(models.Permiso, {
@@ -13,15 +14,24 @@ module.exports = (sequelize, DataTypes) => {
         scope: "permisos",
       });
 
-      this.belongsToMany(models.ClienteCrm, {
-        through: "clientecrm_role",
-        scope: "clientes",
+      this.belongsTo(models.ClienteCrm, {
+        as: "asociado",
+        foreignKey: { name: "rolableId", allowNull: false },
+        constraints: false,
       });
     }
   }
   Role.init(
     {
       nombre: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      rolableId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      rolableType: {
         type: DataTypes.STRING,
         allowNull: false,
       },

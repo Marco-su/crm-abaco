@@ -14,6 +14,7 @@ import DetalleEmpleado from "../views/DetalleEmpleado";
 import DetalleContacto from "../views/DetalleContacto";
 import DetalleProducto from "../views/DetalleProducto";
 import Correo from "../views/Correo";
+import AdminProspectos from "../views/AdminProspectos";
 
 const RoutesComponent = () => {
   return (
@@ -37,6 +38,11 @@ const RoutesComponent = () => {
 
         <Route path="/oportunidades/:id" element={<DetalleProducto />} />
         <Route path="/oportunidades" element={<Oportunidades />} />
+
+        <Route
+          path="/administracion/prospectos"
+          element={<AdminProspectos />}
+        />
 
         <Route path="/correo" element={<Correo />} />
       </Route>

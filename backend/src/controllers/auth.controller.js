@@ -5,6 +5,10 @@ const { validatePassword, generateHash } = require("../helpers/authFunctions");
 const authController = {};
 
 authController.register = (req, res) => {
+  const token = req.headers["x-access-token"];
+  if (!token) return res.json("Sin token en headers");
+  const decoded = jwt.verify(token, process.env.SECRET);
+
   Empleado.findOne({
     attributes: ["id", "correo"],
     where: { correo: req.body.correo },
@@ -34,6 +38,7 @@ authController.register = (req, res) => {
           password: hashed,
           emailPassword,
           status: "activo",
+          asociadoId: decoded.asociadoId,
         },
         {
           include: ["telefonos"],
@@ -56,6 +61,7 @@ authController.register = (req, res) => {
 authController.login = (req, res) => {
   Empleado.findOne({
     attributes: ["password", "id"],
+    include: ["asociado"],
     where: { correo: req.body.correo },
   })
     .then(async (empleado) => {
@@ -71,9 +77,13 @@ authController.login = (req, res) => {
 
       if (!matchPassword) return res.json("Contraseña incorrecta.");
 
-      const token = jwt.sign({ id: empleado.id }, process.env.SECRET, {
-        expiresIn: 86400,
-      });
+      const token = jwt.sign(
+        { id: empleado.id, asociadoId: empleado.asociado.id },
+        process.env.SECRET,
+        {
+          expiresIn: 86400,
+        }
+      );
 
       res.json({ token, id: empleado.id });
     })

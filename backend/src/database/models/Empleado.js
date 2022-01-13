@@ -25,9 +25,19 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "SET NULL",
       });
 
-      this.belongsToMany(models.Role, {
-        through: "empleado_role",
-        scope: "roles",
+      this.hasOne(models.Role, {
+        as: "Role",
+        foreignKey: { name: "rolableId", allowNull: true },
+        constraints: false,
+        scope: {
+          rolableType: "empleado",
+        },
+      });
+
+      this.belongsTo(models.ClienteCrm, {
+        as: "asociado",
+        foreignKey: { name: "asociadoId", allowNull: false },
+        onDelete: "CASCADE",
       });
     }
   }
@@ -50,12 +60,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      dni: {
+      correoEmpresa: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      web: {
-        type: DataTypes.TEXT,
+      dni: {
+        type: DataTypes.STRING,
         allowNull: true,
       },
       empleados: {
@@ -68,16 +78,28 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: "activo",
       },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      emailFirma: {
+      linkedin: {
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      facebook: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      instagram: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      twitter: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      password: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
       emailPassword: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
     },

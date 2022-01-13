@@ -4,7 +4,11 @@ import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { closeModals } from "../../store/actions/modals.action";
-import { NotificationsNone, Settings, Person } from "@mui/icons-material";
+import {
+  NotificationsNoneOutlined,
+  SettingsOutlined,
+  Person,
+} from "@mui/icons-material";
 
 const Topbar = () => {
   const dispatch = useDispatch();
@@ -27,15 +31,15 @@ const Topbar = () => {
 
       <div className="topRight">
         <div className="iconBox">
-          <button className="iconBtn">
-            <NotificationsNone />
+          <button className="iconBtn notifications">
+            <NotificationsNoneOutlined />
           </button>
 
-          <button className="iconBtn">
-            <Settings />
+          <button className="iconBtn settings">
+            <SettingsOutlined />
           </button>
 
-          <button className="iconBtn">
+          <button className="iconBtn profile">
             <Person />
           </button>
         </div>

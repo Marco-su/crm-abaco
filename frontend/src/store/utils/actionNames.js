@@ -2,6 +2,7 @@ const actions = {};
 
 // Global
 actions.SET_IS_AUTH = "SET_IS_AUTH";
+actions.SET_DETAIL_VIEW_TYPE = "SET_DETAIL_VIEW_TYPE";
 
 // Email
 actions.SEND_EMAIL = "SEND_EMAIL";

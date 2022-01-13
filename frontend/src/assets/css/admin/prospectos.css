@@ -1,0 +1,117 @@
+#uploadExcel {
+  position: absolute;
+  top: -5000rem;
+  left: -5000rem;
+}
+
+.viewContainer .uploadBox {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1rem 2rem;
+}
+
+.viewContainer .uploadBox > div {
+  padding: 0 1rem;
+}
+
+.viewContainer .uploadBox .archivoBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.viewContainer .uploadBox .archivoBox .archivoInfo {
+  flex-grow: 1;
+}
+
+.viewContainer .uploadBox .archivoBox .archivoInfo > p,
+.viewContainer .uploadBox .archivoBox .archivoInfo > div {
+  margin-bottom: 0.6rem;
+}
+
+.viewContainer .uploadBox .archivoBox .archivoInfo > p {
+  color: var(--main-blue);
+  font-weight: bold;
+  font-size: 14.5px;
+}
+
+.viewContainer .uploadBox .archivoBox .archivoInfo .foundFields {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.viewContainer .uploadBox .archivoBox .archivoInfo .foundFields > span {
+  font-size: 15px;
+  padding: 3px 8px;
+  color: var(--main-orange);
+  background-color: var(--glass-orange);
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.viewContainer .uploadBox .archivoBox .uploadBtnBox label span {
+  border-radius: 1000px;
+}
+
+.viewContainer .dragBox {
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  border: 1px solid var(--border-blue);
+  margin-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  margin-right: 15px;
+}
+
+.viewContainer .dragBox .dragListsBox {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15px, 1fr));
+  gap: 1rem 0;
+}
+
+.viewContainer .dragBox .infoP {
+  text-align: center;
+  margin: 0 auto 1rem auto;
+  width: 600px;
+}
+
+.viewContainer .dragBox .dragList h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.viewContainer .dragBox ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.viewContainer .dragBox .dragList ul .droppableLi {
+  padding: 0.5rem 1rem;
+  border: 2px solid #2196f3;
+  margin-bottom: 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.viewContainer .dragBox .dragList:first-child ul .droppableLi {
+  border-right: 1px solid #2196f3;
+  border-radius: 1000px 0 0 1000px;
+}
+
+.viewContainer .dragBox .dragList:last-child ul .droppableLi {
+  border-left: 1px solid #2196f3;
+  border-radius: 0 1000px 1000px 0;
+}
+
+.viewContainer .dragBox .btnBox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}

@@ -5,7 +5,7 @@ const empresasController = {};
 
 empresasController.traerEmpresas = (req, res) => {
   Empresa.findAll({
-    include: ["oportunidades", "contactos"],
+    include: ["oportunidades", "contactos", "direcciones"],
     where: { status: "activo" },
   })
     .then((empresas) => res.json(empresas))
@@ -14,7 +14,7 @@ empresasController.traerEmpresas = (req, res) => {
 
 empresasController.traerProspectos = (req, res) => {
   Empresa.findAll({
-    include: ["oportunidades", "contactos"],
+    include: ["oportunidades", "contactos", "direcciones"],
     where: {
       tipo: "Prospecto",
       status: "activo",
@@ -26,7 +26,7 @@ empresasController.traerProspectos = (req, res) => {
 
 empresasController.traerClientes = (req, res) => {
   Empresa.findAll({
-    include: ["oportunidades", "contactos"],
+    include: ["oportunidades", "contactos", "direcciones"],
     where: {
       tipo: "Cliente",
       status: "activo",
@@ -56,14 +56,38 @@ empresasController.buscarEmpresa = (req, res) => {
 };
 
 empresasController.crearEmpresa = (req, res) => {
+  console.log(req.body);
+
   Empresa.create(
-    { ...req.body, tipo: "prospecto", status: "activo", etapa: "En gestion" },
+    { ...req.body },
     {
-      include: ["oportunidades", "contactos"],
+      include: ["contactos", "direcciones"],
     }
   )
     .then((empresa) => res.json(empresa))
-    .catch((err) => res.send(`Error al crear empresa: ${err}`));
+    .catch((err) => console.log(`Error al crear empresa: ${err}`));
+};
+
+empresasController.creacionMasiva = (req, res) => {
+  let success = 0;
+  let errors = 0;
+
+  req.body.forEach((el, index) => {
+    Empresa.create(el, {
+      include: ["telefono", "direcciones", "contactos"],
+    })
+      .then(() => {
+        success = success + 1;
+      })
+      .catch(() => {
+        errors = errors + 1;
+      })
+      .finally(() => {
+        if (index === req.body.length - 1) {
+          res.json({ created: success, errors: errors });
+        }
+      });
+  });
 };
 
 empresasController.modificarEmpresa = (req, res) => {

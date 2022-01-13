@@ -169,16 +169,22 @@ const Sidebar = () => {
       </div>
 
       <div className="menuSection">
-        <h3>Gerencia</h3>
+        <h3>Administración</h3>
         <ul>
           <li>
-            <NavLink to="/reportes">
+            <NavLink to="/administracion/prospectos">
+              <BusinessCenterOutlined />
+              <span>Prospectos</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/administracion/reportes">
               <ReportGmailerrorredOutlined />
               <span>Reportes</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to="/reportes">
+            <NavLink to="/administracion/Inactivos">
               <DisabledByDefaultOutlined />
               <span>Inactivos</span>
             </NavLink>

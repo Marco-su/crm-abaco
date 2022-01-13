@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       apellido: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       cargo: {
         type: DataTypes.STRING,
@@ -56,10 +56,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      web: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
       empleados: {
         type: DataTypes.INTEGER,
         allowNull: true,
@@ -68,6 +64,22 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: "Marketing",
+      },
+      linkedin: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      facebook: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      instagram: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      twitter: {
+        type: DataTypes.TEXT,
+        allowNull: true,
       },
       status: {
         type: DataTypes.STRING,
