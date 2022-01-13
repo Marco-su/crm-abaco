@@ -63,7 +63,7 @@ const Sidebar = () => {
               <span>Empleados</span>
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/actividades">
               <EventOutlined />
               <span>Actividades</span>
@@ -80,7 +80,7 @@ const Sidebar = () => {
               <PointOfSaleOutlined />
               <span>Ventas</span>
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
 
@@ -129,7 +129,7 @@ const Sidebar = () => {
               <span>Correo</span>
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/zoom">
               <VideocamOutlined />
               <span>Zoom</span>
@@ -140,11 +140,11 @@ const Sidebar = () => {
               <CallOutlined />
               <span>Llamadas</span>
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
 
-      <div className="menuSection">
+      {/* <div className="menuSection">
         <h3>Estadisticas</h3>
         <ul>
           <li>
@@ -166,7 +166,7 @@ const Sidebar = () => {
             </NavLink>
           </li>
         </ul>
-      </div>
+      </div> */}
 
       <div className="menuSection">
         <h3>Administración</h3>
@@ -177,7 +177,7 @@ const Sidebar = () => {
               <span>Prospectos</span>
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/administracion/reportes">
               <ReportGmailerrorredOutlined />
               <span>Reportes</span>
@@ -188,7 +188,7 @@ const Sidebar = () => {
               <DisabledByDefaultOutlined />
               <span>Inactivos</span>
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
 

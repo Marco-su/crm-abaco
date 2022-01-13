@@ -36,7 +36,7 @@ const EditorInfo = ({ register, errors }) => {
 
   const ingresosRules = register("ingresos_anuales", {
     max: {
-      value: 100000000000,
+      value: 100000000000000,
       message: "Número fuera de rango.",
     },
     min: {
