@@ -6,3 +6,10 @@ export const setDetailViewType = (viewType) => (dispatch) => {
     payload: viewType,
   });
 };
+
+export const setActualStep = (step) => (dispatch) => {
+  dispatch({
+    type: types.SET_ACTUAL_STEP,
+    payload: step,
+  });
+};

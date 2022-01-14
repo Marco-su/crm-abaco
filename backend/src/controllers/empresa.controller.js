@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Empresa } = require("../database");
+const { Empresa, Direccion, Contacto } = require("../database");
 
 const empresasController = {};
 
@@ -92,8 +92,58 @@ empresasController.creacionMasiva = (req, res) => {
 
 empresasController.modificarEmpresa = (req, res) => {
   Empresa.update(req.body, { where: { id: req.params.id } })
-    .then((response) => res.json(response))
-    .catch((err) => res.send(`Error al actualizar empresa: ${err}`));
+    .then((response) => {
+      // Actualizando direcciones
+      if (req.body.direcciones && req.body.direcciones.length > 0) {
+        req.body.direcciones.forEach((el, index, array) => {
+          // Si la dirección existe
+          if (el.id) {
+            Direccion.update(el, { where: { id: el.id } });
+
+            if (index === array.length - 1) {
+              res.json(response);
+            }
+
+            // Si la direccion no existe
+          } else {
+            Direccion.create({
+              ...el,
+              empresaId: req.params.id,
+            });
+
+            if (index === array.length - 1) {
+              res.json(response);
+            }
+          }
+        });
+      }
+
+      // Actualizando contactos
+      if (req.body.contactos && req.body.contactos.length > 0) {
+        req.body.contactos.forEach((el, index, array) => {
+          // Si el contacto existe
+          if (el.id) {
+            Contacto.update(el, { where: { id: el.id } });
+
+            if (index === array.length - 1) {
+              res.json(response);
+            }
+
+            // Si el contacto no existe
+          } else {
+            Contacto.create({
+              ...el,
+              empresaId: req.params.id,
+            });
+
+            if (index === array.length - 1) {
+              res.json(response);
+            }
+          }
+        });
+      }
+    })
+    .catch((err) => res.send(`Error al actualizar Empresa: ${err}`));
 };
 
 empresasController.deshabilitarEmpresas = async (req, res) => {

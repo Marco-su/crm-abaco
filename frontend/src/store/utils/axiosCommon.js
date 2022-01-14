@@ -64,19 +64,29 @@ export const create = (data, urlPost, textName, navigate, dispatch) => {
     });
 };
 
-export const createMultiple = (data, urlPost, navigate, dispatch) => {
+export const createMultiple = (
+  data,
+  totalSteps,
+  urlPost,
+  actualStep,
+  dispatch
+) => {
   axios({
     url: `${apiBase}/${urlPost}`,
     method: "POST",
     data,
   })
-    .then((res) => {
-      if (res.data) {
-        navigate(`/empresas`);
-      }
-    })
+    .then((res) => {})
     .catch((err) => {
-      console.log("Error al crear masivamente:", err);
+      console.log(`Error al crear multiples empresas:`, err);
+    })
+    .finally(() => {
+      if (actualStep < totalSteps) {
+        dispatch({
+          type: types.SET_ACTUAL_STEP,
+          payload: actualStep + 1,
+        });
+      }
     });
 };
 

@@ -9,6 +9,9 @@ const globalReducer = (state = globalInitial, action) => {
     case types.SET_DETAIL_VIEW_TYPE:
       return { ...state, detailViewType: action.payload };
 
+    case types.SET_ACTUAL_STEP:
+      return { ...state, actualMasiveStep: action.payload };
+
     default:
       return state;
   }

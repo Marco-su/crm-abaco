@@ -1,15 +1,23 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { bulkCreateEmpresa } from "../../store/actions/empresa.actions";
 import { Button } from "@mui/material";
+import { Progress } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { setActualStep } from "../../store/actions/global.actions";
 
 const DragAndDrop = ({ items, setItems, fileCells }) => {
+  // STATES
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const actualStep = useSelector((store) => store.global.actualMasiveStep);
 
   const [fileFields, setFileFields] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [totalSteps, setTotalSteps] = useState(0);
+  const [cellsForDb, setCellsForDb] = useState([]);
+  const [startCreate, setStartCreate] = useState(false);
 
   // EFFECTS
   useEffect(() => {
@@ -20,7 +28,17 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
         })
       );
     }
+
+    setTotalSteps(fileCells.length);
   }, [fileCells]);
+
+  useEffect(() => {
+    if (startCreate === true) {
+      setIsOpen(true);
+      dispatch(bulkCreateEmpresa(cellsForDb[actualStep], totalSteps));
+    }
+    // eslint-disable-next-line
+  }, [actualStep, dispatch, startCreate]);
 
   // HANDLES
   const reorder = (list, startIndex, endIndex) => {
@@ -153,7 +171,8 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
       return [...acc, objectEl];
     }, []);
 
-    dispatch(bulkCreateEmpresa(newCells, navigate));
+    setCellsForDb(newCells);
+    setStartCreate(true);
   };
 
   // RENDER
@@ -235,13 +254,49 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
       </div>
 
       <div className="btnBox">
-        <Button
-          variant="contained"
-          onClick={handleSubmit}
-          disabled={fileCells.length > 1000 ? true : false}
-        >
+        <Button variant="contained" onClick={handleSubmit}>
           Finalizar
         </Button>
+      </div>
+
+      {/* MODAL */}
+      <div className={isOpen ? "viewportModal active" : "viewportModal"}>
+        <div className="viewportModalContent">
+          {actualStep === totalSteps ? (
+            <div className="closeTimesBtnBox">
+              <button
+                className="closeTimesBtn"
+                onClick={() => {
+                  setIsOpen(false);
+                  setStartCreate(false);
+                  dispatch(setActualStep(0));
+                }}
+              >
+                <FontAwesomeIcon icon={faTimes} className="deleteIcon" />
+              </button>
+            </div>
+          ) : null}
+
+          <p className="title">Subiendo registros</p>
+          <Progress value={(actualStep / totalSteps) * 100} />
+          <div className="d-flex justify-content-end mt-1">
+            {actualStep} de {totalSteps}
+          </div>
+
+          <div className="buttonRight">
+            <Button
+              variant="contained"
+              onClick={() => {
+                setIsOpen(false);
+                setStartCreate(false);
+                dispatch(setActualStep(0));
+              }}
+              disabled={actualStep === totalSteps ? false : true}
+            >
+              Finalizar
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

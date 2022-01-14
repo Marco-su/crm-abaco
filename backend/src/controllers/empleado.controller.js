@@ -27,34 +27,27 @@ empleadoController.modificarEmpleado = (req, res) => {
     where: { id: req.params.id },
   })
     .then((response) => {
-      if (
-        req.body.telefonos &&
-        req.body.telefonos.length > 0 &&
-        req.body.telefonos[0].id
-      ) {
+      if (req.body.telefonos && req.body.telefonos.length > 0) {
         req.body.telefonos.forEach((el, index, array) => {
-          Telefono.update(el, { where: { id: el.id } });
+          // Si el telefono existe
+          if (el.id) {
+            Telefono.update(el, { where: { id: el.id } });
 
-          if (index === array.length - 1) {
-            res.json(response);
-          }
-        });
-      }
+            if (index === array.length - 1) {
+              res.json(response);
+            }
 
-      if (
-        req.body.telefonos &&
-        req.body.telefonos.length > 0 &&
-        !req.body.telefonos[0].id
-      ) {
-        req.body.telefonos.forEach((el, index, array) => {
-          Telefono.create({
-            ...el,
-            telefonableType: "empleado",
-            telefonableId: req.params.id,
-          });
+            // Si el telefono no existe
+          } else {
+            Telefono.create({
+              ...el,
+              telefonableType: "empleado",
+              telefonableId: req.params.id,
+            });
 
-          if (index === array.length - 1) {
-            res.json(response);
+            if (index === array.length - 1) {
+              res.json(response);
+            }
           }
         });
       }

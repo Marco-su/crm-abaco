@@ -3,6 +3,7 @@ const actions = {};
 // Global
 actions.SET_IS_AUTH = "SET_IS_AUTH";
 actions.SET_DETAIL_VIEW_TYPE = "SET_DETAIL_VIEW_TYPE";
+actions.SET_ACTUAL_STEP = "SET_ACTUAL_STEP";
 
 // Email
 actions.SEND_EMAIL = "SEND_EMAIL";

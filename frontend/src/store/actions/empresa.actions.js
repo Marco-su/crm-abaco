@@ -29,9 +29,18 @@ export const createEmpresa = (data, navigate) => (dispatch) => {
   create(data, "empresas", "empresa", navigate, dispatch);
 };
 
-export const bulkCreateEmpresa = (data, navigate) => (dispatch) => {
-  createMultiple(data, "empresas/prospectos", navigate, dispatch);
-};
+export const bulkCreateEmpresa =
+  (singleData, totalSteps) => (dispatch, getState) => {
+    const { actualMasiveStep } = getState().global;
+
+    createMultiple(
+      singleData,
+      totalSteps,
+      "empresas",
+      actualMasiveStep,
+      dispatch
+    );
+  };
 
 export const updateEmpresa = (data, path) => (dispatch) => {
   switch (path) {

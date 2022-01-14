@@ -41,6 +41,7 @@ const emptyModel = {
 export const globalInitial = {
   isAuth: localStorage.getItem("token") ? true : false,
   detailViewType: "amplia",
+  actualMasiveStep: 0,
 };
 
 export const modalsInitial = {

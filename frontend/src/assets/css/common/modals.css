@@ -127,3 +127,11 @@
   margin-bottom: 0.75rem;
   font-weight: bold;
 }
+
+.dragBox .viewportModalContent {
+  padding-right: 3rem;
+}
+
+.dragBox .buttonRight {
+  margin-right: 0;
+}

@@ -1,4 +1,9 @@
-import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Button,
+} from "@mui/material";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -102,6 +107,12 @@ const DetailAccordion = () => {
 
           <AccordionDetails>Body</AccordionDetails>
         </Accordion>
+
+        <div className="editorButtonBox">
+          <Button type="submit" variant="contained">
+            Guardar cambios
+          </Button>
+        </div>
       </form>
     </div>
   );

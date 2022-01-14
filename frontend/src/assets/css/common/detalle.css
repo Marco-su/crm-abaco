@@ -123,3 +123,9 @@
   display: flex;
   align-items: center;
 }
+
+.detailView .detailAccordion .editorButtonBox {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
