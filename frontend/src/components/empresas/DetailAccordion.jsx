@@ -13,6 +13,7 @@ import {
   History,
   CurrencyExchange,
   Public,
+  PermContactCalendarOutlined,
 } from "@mui/icons-material";
 import EditorInfo from "./EditorInfo";
 import EditorWebSites from "./EditorWebSites";
@@ -40,6 +41,11 @@ const DetailAccordion = () => {
     setValue("vertical", item.vertical);
     setValue("propiedad", item.propiedad);
     setValue("ingresos_anuales", item.ingresos_anuales);
+    setValue("representante", item.representante);
+    setValue("nit", item.nit);
+    setValue("correo", item.correo);
+    setValue("empleados", item.empleados);
+
     setValue("web", item.web);
     setValue("linkedin", item.linkedin);
     setValue("facebook", item.facebook);
@@ -91,6 +97,17 @@ const DetailAccordion = () => {
           <AccordionDetails>
             <EditorWebSites register={register} errors={errors} />
           </AccordionDetails>
+        </Accordion>
+
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <h2>
+              <PermContactCalendarOutlined color="info" className="me-3" />
+              Contactos
+            </h2>
+          </AccordionSummary>
+
+          <AccordionDetails>Body</AccordionDetails>
         </Accordion>
 
         <Accordion>

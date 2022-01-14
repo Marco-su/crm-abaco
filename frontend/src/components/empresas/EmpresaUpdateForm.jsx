@@ -90,7 +90,7 @@ const EmpresaUpdateForm = ({ children }) => {
     }
 
     Object.keys(data).forEach((el) => {
-      if (el === "nombre" || el === "representante") {
+      if ((el === "nombre" || el === "representante") && data[el]) {
         data[el] = capitalizeFirstLetter(data[el]);
       }
     });

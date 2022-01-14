@@ -27,6 +27,7 @@ db.Email = require("./models/Email")(db.connection, DataTypes);
 db.Direccion = require("./models/Direccion")(db.connection, DataTypes);
 db.Permiso = require("./models/Permiso")(db.connection, DataTypes);
 db.ClienteCrm = require("./models/Clientecrm")(db.connection, DataTypes);
+db.WebEmpresa = require("./models/Webempresa")(db.connection, DataTypes);
 
 // Asociación de modelos (relaciones)
 db.Empresa.associate(db);
@@ -41,5 +42,6 @@ db.Etapa.associate(db);
 db.Direccion.associate(db);
 db.Permiso.associate(db);
 db.ClienteCrm.associate(db);
+db.WebEmpresa.associate(db);
 
 module.exports = db;

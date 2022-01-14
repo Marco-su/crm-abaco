@@ -92,56 +92,36 @@ empresasController.creacionMasiva = (req, res) => {
 
 empresasController.modificarEmpresa = (req, res) => {
   Empresa.update(req.body, { where: { id: req.params.id } })
-    .then((response) => {
+    .then(async (response) => {
       // Actualizando direcciones
       if (req.body.direcciones && req.body.direcciones.length > 0) {
-        req.body.direcciones.forEach((el, index, array) => {
-          // Si la dirección existe
+        for (const el of req.body.direcciones) {
           if (el.id) {
-            Direccion.update(el, { where: { id: el.id } });
-
-            if (index === array.length - 1) {
-              res.json(response);
-            }
+            // Si la dirección existe
+            await Direccion.update(el, { where: { id: el.id } });
 
             // Si la direccion no existe
           } else {
-            Direccion.create({
-              ...el,
-              empresaId: req.params.id,
-            });
-
-            if (index === array.length - 1) {
-              res.json(response);
-            }
+            await Direccion.create({ ...el, empresaId: req.params.id });
           }
-        });
+        }
       }
 
       // Actualizando contactos
       if (req.body.contactos && req.body.contactos.length > 0) {
-        req.body.contactos.forEach((el, index, array) => {
+        for (const el of req.body.contactos) {
           // Si el contacto existe
           if (el.id) {
-            Contacto.update(el, { where: { id: el.id } });
-
-            if (index === array.length - 1) {
-              res.json(response);
-            }
+            await Contacto.update(el, { where: { id: el.id } });
 
             // Si el contacto no existe
           } else {
-            Contacto.create({
-              ...el,
-              empresaId: req.params.id,
-            });
-
-            if (index === array.length - 1) {
-              res.json(response);
-            }
+            await Contacto.create({ ...el, empresaId: req.params.id });
           }
-        });
+        }
       }
+
+      res.json(response);
     })
     .catch((err) => res.send(`Error al actualizar Empresa: ${err}`));
 };

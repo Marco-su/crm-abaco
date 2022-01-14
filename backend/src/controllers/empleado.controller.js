@@ -26,30 +26,26 @@ empleadoController.modificarEmpleado = (req, res) => {
   Empleado.update(req.body, {
     where: { id: req.params.id },
   })
-    .then((response) => {
+    .then(async (response) => {
       if (req.body.telefonos && req.body.telefonos.length > 0) {
-        req.body.telefonos.forEach((el, index, array) => {
+        for (const el of req.body.telefonos) {
           // Si el telefono existe
           if (el.id) {
-            Telefono.update(el, { where: { id: el.id } });
-
-            if (index === array.length - 1) {
-              res.json(response);
-            }
+            await Telefono.update(el, { where: { id: el.id } });
 
             // Si el telefono no existe
           } else {
-            Telefono.create({
+            await Telefono.create({
               ...el,
               telefonableType: "empleado",
               telefonableId: req.params.id,
             });
-
-            if (index === array.length - 1) {
-              res.json(response);
-            }
           }
-        });
+        }
+
+        res.json(response);
+      } else {
+        res.json(response);
       }
     })
     .catch((err) => res.send(`Error al actualizar empleado: ${err}`));

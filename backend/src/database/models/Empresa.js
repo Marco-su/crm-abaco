@@ -30,6 +30,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: { name: "empresaId", allowNull: false },
         onDelete: "CASCADE",
       });
+
+      this.hasMany(models.WebEmpresa, {
+        as: "webs",
+        foreignKey: { name: "empresaId", allowNull: false },
+        onDelete: "CASCADE",
+      });
     }
   }
 
@@ -76,26 +82,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: "activo",
-      },
-      web: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-      },
-      facebook: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-      },
-      linkedin: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-      },
-      twitter: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-      },
-      instagram: {
-        type: DataTypes.TEXT,
-        allowNull: true,
       },
       nota: {
         type: DataTypes.TEXT,

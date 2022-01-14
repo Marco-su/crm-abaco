@@ -45,6 +45,27 @@ const EditorInfo = ({ register, errors }) => {
     },
   });
 
+  const representanteRules = register("representante", {
+    maxLength: {
+      value: 120,
+      message: "Nombre de representante muy largo (máximo 120 caracteres).",
+    },
+  });
+
+  const nitRules = register("nit", {
+    maxLength: {
+      value: 120,
+      message: "NIT muy largo (máximo 120 caracteres).",
+    },
+  });
+
+  const correoRules = register("correo", {
+    pattern: {
+      value: /^\S+@\S+\.\S+$/,
+      message: "Correo no válido. Ejemplo válido: usuario@mail.com",
+    },
+  });
+
   // RENDER
   return (
     <div className="upFormInputsBox">
@@ -72,8 +93,8 @@ const EditorInfo = ({ register, errors }) => {
         size="small"
         select
         defaultValue="Privada"
-        error={errors.cargo ? true : false}
-        helperText={errors.cargo ? errors.cargo.message : ""}
+        error={errors.propiedad ? true : false}
+        helperText={errors.propiedad ? errors.propiedad.message : ""}
         {...propiedadRules}
       >
         <MenuItem value="Privada">Privada</MenuItem>
@@ -93,6 +114,26 @@ const EditorInfo = ({ register, errors }) => {
 
       <TextField
         className="inputText"
+        label="Representante legal"
+        type="text"
+        size="small"
+        error={errors.representante ? true : false}
+        helperText={errors.representante ? errors.representante.message : ""}
+        {...representanteRules}
+      />
+
+      <TextField
+        className="inputText"
+        label="Número de Identificación Tributaria (NIT)"
+        type="text"
+        size="small"
+        error={errors.nit ? true : false}
+        helperText={errors.nit ? errors.nit.message : ""}
+        {...nitRules}
+      />
+
+      <TextField
+        className="inputText"
         label="Ingresos Anuales"
         type="number"
         size="small"
@@ -101,6 +142,15 @@ const EditorInfo = ({ register, errors }) => {
           errors.ingresos_anuales ? errors.ingresos_anuales.message : ""
         }
         {...ingresosRules}
+      />
+
+      <TextField
+        className="inputText"
+        label="Correo de la empresa"
+        size="small"
+        error={errors.correo ? true : false}
+        helperText={errors.correo ? errors.correo.message : ""}
+        {...correoRules}
       />
     </div>
   );
