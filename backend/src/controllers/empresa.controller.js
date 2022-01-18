@@ -5,7 +5,7 @@ const empresasController = {};
 
 empresasController.traerEmpresas = (req, res) => {
   Empresa.findAll({
-    include: ["oportunidades", "contactos", "direcciones"],
+    include: ["oportunidades", "contactos", "direcciones", "webs"],
     where: { status: "activo" },
   })
     .then((empresas) => res.json(empresas))
@@ -14,7 +14,7 @@ empresasController.traerEmpresas = (req, res) => {
 
 empresasController.traerProspectos = (req, res) => {
   Empresa.findAll({
-    include: ["oportunidades", "contactos", "direcciones"],
+    include: ["oportunidades", "contactos", "direcciones", "webs"],
     where: {
       tipo: "Prospecto",
       status: "activo",
@@ -26,7 +26,7 @@ empresasController.traerProspectos = (req, res) => {
 
 empresasController.traerClientes = (req, res) => {
   Empresa.findAll({
-    include: ["oportunidades", "contactos", "direcciones"],
+    include: ["oportunidades", "contactos", "direcciones", "webs"],
     where: {
       tipo: "Cliente",
       status: "activo",
@@ -38,7 +38,7 @@ empresasController.traerClientes = (req, res) => {
 
 empresasController.leerEmpresa = (req, res) => {
   Empresa.findOne({
-    include: ["oportunidades", "contactos"],
+    include: ["oportunidades", "contactos", "direcciones", "webs"],
     where: { id: req.params.id },
   })
     .then((empresa) => res.json(empresa))
@@ -66,28 +66,6 @@ empresasController.crearEmpresa = (req, res) => {
   )
     .then((empresa) => res.json(empresa))
     .catch((err) => console.log(`Error al crear empresa: ${err}`));
-};
-
-empresasController.creacionMasiva = (req, res) => {
-  let success = 0;
-  let errors = 0;
-
-  req.body.forEach((el, index) => {
-    Empresa.create(el, {
-      include: ["telefono", "direcciones", "contactos"],
-    })
-      .then(() => {
-        success = success + 1;
-      })
-      .catch(() => {
-        errors = errors + 1;
-      })
-      .finally(() => {
-        if (index === req.body.length - 1) {
-          res.json({ created: success, errors: errors });
-        }
-      });
-  });
 };
 
 empresasController.modificarEmpresa = (req, res) => {

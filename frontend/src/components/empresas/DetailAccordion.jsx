@@ -25,18 +25,32 @@ const DetailAccordion = () => {
   // STATES
   const dispatch = useDispatch();
 
+  const item = useSelector((store) => store.empresas.empresa);
+  const otrasWebsDefault = item.webs.filter((el) => el.tipo === "otro");
+  const { id } = useParams();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm();
-
-  const item = useSelector((store) => store.empresas.empresa);
-  const { id } = useParams();
+    control,
+  } = useForm({
+    defaultValues: {
+      webs: otrasWebsDefault,
+    },
+  });
 
   // EFFECTS
   useEffect(() => {
+    const setValueByTerm = (term) => {
+      const website = item.webs.find((el) => el.tipo === term);
+
+      if (website) {
+        setValue(term, website.url);
+      }
+    };
+
     setValue("nombre", item.nombre);
     setValue("vertical", item.vertical);
     setValue("propiedad", item.propiedad);
@@ -46,27 +60,55 @@ const DetailAccordion = () => {
     setValue("correo", item.correo);
     setValue("empleados", item.empleados);
 
-    setValue("web", item.web);
-    setValue("linkedin", item.linkedin);
-    setValue("facebook", item.facebook);
-    setValue("instagram", item.instagram);
-    setValue("twitter", item.twitter);
+    if (item.webs.length > 0) {
+      setValueByTerm("web");
+      setValueByTerm("linkedin");
+      setValueByTerm("facebook");
+      setValueByTerm("instagram");
+      setValueByTerm("twitter");
+    }
   }, [item, setValue]);
 
   // HANDLES
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     Object.keys(data).forEach((el) => {
-      if (el === "nombre") {
+      if (el === "nombre" || el === "representante") {
         data[el] = capitalizeFirstLetter(data[el]);
       }
     });
 
-    dispatch(
-      updateEmpresa({
-        ...data,
-        id,
-      })
-    );
+    const {
+      nombre,
+      nit,
+      representante,
+      correo,
+      vertical,
+      propiedad,
+      empleados,
+      ingresos,
+      nota,
+    } = data;
+
+    const newData = {
+      nombre,
+      nit,
+      representante,
+      correo,
+      vertical,
+      propiedad,
+      empleados,
+      ingresos,
+      nota,
+    };
+
+    console.log(data);
+
+    // dispatch(
+    //   updateEmpresa({
+    //     ...data,
+    //     id,
+    //   })
+    // );
   };
 
   // RENDER
@@ -95,7 +137,12 @@ const DetailAccordion = () => {
           </AccordionSummary>
 
           <AccordionDetails>
-            <EditorWebSites register={register} errors={errors} />
+            <EditorWebSites
+              register={register}
+              errors={errors}
+              item={item}
+              control={control}
+            />
           </AccordionDetails>
         </Accordion>
 

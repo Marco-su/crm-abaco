@@ -69,12 +69,6 @@ const UpdateExcel = ({ fileFields, setFileFields, items, setItems }) => {
 
             <p>Registros listados en archivo ({fileFields.length})</p>
 
-            {fileFields.length > 1000 && (
-              <p className="text-danger">
-                Se pueden subir 1000 registros como máximo en cada operación.
-              </p>
-            )}
-
             <p>
               Seleccionar campos existentes en el archivo para realizar guardado
               en base de datos:

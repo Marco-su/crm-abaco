@@ -11,6 +11,7 @@ const archivosRoutes = require("../routes/archivo.routes");
 const oportunidadesRoutes = require("../routes/oportunidad.routes");
 const authRoutes = require("../routes/auth.routes");
 const emailRoutes = require("../routes/email.routes");
+const webEmpresaRoutes = require("../routes/webempresa.routes");
 const { createInitialUser } = require("../helpers/initialSetup");
 
 // Inicialización
@@ -39,6 +40,7 @@ app.use("/archivos", archivosRoutes);
 app.use("/oportunidades", oportunidadesRoutes);
 app.use("/auth", authRoutes);
 app.use("/mail", emailRoutes);
+app.use("/web_empresa", webEmpresaRoutes);
 
 // export
 module.exports = app;

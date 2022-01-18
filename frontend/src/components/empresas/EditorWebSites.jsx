@@ -1,4 +1,6 @@
-import { TextField } from "@mui/material";
+import { TextField, IconButton, Tooltip } from "@mui/material";
+import { Add, Close } from "@mui/icons-material";
+import { Controller, useFieldArray } from "react-hook-form";
 import {
   Facebook,
   LinkedIn,
@@ -7,42 +9,35 @@ import {
   Public,
 } from "@mui/icons-material";
 
-const EditorWebSites = ({ register, errors }) => {
+const EditorWebSites = ({ register, errors, item, control }) => {
+  // STATES
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "webs",
+  });
+
+  const rule = {
+    maxLength: {
+      value: 1000,
+      message: "Enlace muy largo (máximo 1000 caracteres).",
+    },
+    pattern: {
+      value:
+        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
+      message: "URL no válida. Ejemplo válido: http://dominio.com",
+    },
+  };
+
   // RULES
-  const siteRules = register("web", {
-    maxLength: {
-      value: 1000,
-      message: "Enlace muy largo (máximo 1000 caracteres).",
-    },
-  });
+  const siteRules = register("web", rule);
 
-  const linkedinRules = register("linkedin", {
-    maxLength: {
-      value: 1000,
-      message: "Enlace muy largo (máximo 1000 caracteres).",
-    },
-  });
+  const linkedinRules = register("linkedin", rule);
 
-  const facebookRules = register("facebook", {
-    maxLength: {
-      value: 1000,
-      message: "Enlace muy largo (máximo 1000 caracteres).",
-    },
-  });
+  const facebookRules = register("facebook", rule);
 
-  const instagramRules = register("instagram", {
-    maxLength: {
-      value: 1000,
-      message: "Enlace muy largo (máximo 1000 caracteres).",
-    },
-  });
+  const instagramRules = register("instagram", rule);
 
-  const twitterRules = register("twitter", {
-    maxLength: {
-      value: 1000,
-      message: "Enlace muy largo (máximo 1000 caracteres).",
-    },
-  });
+  const twitterRules = register("twitter", rule);
 
   // RENDER
   return (
@@ -116,6 +111,71 @@ const EditorWebSites = ({ register, errors }) => {
         helperText={errors.twitter ? errors.twitter.message : ""}
         {...twitterRules}
       />
+
+      {fields.map((el, index) => (
+        <div className="otherSiteBox" key={`inputWeb-${index}`}>
+          <Controller
+            control={control}
+            name={`webs[${index}].url`}
+            defaultValue={el.url ? el.url : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                className="inputText"
+                label={
+                  <span className="d-flex align-items-center">
+                    <Public fontSize="12" className="me-1" />
+                    Sitio web adicional
+                  </span>
+                }
+                size="small"
+                error={
+                  errors.webs
+                    ? errors.webs[index]
+                      ? errors.webs[index].url
+                        ? true
+                        : false
+                      : false
+                    : false
+                }
+                helperText={
+                  errors.webs
+                    ? errors.webs[index]
+                      ? errors.webs[index].url
+                        ? errors.webs[index].url.message
+                        : ""
+                      : ""
+                    : ""
+                }
+              />
+            )}
+            rules={rule}
+          />
+
+          <Tooltip title="Eliminar sitio web adicional">
+            <IconButton
+              color="info"
+              onClick={() => remove(index)}
+              className="ms-2"
+            >
+              <Close />
+            </IconButton>
+          </Tooltip>
+        </div>
+      ))}
+
+      <div className="addButtonBox">
+        <Tooltip title="Agregar sitio web adicional">
+          <IconButton
+            color="primary"
+            onClick={() => {
+              append({ url: "", tipo: "otro", id: null });
+            }}
+          >
+            <Add />
+          </IconButton>
+        </Tooltip>
+      </div>
     </div>
   );
 };

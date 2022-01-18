@@ -129,3 +129,19 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.detailView .detailAccordion .addButtonBox button,
+.detailView .detailAccordion .otherSiteBox button {
+  padding: 0 !important;
+  width: 40px;
+  height: 40px;
+}
+
+.detailView .detailAccordion .otherSiteBox {
+  display: flex;
+  align-content: center;
+}
+
+.detailView .detailAccordion .otherSiteBox div:first-child {
+  flex-grow: 1;
+}
