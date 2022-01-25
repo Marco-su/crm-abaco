@@ -2,19 +2,31 @@
   position: fixed;
   top: 0;
   left: 0;
+  -webkit-transform: translateX(101%);
+  -ms-transform: translateX(101%);
   transform: translateX(101%);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
   z-index: 999;
   opacity: 0;
+  -webkit-transition: opacity var(--transition-time) ease;
+  -o-transition: opacity var(--transition-time) ease;
   transition: opacity var(--transition-time) ease;
 }
 
 .viewportModal.active {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
   transform: translateX(0);
   opacity: 1;
 }
@@ -63,12 +75,20 @@
 .closeTimesBtn {
   color: var(--gray-600);
   border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   border: none;
   cursor: pointer;
   background-color: transparent;
+  -webkit-transition: all var(--transition-time) ease;
+  -o-transition: all var(--transition-time) ease;
   transition: all var(--transition-time) ease;
   width: 35px;
   height: 35px;
@@ -87,6 +107,7 @@
 }
 
 .upFormInputsBox {
+  display: -ms-grid;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
@@ -102,14 +123,20 @@
 }
 
 .phoneInputBox {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
   display: flex !important;
 }
 
 .phoneInputBox > .inputText {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .phoneInputBox .selectCountryCode {
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
   min-width: max-content;
 }
 

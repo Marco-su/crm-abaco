@@ -4,19 +4,31 @@
 }
 
 .detailView .detailTitleBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
 
 .detailView .detailTitleBox > div:last-child {
+  -ms-flex-item-align: start;
   align-self: flex-start;
 }
 
 /* CONTACT */
 .detailView .box .contactList {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -25,18 +37,30 @@
 }
 
 .detailView .box .contactList button {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   background: none;
   border: none;
   padding: 0.7rem 1.1rem;
+  -webkit-transition: all var(--transition-time) ease;
+  -o-transition: all var(--transition-time) ease;
   transition: all var(--transition-time) ease;
   border-radius: var(--border-radius);
 }
 
 .detailView .box .contactList button div:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin-right: 3rem;
 }
@@ -50,6 +74,8 @@
 }
 
 .detailView .box .contactList button svg {
+  -webkit-transition: all var(--transition-time) ease;
+  -o-transition: all var(--transition-time) ease;
   transition: all var(--transition-time) ease;
 }
 
@@ -69,25 +95,40 @@
 
 /* CONTACT - HISTORY */
 .detailView .contactoHistBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
 .detailView .contactoHistBox div:first-child {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .detailView .contactoHistBox div:last-child {
+  -webkit-box-flex: 10;
+  -ms-flex-positive: 10;
   flex-grow: 10;
 }
 
 /* DETAILS WITHOUT CONTACT */
 .detailView .detailsContent > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0.7rem;
   border-radius: var(--border-radius);
+  -webkit-transition: all var(--transition-time) ease;
+  -o-transition: all var(--transition-time) ease;
   transition: all var(--transition-time) ease;
 }
 
@@ -114,20 +155,42 @@
 
 .detailView .detailAccordion > div,
 .detailView .detailAccordion > form div {
+  -webkit-box-shadow: none;
   box-shadow: none;
   background-color: transparent;
 }
 
 .detailView .detailAccordion h2 {
   font-size: 17px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
 .detailView .detailAccordion .editorButtonBox {
   margin-top: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.detailView .detailAccordion .editorButtonBox div:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 1rem;
 }
 
 .detailView .detailAccordion .addButtonBox button,
@@ -138,10 +201,33 @@
 }
 
 .detailView .detailAccordion .otherSiteBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-line-pack: center;
   align-content: center;
 }
 
 .detailView .detailAccordion .otherSiteBox div:first-child {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.detailView .detailAccordion .Mui-expanded .accordionTitle {
+  color: var(--main-blue);
+}
+
+.detailView .detailAccordion .direccionTitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.detailView .detailAccordion .direccionTitle button {
+  padding: 8px !important;
 }

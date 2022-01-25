@@ -16,15 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE",
       });
 
-      this.hasOne(models.Telefono, {
-        as: "telefono",
-        foreignKey: { name: "telefonableId", allowNull: false },
-        constraints: false,
-        scope: {
-          telefonableType: "empresa",
-        },
-      });
-
       this.hasMany(models.Direccion, {
         as: "direcciones",
         foreignKey: { name: "empresaId", allowNull: false },
@@ -36,11 +27,31 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: { name: "empresaId", allowNull: false },
         onDelete: "CASCADE",
       });
+
+      this.hasMany(models.CorreoEmpresa, {
+        as: "correos",
+        foreignKey: { name: "empresaId", allowNull: false },
+        onDelete: "CASCADE",
+      });
+
+      this.hasMany(models.TelefonoEmpresa, {
+        as: "telefonos",
+        foreignKey: { name: "empresaId", allowNull: false },
+        onDelete: "CASCADE",
+      });
     }
   }
 
   Empresa.init(
     {
+      idCreacion: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      tipoCreacion: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       nombre: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -53,10 +64,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      correo: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
       vertical: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -64,13 +71,26 @@ module.exports = (sequelize, DataTypes) => {
       propiedad: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: "privada",
       },
       empleados: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      empleadosFuente: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      ingresosMinimos: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      ingresos_anuales: {
-        type: DataTypes.STRING,
+      ingresosMaximos: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      ingresosFuente: {
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       tipo: {
@@ -90,7 +110,7 @@ module.exports = (sequelize, DataTypes) => {
       etapa: {
         type: DataTypes.STRING,
         allowNull: true,
-        defaultValue: "sin evaluar",
+        defaultValue: "evaluación",
       },
     },
     {

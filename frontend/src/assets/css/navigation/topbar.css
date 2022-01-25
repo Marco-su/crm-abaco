@@ -1,9 +1,15 @@
 #topbar {
   height: var(--topbar-height);
   padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 998;
@@ -19,8 +25,12 @@
 }
 
 #topbar .iconBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 #topbar .iconBox .iconBtn {
@@ -28,16 +38,25 @@
   width: 40px;
   height: 40px;
   padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   border: none;
   border-radius: var(--border-radius) !important;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
 #topbar .iconBox .iconBtn:hover {
-  box-shadow: 1px 1px 4px 1px rgb(0, 0, 0, 0.1);
+  -webkit-box-shadow: 1px 1px 4px 1px rgb(0, 0, 0, 0.1);
+          box-shadow: 1px 1px 4px 1px rgb(0, 0, 0, 0.1);
 }
 
 #topbar .iconBox .iconBtn.profile {

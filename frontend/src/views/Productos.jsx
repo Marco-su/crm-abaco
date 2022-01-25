@@ -1,4 +1,4 @@
-import ProductosTable from "../components/productos/Table";
+import ProductosTable from "../components/productos/List";
 
 const Productos = () => {
   return <ProductosTable />;

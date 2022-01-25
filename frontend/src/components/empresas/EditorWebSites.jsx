@@ -9,7 +9,7 @@ import {
   Public,
 } from "@mui/icons-material";
 
-const EditorWebSites = ({ register, errors, item, control }) => {
+const EditorWebSites = ({ register, errors, control }) => {
   // STATES
   const { fields, append, remove } = useFieldArray({
     control,
@@ -169,7 +169,7 @@ const EditorWebSites = ({ register, errors, item, control }) => {
           <IconButton
             color="primary"
             onClick={() => {
-              append({ url: "", tipo: "otro", id: null });
+              append({ url: "", tipo: "otro", id: "" });
             }}
           >
             <Add />

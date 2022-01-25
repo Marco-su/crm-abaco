@@ -21,7 +21,7 @@ const PhoneInput = ({ label, tipo, errors, control, telf, register }) => {
     },
     pattern: {
       value: /^[0-9]*$/,
-      message: "Formato no valido.",
+      message: "Número no valido.",
     },
   });
 

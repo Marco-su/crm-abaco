@@ -7,6 +7,7 @@ import { Progress } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { setActualStep } from "../../store/actions/global.actions";
+import { randomName } from "../../helpers/randonString";
 
 const DragAndDrop = ({ items, setItems, fileCells }) => {
   // STATES
@@ -18,6 +19,7 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
   const [totalSteps, setTotalSteps] = useState(0);
   const [cellsForDb, setCellsForDb] = useState([]);
   const [startCreate, setStartCreate] = useState(false);
+  const [idDeCreacion, setIdDeCreacion] = useState("");
 
   // EFFECTS
   useEffect(() => {
@@ -85,6 +87,8 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
     const newKeysObject = {};
     let keys = [];
     let values = [];
+    const idCreacion = randomName();
+    setIdDeCreacion(idCreacion);
 
     items.forEach((el, index) => {
       if (items[index] && fileFields[index]) {
@@ -155,18 +159,25 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
 
           // colocando telefono de la empresa
         } else if (key === "telefono") {
-          objectEl.telefono
-            ? (objectEl.telefono = {
-                ...objectEl.telefono,
-                [key]: el[values[index]],
-              })
-            : (objectEl.telefono = { numero: el[values[index]] });
+          objectEl.telefonos
+            ? (objectEl.telefonos = [
+                { ...objectEl.telefonos[0], numero: el[values[index]] },
+              ])
+            : (objectEl.telefonos = [{ numero: el[values[index]] }]);
 
           // Colocando valores restantes
+        } else if (
+          key === "ingresosMaximos" &&
+          !keys.includes("ingresosMinimos")
+        ) {
+          objectEl.ingresosMinimos = el[values[index]];
         } else {
           objectEl[key] = el[values[index]];
         }
       });
+
+      objectEl.idCreacion = idCreacion;
+      objectEl.tipoCreacion = "Creación masiva";
 
       return [...acc, objectEl];
     }, []);
@@ -277,7 +288,7 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
             </div>
           ) : null}
 
-          <p className="title">Subiendo registros</p>
+          <p className="title">Subiendo registros con el id "{idDeCreacion}"</p>
           <Progress value={(actualStep / totalSteps) * 100} />
           <div className="d-flex justify-content-end mt-1">
             {actualStep} de {totalSteps}

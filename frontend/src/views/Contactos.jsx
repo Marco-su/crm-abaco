@@ -1,4 +1,4 @@
-import ContactosTable from "../components/contactos/Table";
+import ContactosTable from "../components/contactos/List";
 
 const Contactos = () => {
   return <ContactosTable />;

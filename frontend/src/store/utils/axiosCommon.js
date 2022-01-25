@@ -112,6 +112,18 @@ export const update = (getType, urlPut, urlGet, textName, data, dispatch) => {
     });
 };
 
+export const updateFromDetail = (urlPut, textName, data, dispatch) => {
+  axios({
+    url: `${apiBase}/${urlPut}/${data.id}`,
+    method: "PUT",
+    data,
+  })
+    .then((res) => {})
+    .catch((err) => {
+      console.log(`Error al actualizar ${textName}:`, err);
+    });
+};
+
 export const disable = (getType, urlPut, urlGet, textName, id, dispatch) => {
   axios({
     url: `${apiBase}/${urlPut}/${id}`,
