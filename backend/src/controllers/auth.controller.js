@@ -14,7 +14,12 @@ authController.register = (req, res) => {
     where: { correo: req.body.correo },
   })
     .then(async (empleado) => {
-      if (empleado) return res.send("Este correo ya se encuentra registrado.");
+      if (empleado) {
+        res.json({
+          success: false,
+          message: "Este correo ya se encuentra registrado",
+        });
+      }
 
       const {
         nombre,
@@ -45,16 +50,25 @@ authController.register = (req, res) => {
         }
       )
         .then((empleado) => {
-          res.json({ id: empleado.id });
+          res.json({
+            success: true,
+            id: empleado.id,
+          });
         })
         .catch((err) => {
-          console.log(err);
-          res.send(`Error al crear empleado`);
+          res.json({
+            success: false,
+            message: "Error al crear empleado",
+            data: err,
+          });
         });
     })
     .catch((err) => {
-      console.log(err);
-      return res.send(`Error al crear empleado`);
+      res.json({
+        success: false,
+        message: "Error al crear empleado",
+        data: err,
+      });
     });
 };
 
@@ -65,17 +79,24 @@ authController.login = (req, res) => {
     where: { correo: req.body.correo },
   })
     .then(async (empleado) => {
-      if (!empleado)
-        return res.json(
-          "No se encontró ningún usuario con este correo electrónico."
-        );
+      if (!empleado) {
+        res.json({
+          success: false,
+          message: "No se encontró ningún usuario con este correo electrónico",
+        });
+      }
 
       const matchPassword = await validatePassword(
         req.body.password,
         empleado.password
       );
 
-      if (!matchPassword) return res.json("Contraseña incorrecta.");
+      if (!matchPassword) {
+        res.json({
+          success: false,
+          message: "Contraseña incorrecta",
+        });
+      }
 
       const token = jwt.sign(
         { id: empleado.id, asociadoId: empleado.asociado.id },
@@ -85,9 +106,19 @@ authController.login = (req, res) => {
         }
       );
 
-      res.json({ token, id: empleado.id });
+      res.json({
+        token,
+        success: true,
+        id: empleado.id,
+      });
     })
-    .catch((err) => res.status(500));
+    .catch((err) => {
+      res.json({
+        success: false,
+        message: "Error en login",
+        data: err,
+      });
+    });
 };
 
 module.exports = authController;

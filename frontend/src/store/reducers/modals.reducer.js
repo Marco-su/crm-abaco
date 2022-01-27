@@ -7,12 +7,15 @@ const modalsReducer = (state = modalsInitial, action) => {
       return { ...state, arrayIds: action.payload };
 
     case types.TOGGLE_UPDATE:
-      const { updateType, upId, updateIsOpen } = action.payload;
+      const { updateType, upId, updateIsOpen, readOnlyEmpresa } =
+        action.payload;
+
       return {
         ...state,
         updateType,
         id: upId,
         updateIsOpen,
+        readOnlyEmpresa,
       };
 
     case types.TOGGLE_DELETE:
@@ -33,12 +36,6 @@ const modalsReducer = (state = modalsInitial, action) => {
         deleteType: deleteManyType,
         deleteManyIsOpen,
         arrayIds,
-      };
-
-    case types.CLOSE_MODALS:
-      return {
-        ...state,
-        arrayIds: [],
       };
 
     default:

@@ -9,6 +9,9 @@ const empleadoReducer = (state = empleadoInitial, action) => {
     case types.GET_SINGLE_EMPLEADO:
       return { ...state, empleado: action.payload };
 
+    case types.SET_ERROR_LOGIN:
+      return { ...state, errorLogin: action.payload };
+
     default:
       return state;
   }

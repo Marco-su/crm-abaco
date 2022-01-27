@@ -265,6 +265,8 @@ const EditorInfo = ({
               </IconButton>
             </Tooltip>
           </div>
+
+          {correoFields.length === 1 ? <div></div> : null}
         </div>
       </div>
 
@@ -330,6 +332,8 @@ const EditorInfo = ({
               </IconButton>
             </Tooltip>
           </div>
+
+          {telfFields.length === 1 ? <div></div> : null}
         </div>
       </div>
 

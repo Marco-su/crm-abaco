@@ -2,16 +2,19 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { AgGridReact, AgGridColumn } from "ag-grid-react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEmpleados } from "../../store/actions/empleado.actions";
+import { getContactos } from "../../store/actions/contacto.actions";
 import { capitalizeFirstLetter as capitalize } from "../../helpers/firstLetterUppercase";
-import { Button } from "@mui/material";
+import { Button, Tooltip, IconButton } from "@mui/material";
+import { Spinner } from "reactstrap";
 import { toggleUpdate } from "../../store/actions/modals.action";
 import { gridEs } from "../../constants/gridEs";
+import { FilterAltOffOutlined, Replay } from "@mui/icons-material";
 
-const List = ({ getInitial, titulo }) => {
+const List = () => {
   // INITIALIZATION
   const dispatch = useDispatch();
   const gridApi = useRef();
+  const isLoading = useSelector((store) => store.global.tableLoading);
 
   // FUNCTIONS
   const findPhone = (contacto) => {
@@ -28,8 +31,17 @@ const List = ({ getInitial, titulo }) => {
     return <Link to={`/contactos/${params.data.id}`}>{params.value}</Link>;
   };
 
+  const commonCellRenderer = (params) => {
+    if (params.value) {
+      return <span>{params.value}</span>;
+    } else {
+      return <span className="gray">Vacío</span>;
+    }
+  };
+
   // GETTING ROWS
-  const rows = useSelector((store) => store.contactos.lista).map((el) => {
+  const list = useSelector((store) => store.contactos.lista);
+  const rows = list.map((el) => {
     return {
       id: el.id,
       nombre: `${el.nombre} ${el.apellido}`,
@@ -50,7 +62,10 @@ const List = ({ getInitial, titulo }) => {
 
   // SETTING COLS
   const onGridReady = (params) => {
-    dispatch(getEmpleados());
+    if (list.length === 0) {
+      dispatch(getContactos());
+    }
+
     gridApi.current = params.api;
   };
 
@@ -62,7 +77,35 @@ const List = ({ getInitial, titulo }) => {
   return (
     <div className="mainTableBox1">
       <div className="mainTableBox2">
-        <h1 className="tableTitle">Contactos</h1>
+        <div className="titleTableBox">
+          <h1 className="tableTitle">Contactos</h1>
+
+          <Tooltip title="Actualizar lista">
+            {isLoading ? (
+              <div className="spinnerBox">
+                <Spinner color="primary" />
+              </div>
+            ) : (
+              <IconButton
+                color="info"
+                onClick={() => {
+                  dispatch(getContactos());
+                }}
+              >
+                <Replay />
+              </IconButton>
+            )}
+          </Tooltip>
+
+          <Tooltip title="Limpiar filtros">
+            <IconButton
+              color="info"
+              onClick={() => gridApi.current.setFilterModel(null)}
+            >
+              <FilterAltOffOutlined />
+            </IconButton>
+          </Tooltip>
+        </div>
 
         <div
           style={{
@@ -80,12 +123,14 @@ const List = ({ getInitial, titulo }) => {
               sortable: true,
             }}
             onGridReady={onGridReady}
-            rowData={rows}
+            rowData={isLoading ? null : rows}
+            suppressLoadingOverlay={true}
             suppressRowClickSelection={true}
             rowSelection={"multiple"}
             ref={gridApi}
             pagination={true}
             paginationPageSize={150}
+            enableCellTextSelection={true}
           >
             <AgGridColumn headerName="Datos">
               <AgGridColumn
@@ -104,6 +149,7 @@ const List = ({ getInitial, titulo }) => {
                 field="dni"
                 resizable={true}
                 minWidth={180}
+                cellRendererFramework={commonCellRenderer}
                 headerName="Documento de identidad"
               />
 
@@ -112,6 +158,7 @@ const List = ({ getInitial, titulo }) => {
                 resizable={true}
                 minWidth={160}
                 filter="agNumberColumnFilter"
+                cellRendererFramework={commonCellRenderer}
               />
 
               <AgGridColumn field="estatus" resizable={true} minWidth={160} />
@@ -123,6 +170,7 @@ const List = ({ getInitial, titulo }) => {
                 resizable={true}
                 minWidth={200}
                 headerName="Correo personal"
+                cellRendererFramework={commonCellRenderer}
               />
 
               <AgGridColumn
@@ -130,6 +178,7 @@ const List = ({ getInitial, titulo }) => {
                 resizable={true}
                 minWidth={200}
                 headerName="Correo de empresa"
+                cellRendererFramework={commonCellRenderer}
               />
 
               <AgGridColumn
@@ -137,6 +186,7 @@ const List = ({ getInitial, titulo }) => {
                 resizable={true}
                 minWidth={160}
                 headerName="Teléfono"
+                cellRendererFramework={commonCellRenderer}
               />
 
               <AgGridColumn
@@ -144,6 +194,7 @@ const List = ({ getInitial, titulo }) => {
                 resizable={true}
                 minWidth={160}
                 headerName="Móvil"
+                cellRendererFramework={commonCellRenderer}
               />
             </AgGridColumn>
 
@@ -153,11 +204,31 @@ const List = ({ getInitial, titulo }) => {
                 resizable={true}
                 minWidth={180}
                 headerName="LinkedIn"
+                cellRendererFramework={commonCellRenderer}
+                maxWidth={300}
               />
 
-              <AgGridColumn field="instagram" resizable={true} minWidth={180} />
-              <AgGridColumn field="facebook" resizable={true} minWidth={180} />
-              <AgGridColumn field="twitter" resizable={true} minWidth={180} />
+              <AgGridColumn
+                field="instagram"
+                resizable={true}
+                minWidth={180}
+                cellRendererFramework={commonCellRenderer}
+                maxWidth={300}
+              />
+              <AgGridColumn
+                field="facebook"
+                resizable={true}
+                minWidth={180}
+                cellRendererFramework={commonCellRenderer}
+                maxWidth={300}
+              />
+              <AgGridColumn
+                field="twitter"
+                resizable={true}
+                minWidth={180}
+                cellRendererFramework={commonCellRenderer}
+                maxWidth={300}
+              />
             </AgGridColumn>
           </AgGridReact>
         </div>

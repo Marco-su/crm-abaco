@@ -4,18 +4,21 @@ export const setSelected = (array) => (dispatch) => {
   dispatch({ type: types.SET_SELECTED, payload: array });
 };
 
-export const toggleUpdate = (updateType, upId) => (dispatch, getState) => {
-  const changes = {
-    updateType,
-    upId,
-    updateIsOpen: !getState().modals.updateIsOpen,
-  };
+export const toggleUpdate =
+  (updateType, upId, readOnlyEmpresa = false) =>
+  (dispatch, getState) => {
+    const changes = {
+      updateType,
+      upId,
+      readOnlyEmpresa,
+      updateIsOpen: !getState().modals.updateIsOpen,
+    };
 
-  dispatch({
-    type: types.TOGGLE_UPDATE,
-    payload: changes,
-  });
-};
+    dispatch({
+      type: types.TOGGLE_UPDATE,
+      payload: changes,
+    });
+  };
 
 export const toggleDelete =
   (deleteType, delId, deleteName) => (dispatch, getState) => {
@@ -45,7 +48,3 @@ export const toggleDeleteMany =
       payload: changes,
     });
   };
-
-export const closeModals = () => (dispatch) => {
-  dispatch({ type: types.CLOSE_MODALS });
-};

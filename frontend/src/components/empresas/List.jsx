@@ -4,15 +4,18 @@ import { AgGridReact, AgGridColumn } from "ag-grid-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { capitalizeFirstLetter as capitalize } from "../../helpers/firstLetterUppercase";
-import { Button } from "@mui/material";
+import { Button, Tooltip, IconButton } from "@mui/material";
+import { Spinner } from "reactstrap";
 import { toggleUpdate } from "../../store/actions/modals.action";
 import { gridEs } from "../../constants/gridEs";
+import { FilterAltOffOutlined, Replay } from "@mui/icons-material";
 
 const List = ({ getInitial, titulo }) => {
   // INITIALIZATION
   const dispatch = useDispatch();
   const location = useLocation();
   const gridApi = useRef();
+  const isLoading = useSelector((store) => store.global.tableLoading);
 
   // GETTING ROWS
   let listToFind = "";
@@ -31,7 +34,8 @@ const List = ({ getInitial, titulo }) => {
       break;
   }
 
-  const rows = useSelector((store) => store.empresas[listToFind]).map((el) => {
+  const list = useSelector((store) => store.empresas[listToFind]);
+  const rows = list.map((el) => {
     return {
       id: el.id,
       idCreacion: el.idCreacion,
@@ -54,7 +58,10 @@ const List = ({ getInitial, titulo }) => {
 
   // SETTING COLS
   const onGridReady = (params) => {
-    dispatch(getInitial());
+    if (list.length === 0) {
+      dispatch(getInitial());
+    }
+
     gridApi.current = params.api;
   };
 
@@ -63,13 +70,49 @@ const List = ({ getInitial, titulo }) => {
     return <Link to={`/empresas/${params.data.id}`}>{params.value}</Link>;
   };
 
-  // console.log(gridApi.current.getSelectedNodes());
+  const commonCellRenderer = (params) => {
+    if (params.value) {
+      return <span>{params.value}</span>;
+    } else {
+      return <span className="gray">Vacío</span>;
+    }
+  };
+
+  // gridApi.current.getSelectedNodes();
 
   // RENDER
   return (
     <div className="mainTableBox1">
       <div className="mainTableBox2">
-        <h1 className="tableTitle">{titulo}</h1>
+        <div className="titleTableBox">
+          <h1 className="tableTitle">{titulo}</h1>
+
+          <Tooltip title="Actualizar lista">
+            {isLoading ? (
+              <div className="spinnerBox">
+                <Spinner color="primary" />
+              </div>
+            ) : (
+              <IconButton
+                color="info"
+                onClick={() => {
+                  dispatch(getInitial());
+                }}
+              >
+                <Replay />
+              </IconButton>
+            )}
+          </Tooltip>
+
+          <Tooltip title="Limpiar filtros">
+            <IconButton
+              color="info"
+              onClick={() => gridApi.current.setFilterModel(null)}
+            >
+              <FilterAltOffOutlined />
+            </IconButton>
+          </Tooltip>
+        </div>
 
         <div
           style={{
@@ -77,7 +120,7 @@ const List = ({ getInitial, titulo }) => {
             width: "100%",
           }}
           id="myGrid"
-          class="ag-theme-balham"
+          className="ag-theme-balham"
         >
           <AgGridReact
             localeText={gridEs}
@@ -86,13 +129,15 @@ const List = ({ getInitial, titulo }) => {
               filter: true,
               sortable: true,
             }}
+            rowData={isLoading ? null : rows}
             onGridReady={onGridReady}
-            rowData={rows}
             suppressRowClickSelection={true}
+            suppressLoadingOverlay={true}
             rowSelection={"multiple"}
             ref={gridApi}
             pagination={true}
             paginationPageSize={150}
+            enableCellTextSelection={true}
           >
             <AgGridColumn headerName="Datos">
               <AgGridColumn
@@ -106,8 +151,18 @@ const List = ({ getInitial, titulo }) => {
                 headerName="Nombre de la empresa"
               />
 
-              <AgGridColumn field="sector" resizable={true} minWidth={160} />
-              <AgGridColumn field="nit" resizable={true} minWidth={160} />
+              <AgGridColumn
+                field="sector"
+                resizable={true}
+                minWidth={160}
+                cellRendererFramework={commonCellRenderer}
+              />
+              <AgGridColumn
+                field="nit"
+                resizable={true}
+                minWidth={160}
+                cellRendererFramework={commonCellRenderer}
+              />
             </AgGridColumn>
 
             <AgGridColumn headerName="Gestión">
@@ -115,7 +170,8 @@ const List = ({ getInitial, titulo }) => {
                 field="idCreacion"
                 resizable={true}
                 minWidth={160}
-                headerName="Id de creación"
+                headerName="ID de creación"
+                cellRendererFramework={commonCellRenderer}
               />
 
               <AgGridColumn
@@ -123,15 +179,22 @@ const List = ({ getInitial, titulo }) => {
                 resizable={true}
                 minWidth={160}
                 headerName="Etapa de gestión"
+                cellRendererFramework={commonCellRenderer}
               />
 
-              <AgGridColumn field="tipo" resizable={true} minWidth={160} />
+              <AgGridColumn
+                field="tipo"
+                resizable={true}
+                minWidth={160}
+                cellRendererFramework={commonCellRenderer}
+              />
 
               <AgGridColumn
                 field="tipoCreacion"
                 resizable={true}
                 minWidth={160}
                 headerName="Tipo de creación"
+                cellRendererFramework={commonCellRenderer}
               />
             </AgGridColumn>
 
@@ -142,6 +205,7 @@ const List = ({ getInitial, titulo }) => {
                 minWidth={200}
                 headerName="Ingresos mínimos"
                 filter="agNumberColumnFilter"
+                cellRendererFramework={commonCellRenderer}
               />
 
               <AgGridColumn
@@ -150,6 +214,7 @@ const List = ({ getInitial, titulo }) => {
                 minWidth={200}
                 headerName="Ingresos máximos"
                 filter="agNumberColumnFilter"
+                cellRendererFramework={commonCellRenderer}
               />
             </AgGridColumn>
           </AgGridReact>
@@ -157,7 +222,6 @@ const List = ({ getInitial, titulo }) => {
 
         <div className="tablefooterBtn">
           <Button
-            className="ms-3"
             variant="contained"
             onClick={() => dispatch(toggleUpdate("empresaCreate", null))}
           >

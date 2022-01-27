@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App.jsx";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Provider } from "react-redux";
+import generateStore from "./store";
 import { esES } from "@mui/material/locale";
 import { esES as esTable } from "@mui/x-data-grid";
 import { blue, green, grey, orange, red } from "@mui/material/colors";
@@ -38,7 +40,9 @@ const theme = createTheme(
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <Provider store={generateStore()}>
+        <App />
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -54,10 +54,10 @@ const DetalleEmpresa = () => {
         <div>
           <div className="contactoHistBox">
             <DatosEmpresa />
-            <Historial />
           </div>
 
           <RelacionesEmpresas />
+          <Historial />
         </div>
       ) : null}
 

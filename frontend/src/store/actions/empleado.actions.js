@@ -42,8 +42,7 @@ const login = (data, navigate, dispatch) => {
     data,
   })
     .then((res) => {
-      console.log(res);
-      if (res.data.token) {
+      if (res.data.success) {
         localStorage.setItem("token", res.data.token);
 
         dispatch({
@@ -51,13 +50,24 @@ const login = (data, navigate, dispatch) => {
           payload: true,
         });
 
+        dispatch({
+          type: types.SET_ERROR_LOGIN,
+          payload: "",
+        });
+
         navigate("/empleados");
       } else {
-        console.log(res.data);
+        dispatch({
+          type: types.SET_ERROR_LOGIN,
+          payload: res.data.message,
+        });
       }
     })
     .catch((err) => {
-      console.log(`Error en login:`, err);
+      dispatch({
+        type: types.SET_ERROR_LOGIN,
+        payload: "Error en login",
+      });
     });
 };
 

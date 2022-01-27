@@ -1,5 +1,6 @@
 import axios from "axios";
 import { apiBase } from "../../constants/baseUrls";
+import actions from "../utils/actionNames";
 import types from "../utils/actionNames";
 
 axios.interceptors.request.use(function (config) {
@@ -10,6 +11,11 @@ axios.interceptors.request.use(function (config) {
 });
 
 export const get = (type, urlName, dispatch) => {
+  dispatch({
+    type: types.SET_TABLE_LOADING,
+    payload: true,
+  });
+
   axios({
     url: `${apiBase}/${urlName}`,
   })
@@ -21,6 +27,12 @@ export const get = (type, urlName, dispatch) => {
     })
     .catch((err) => {
       console.log(`Error al traer ${urlName}:`, err);
+    })
+    .finally(() => {
+      dispatch({
+        type: types.SET_TABLE_LOADING,
+        payload: false,
+      });
     });
 };
 

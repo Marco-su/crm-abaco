@@ -1,5 +1,6 @@
 const emptyModel = {
   contacto: {
+    id: "",
     nombre: "",
     apellido: "",
     cargo: "",
@@ -9,6 +10,7 @@ const emptyModel = {
   },
 
   empleado: {
+    id: "",
     nombre: "",
     apellido: "",
     cargo: "",
@@ -19,6 +21,7 @@ const emptyModel = {
   },
 
   producto: {
+    id: "",
     nombre: "",
     codigo: "",
     precio: "",
@@ -29,17 +32,23 @@ const emptyModel = {
   },
 
   empresa: {
+    id: "",
     nombre: "",
     vertical: "",
     tipo: "",
     etapa: "",
     contactos: [],
     oportunidades: [],
+    correos: [],
+    telefonos: [],
+    webs: [],
   },
 };
 
 export const globalInitial = {
   isAuth: localStorage.getItem("token") ? true : false,
+  isMenuOpen: true,
+  tableLoading: true,
   detailViewType: "amplia",
   actualMasiveStep: 0,
 };
@@ -52,6 +61,7 @@ export const modalsInitial = {
   deleteIsOpen: false,
   deleteName: "",
   deleteManyIsOpen: false,
+  readOnlyEmpresa: false,
   arrayIds: [],
 };
 
@@ -62,6 +72,7 @@ export const contactoInitial = {
 
 export const empleadoInitial = {
   lista: [],
+  errorLogin: "",
   empleado: emptyModel.empleado,
 };
 

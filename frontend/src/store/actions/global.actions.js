@@ -13,3 +13,10 @@ export const setActualStep = (step) => (dispatch) => {
     payload: step,
   });
 };
+
+export const toggleMenu = () => (dispatch, getState) => {
+  dispatch({
+    type: types.SET_MENU_STATE,
+    payload: !getState().global.isMenuOpen,
+  });
+};

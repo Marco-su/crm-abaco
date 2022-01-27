@@ -200,7 +200,7 @@ const DetailAccordion = () => {
       "nombre",
       "propiedad",
       "vertical",
-      "ingresos_anuales",
+      "ingresosMinimos",
       "representante",
       "nit",
       "empleados",

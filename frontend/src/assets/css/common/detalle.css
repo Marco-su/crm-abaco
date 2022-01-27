@@ -21,6 +21,21 @@
   align-self: flex-start;
 }
 
+.detailView .titleBox {
+  display: flex;
+  align-items: center;
+}
+
+.detailView .box .contactList h2 {
+  font-size: 15px;
+}
+
+.detailView .emptyButtonBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
 /* CONTACT */
 .detailView .box .contactList {
   display: -webkit-box;
@@ -30,10 +45,6 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-}
-
-.detailView .box .contactList h2 {
-  font-size: 15px;
 }
 
 .detailView .box .contactList button {
@@ -114,38 +125,60 @@
   flex-grow: 10;
 }
 
-/* DETAILS WITHOUT CONTACT */
-.detailView .detailsContent > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  padding: 0.7rem;
-  border-radius: var(--border-radius);
-  -webkit-transition: all var(--transition-time) ease;
-  -o-transition: all var(--transition-time) ease;
-  transition: all var(--transition-time) ease;
+/* DATOS */
+.detailView .detailsBox table {
+  width: 100%;
 }
 
-.detailView .detailsContent p {
-  margin-bottom: 0;
+.detailView .detailsBox table tr {
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--border-gray);
 }
 
-.detailView .detailsContent p:first-child {
-  margin-right: 2rem;
+.detailView .detailsBox table tr:nth-child(odd) {
+  background-color: var(--table-gray);
 }
 
-.detailView .detailsContent p:last-child {
-  text-align: end;
+.detailView .detailsBox table tr:hover {
+  background-color: var(--hover-gray);
 }
 
-.detailView .contactoHistBox .productDescBox {
-  display: inline-block;
+.detailView .detailsBox table tr th {
+  color: var(--main-dark);
+}
+
+.detailView .detailsBox table tr td,
+.detailView .detailsBox table tr th {
+  padding: 0.1rem 0.3rem;
+}
+
+.detailView .detailsBox table tr td:last-child {
+  padding-right: 15px;
+}
+.detailView .detailsBox table tr th:first-child {
+  padding-left: 15px;
+}
+
+.detailView .detailsBox table tr:last-child {
+  border-bottom: none;
+}
+
+.detailView .detailsBox .noteBox {
+  padding: 15px;
+  padding-bottom: 0;
+}
+
+.detailView .detailsBox .noteBox p:not(.gray) {
+  margin: 0;
+  font-size: 15px;
+}
+
+.detailView .box.tableBox section h2 {
+  padding: 0 15px;
+}
+
+.detailView .box.tableBox {
+  padding: 15px 0;
 }
 
 /* DETAIL ACCORDION */

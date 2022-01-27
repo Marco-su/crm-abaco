@@ -12,6 +12,12 @@ const globalReducer = (state = globalInitial, action) => {
     case types.SET_ACTUAL_STEP:
       return { ...state, actualMasiveStep: action.payload };
 
+    case types.SET_TABLE_LOADING:
+      return { ...state, tableLoading: action.payload };
+
+    case types.SET_MENU_STATE:
+      return { ...state, isMenuOpen: action.payload };
+
     default:
       return state;
   }

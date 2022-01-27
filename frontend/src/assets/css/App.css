@@ -30,6 +30,9 @@
 
   --background-blue: #e3f2fd;
   --border-blue: rgba(156, 210, 255, 0.55);
+  --border-gray: #d9dcde;
+  --hover-gray: #ecf0f1;
+  --table-gray: #f1f5f7;
 
   --red-200: #ff4c4c;
   --red-300: #ff3232;
@@ -108,6 +111,10 @@ main.fullWindow {
   height: 100vh;
 }
 
+main.fullWidth {
+  width: 100%;
+}
+
 .viewContainer {
   background-color: var(--background-blue);
   padding-top: 15px;
@@ -119,9 +126,11 @@ main.fullWindow {
 }
 
 .box section {
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--text-light);
-  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* BUTTONS */

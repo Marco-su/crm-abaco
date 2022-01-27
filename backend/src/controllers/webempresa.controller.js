@@ -13,7 +13,7 @@ webEmpresaController.createNewWeb = (req, res) => {
     })
     .catch((error) => {
       res.json({
-        success: true,
+        success: false,
         message: "Error al crear empresa",
         data: error,
       });

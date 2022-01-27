@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { TextField, MenuItem } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   updateContacto,
   createContacto,
@@ -14,12 +14,15 @@ const ContactoUpdateForm = ({ children }) => {
   // STATES
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [realValue, setRealValue] = useState(null);
+  const [realValue, setRealValue] = useState({ id: "", nombre: "" });
 
   const updateType = useSelector((store) => store.modals.updateType);
   const contactos = useSelector((store) => store.contactos.lista);
   const contactoId = useSelector((store) => store.modals.id);
+  const readOnlyEmpresa = useSelector((store) => store.modals.readOnlyEmpresa);
+  const empresa = useSelector((store) => store.empresas.empresa);
 
   const {
     register,
@@ -45,8 +48,27 @@ const ContactoUpdateForm = ({ children }) => {
           nombre: item.empresa.nombre,
         });
       }
+    } else if (updateType === "contactoCreate" && readOnlyEmpresa) {
+      setRealValue({
+        id: empresa.id,
+        nombre: empresa.nombre,
+      });
+    } else if (!readOnlyEmpresa) {
+      setRealValue({
+        id: "",
+        nombre: "",
+      });
     }
-  }, [item, contactoId, setValue, updateType]);
+  }, [
+    item,
+    contactoId,
+    setValue,
+    updateType,
+    location,
+    readOnlyEmpresa,
+    empresa.id,
+    empresa.nombre,
+  ]);
 
   // HANDLES
   const onSubmit = (data) => {
@@ -115,9 +137,9 @@ const ContactoUpdateForm = ({ children }) => {
   });
 
   const cargoRules = register("cargo", {
-    required: {
-      value: true,
-      message: "El contacto debe tener un cargo asignado.",
+    maxLength: {
+      value: 120,
+      message: "Cargo muy largo (máximo 120 caracteres).",
     },
   });
 
@@ -125,18 +147,6 @@ const ContactoUpdateForm = ({ children }) => {
     maxLength: {
       value: 255,
       message: "Documento de identidad muy largo (máximo 255 caracteres).",
-    },
-  });
-
-  const webRules = register("web", {
-    maxLength: {
-      value: 1000,
-      message: "URL muy larga (máximo 1000 caracteres).",
-    },
-    pattern: {
-      value:
-        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
-      message: "URL no válida. Ejemplo válido: http://dominio.com",
     },
   });
 
@@ -196,26 +206,12 @@ const ContactoUpdateForm = ({ children }) => {
 
         <TextField
           className="inputText"
-          label="Sitio Web"
-          size="small"
-          error={errors.web ? true : false}
-          helperText={errors.web ? errors.web.message : ""}
-          {...webRules}
-        />
-
-        <TextField
-          className="inputText"
           label="Cargo"
           size="small"
-          select
-          defaultValue="Una"
           error={errors.cargo ? true : false}
           helperText={errors.cargo ? errors.cargo.message : ""}
           {...cargoRules}
-        >
-          <MenuItem value="Una">Una opción</MenuItem>
-          <MenuItem value="Otra">Otra opcion</MenuItem>
-        </TextField>
+        />
 
         <TextField
           className="inputText"

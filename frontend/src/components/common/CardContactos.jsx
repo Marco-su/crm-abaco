@@ -1,13 +1,24 @@
 import "../../assets/css/common/cardContactos.css";
+import { Button } from "@mui/material";
+import { toggleUpdate } from "../../store/actions/modals.action";
+import { useDispatch } from "react-redux";
 
 const CardContactos = ({ lista }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="box">
       <section>
-        <h2>Contactos ({lista.length})</h2>
+        <h2>Contactos registrados ({lista.length})</h2>
+        <Button
+          variant="outlined"
+          onClick={() => dispatch(toggleUpdate("contactoCreate", null, true))}
+        >
+          Crear nuevo
+        </Button>
       </section>
 
-      <div className="contactoCardGrid">
+      <div className={lista.length > 0 ? "contactoCardGrid" : ""}>
         {lista.length > 0 ? (
           <div className="contactoCard">
             {lista.map((el) => (
@@ -33,7 +44,13 @@ const CardContactos = ({ lista }) => {
             ))}
           </div>
         ) : (
-          <div className="text-center">Crear un nuevo contacto</div>
+          <div className="emptyButtonBox">
+            <Button
+              onClick={() => dispatch(toggleUpdate("contactoCreate", null))}
+            >
+              Crear un nuevo contacto
+            </Button>
+          </div>
         )}
       </div>
     </div>

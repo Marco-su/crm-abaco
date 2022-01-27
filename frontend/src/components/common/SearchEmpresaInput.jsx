@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import {
   TextField,
   FormControl,
@@ -17,6 +18,7 @@ const SearchEmpresaImput = ({
 }) => {
   const [options, setOptions] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const readOnlyEmpresa = useSelector((store) => store.modals.readOnlyEmpresa);
 
   const debouncedSearchTerm = UseDebounce(inputValue, 650);
 
@@ -47,24 +49,34 @@ const SearchEmpresaImput = ({
 
   return (
     <FormControl>
-      <Autocomplete
-        className="inputText"
-        value={realValue}
-        isOptionEqualToValue={(option, value) => option.id === value.id}
-        onChange={(e, newValue) => {
-          setRealValue(newValue);
-          clearErrors("empresa");
-        }}
-        inputValue={inputValue}
-        onInputChange={(e, newInputValue) => {
-          setInputValue(newInputValue);
-        }}
-        options={options}
-        getOptionLabel={(option) => (option ? option.nombre : "")}
-        renderInput={(params) => (
-          <TextField {...params} label="Empresa" size="small" />
-        )}
-      />
+      {readOnlyEmpresa ? (
+        <TextField
+          className="inputText"
+          label="Empresa"
+          size="small"
+          value={realValue.nombre}
+          InputProps={{ readOnly: true }}
+        />
+      ) : (
+        <Autocomplete
+          className="inputText"
+          value={realValue}
+          isOptionEqualToValue={(option, value) => option.id === value.id}
+          onChange={(e, newValue) => {
+            setRealValue(newValue);
+            clearErrors("empresa");
+          }}
+          inputValue={inputValue}
+          onInputChange={(e, newInputValue) => {
+            setInputValue(newInputValue);
+          }}
+          options={options}
+          getOptionLabel={(option) => (option ? option.nombre : "")}
+          renderInput={(params) => (
+            <TextField {...params} label="Empresa" size="small" />
+          )}
+        />
+      )}
 
       {error ? <FormHelperText error>{error.message}</FormHelperText> : null}
     </FormControl>

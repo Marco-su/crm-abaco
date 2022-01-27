@@ -12,6 +12,10 @@
   overflow: auto;
 }
 
+#sidebar.hide {
+  width: 0;
+}
+
 #sidebar .menuSection {
   margin: 1rem;
   border-bottom: 1px solid var(--text-light);

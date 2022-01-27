@@ -86,6 +86,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: "No contactado",
       },
+      imgStorageName: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       sequelize,

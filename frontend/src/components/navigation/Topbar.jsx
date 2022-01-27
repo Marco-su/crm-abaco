@@ -1,24 +1,19 @@
 import "../../assets/css/navigation/topbar.css";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { closeModals } from "../../store/actions/modals.action";
+import { toggleMenu } from "../../store/actions/global.actions";
 import {
   NotificationsNoneOutlined,
   SettingsOutlined,
   Person,
+  Menu,
 } from "@mui/icons-material";
 
 const Topbar = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
   const isAuth = useSelector((store) => store.global.isAuth);
 
-  useEffect(() => {
-    dispatch(closeModals());
-  }, [dispatch, location.pathname]);
-
+  // RENDER
   if (!isAuth) {
     return <></>;
   }
@@ -26,6 +21,15 @@ const Topbar = () => {
   return (
     <div id="topbar">
       <div className="topLeft">
+        <button
+          className="iconBtn notifications"
+          onClick={() => {
+            dispatch(toggleMenu());
+          }}
+        >
+          <Menu />
+        </button>
+
         <p>Abaco CRM</p>
       </div>
 

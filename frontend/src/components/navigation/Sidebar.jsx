@@ -28,20 +28,22 @@ import {
 
 const Sidebar = () => {
   const isAuth = useSelector((store) => store.global.isAuth);
+  const isMenuOpen = useSelector((store) => store.global.isMenuOpen);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  if (!isAuth) {
-    return <></>;
-  }
 
   const handleClick = () => {
     dispatch(cerrarSesion(navigate));
   };
 
+  // RENDER
+  if (!isAuth) {
+    return <></>;
+  }
+
   return (
-    <div id="sidebar">
+    <div id="sidebar" className={isMenuOpen ? "" : "hide"}>
       <div className="menuSection">
         <h3>Principal</h3>
         <ul>

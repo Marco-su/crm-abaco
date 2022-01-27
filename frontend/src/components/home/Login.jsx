@@ -1,6 +1,6 @@
 import "../../assets/css/home/login.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { TextField, FormHelperText, Button } from "@mui/material";
 import {
@@ -15,17 +15,18 @@ import { useForm } from "react-hook-form";
 import { iniciarSesion } from "../../store/actions/empleado.actions";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   // STATES
   const [isPaswordVisible, setIsPaswordVisible] = useState(false);
+  const errorLogin = useSelector((store) => store.empleados.errorLogin);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   // HANDLES
   const onSubmit = (data) => {
@@ -120,6 +121,10 @@ const Login = () => {
 
             {errors.password ? (
               <FormHelperText error>{errors.password.message}</FormHelperText>
+            ) : null}
+
+            {errorLogin ? (
+              <FormHelperText error>{errorLogin}</FormHelperText>
             ) : null}
           </div>
 
