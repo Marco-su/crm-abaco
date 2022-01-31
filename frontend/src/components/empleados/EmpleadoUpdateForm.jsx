@@ -226,110 +226,104 @@ const EmpleadoUpdateForm = ({ children }) => {
   // RENDER
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-      <div className="upFormInputsBox">
-        <TextField
-          className="inputText"
-          label="Nombre"
-          size="small"
-          error={errors.nombre ? true : false}
-          helperText={errors.nombre ? errors.nombre.message : ""}
-          {...nombreRules}
-        />
-
-        <TextField
-          className="inputText"
-          label="Apellido"
-          size="small"
-          error={errors.apellido ? true : false}
-          helperText={errors.apellido ? errors.apellido.message : ""}
-          {...apellidoRules}
-        />
-
-        <TextField
-          className="inputText"
-          label="DNI"
-          size="small"
-          error={errors.dni ? true : false}
-          helperText={errors.dni ? errors.dni.message : ""}
-          {...dniRules}
-        />
-
-        <TextField
-          className="inputText"
-          label="Cargo"
-          size="small"
-          select
-          defaultValue="Una"
-          error={errors.cargo ? true : false}
-          helperText={errors.cargo ? errors.cargo.message : ""}
-          {...cargoRules}
-        >
-          <MenuItem value="Una">Una opción</MenuItem>
-          <MenuItem value="Otra">Otra opcion</MenuItem>
-        </TextField>
-
-        <TextField
-          className="inputText"
-          label="Empleados a cargo"
-          type="number"
-          size="small"
-          error={errors.empleados ? true : false}
-          helperText={errors.empleados ? errors.empleados.message : ""}
-          {...empleadosRules}
-        />
-
-        <PhoneInput
-          label="Teléfono"
-          tipo="telefono"
-          errors={errors}
-          control={control}
-          telf={telf || ""}
-          register={register}
-        />
-
-        <PhoneInput
-          label="Móvil"
-          tipo="movil"
-          errors={errors}
-          control={control}
-          telf={movil || ""}
-          register={register}
-        />
-
-        <TextField
-          className="inputText"
-          label="Correo electrónico"
-          size="small"
-          error={errors.correo ? true : false}
-          helperText={errors.correo ? errors.correo.message : ""}
-          {...correoRules}
-        />
-
-        {isCreate ? (
+      <div className="inputs-main-box">
+        <div className="inputs-box">
           <TextField
-            className="inputText"
-            label="Contraseña"
+            label="Nombre"
             size="small"
-            error={errors.password ? true : false}
-            helperText={errors.password ? errors.password.message : ""}
-            type="password"
-            {...passwordRules}
+            error={errors.nombre ? true : false}
+            helperText={errors.nombre ? errors.nombre.message : ""}
+            {...nombreRules}
           />
-        ) : null}
 
-        {isCreate ? (
           <TextField
-            className="inputText"
-            label="Contraseña de correo o de aplicaciones."
+            label="Apellido"
             size="small"
-            error={errors.emailPassword ? true : false}
-            helperText={
-              errors.emailPassword ? errors.emailPassword.message : ""
-            }
-            type="password"
-            {...emailPassRules}
+            error={errors.apellido ? true : false}
+            helperText={errors.apellido ? errors.apellido.message : ""}
+            {...apellidoRules}
           />
-        ) : null}
+
+          <TextField
+            label="DNI"
+            size="small"
+            error={errors.dni ? true : false}
+            helperText={errors.dni ? errors.dni.message : ""}
+            {...dniRules}
+          />
+
+          <TextField
+            label="Cargo"
+            size="small"
+            select
+            defaultValue="Una"
+            error={errors.cargo ? true : false}
+            helperText={errors.cargo ? errors.cargo.message : ""}
+            {...cargoRules}
+          >
+            <MenuItem value="Una">Una opción</MenuItem>
+            <MenuItem value="Otra">Otra opcion</MenuItem>
+          </TextField>
+
+          <TextField
+            label="Empleados a cargo"
+            type="number"
+            size="small"
+            error={errors.empleados ? true : false}
+            helperText={errors.empleados ? errors.empleados.message : ""}
+            {...empleadosRules}
+          />
+
+          <PhoneInput
+            label="Teléfono"
+            tipo="telefono"
+            errors={errors}
+            control={control}
+            telf={telf || ""}
+            register={register}
+          />
+
+          <PhoneInput
+            label="Móvil"
+            tipo="movil"
+            errors={errors}
+            control={control}
+            telf={movil || ""}
+            register={register}
+          />
+
+          <TextField
+            label="Correo electrónico"
+            size="small"
+            error={errors.correo ? true : false}
+            helperText={errors.correo ? errors.correo.message : ""}
+            {...correoRules}
+          />
+
+          {isCreate ? (
+            <TextField
+              label="Contraseña"
+              size="small"
+              error={errors.password ? true : false}
+              helperText={errors.password ? errors.password.message : ""}
+              type="password"
+              {...passwordRules}
+            />
+          ) : null}
+
+          {isCreate ? (
+            <TextField
+              label="Contraseña de correo o de aplicaciones."
+              size="small"
+              error={errors.emailPassword ? true : false}
+              helperText={
+                errors.emailPassword ? errors.emailPassword.message : ""
+              }
+              type="password"
+              {...emailPassRules}
+            />
+          ) : null}
+        </div>
       </div>
 
       {children}

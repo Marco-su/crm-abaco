@@ -35,7 +35,7 @@ const List = () => {
     if (params.value) {
       return <span>{params.value}</span>;
     } else {
-      return <span className="gray">Vacío</span>;
+      return <span className="text-gray">Vacío</span>;
     }
   };
 
@@ -76,6 +76,16 @@ const List = () => {
   // RENDER
   return (
     <div className="mainTableBox1">
+      <div className="table-btn-box">
+        <Button
+          className="ms-3 pill-button"
+          variant="contained"
+          onClick={() => dispatch(toggleUpdate("contactoCreate", null))}
+        >
+          Crear nuevo
+        </Button>
+      </div>
+
       <div className="mainTableBox2">
         <div className="titleTableBox">
           <h1 className="tableTitle">Contactos</h1>
@@ -231,16 +241,6 @@ const List = () => {
               />
             </AgGridColumn>
           </AgGridReact>
-        </div>
-
-        <div className="tablefooterBtn">
-          <Button
-            className="ms-3"
-            variant="contained"
-            onClick={() => dispatch(toggleUpdate("contactoCreate", null))}
-          >
-            Crear nuevo
-          </Button>
         </div>
       </div>
     </div>

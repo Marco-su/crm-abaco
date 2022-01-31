@@ -1,5 +1,3 @@
-import "../../assets/css/common/tables.css";
-
 // HOOKS AND FUNCTIONS
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

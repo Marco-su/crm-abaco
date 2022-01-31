@@ -136,7 +136,6 @@ const EditorInfo = ({
     <>
       <div className="upFormInputsBox">
         <TextField
-          className="inputText"
           label="Nombre de la empresa"
           size="small"
           error={errors.nombre ? true : false}
@@ -145,7 +144,6 @@ const EditorInfo = ({
         />
 
         <TextField
-          className="inputText"
           label="Sector"
           size="small"
           error={errors.vertical ? true : false}
@@ -183,7 +181,6 @@ const EditorInfo = ({
         </FormControl>
 
         <TextField
-          className="inputText"
           label="Representante legal"
           type="text"
           size="small"
@@ -193,7 +190,6 @@ const EditorInfo = ({
         />
 
         <TextField
-          className="inputText"
           label="Número de Identificación Tributaria (NIT)"
           type="text"
           size="small"
@@ -215,7 +211,6 @@ const EditorInfo = ({
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    className="inputText"
                     label="Correo electrónico"
                     size="small"
                     error={
@@ -282,7 +277,6 @@ const EditorInfo = ({
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    className="inputText"
                     label="Número telefónico"
                     size="small"
                     error={
@@ -368,7 +362,6 @@ const EditorInfo = ({
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    className="inputText"
                     label="Ingresos anuales"
                     size="small"
                     type="number"
@@ -392,7 +385,6 @@ const EditorInfo = ({
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    className="inputText"
                     label="Ingresos anuales (límite inferior)"
                     size="small"
                     type="number"
@@ -412,7 +404,6 @@ const EditorInfo = ({
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    className="inputText"
                     label="Ingresos anuales (límite superior)"
                     size="small"
                     type="number"
@@ -433,7 +424,6 @@ const EditorInfo = ({
             render={({ field }) => (
               <TextField
                 {...field}
-                className="inputText"
                 label="Fuente de información (ingresos)"
                 size="small"
                 error={errors.ingresosFuente ? true : false}
@@ -478,7 +468,6 @@ const EditorInfo = ({
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    className="inputText"
                     label="Número de empleados"
                     size="small"
                     type="number"
@@ -500,7 +489,6 @@ const EditorInfo = ({
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    className="inputText"
                     label="Empleados (límite inferior)"
                     size="small"
                     type="number"
@@ -520,7 +508,6 @@ const EditorInfo = ({
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    className="inputText"
                     label="Empleados (límite superior)"
                     size="small"
                     type="number"
@@ -541,7 +528,6 @@ const EditorInfo = ({
             render={({ field }) => (
               <TextField
                 {...field}
-                className="inputText"
                 label="Fuente de información (cantidad de empleados)"
                 size="small"
                 error={errors.empleadosFuente ? true : false}

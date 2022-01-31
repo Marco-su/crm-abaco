@@ -64,7 +64,6 @@ const EditorInfo = ({ register, errors, control }) => {
   return (
     <div className="upFormInputsBox">
       <TextField
-        className="inputText"
         label="Nombre"
         size="small"
         name="nombre"
@@ -83,7 +82,6 @@ const EditorInfo = ({ register, errors, control }) => {
             select
             size="small"
             label="Categoría"
-            className="inputText"
             name="categoria"
             error={errors.categoria ? true : false}
             helperText={errors.categoria ? errors.categoria.message : ""}
@@ -99,7 +97,6 @@ const EditorInfo = ({ register, errors, control }) => {
       />
 
       <TextField
-        className="inputText"
         label="Código de producto"
         size="small"
         name="codigo"
@@ -109,7 +106,6 @@ const EditorInfo = ({ register, errors, control }) => {
       />
 
       <TextField
-        className="inputText"
         label="Precio"
         size="small"
         name="precio"
@@ -122,7 +118,6 @@ const EditorInfo = ({ register, errors, control }) => {
       />
 
       <TextField
-        className="inputText"
         label="Descripción"
         multiline
         maxRows={3}

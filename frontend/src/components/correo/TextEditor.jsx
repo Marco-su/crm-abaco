@@ -19,16 +19,16 @@ const TextEditor = ({ setEmailHtml }) => {
   };
 
   return (
-    <div className="editorBox">
+    <div className="editor-box">
       <Editor
         localization={{
           locale: "es",
           translations: es,
         }}
         editorState={editorState}
-        editorClassName="editorMain"
-        toolbarClassName="editorToolbar"
-        wrapperClassName="editorWrapper"
+        editorClassName="editor-main"
+        toolbarClassName="editor-toolbar"
+        wrapperClassName="editor-wrapper"
         onEditorStateChange={onEditorStateChange}
       />
     </div>

@@ -1,0 +1,118 @@
+@use "../utils/extends" as e;
+@use "../utils/variables" as v;
+
+// SCROLL BAR
+::-webkit-scrollbar {
+  width: 9px;
+  height: 10px;
+
+  &-thumb {
+    background: #b3afb3;
+    border-radius: 30px;
+
+    &:hover {
+      background: #bfbfbf;
+    }
+  }
+
+  &-track {
+    background: #e6e6e6;
+  }
+}
+
+// MAIN STYLES
+*:not(.editorMain span) {
+  font-family: "Roboto", sans-serif;
+  -webkit-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+}
+
+h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.main-container {
+  @extend %flex;
+}
+
+.main {
+  width: calc(100% - v.$sidebar-width);
+  position: relative;
+  padding: 1rem;
+  padding-top: 0;
+
+  &--full-window {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+}
+
+.view-container {
+  background-color: v.$background-blue;
+  padding-top: 15px;
+  padding-left: 15px;
+  overflow: hidden;
+  border-radius: v.$border-radius;
+  min-height: 100%;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: var(--main-blue);
+    -webkit-clip-path: polygon(40% 0, 100% 0, 100% 100%, 70% 100%);
+    clip-path: polygon(40% 0, 100% 0, 100% 100%, 70% 100%);
+  }
+}
+
+.text-gray {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: var(--text-gray);
+}
+
+// INPUTS
+.inputs-box {
+  @include e.grid(260px, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+  height: 40px !important;
+}
+
+// PROGRESS CIRCLE
+.progress-circle {
+  font-size: 0.75rem;
+
+  &--success {
+    color: #43a047;
+  }
+
+  &--primary {
+    color: #1976d2;
+  }
+
+  &--error {
+    color: #d32f2f;
+  }
+}
+
+// OTROS
+.MuiAutocomplete-inputRoot {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

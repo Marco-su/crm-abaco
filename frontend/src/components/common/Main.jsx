@@ -9,7 +9,15 @@ const Main = () => {
   const isMenuOpen = useSelector((store) => store.global.isMenuOpen);
 
   return (
-    <main className={!isAuth ? "fullWindow" : isMenuOpen ? "" : "fullWidth"}>
+    <main
+      className={
+        !isAuth
+          ? "main main--full-window"
+          : isMenuOpen
+          ? "main"
+          : "main main--full-width"
+      }
+    >
       <UpdateModal />
       <DeleteModal />
       <DeleteManyModal />

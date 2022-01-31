@@ -16,15 +16,17 @@ const DatosEmpleado = () => {
 
   return (
     <div className="box">
-      <section className="information">
-        <h1>
-          {useSelector((store) => store.empleados.empleado.nombre)}{" "}
-          {useSelector((store) => store.empleados.empleado.apellido)}
-        </h1>
-        <p className="gray">
-          {useSelector((store) => store.empleados.empleado.cargo)}
-        </p>
-      </section>
+      <div className="box__info-title">
+        <div className="title">
+          <h2>
+            {useSelector((store) => store.empleados.empleado.nombre)}{" "}
+            {useSelector((store) => store.empleados.empleado.apellido)}
+          </h2>
+          <p className="text-gray">
+            {useSelector((store) => store.empleados.empleado.cargo)}
+          </p>
+        </div>
+      </div>
 
       <div className="contactList">
         <button className="contactButton">
@@ -33,7 +35,7 @@ const DatosEmpleado = () => {
             <h2>Correo</h2>
           </div>
           <div>
-            <p className="gray">
+            <p className="text-gray">
               {useSelector((store) => store.empleados.empleado.correo)}
             </p>
           </div>
@@ -46,7 +48,7 @@ const DatosEmpleado = () => {
           </div>
           <div>
             {telf ? (
-              <p className="gray">
+              <p className="text-gray">
                 +{telf.codPais} {telf.numero}
               </p>
             ) : null}
@@ -60,7 +62,7 @@ const DatosEmpleado = () => {
           </div>
           <div>
             {movil ? (
-              <p className="gray">
+              <p className="text-gray">
                 +{movil.codPais} {movil.numero}
               </p>
             ) : null}

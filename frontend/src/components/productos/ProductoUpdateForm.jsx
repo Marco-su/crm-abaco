@@ -115,76 +115,75 @@ const ProductoUpdateForm = ({ children }) => {
   //RENDER
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-      <div className="upFormInputsBox">
-        <TextField
-          className="inputText"
-          label="Nombre"
-          size="small"
-          name="nombre"
-          error={errors.nombre ? true : false}
-          helperText={errors.nombre ? errors.nombre.message : ""}
-          {...nombreRules}
-        />
+      <div className="inputs-main-box">
+        <div className="inputs-box">
+          <TextField
+            label="Nombre"
+            size="small"
+            name="nombre"
+            error={errors.nombre ? true : false}
+            helperText={errors.nombre ? errors.nombre.message : ""}
+            {...nombreRules}
+          />
 
-        <Controller
-          control={control}
-          name="categoria"
-          defaultValue={item ? item.categoria : ""}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              select
-              size="small"
-              label="Categoría"
-              className="inputText"
-              name="categoria"
-              error={errors.categoria ? true : false}
-              helperText={errors.categoria ? errors.categoria.message : ""}
-            >
-              <MenuItem value="Desarrollo de software">
-                Desarrollo de software
-              </MenuItem>
-              <MenuItem value="Redes">Redes</MenuItem>
-              <MenuItem value="Mantenimiento">Mantenimiento</MenuItem>
-            </TextField>
-          )}
-          rules={categoriaRules}
-        />
+          <Controller
+            control={control}
+            name="categoria"
+            defaultValue={item ? item.categoria : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                select
+                size="small"
+                label="Categoría"
+                name="categoria"
+                error={errors.categoria ? true : false}
+                helperText={errors.categoria ? errors.categoria.message : ""}
+              >
+                <MenuItem value="Desarrollo de software">
+                  Desarrollo de software
+                </MenuItem>
+                <MenuItem value="Redes">Redes</MenuItem>
+                <MenuItem value="Mantenimiento">Mantenimiento</MenuItem>
+              </TextField>
+            )}
+            rules={categoriaRules}
+          />
 
-        <TextField
-          className="inputText"
-          label="Código de producto"
-          size="small"
-          name="codigo"
-          error={errors.codigo ? true : false}
-          helperText={errors.codigo ? errors.codigo.message : ""}
-          {...codigoRules}
-        />
+          <TextField
+            label="Código de producto"
+            size="small"
+            name="codigo"
+            error={errors.codigo ? true : false}
+            helperText={errors.codigo ? errors.codigo.message : ""}
+            {...codigoRules}
+          />
 
-        <TextField
-          className="inputText"
-          label="Precio"
-          size="small"
-          name="precio"
-          InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          }}
-          error={errors.precio ? true : false}
-          helperText={errors.precio ? errors.precio.message : ""}
-          {...precioRules}
-        />
+          <TextField
+            label="Precio"
+            size="small"
+            name="precio"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
+            }}
+            error={errors.precio ? true : false}
+            helperText={errors.precio ? errors.precio.message : ""}
+            {...precioRules}
+          />
 
-        <TextField
-          className="inputText"
-          label="Descripción"
-          multiline
-          maxRows={5}
-          size="small"
-          name="descripcion"
-          error={errors.descripcion ? true : false}
-          helperText={errors.descripcion ? errors.descripcion.message : ""}
-          {...descripcionRules}
-        />
+          <TextField
+            label="Descripción"
+            multiline
+            maxRows={5}
+            size="small"
+            name="descripcion"
+            error={errors.descripcion ? true : false}
+            helperText={errors.descripcion ? errors.descripcion.message : ""}
+            {...descripcionRules}
+          />
+        </div>
       </div>
 
       {children}

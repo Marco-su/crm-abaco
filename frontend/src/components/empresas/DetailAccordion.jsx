@@ -528,7 +528,7 @@ const DetailAccordion = () => {
             Perfil Completo en <ProgressCircle value={porcentajes.total} />
           </div>
           <Button
-            className="me-2 text-white"
+            className="me-2 text-white pill-button"
             type="button"
             variant="contained"
             color="warning"
@@ -539,7 +539,7 @@ const DetailAccordion = () => {
             Activar prospecto
           </Button>
 
-          <Button type="submit" variant="contained">
+          <Button className="pill-button" type="submit" variant="contained">
             Guardar cambios
           </Button>
         </div>

@@ -74,7 +74,7 @@ const List = ({ getInitial, titulo }) => {
     if (params.value) {
       return <span>{params.value}</span>;
     } else {
-      return <span className="gray">Vacío</span>;
+      return <span className="text-gray">Vacío</span>;
     }
   };
 
@@ -83,6 +83,16 @@ const List = ({ getInitial, titulo }) => {
   // RENDER
   return (
     <div className="mainTableBox1">
+      <div className="table-btn-box">
+        <Button
+          className="pill-button"
+          variant="contained"
+          onClick={() => dispatch(toggleUpdate("empresaCreate", null))}
+        >
+          Crear nuevo
+        </Button>
+      </div>
+
       <div className="mainTableBox2">
         <div className="titleTableBox">
           <h1 className="tableTitle">{titulo}</h1>
@@ -218,15 +228,6 @@ const List = ({ getInitial, titulo }) => {
               />
             </AgGridColumn>
           </AgGridReact>
-        </div>
-
-        <div className="tablefooterBtn">
-          <Button
-            variant="contained"
-            onClick={() => dispatch(toggleUpdate("empresaCreate", null))}
-          >
-            Crear nuevo
-          </Button>
         </div>
       </div>
     </div>

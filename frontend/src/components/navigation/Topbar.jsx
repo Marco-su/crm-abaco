@@ -1,4 +1,3 @@
-import "../../assets/css/navigation/topbar.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { toggleMenu } from "../../store/actions/global.actions";
@@ -19,10 +18,10 @@ const Topbar = () => {
   }
 
   return (
-    <div id="topbar">
-      <div className="topLeft">
+    <div className="topbar">
+      <div className="topbar__left">
         <button
-          className="iconBtn notifications"
+          className="icon-btn icon-btn--purple"
           onClick={() => {
             dispatch(toggleMenu());
           }}
@@ -33,20 +32,18 @@ const Topbar = () => {
         <p>Abaco CRM</p>
       </div>
 
-      <div className="topRight">
-        <div className="iconBox">
-          <button className="iconBtn notifications">
-            <NotificationsNoneOutlined />
-          </button>
+      <div className="topbar__right">
+        <button className="icon-btn icon-btn--purple">
+          <NotificationsNoneOutlined />
+        </button>
 
-          <button className="iconBtn settings">
-            <SettingsOutlined />
-          </button>
+        <button className="icon-btn icon-btn--orange">
+          <SettingsOutlined />
+        </button>
 
-          <button className="iconBtn profile">
-            <Person />
-          </button>
-        </div>
+        <button className="icon-btn icon-btn--blue">
+          <Person />
+        </button>
       </div>
     </div>
   );

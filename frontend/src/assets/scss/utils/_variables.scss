@@ -1,0 +1,34 @@
+// COLORS
+$main-dark: #2b2f36;
+$main-purple: #5e35b1;
+$main-blue: #0260ad;
+$main-orange: #ff8400;
+$main-gray: #4c4c4c;
+$main-red: #d32f2f;
+
+$glass-white: rgba(#fff, 0.96);
+$glass-purple-light: rgba($main-purple, 0.12);
+$glass-purple-dark: rgba($main-purple, 0.3);
+$glass-blue-light: rgba($main-blue, 0.1);
+$glass-blue-dark: rgba($main-blue, 0.25);
+$glass-orange-light: rgba($main-orange, 0.15);
+$glass-orange-dark: rgba($main-orange, 0.3);
+$glass-gray-light: rgba($main-gray, 0.15);
+$glass-gray-dark: rgba($main-gray, 0.3);
+
+$table-main-gray: #f1f5f7;
+$table-border-gray: #d9dcde;
+$table-hover-gray: #ecf0f1;
+
+$text-white: #e2e6ec;
+$text-gray: #767c8b;
+
+$background-blue: #e3f2fd;
+$border-blue: rgba(156, 210, 255, 0.55);
+
+// PROPERTIES
+$border-radius: 0.75rem;
+
+$transition-time: 0.3s;
+$sidebar-width: 245px;
+$topbar-height: 60px;

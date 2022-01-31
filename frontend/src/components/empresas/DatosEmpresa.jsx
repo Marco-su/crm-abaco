@@ -13,7 +13,7 @@ const DatosEmpresa = () => {
         <th>{titulo}</th>
         <td>
           {(empresa[llave] && capitalize(empresa[llave])) || (
-            <span className="gray">No especificado</span>
+            <span className="text-gray">No especificado</span>
           )}
         </td>
       </tr>
@@ -32,7 +32,7 @@ const DatosEmpresa = () => {
     } else {
       return (
         <td>
-          <span className="gray">No especificado</span>
+          <span className="text-gray">No especificado</span>
         </td>
       );
     }
@@ -58,7 +58,7 @@ const DatosEmpresa = () => {
         <tr>
           <th>{titulo}</th>
           <td>
-            <span className="gray">No especificado</span>
+            <span className="text-gray">No especificado</span>
           </td>
         </tr>
       );
@@ -84,7 +84,7 @@ const DatosEmpresa = () => {
           <tr>
             <th>{titulo}</th>
             <td>
-              <span className="gray">No especificado</span>
+              <span className="text-gray">No especificado</span>
             </td>
           </tr>
         );
@@ -116,7 +116,7 @@ const DatosEmpresa = () => {
           <tr>
             <th>{titulo}</th>
             <td>
-              <span className="gray">No especificado</span>
+              <span className="text-gray">No especificado</span>
             </td>
           </tr>
         );
@@ -126,7 +126,7 @@ const DatosEmpresa = () => {
         <tr>
           <th>{titulo}</th>
           <td>
-            <span className="gray">No especificado</span>
+            <span className="text-gray">No especificado</span>
           </td>
         </tr>
       );
@@ -139,9 +139,11 @@ const DatosEmpresa = () => {
   return (
     <>
       <div className="box tableBox">
-        <section>
-          <h2>Información</h2>
-        </section>
+        <div className="box__info-title">
+          <div className="title">
+            <h2>Información</h2>
+          </div>
+        </div>
 
         <div className="detailsBox">
           <table>
@@ -167,16 +169,18 @@ const DatosEmpresa = () => {
           </table>
 
           <div className="noteBox">
-            <p className="gray">Nota</p>
+            <p className="text-gray">Nota</p>
             <p>{empresa.nota || "Sin notas adicionales"}</p>
           </div>
         </div>
       </div>
 
       <div className="box tableBox">
-        <section>
-          <h2>Contacto</h2>
-        </section>
+        <div className="box__info-title">
+          <div className="title">
+            <h2>Contacto</h2>
+          </div>
+        </div>
 
         <div className="detailsBox">
           <table>

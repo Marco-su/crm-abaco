@@ -132,7 +132,7 @@ const DetailAccordion = () => {
         </Accordion>
 
         <div className="editorButtonBox">
-          <Button type="submit" variant="contained">
+          <Button className="pill-button" type="submit" variant="contained">
             Guardar cambios
           </Button>
         </div>

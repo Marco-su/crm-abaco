@@ -51,7 +51,6 @@ const SearchEmpresaImput = ({
     <FormControl>
       {readOnlyEmpresa ? (
         <TextField
-          className="inputText"
           label="Empresa"
           size="small"
           value={realValue.nombre}
@@ -59,7 +58,6 @@ const SearchEmpresaImput = ({
         />
       ) : (
         <Autocomplete
-          className="inputText"
           value={realValue}
           isOptionEqualToValue={(option, value) => option.id === value.id}
           onChange={(e, newValue) => {

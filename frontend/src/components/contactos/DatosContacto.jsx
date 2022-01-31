@@ -5,15 +5,17 @@ import { EmailOutlined, CallOutlined } from "@mui/icons-material";
 const DatosContacto = () => {
   return (
     <div className="box">
-      <section>
-        <h1>
-          {useSelector((store) => store.contactos.contacto.nombre)}{" "}
-          {useSelector((store) => store.contactos.contacto.apellido)}
-        </h1>
-        <p className="gray">
-          {useSelector((store) => store.contactos.contacto.cargo)}
-        </p>
-      </section>
+      <div className="box__info-title">
+        <div className="title">
+          <h2>
+            {useSelector((store) => store.contactos.contacto.nombre)}{" "}
+            {useSelector((store) => store.contactos.contacto.apellido)}
+          </h2>
+          <p className="text-gray">
+            {useSelector((store) => store.contactos.contacto.cargo)}
+          </p>
+        </div>
+      </div>
 
       <div className="contactList">
         <button className="contactButton">
@@ -22,7 +24,7 @@ const DatosContacto = () => {
             <h2>Correo</h2>
           </div>
           <div>
-            <p className="gray">
+            <p className="text-gray">
               {useSelector((store) => store.contactos.contacto.correo)}
             </p>
           </div>
@@ -34,7 +36,7 @@ const DatosContacto = () => {
             <h2>Teléfono</h2>
           </div>
           <div>
-            <p className="gray">
+            <p className="text-gray">
               {useSelector((store) => store.contactos.contacto.correo)}
             </p>
           </div>

@@ -176,68 +176,64 @@ const ContactoUpdateForm = ({ children }) => {
   // RENDER
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-      <div className="upFormInputsBox">
-        <TextField
-          className="inputText"
-          label="Nombre"
-          size="small"
-          error={errors.nombre ? true : false}
-          helperText={errors.nombre ? errors.nombre.message : ""}
-          {...nombreRules}
-        />
+      <div className="inputs-main-box">
+        <div className="inputs-box">
+          <TextField
+            label="Nombre"
+            size="small"
+            error={errors.nombre ? true : false}
+            helperText={errors.nombre ? errors.nombre.message : ""}
+            {...nombreRules}
+          />
 
-        <TextField
-          className="inputText"
-          label="Apellido"
-          size="small"
-          error={errors.apellido ? true : false}
-          helperText={errors.apellido ? errors.apellido.message : ""}
-          {...apellidoRules}
-        />
+          <TextField
+            label="Apellido"
+            size="small"
+            error={errors.apellido ? true : false}
+            helperText={errors.apellido ? errors.apellido.message : ""}
+            {...apellidoRules}
+          />
 
-        <TextField
-          className="inputText"
-          label="Documento de Identidad"
-          size="small"
-          error={errors.dni ? true : false}
-          helperText={errors.dni ? errors.dni.message : ""}
-          {...dniRules}
-        />
+          <TextField
+            label="Documento de Identidad"
+            size="small"
+            error={errors.dni ? true : false}
+            helperText={errors.dni ? errors.dni.message : ""}
+            {...dniRules}
+          />
 
-        <TextField
-          className="inputText"
-          label="Cargo"
-          size="small"
-          error={errors.cargo ? true : false}
-          helperText={errors.cargo ? errors.cargo.message : ""}
-          {...cargoRules}
-        />
+          <TextField
+            label="Cargo"
+            size="small"
+            error={errors.cargo ? true : false}
+            helperText={errors.cargo ? errors.cargo.message : ""}
+            {...cargoRules}
+          />
 
-        <TextField
-          className="inputText"
-          label="Correo"
-          size="small"
-          error={errors.correo ? true : false}
-          helperText={errors.correo ? errors.correo.message : ""}
-          {...correoRules}
-        />
+          <TextField
+            label="Correo"
+            size="small"
+            error={errors.correo ? true : false}
+            helperText={errors.correo ? errors.correo.message : ""}
+            {...correoRules}
+          />
 
-        <TextField
-          className="inputText"
-          label="Empleados a cargo"
-          type="number"
-          size="small"
-          error={errors.empleados ? true : false}
-          helperText={errors.empleados ? errors.empleados.message : ""}
-          {...empleadosRules}
-        />
+          <TextField
+            label="Empleados a cargo"
+            type="number"
+            size="small"
+            error={errors.empleados ? true : false}
+            helperText={errors.empleados ? errors.empleados.message : ""}
+            {...empleadosRules}
+          />
 
-        <SearchEmpresaImput
-          realValue={realValue}
-          setRealValue={setRealValue}
-          error={errors.empresa}
-          clearErrors={clearErrors}
-        />
+          <SearchEmpresaImput
+            realValue={realValue}
+            setRealValue={setRealValue}
+            error={errors.empresa}
+            clearErrors={clearErrors}
+          />
+        </div>
       </div>
 
       {children}

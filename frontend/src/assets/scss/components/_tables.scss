@@ -1,0 +1,120 @@
+@use "../utils/extends" as e;
+@use "../utils/variables" as v;
+
+.mainTableBox1 {
+  height: calc(100vh - v.$topbar-height - 10px - 1rem);
+  width: 100%;
+  background-color: v.$background-blue;
+  padding: 15px;
+  border-radius: v.$border-radius;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    @include e.keyframe(horizontalMove, 350s, infinite);
+    content: "";
+    width: 200%;
+    height: 250%;
+    position: absolute;
+    top: -75%;
+    left: -150%;
+    border-radius: 50%;
+    background-color: v.$main-blue;
+  }
+
+  .titleTableBox {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: v.$border-radius v.$border-radius 0 0;
+    border: 1px solid v.$border-blue;
+    border-bottom: none;
+
+    .tableTitle {
+      font-size: 20px;
+      margin: 0;
+      margin-right: 8px;
+    }
+
+    .spinnerBox {
+      font-size: 10px;
+      padding: 8px 9.5px;
+
+      > div {
+        width: 21px;
+        height: 21px;
+      }
+    }
+  }
+
+  .ag-root-wrapper {
+    border-right: 1px solid v.$border-blue !important;
+    border-left: 1px solid v.$border-blue !important;
+    border-bottom: 1px solid v.$border-blue !important;
+  }
+
+  .mainTableBox2 {
+    @extend %flex;
+    @extend %flex-column;
+    height: 100%;
+    position: relative;
+    border-radius: v.$border-radius;
+    overflow: hidden;
+
+    .text-gray {
+      font-size: 12px;
+    }
+
+    button {
+      .crudIcon {
+        @include e.transition(all);
+        color: var(--gray-200);
+        border: none;
+        background: none;
+      }
+
+      &:hover {
+        .editIcon {
+          color: v.$main-orange;
+        }
+
+        .deleteIcon {
+          color: v.$main-red;
+        }
+      }
+    }
+  }
+
+  .table-btn-box {
+    z-index: 3;
+    position: absolute;
+    right: calc(1rem + 15px);
+    top: 26px;
+  }
+}
+
+@-webkit-keyframes horizontalMove {
+  0% {
+    @include e.translate(0, 0);
+  }
+  50% {
+    -webkit-transform: translate(20%);
+    transform: translate(20%);
+  }
+  100% {
+    @include e.translate(0, 0);
+  }
+}
+
+@keyframes horizontalMove {
+  0% {
+    @include e.translate(0, 0);
+  }
+  50% {
+    @include e.translate(20%, 0);
+  }
+  100% {
+    @include e.translate(0, 0);
+  }
+}

@@ -1,0 +1,44 @@
+@use "../utils/extends" as e;
+
+.email-view {
+  @extend %flex;
+  @extend %flex-column;
+
+  .email-section,
+  form {
+    @extend %flex;
+    @extend %flex-column;
+  }
+
+  .box:first-child {
+    padding: 0.7rem 1rem;
+  }
+
+  .email-section,
+  form,
+  .editor-box {
+    @include e.flex-grow;
+  }
+
+  form {
+    .inputs-box {
+      margin-bottom: 1rem;
+    }
+
+    .input-text {
+      width: 100%;
+    }
+
+    .editor-main {
+      padding: 0 1rem;
+    }
+  }
+
+  .public-DraftStyleDefault-ltr {
+    margin: 0.5rem 0;
+  }
+
+  .public-DraftEditor-content {
+    min-height: calc(100vh - 570px);
+  }
+}

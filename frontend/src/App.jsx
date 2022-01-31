@@ -5,8 +5,8 @@ import Sidebar from "./components/navigation/Sidebar";
 import Topbar from "./components/navigation/Topbar";
 import Main from "./components/common/Main";
 
-import "./assets/css/normalize.css";
 import "./assets/css/App.css";
+import "./assets/scss/App.scss";
 
 // TABLES CSS
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -19,7 +19,7 @@ const App = () => {
       <Router>
         <Topbar />
 
-        <div className="mainContainer">
+        <div className="main-container">
           <Sidebar />
 
           <Main />

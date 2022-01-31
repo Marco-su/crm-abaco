@@ -1,4 +1,3 @@
-import "../assets/css/correo/correo.css";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
@@ -49,30 +48,36 @@ const Correo = () => {
   };
 
   return (
-    <div className="correoView viewContainer">
+    <div className="email-view view-container">
       <div className="box">
-        <div className="tittleIconBox">
-          <MarkAsUnreadOutlined color="info" />
-          <h1>Redactar correo electrónico</h1>
-        </div>
+        <div className="box__main-title">
+          <div className="title">
+            <MarkAsUnreadOutlined color="info" />
+            <h2>Redactar correo electrónico</h2>
+          </div>
 
-        <div>
-          <Button variant="outlined" onClick={() => setCcActive(!ccActive)}>
-            CC
-          </Button>
-          <Button
-            className="ms-2"
-            variant="outlined"
-            onClick={() => setCcoActive(!ccoActive)}
-          >
-            CCO
-          </Button>
+          <div className="right-box">
+            <Button
+              className="pill-button"
+              variant="outlined"
+              onClick={() => setCcActive(!ccActive)}
+            >
+              CC
+            </Button>
+            <Button
+              className="ms-2 pill-button"
+              variant="outlined"
+              onClick={() => setCcoActive(!ccoActive)}
+            >
+              CCO
+            </Button>
+          </div>
         </div>
       </div>
 
-      <div className="box emailSection">
+      <div className="box email-section">
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-          <section>
+          <div className="inputs-box">
             <Destinatarios
               errors={errors}
               errorName={"to"}
@@ -92,19 +97,20 @@ const Correo = () => {
             <TextField
               multiline
               maxRows={5}
-              className="inputText"
+              className="input-text"
               label="Asunto"
               size="small"
               error={errors.subject ? true : false}
               helperText={errors.subject ? errors.subject.message : ""}
               {...asuntoRules}
             />
-          </section>
+          </div>
 
           <TextEditor setEmailHtml={setEmailHtml} />
 
-          <div className="emailButtonBox">
+          <div className="button-box">
             <Button
+              className="pill-button"
               variant="contained"
               type="button"
               onClick={handleSubmit(onSubmit)}

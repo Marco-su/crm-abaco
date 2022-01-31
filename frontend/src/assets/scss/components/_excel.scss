@@ -1,0 +1,113 @@
+@use "../utils/extends" as e;
+@use "../utils/variables" as v;
+
+.excel {
+  &__upload-box {
+    @include e.grid(400px, 1fr);
+
+    > div {
+      padding: 0 1rem;
+    }
+
+    .file-info-box {
+      @extend %flex;
+      @extend %flex-column;
+
+      .file-info {
+        @include e.flex-grow;
+
+        p,
+        div {
+          margin-bottom: 0.6rem;
+        }
+
+        p {
+          color: v.$main-blue;
+          font-weight: bold;
+          font-size: 14.5px;
+        }
+
+        .found-fields {
+          max-height: 250px;
+          overflow-y: auto;
+
+          span {
+            color: v.$main-orange;
+            background-color: v.$glass-orange-light;
+            font-size: 15px;
+            padding: 3px 8px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 1000px;
+            display: inline-block;
+          }
+        }
+      }
+
+      .excel-select-button {
+        position: absolute;
+        top: -5000rem;
+        left: -5000rem;
+      }
+    }
+  }
+
+  .drag-box {
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    border: 1px solid var(--border-blue);
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    margin-right: 15px;
+  }
+
+  &__drag-and-drop {
+    .info-paragraph {
+      text-align: center;
+      margin: 0 auto 1rem auto;
+      width: 600px;
+    }
+
+    .drag-list-box {
+      @include e.grid(15px, 1fr);
+      gap: 1rem 0;
+
+      h2 {
+        @extend %text-overflow;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          @extend %text-overflow;
+          padding: 0.5rem 1rem;
+          border: 2px solid v.$main-blue;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .db-cols-box li {
+        border-right: 1px solid v.$main-blue;
+        border-radius: 1000px 0 0 1000px;
+      }
+
+      .file-cols-box li {
+        border-left: 1px solid v.$main-blue;
+        border-radius: 0 1000px 1000px 0;
+      }
+    }
+
+    .btn-box {
+      @extend %flex;
+      @extend %flex-align-center;
+      @extend %flex-justify-end;
+      margin-top: 1rem;
+    }
+  }
+}

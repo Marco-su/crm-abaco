@@ -30,10 +30,10 @@ function CircularProgressWithLabel(props) {
         <span
           className={
             props.value < 30
-              ? "progressPercent error"
+              ? "progress-circle progress-circle--error"
               : props.value < 65
-              ? "progressPercent primary"
-              : "progressPercent success"
+              ? "progress-circle progress-circle--primary"
+              : "progress-circle progress-circle--success"
           }
         >{`${Math.round(props.value)}%`}</span>
       </Box>

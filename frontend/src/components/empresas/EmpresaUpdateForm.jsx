@@ -321,12 +321,11 @@ const EmpresaUpdateForm = ({ children }) => {
   // RENDER
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-      <div>
+      <div className="inputs-main-box">
         <div>
           <h2>Información</h2>
-          <div className="upFormInputsBox">
+          <div className="inputs-box">
             <TextField
-              className="inputText"
               label="Nombre de la empresa"
               size="small"
               error={errors.nombre ? true : false}
@@ -335,7 +334,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Sector"
               size="small"
               error={errors.vertical ? true : false}
@@ -344,7 +342,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Propiedad"
               size="small"
               select
@@ -359,7 +356,6 @@ const EmpresaUpdateForm = ({ children }) => {
             </TextField>
 
             <TextField
-              className="inputText"
               label="Número de empleados"
               type="number"
               size="small"
@@ -369,7 +365,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Representante legal"
               type="text"
               size="small"
@@ -381,7 +376,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Número de Identificación Tributaria (NIT)"
               type="text"
               size="small"
@@ -391,7 +385,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Ingresos Anuales"
               type="number"
               size="small"
@@ -406,9 +399,8 @@ const EmpresaUpdateForm = ({ children }) => {
 
         <div>
           <h2>Contacto principal</h2>
-          <div className="upFormInputsBox">
+          <div className="inputs-box">
             <TextField
-              className="inputText"
               label="Nombre"
               size="small"
               error={errors.nombreContacto ? true : false}
@@ -419,7 +411,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Apellido"
               size="small"
               error={errors.apellido ? true : false}
@@ -428,7 +419,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Documento de Identidad"
               size="small"
               error={errors.dni ? true : false}
@@ -437,7 +427,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Cargo"
               size="small"
               error={errors.cargo ? true : false}
@@ -446,7 +435,6 @@ const EmpresaUpdateForm = ({ children }) => {
             ></TextField>
 
             <TextField
-              className="inputText"
               label="Correo"
               size="small"
               error={errors.correo ? true : false}
@@ -455,7 +443,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Empleados a cargo"
               type="number"
               size="small"
@@ -468,9 +455,8 @@ const EmpresaUpdateForm = ({ children }) => {
 
         <div>
           <h2>Dirección principal</h2>
-          <div className="upFormInputsBox">
+          <div className="inputs-box">
             <TextField
-              className="inputText"
               label="Calle"
               size="small"
               error={errors.calle ? true : false}
@@ -479,7 +465,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Ciudad"
               size="small"
               error={errors.ciudad ? true : false}
@@ -488,7 +473,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Estado o provincia"
               size="small"
               error={errors.estado ? true : false}
@@ -497,7 +481,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="Código postal"
               size="small"
               error={errors.codigoPostal ? true : false}
@@ -508,7 +491,6 @@ const EmpresaUpdateForm = ({ children }) => {
             />
 
             <TextField
-              className="inputText"
               label="País"
               size="small"
               error={errors.pais ? true : false}

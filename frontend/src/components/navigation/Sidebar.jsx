@@ -1,4 +1,3 @@
-import "../../assets/css/navigation/sidebar.css";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -43,8 +42,8 @@ const Sidebar = () => {
   }
 
   return (
-    <div id="sidebar" className={isMenuOpen ? "" : "hide"}>
-      <div className="menuSection">
+    <div className={isMenuOpen ? "sidebar" : "sidebar sidebar--hide"}>
+      <div className="sidebar__list-box">
         <h3>Principal</h3>
         <ul>
           <li>
@@ -56,7 +55,7 @@ const Sidebar = () => {
         </ul>
       </div>
 
-      <div className="menuSection">
+      <div className="sidebar__list-box">
         <h3>Personal</h3>
         <ul>
           <li>
@@ -86,7 +85,7 @@ const Sidebar = () => {
         </ul>
       </div>
 
-      <div className="menuSection">
+      <div className="sidebar__list-box">
         <h3>Empresas</h3>
         <ul>
           <li>
@@ -122,7 +121,7 @@ const Sidebar = () => {
         </ul>
       </div>
 
-      <div className="menuSection">
+      <div className="sidebar__list-box">
         <h3>Contacto</h3>
         <ul>
           <li>
@@ -146,7 +145,7 @@ const Sidebar = () => {
         </ul>
       </div>
 
-      {/* <div className="menuSection">
+      {/* <div className="sidebar__list-box">
         <h3>Estadisticas</h3>
         <ul>
           <li>
@@ -170,7 +169,7 @@ const Sidebar = () => {
         </ul>
       </div> */}
 
-      <div className="menuSection">
+      <div className="sidebar__list-box">
         <h3>Administración</h3>
         <ul>
           <li>
@@ -194,7 +193,7 @@ const Sidebar = () => {
         </ul>
       </div>
 
-      <div className="menuSection">
+      <div className="sidebar__list-box">
         <h3>Cuenta</h3>
         <ul>
           <li>

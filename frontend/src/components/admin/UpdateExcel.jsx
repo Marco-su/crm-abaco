@@ -53,15 +53,15 @@ const UpdateExcel = ({ fileFields, setFileFields, items, setItems }) => {
 
   // RENDER
   return (
-    <div className="archivoBox">
+    <div className="file-info-box">
       <h2 className="mb-2">Archivo</h2>
 
-      <div className="archivoInfo">
+      <div className="file-info">
         {fileFields.length > 0 ? (
           <>
             <p>Campos identificados ({Object.keys(fileFields[0]).length})</p>
 
-            <div className="foundFields">
+            <div className="found-fields">
               {Object.keys(fileFields[0]).map((el, index) => (
                 <span key={`fieldName-${index}`}>{el}</span>
               ))}
@@ -89,9 +89,9 @@ const UpdateExcel = ({ fileFields, setFileFields, items, setItems }) => {
         ) : null}
       </div>
 
-      <div className="uploadBtnBox">
+      <div>
         <label htmlFor="uploadExcel">
-          <Button component="span" variant="outlined">
+          <Button className="pill-button" component="span" variant="outlined">
             <FileUploadOutlined className="me-2" />
             Seleccionar Archivo
           </Button>
@@ -99,6 +99,7 @@ const UpdateExcel = ({ fileFields, setFileFields, items, setItems }) => {
 
         <input
           id="uploadExcel"
+          className="excel-select-button"
           type="file"
           onChange={readXlsx}
           accept=".xlsx, .xls"

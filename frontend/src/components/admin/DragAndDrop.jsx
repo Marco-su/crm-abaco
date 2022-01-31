@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { bulkCreateEmpresa } from "../../store/actions/empresa.actions";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import { Progress } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -188,10 +188,10 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
 
   // RENDER
   return (
-    <div className="dragBox">
+    <div className="drag-box excel__drag-and-drop">
       <div>
         <h2 className="text-center mb-2">Intercepción de campos</h2>
-        <p className="infoP">
+        <p className="info-paragraph">
           Selecciona y arrastra para hacer coincidir los campos de la base de
           datos con los campos correspondientes del archivo seleccionado. Este
           paso es de gran importacia, ya que en él se dermina en que campos será
@@ -199,8 +199,8 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
         </p>
       </div>
 
-      <div className="dragListsBox">
-        <div className="dragList">
+      <div className="drag-list-box">
+        <div className="db-cols-box">
           <DragDropContext onDragEnd={handleDrag}>
             <h2>Campos para guardado</h2>
             <Droppable droppableId="databaseCols">
@@ -214,7 +214,6 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
                     >
                       {(dragProps) => (
                         <li
-                          className="droppableLi"
                           {...dragProps.draggableProps}
                           ref={dragProps.innerRef}
                           {...dragProps.dragHandleProps}
@@ -231,7 +230,7 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
           </DragDropContext>
         </div>
 
-        <div className="dragList">
+        <div className="file-cols-box">
           <DragDropContext onDragEnd={handleDragFile}>
             <h2>Campos identificados en archivo</h2>
             <Droppable droppableId="fileCols">
@@ -246,7 +245,6 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
                       >
                         {(dragProps) => (
                           <li
-                            className="droppableLi"
                             {...dragProps.draggableProps}
                             ref={dragProps.innerRef}
                             {...dragProps.dragHandleProps}
@@ -264,48 +262,61 @@ const DragAndDrop = ({ items, setItems, fileCells }) => {
         </div>
       </div>
 
-      <div className="btnBox">
-        <Button variant="contained" onClick={handleSubmit}>
+      <div className="btn-box">
+        <Button
+          className="pill-button"
+          variant="contained"
+          onClick={handleSubmit}
+        >
           Finalizar
         </Button>
       </div>
 
       {/* MODAL */}
-      <div className={isOpen ? "viewportModal active" : "viewportModal"}>
-        <div className="viewportModalContent">
+      <div
+        className={
+          isOpen ? "viewport-modal viewport-modal--active" : "viewport-modal"
+        }
+      >
+        <div className="viewport-modal__content">
           {actualStep === totalSteps ? (
-            <div className="closeTimesBtnBox">
-              <button
-                className="closeTimesBtn"
+            <div className="close-icon-box">
+              <IconButton
+                className="close-icon-button"
+                color="info"
                 onClick={() => {
                   setIsOpen(false);
                   setStartCreate(false);
                   dispatch(setActualStep(0));
                 }}
               >
-                <FontAwesomeIcon icon={faTimes} className="deleteIcon" />
-              </button>
+                <FontAwesomeIcon icon={faTimes} className="times-icon" />
+              </IconButton>
             </div>
           ) : null}
 
-          <p className="title">Subiendo registros con el id "{idDeCreacion}"</p>
-          <Progress value={(actualStep / totalSteps) * 100} />
-          <div className="d-flex justify-content-end mt-1">
-            {actualStep} de {totalSteps}
-          </div>
+          <div className="info-box">
+            <p className="title">
+              Subiendo registros con el id "{idDeCreacion}"
+            </p>
+            <Progress value={(actualStep / totalSteps) * 100} />
+            <div className="d-flex justify-content-end mt-1">
+              {actualStep} de {totalSteps}
+            </div>
 
-          <div className="buttonRight">
-            <Button
-              variant="contained"
-              onClick={() => {
-                setIsOpen(false);
-                setStartCreate(false);
-                dispatch(setActualStep(0));
-              }}
-              disabled={actualStep === totalSteps ? false : true}
-            >
-              Finalizar
-            </Button>
+            <div className="button-right">
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setIsOpen(false);
+                  setStartCreate(false);
+                  dispatch(setActualStep(0));
+                }}
+                disabled={actualStep === totalSteps ? false : true}
+              >
+                Finalizar
+              </Button>
+            </div>
           </div>
         </div>
       </div>

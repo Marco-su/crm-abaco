@@ -1,4 +1,3 @@
-import "../../assets/css/home/login.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -66,26 +65,26 @@ const Login = () => {
 
   // RENDER
   return (
-    <div id="loginContainer">
-      <div>
-        <div className="mainIconBox">
-          <div>
+    <div className="login">
+      <div className="login__content">
+        <div className="top-icon">
+          <div className="top-icon-circle">
             <LockOutlined sx={{ fontSize: 33 }} />
           </div>
         </div>
 
-        <div className="titleBox">
+        <div className="title-box">
           <h1>Iniciar Sesión</h1>
           <span>Abaco Systems Technologies.</span>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="containerInput">
-            <div className="loginInputBox">
-              <Person fontSize="small" className="leftIcon" />
+          <div className="input-box">
+            <div>
+              <Person fontSize="small" className="input-left-icon" />
 
               <TextField
-                className="inputText"
+                className="input-text"
                 label="Correo electrónico"
                 size="small"
                 autoComplete="off"
@@ -99,12 +98,12 @@ const Login = () => {
             ) : null}
           </div>
 
-          <div className="containerInput password">
-            <div className="loginInputBox">
-              <Key fontSize="small" className="leftIcon" />
+          <div className="input-box">
+            <div>
+              <Key fontSize="small" className="input-left-icon" />
 
               <TextField
-                className="inputText"
+                className="input-text"
                 label="Contraseña"
                 size="small"
                 type={isPaswordVisible ? "text" : "password"}
@@ -113,9 +112,12 @@ const Login = () => {
               />
 
               {isPaswordVisible ? (
-                <VisibilityOff onClick={togglePass} className="rightIcon" />
+                <VisibilityOff
+                  onClick={togglePass}
+                  className="input-right-icon"
+                />
               ) : (
-                <Visibility onClick={togglePass} className="rightIcon" />
+                <Visibility onClick={togglePass} className="input-right-icon" />
               )}
             </div>
 
@@ -128,14 +130,14 @@ const Login = () => {
             ) : null}
           </div>
 
-          <div className="buttonBox">
-            <Button variant="contained" type="submit">
+          <div className="button-box">
+            <Button className="pill-button" variant="contained" type="submit">
               Acceder
             </Button>
           </div>
 
-          <div className="copyrightBox">
-            <span className="gray">
+          <div className="copyright-box">
+            <span className="text-gray">
               <span>Copyright ©</span> Abaco Systems Technologies{" "}
               {new Date().getFullYear()}
             </span>

@@ -1,0 +1,55 @@
+@use "../utils/extends" as e;
+@use "../utils/variables" as v;
+
+button {
+  border: none;
+  background: none;
+}
+
+.pill-button {
+  border-radius: 1000px !important;
+  padding-bottom: 3px !important;
+}
+
+// ICON BUTTONS
+.icon-btn {
+  @include e.transition;
+  @extend %flex;
+  @extend %flex-align-center;
+  @extend %flex-justify-center;
+  width: 40px;
+  height: 40px;
+  border-radius: v.$border-radius;
+
+  &--blue {
+    color: v.$main-blue;
+    background-color: v.$glass-blue-light;
+
+    &:hover {
+      background-color: v.$glass-blue-dark;
+    }
+  }
+
+  &--orange {
+    color: v.$main-orange;
+    background-color: v.$glass-orange-light;
+
+    &:hover {
+      background-color: v.$glass-orange-dark;
+    }
+  }
+
+  &--purple {
+    color: v.$main-purple;
+    background-color: v.$glass-purple-light;
+
+    &:hover {
+      background-color: v.$glass-purple-dark;
+    }
+  }
+}
+
+.close-icon-button {
+  width: 40px;
+  height: 40px;
+}

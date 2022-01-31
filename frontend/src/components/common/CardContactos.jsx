@@ -1,4 +1,3 @@
-import "../../assets/css/common/cardContactos.css";
 import { Button } from "@mui/material";
 import { toggleUpdate } from "../../store/actions/modals.action";
 import { useDispatch } from "react-redux";
@@ -8,15 +7,21 @@ const CardContactos = ({ lista }) => {
 
   return (
     <div className="box">
-      <section>
-        <h2>Contactos registrados ({lista.length})</h2>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(toggleUpdate("contactoCreate", null, true))}
-        >
-          Crear nuevo
-        </Button>
-      </section>
+      <div className="box__info-title">
+        <div className="title">
+          <h2>Contactos registrados ({lista.length})</h2>
+        </div>
+
+        <div className="right-box">
+          <Button
+            className="pill-button"
+            variant="outlined"
+            onClick={() => dispatch(toggleUpdate("contactoCreate", null, true))}
+          >
+            Crear nuevo
+          </Button>
+        </div>
+      </div>
 
       <div className={lista.length > 0 ? "contactoCardGrid" : ""}>
         {lista.length > 0 ? (
@@ -31,12 +36,12 @@ const CardContactos = ({ lista }) => {
 
                 <div className="detalleBody">
                   <div>
-                    <p className="gray">Cargo</p>
+                    <p className="text-gray">Cargo</p>
                     <p>{el.cargo}</p>
                   </div>
 
                   <div>
-                    <p className="gray">Correo electrónico</p>
+                    <p className="text-gray">Correo electrónico</p>
                     <p>{el.correo}</p>
                   </div>
                 </div>
@@ -44,8 +49,9 @@ const CardContactos = ({ lista }) => {
             ))}
           </div>
         ) : (
-          <div className="emptyButtonBox">
+          <div className="empty-button-box">
             <Button
+              className="pill-button"
               onClick={() => dispatch(toggleUpdate("contactoCreate", null))}
             >
               Crear un nuevo contacto

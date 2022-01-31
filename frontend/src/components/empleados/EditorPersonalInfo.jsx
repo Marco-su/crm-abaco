@@ -42,7 +42,6 @@ const EditorPersonalInfo = ({ register, errors }) => {
   return (
     <div className="upFormInputsBox">
       <TextField
-        className="inputText"
         label="Nombre"
         size="small"
         error={errors.nombre ? true : false}
@@ -51,7 +50,6 @@ const EditorPersonalInfo = ({ register, errors }) => {
       />
 
       <TextField
-        className="inputText"
         label="Apellido"
         size="small"
         error={errors.apellido ? true : false}
@@ -60,7 +58,6 @@ const EditorPersonalInfo = ({ register, errors }) => {
       />
 
       <TextField
-        className="inputText"
         label="Documento de Identidad"
         size="small"
         error={errors.dni ? true : false}
@@ -69,7 +66,6 @@ const EditorPersonalInfo = ({ register, errors }) => {
       />
 
       <TextField
-        className="inputText"
         label="Correo personal"
         size="small"
         error={errors.correo ? true : false}

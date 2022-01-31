@@ -4,26 +4,28 @@ import { useSelector } from "react-redux";
 const DatosProducto = () => {
   return (
     <div className="box">
-      <section>
-        <h2>Información</h2>
-      </section>
+      <div className="box__main-title">
+        <div className="title">
+          <h2>Información</h2>
+        </div>
+      </div>
 
       <div className="detailsContent">
         <div>
           <p>Código de producto</p>
-          <p className="gray">
+          <p className="text-gray">
             {useSelector((store) => store.productos.producto.codigo)}
           </p>
         </div>
         <div>
           <p>Costo base</p>
-          <p className="gray">
+          <p className="text-gray">
             {useSelector((store) => store.productos.producto.precio)} $
           </p>
         </div>
         <div>
           <p>Categoría</p>
-          <p className="gray">
+          <p className="text-gray">
             {useSelector((store) => store.productos.producto.categoria)}
           </p>
         </div>

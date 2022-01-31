@@ -1,0 +1,99 @@
+@use "../utils/extends" as e;
+@use "../utils/variables" as v;
+
+.login {
+  @extend %flex;
+  @extend %flex-align-center;
+  @extend %flex-justify-center;
+  width: 100%;
+  height: 100%;
+
+  &__content {
+    width: 450px;
+
+    .top-icon,
+    .top-icon-circle {
+      @extend %flex;
+      @extend %flex-align-center;
+      @extend %flex-justify-center;
+    }
+
+    .top-icon {
+      margin-bottom: 3rem;
+
+      .top-icon-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: v.$main-blue;
+        color: v.$text-white;
+      }
+    }
+
+    .title-box {
+      margin-bottom: 2.5rem;
+      padding: 1rem;
+      border-left: 3px solid v.$main-blue;
+      background-color: v.$glass-blue-light;
+
+      h1 {
+        margin: 0;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .input-box {
+      margin-bottom: 1.5rem;
+      position: relative;
+
+      &:nth-child(2) {
+        margin-bottom: 2.5rem;
+      }
+
+      .input-text {
+        width: 100%;
+      }
+
+      .input-left-icon,
+      .input-right-icon {
+        @include e.translateY(-50%);
+        position: absolute;
+        color: v.$text-gray;
+        top: 50%;
+      }
+
+      .input-left-icon {
+        left: 10px;
+      }
+
+      .input-right-icon {
+        right: 10px;
+      }
+
+      label:not(.MuiInputLabel-shrink) {
+        padding-left: 1.5rem;
+      }
+
+      input {
+        margin-left: 1.6rem;
+        margin-right: 1.6rem;
+      }
+    }
+
+    .button-box {
+      margin-bottom: 3rem;
+
+      button {
+        width: 100%;
+      }
+    }
+
+    .copyright-box {
+      text-align: center;
+
+      span {
+        display: block;
+      }
+    }
+  }
+}

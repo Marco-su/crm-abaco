@@ -3,9 +3,11 @@ import { changeBytesSize } from "../../helpers/changeBytesSize";
 const CardArchivos = ({ lista }) => {
   return (
     <div className="box">
-      <section>
-        <h2>Archivos ({lista.length})</h2>
-      </section>
+      <div className="box__info-title">
+        <div className="title">
+          <h2>Archivos ({lista.length})</h2>
+        </div>
+      </div>
 
       {lista.length > 0 ? (
         <div>

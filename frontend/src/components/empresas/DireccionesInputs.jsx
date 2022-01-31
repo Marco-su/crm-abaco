@@ -52,7 +52,6 @@ const DireccionesInputs = ({ control, errors }) => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  className="inputText"
                   label="Calle"
                   size="small"
                   error={
@@ -85,7 +84,6 @@ const DireccionesInputs = ({ control, errors }) => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  className="inputText"
                   label="Ciudad"
                   size="small"
                   error={
@@ -118,7 +116,6 @@ const DireccionesInputs = ({ control, errors }) => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  className="inputText"
                   label="Estado"
                   size="small"
                   error={
@@ -151,7 +148,6 @@ const DireccionesInputs = ({ control, errors }) => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  className="inputText"
                   label="Código postal"
                   size="small"
                   error={
@@ -184,7 +180,6 @@ const DireccionesInputs = ({ control, errors }) => {
               render={({ field }) => (
                 <TextField
                   {...field}
-                  className="inputText"
                   label="País"
                   size="small"
                   error={

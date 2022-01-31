@@ -22,13 +22,15 @@ const DetalleProducto = () => {
   const viewType = useSelector((store) => store.global.detailViewType);
 
   return (
-    <div className="detailView viewContainer">
+    <div className="detailView view-container">
       <div className="box detailTitleBox">
-        <div>
-          <h2 className="title">Producto</h2>
+        <div className="box__main-title">
+          <div className="title">
+            <h2>Producto</h2>
+          </div>
         </div>
 
-        <div>
+        <div className="right-box">
           <Tooltip title="Vista amplia">
             <IconButton
               color={viewType === "amplia" ? "primary" : "info"}

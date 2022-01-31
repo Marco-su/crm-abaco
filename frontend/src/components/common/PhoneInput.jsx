@@ -26,7 +26,7 @@ const PhoneInput = ({ label, tipo, errors, control, telf, register }) => {
   });
 
   return (
-    <div className="phoneInputBox">
+    <div className="phone-input-box">
       <FormControl sx={{ minWidth: 120, marginRight: 1 }}>
         <InputLabel id={`select-${tipo}`}>Código</InputLabel>
 
@@ -47,7 +47,7 @@ const PhoneInput = ({ label, tipo, errors, control, telf, register }) => {
               {orderedCountries.map((el) => (
                 <MenuItem value={el.phone} key={`${el.phone}-${el.code}`}>
                   <img
-                    className="smallFlag"
+                    className="small-flag"
                     loading="lazy"
                     width="20"
                     src={`https://flagcdn.com/w20/${el.code.toLowerCase()}.png`}
@@ -67,7 +67,7 @@ const PhoneInput = ({ label, tipo, errors, control, telf, register }) => {
       </FormControl>
 
       <TextField
-        className="inputText"
+        className="input-text"
         label={label}
         size="small"
         error={errors[`numero${tipo}`] ? true : false}

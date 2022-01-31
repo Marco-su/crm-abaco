@@ -1,4 +1,3 @@
-import "../assets/css/admin/prospectos.css";
 import { useState } from "react";
 import DragAndDrop from "../components/admin/DragAndDrop";
 import UpdateExcel from "../components/admin/UpdateExcel";
@@ -18,12 +17,16 @@ const AdminProspectos = () => {
   ];
 
   return (
-    <div className="detailView viewContainer">
+    <div className="excel view-container">
       <div className="box">
-        <h2 className="title">Prospectos (creación masiva)</h2>
+        <div className="box__main-title">
+          <div className="title">
+            <h2>Prospectos (creación masiva)</h2>
+          </div>
+        </div>
       </div>
 
-      <div className="box uploadBox">
+      <div className="box excel__upload-box">
         <UpdateExcel
           fileFields={fileFields}
           setFileFields={setFileFields}
@@ -34,12 +37,12 @@ const AdminProspectos = () => {
         <div>
           <h2 className="mb-2">Instrucciones</h2>
 
-          <p className="gray">Paso {instructionActual + 1}</p>
+          <p className="text-gray">Paso {instructionActual + 1}</p>
           <p>{instruccion[instructionActual]}</p>
 
           {instructionActual > 0 ? (
             <Button
-              className="me-2"
+              className="me-2 pill-button"
               variant="contained"
               color="secondary"
               onClick={() => setInstructionActual(instructionActual - 1)}
@@ -50,6 +53,7 @@ const AdminProspectos = () => {
 
           {instructionActual < instruccion.length - 1 ? (
             <Button
+              className="pill-button"
               variant="contained"
               color="secondary"
               onClick={() => setInstructionActual(instructionActual + 1)}

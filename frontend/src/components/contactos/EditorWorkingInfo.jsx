@@ -52,7 +52,6 @@ const EditorWorkingInfo = ({
       />
 
       <TextField
-        className="inputText"
         label="Cargo"
         size="small"
         select
@@ -66,7 +65,6 @@ const EditorWorkingInfo = ({
       </TextField>
 
       <TextField
-        className="inputText"
         label="Empleados a cargo"
         type="number"
         size="small"

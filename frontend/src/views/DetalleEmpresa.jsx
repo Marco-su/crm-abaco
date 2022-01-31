@@ -21,32 +21,34 @@ const DetalleEmpresa = () => {
   const viewType = useSelector((store) => store.global.detailViewType);
 
   return (
-    <div className="detailView viewContainer">
-      <div className="box detailTitleBox">
-        <div>
-          <h2 className="title">Empresa</h2>
-        </div>
+    <div className="detailView view-container">
+      <div className="box">
+        <div className="box__main-title">
+          <div className="title">
+            <h2>Empresa</h2>
+          </div>
 
-        <div>
-          <Tooltip title="Vista amplia">
-            <IconButton
-              color={viewType === "amplia" ? "primary" : "info"}
-              component="span"
-              onClick={() => dispatch(setDetailViewType("amplia"))}
-            >
-              <ViewCompact />
-            </IconButton>
-          </Tooltip>
+          <div className="right-box">
+            <Tooltip title="Vista amplia">
+              <IconButton
+                color={viewType === "amplia" ? "primary" : "info"}
+                component="span"
+                onClick={() => dispatch(setDetailViewType("amplia"))}
+              >
+                <ViewCompact />
+              </IconButton>
+            </Tooltip>
 
-          <Tooltip title="Vista de editor">
-            <IconButton
-              color={viewType === "compacta" ? "primary" : "info"}
-              component="span"
-              onClick={() => dispatch(setDetailViewType("compacta"))}
-            >
-              <CalendarViewDay />
-            </IconButton>
-          </Tooltip>
+            <Tooltip title="Vista de editor">
+              <IconButton
+                color={viewType === "compacta" ? "primary" : "info"}
+                component="span"
+                onClick={() => dispatch(setDetailViewType("compacta"))}
+              >
+                <CalendarViewDay />
+              </IconButton>
+            </Tooltip>
+          </div>
         </div>
       </div>
 

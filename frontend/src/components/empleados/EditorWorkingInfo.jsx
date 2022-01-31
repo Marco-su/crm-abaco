@@ -23,7 +23,6 @@ const EditorWorkingInfo = ({ register, errors }) => {
   return (
     <div className="upFormInputsBox">
       <TextField
-        className="inputText"
         label="Cargo"
         size="small"
         select
@@ -37,14 +36,12 @@ const EditorWorkingInfo = ({ register, errors }) => {
       </TextField>
 
       <TextField
-        className="inputText"
         label="Empleados a cargo"
         size="small"
         inputProps={{ readOnly: true, defaultValue: item.empleados }}
       />
 
       <TextField
-        className="inputText"
         label="Correo de empresa"
         size="small"
         error={errors.correoEmpresa ? true : false}

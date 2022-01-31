@@ -35,7 +35,6 @@ const EditorWebSites = ({ register, errors }) => {
   return (
     <div className="upFormInputsBox">
       <TextField
-        className="inputText"
         label={
           <span className="d-flex align-items-center">
             <LinkedIn fontSize="12" className="me-1" />
@@ -49,7 +48,6 @@ const EditorWebSites = ({ register, errors }) => {
       />
 
       <TextField
-        className="inputText"
         label={
           <span className="d-flex align-items-center">
             <Facebook fontSize="12" className="me-1" />
@@ -63,7 +61,6 @@ const EditorWebSites = ({ register, errors }) => {
       />
 
       <TextField
-        className="inputText"
         label={
           <span className="d-flex align-items-center">
             <Instagram fontSize="12" className="me-1" />
@@ -77,7 +74,6 @@ const EditorWebSites = ({ register, errors }) => {
       />
 
       <TextField
-        className="inputText"
         label={
           <span className="d-flex align-items-center">
             <Twitter fontSize="12" className="me-1" />

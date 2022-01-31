@@ -1,0 +1,41 @@
+@use "../utils/extends" as e;
+@use "../utils/variables" as v;
+
+.box {
+  @include e.backdrop-filter(2px);
+  border-radius: v.$border-radius;
+  padding: 1rem;
+  border: 1px solid v.$border-blue;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  position: relative;
+  background-color: v.$glass-white;
+
+  &__info-title,
+  &__main-title {
+    @extend %flex;
+    @extend %flex-justify-between;
+    @extend %flex-align-center;
+
+    .title {
+      @extend %flex;
+      @extend %flex-justify-between;
+      @extend %flex-align-center;
+
+      svg {
+        margin-right: 0.6rem;
+      }
+    }
+  }
+
+  &__info-title {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid v.$text-white;
+  }
+
+  .empty-button-box {
+    @extend %flex;
+    @extend %flex-justify-center;
+    margin-top: 15px;
+  }
+}

@@ -42,6 +42,7 @@ const emptyModel = {
     correos: [],
     telefonos: [],
     webs: [],
+    direcciones: [],
   },
 };
 

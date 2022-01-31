@@ -1,0 +1,101 @@
+@use "../utils/extends" as e;
+@use "../utils/variables" as v;
+
+.viewport-modal {
+  @include e.translateX(101%);
+  @include e.transition(opacity);
+  @extend %flex;
+  @extend %flex-align-center;
+  @extend %flex-justify-center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  opacity: 0;
+
+  &--active {
+    @include e.translateX(0);
+    opacity: 1;
+  }
+
+  &__content {
+    background: #fefefe;
+    border-radius: 0.5rem;
+    width: 850px;
+    max-width: 95%;
+    padding: 2rem 3rem;
+    padding-right: 0;
+    text-align: center;
+    position: relative;
+    border-radius: v.$border-radius;
+
+    .close-icon-box {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .info-box {
+      padding-right: 3rem;
+
+      .title {
+        font-weight: bold;
+        font-size: 23px;
+        margin-bottom: 1rem;
+      }
+
+      .inputs-main-box {
+        max-height: calc(90vh - 4rem - 100px);
+        padding-top: 5px;
+        padding-right: 3rem;
+        margin-right: -3rem;
+        overflow-y: auto;
+
+        h2 {
+          font-size: 1rem;
+          text-align: left;
+          margin-top: 2rem;
+          margin-bottom: 10px;
+        }
+      }
+
+      .phone-input-box {
+        @extend %flex;
+
+        .input-text {
+          @include e.flex-grow;
+        }
+      }
+
+      .delete-message {
+        text-align: justify;
+        padding: 1rem 1.5rem;
+        background-color: #f7e1d2;
+        border-left: 3px solid #f85c2d;
+        color: #f85c2d;
+        margin: 1.5rem 0;
+
+        .delete-title {
+          margin-bottom: 0.75rem;
+          font-weight: bold;
+        }
+
+        p:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .button-right {
+      text-align: end;
+      margin-top: 1rem;
+    }
+  }
+}
+
+.small-flag {
+  margin-right: 0.3rem;
+}

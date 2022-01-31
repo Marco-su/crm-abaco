@@ -1,35 +1,4 @@
 /* MAIN */
-.detailView .box {
-  margin-right: 15px;
-}
-
-.detailView .detailTitleBox {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-}
-
-.detailView .detailTitleBox > div:last-child {
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-}
-
-.detailView .titleBox {
-  display: flex;
-  align-items: center;
-}
-
-.detailView .box .contactList h2 {
-  font-size: 15px;
-}
-
 .detailView .emptyButtonBox {
   display: flex;
   justify-content: center;

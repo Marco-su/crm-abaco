@@ -1,4 +1,3 @@
-import "../../assets/css/common/modals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +7,7 @@ import { disableManyContactos } from "../../store/actions/contacto.actions";
 import { disableManyEmpleados } from "../../store/actions/empleado.actions";
 import { disableManyProductos } from "../../store/actions/producto.actions";
 import { disableManyEmpresas } from "../../store/actions/empresa.actions";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 
 const DeleteManyModal = () => {
   const dispatch = useDispatch();
@@ -39,33 +38,42 @@ const DeleteManyModal = () => {
 
   return (
     <div
-      className={isOpen ? "viewportModal active" : "viewportModal"}
+      className={
+        isOpen ? "viewport-modal viewport-modal--active" : "viewport-modal"
+      }
       id="deleteManyModal"
     >
-      <div className="viewportModalContent">
-        <div className="closeTimesBtnBox">
-          <button
-            className="closeTimesBtn"
+      <div className="viewport-modal__content">
+        <div className="close-icon-box">
+          <IconButton
+            className="close-icon-button"
+            color="info"
             onClick={() => dispatch(toggleDeleteMany("", []))}
           >
-            <FontAwesomeIcon icon={faTimes} className="deleteIcon" />
-          </button>
+            <FontAwesomeIcon icon={faTimes} className="times-icon" />
+          </IconButton>
         </div>
 
-        <div>
+        <div className="info-box">
           <p className="title">
             {ids.length > 1
               ? `Eliminar ${ids.length} ${deleteType}s?`
               : "Eliminar el elemento seleccionado?"}
           </p>
-          <p className="deleteMessage">
-            Si eliminas uno o varios elementos solo serán accecibles desde la
-            sección "Inactivos", además no podrán ser asignados a ningun proceso
-            de negociación.
-          </p>
 
-          <div className="buttonRight">
+          <div className="delete-message">
+            <p className="delete-title">Advertencia</p>
+
+            <p>
+              Si eliminas uno o varios elementos solo serán accecibles desde la
+              sección "Inactivos", además no podrán ser asignados a ningun
+              proceso de negociación.
+            </p>
+          </div>
+
+          <div className="button-right">
             <Button
+              className="pill-button"
               variant="contained"
               onClick={() => dispatch(toggleDeleteMany("", {}))}
             >
@@ -75,7 +83,7 @@ const DeleteManyModal = () => {
               variant="contained"
               color="error"
               onClick={deleteConfirmed}
-              className="ms-2"
+              className="ms-2 pill-button"
             >
               Eliminar
             </Button>

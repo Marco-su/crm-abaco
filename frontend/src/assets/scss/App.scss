@@ -1,0 +1,15 @@
+@use "./utils/normalize";
+
+// REUTILIZABLES
+@use "./components/common";
+@use "./components/buttons";
+@use "./components/box";
+
+// SECCIONES
+@use "./components/login";
+@use "./components/modals";
+@use "./components/navigation";
+@use "./components/email";
+@use "./components/excel";
+@use "./components/tables";
+@use "./components/detailed-view";
