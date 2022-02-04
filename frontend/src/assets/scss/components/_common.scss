@@ -94,6 +94,18 @@ select {
   height: 40px !important;
 }
 
+.input-text {
+  text-align: left;
+}
+
+.aditional-input-text {
+  @extend %flex;
+
+  > div {
+    @include e.flex-grow;
+  }
+}
+
 // PROGRESS CIRCLE
 .progress-circle {
   font-size: 0.75rem;

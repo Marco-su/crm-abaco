@@ -17,13 +17,16 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "SET NULL",
       });
 
-      this.hasMany(models.Telefono, {
+      this.hasMany(models.CorreoContacto, {
+        as: "correos",
+        foreignKey: { name: "contactoId", allowNull: false },
+        onDelete: "CASCADE",
+      });
+
+      this.hasMany(models.TelefonoContacto, {
         as: "telefonos",
-        foreignKey: { name: "telefonableId", allowNull: false },
-        constraints: false,
-        scope: {
-          telefonableType: "contacto",
-        },
+        foreignKey: { name: "contactoId", allowNull: false },
+        onDelete: "CASCADE",
       });
 
       this.hasMany(models.Oportunidad, {
@@ -45,10 +48,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       cargo: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      correo: {
         type: DataTypes.STRING,
         allowNull: true,
       },

@@ -31,6 +31,12 @@ const List = () => {
     return <Link to={`/contactos/${params.data.id}`}>{params.value}</Link>;
   };
 
+  const empresaLinkRenderer = (params) => {
+    return (
+      <Link to={`/empresas/${params.data.empresaId}`}>{params.value}</Link>
+    );
+  };
+
   const commonCellRenderer = (params) => {
     if (params.value) {
       return <span>{params.value}</span>;
@@ -57,6 +63,8 @@ const List = () => {
       instagram: el.instagram ? el.instagram : "",
       twitter: el.twitter ? el.twitter : "",
       acciones: el.nombre,
+      empresa: el.empresa ? el.empresa.nombre : "",
+      empresaId: el.empresa ? el.empresa.id : "",
     };
   });
 
@@ -123,7 +131,7 @@ const List = () => {
             width: "100%",
           }}
           id="myGrid"
-          class="ag-theme-balham"
+          className="ag-theme-balham"
         >
           <AgGridReact
             localeText={gridEs}
@@ -154,7 +162,20 @@ const List = () => {
                 checkboxSelection={true}
               />
 
-              <AgGridColumn field="cargo" resizable={true} minWidth={160} />
+              <AgGridColumn
+                field="cargo"
+                resizable={true}
+                minWidth={160}
+                cellRendererFramework={commonCellRenderer}
+              />
+
+              <AgGridColumn
+                field="empresa"
+                resizable={true}
+                minWidth={450}
+                cellRendererFramework={empresaLinkRenderer}
+              />
+
               <AgGridColumn
                 field="dni"
                 resizable={true}

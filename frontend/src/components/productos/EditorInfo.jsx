@@ -62,7 +62,7 @@ const EditorInfo = ({ register, errors, control }) => {
 
   // RENDER
   return (
-    <div className="upFormInputsBox">
+    <div className="inputs-box">
       <TextField
         label="Nombre"
         size="small"

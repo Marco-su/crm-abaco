@@ -1,0 +1,97 @@
+@use "../utils/extends" as e;
+@use "../utils/variables" as v;
+
+.contacto-card-grid {
+  @include e.grid(250px, 350px);
+  gap: 0.5rem;
+  margin-top: 1rem;
+
+  .contacto-card {
+    @include e.transition(all);
+    @extend %flex;
+    padding: 0.5rem;
+    border-radius: v.$border-radius;
+    border: 1px solid transparent;
+
+    &:hover {
+      border: 1px solid v.$border-blue;
+      background: v.$background-blue;
+    }
+
+    &__info {
+      @include e.flex-grow;
+      margin-left: 1rem;
+      overflow: hidden;
+
+      h3,
+      p {
+        @extend %text-overflow;
+      }
+
+      a {
+        color: v.$main-blue;
+        text-decoration: none;
+
+        h3 {
+          font-size: 1rem;
+        }
+      }
+
+      p {
+        font-size: 14px;
+        margin-bottom: 0;
+        font-weight: 500;
+
+        .detail,
+        .text-gray {
+          font-weight: normal;
+        }
+      }
+    }
+
+    &__action {
+      position: relative;
+
+      .dropdown {
+        position: absolute;
+        top: 45px;
+        right: 0;
+        background: #fff;
+        z-index: 3;
+        border: 1px solid v.$table-border-gray;
+
+        &--hide {
+          height: 0;
+          overflow: hidden;
+          border: none;
+        }
+
+        ul {
+          padding: 0;
+          list-style: none;
+          margin-bottom: 0;
+
+          li {
+            a,
+            button {
+              width: 100%;
+              padding: 0.4rem 1rem;
+              display: block;
+              text-align: left;
+            }
+
+            a:hover,
+            button:hover {
+              background: rgba(#000, 0.1);
+            }
+
+            a {
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}

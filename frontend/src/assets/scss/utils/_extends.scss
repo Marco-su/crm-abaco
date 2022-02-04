@@ -35,11 +35,6 @@
   transition: $tipe v.$transition-time ease;
 }
 
-@mixin backdrop-filter($value) {
-  backdrop-filter: blur($value);
-  -webkit-backdrop-filter: blur($value);
-}
-
 @mixin keyframe($name, $time, $count) {
   -webkit-animation-name: $name;
   animation-name: $name;

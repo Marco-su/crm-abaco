@@ -8,6 +8,7 @@ productoController.traerProductos = (req, res) => {
   Producto.findAll({
     include: [{ all: true, nested: true }],
     where: { status: "activo" },
+    order: [["updatedAt", "DESC"]],
   })
     .then((productos) => res.json(productos))
     .catch((err) => res.send(`Error al cargar productos: ${err}`));

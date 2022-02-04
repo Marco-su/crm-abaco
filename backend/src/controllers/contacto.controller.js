@@ -6,6 +6,7 @@ contactoController.traerContactos = (req, res) => {
   Contacto.findAll({
     include: ["telefonos", "empresa", "oportunidades"],
     where: { status: "activo" },
+    order: [["updatedAt", "DESC"]],
   })
     .then((contactos) => res.json(contactos))
     .catch((err) => res.send(`Error al cargar contactos: ${err}`));
@@ -37,23 +38,10 @@ contactoController.modificarContacto = (req, res) => {
     .catch((err) => res.send(`Error al actualizar contacto: ${err}`));
 };
 
-contactoController.deshabilitarContactos = async (req, res) => {
-  let success = 0;
-  let errors = 0;
-
-  await req.body.ids.forEach((el, i) => {
-    Contacto.update({ status: "inactivo" }, { where: { id: el } })
-      .then((response) => success++)
-      .catch((err) => errors++)
-      .finally(() => {
-        if (i === req.body.ids.length - 1) {
-          res.json({
-            eliminados: success,
-            errores: errors,
-          });
-        }
-      });
-  });
+contactoController.deshabilitarContactos = (req, res) => {
+  Contacto.update({ status: "inactivo" }, { where: { id: req.body.id } })
+    .then((response) => res.json({ success: true, data: response }))
+    .catch((err) => res.json({ success: false, data: err }));
 };
 
 contactoController.eliminarContacto = (req, res) => {

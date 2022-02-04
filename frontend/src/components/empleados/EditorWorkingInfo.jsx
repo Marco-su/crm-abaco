@@ -21,7 +21,7 @@ const EditorWorkingInfo = ({ register, errors }) => {
 
   // RENDER
   return (
-    <div className="upFormInputsBox">
+    <div className="inputs-box">
       <TextField
         label="Cargo"
         size="small"

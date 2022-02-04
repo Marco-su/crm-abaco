@@ -1,5 +1,12 @@
 .detailView {
-  .box:first-child {
+  .box:first-child:not(.tableBox) {
     padding: 0.5rem 1rem;
+  }
+
+  .tableBox {
+    .title {
+      margin: 0 15px;
+      margin-bottom: 0.3rem;
+    }
   }
 }

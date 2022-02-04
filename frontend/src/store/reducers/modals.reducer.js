@@ -19,13 +19,22 @@ const modalsReducer = (state = modalsInitial, action) => {
       };
 
     case types.TOGGLE_DELETE:
-      const { deleteType, delId, deleteIsOpen, deleteName } = action.payload;
+      const {
+        deleteType,
+        delId,
+        deleteIsOpen,
+        deleteName,
+        isDeleteDetailDel,
+        idSecondaryDel,
+      } = action.payload;
       return {
         ...state,
         deleteType,
         id: delId,
         deleteIsOpen,
         deleteName,
+        idSecondary: idSecondaryDel,
+        isDeleteDetail: isDeleteDetailDel,
       };
 
     case types.TOGGLE_DELETE_MANY:

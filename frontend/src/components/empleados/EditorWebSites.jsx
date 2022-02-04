@@ -33,7 +33,7 @@ const EditorWebSites = ({ register, errors }) => {
 
   // RENDER
   return (
-    <div className="upFormInputsBox">
+    <div className="inputs-box">
       <TextField
         label={
           <span className="d-flex align-items-center">

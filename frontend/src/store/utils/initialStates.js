@@ -56,6 +56,8 @@ export const globalInitial = {
 
 export const modalsInitial = {
   id: null,
+  idSecondary: null,
+  isDeleteDetail: false,
   updateType: "",
   updateIsOpen: false,
   deleteType: "",

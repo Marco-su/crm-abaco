@@ -17,7 +17,14 @@ export const getContactoById = (id) => (dispatch) => {
 };
 
 export const createContacto = (data, navigate) => (dispatch) => {
-  create(data, "contactos", "contacto", navigate, dispatch);
+  create(
+    data,
+    types.GET_CONTACTOS,
+    "contactos",
+    "contacto",
+    navigate,
+    dispatch
+  );
 };
 
 export const updateContacto = (data) => (dispatch) => {
@@ -31,16 +38,22 @@ export const updateContacto = (data) => (dispatch) => {
   );
 };
 
-export const disableContacto = (id) => (dispatch) => {
-  disable(
-    types.GET_CONTACTOS,
-    "contactos",
-    "contactos",
-    "contacto",
-    id,
-    dispatch
-  );
-};
+export const disableContacto =
+  (idMain, idSingle, isDetail = false) =>
+  (dispatch) => {
+    disable(
+      types.GET_CONTACTOS,
+      types.GET_SINGLE_EMPRESA,
+      "empresas",
+      "contactos",
+      "contactos",
+      "contacto",
+      idMain,
+      idSingle,
+      dispatch,
+      isDetail
+    );
+  };
 
 export const disableManyContactos = (data) => (dispatch) => {
   disableMultiple(

@@ -15,25 +15,27 @@ const DeleteModal = () => {
 
   const isOpen = useSelector((store) => store.modals.deleteIsOpen);
   const deleteType = useSelector((store) => store.modals.deleteType);
-  const id = useSelector((store) => store.modals.id);
+  const isDeleteDetail = useSelector((store) => store.modals.isDeleteDetail);
+  const idMain = useSelector((store) => store.modals.id);
+  const idSecondary = useSelector((store) => store.modals.idSecondary);
   const name = useSelector((store) => store.modals.deleteName);
 
   const deleteConfirmed = () => {
     switch (deleteType) {
       case "contacto":
-        dispatch(disableContacto(id));
+        dispatch(disableContacto(idMain, idSecondary, isDeleteDetail));
         break;
 
       case "empleado":
-        dispatch(disableEmpleado(id));
+        dispatch(disableEmpleado(idMain));
         break;
 
       case "empresa":
-        dispatch(disableEmpresa(id, location.pathname));
+        dispatch(disableEmpresa(idMain, location.pathname));
         break;
 
       case "producto":
-        dispatch(disableProducto(id));
+        dispatch(disableProducto(idMain));
         break;
 
       default:

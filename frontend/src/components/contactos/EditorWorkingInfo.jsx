@@ -43,7 +43,7 @@ const EditorWorkingInfo = ({
 
   // RENDER
   return (
-    <div className="upFormInputsBox">
+    <div className="inputs-box">
       <SearchEmpresaImput
         realValue={realValue}
         setRealValue={setRealValue}

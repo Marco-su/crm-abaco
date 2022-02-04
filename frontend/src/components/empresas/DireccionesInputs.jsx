@@ -44,7 +44,7 @@ const DireccionesInputs = ({ control, errors }) => {
             </Tooltip>
           </div>
 
-          <div className="upFormInputsBox">
+          <div className="inputs-box">
             <Controller
               control={control}
               name={`direcciones[${index}].calle`}

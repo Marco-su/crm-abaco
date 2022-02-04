@@ -134,7 +134,7 @@ const EditorInfo = ({
   // RENDER
   return (
     <>
-      <div className="upFormInputsBox">
+      <div className="inputs-box">
         <TextField
           label="Nombre de la empresa"
           size="small"
@@ -201,7 +201,7 @@ const EditorInfo = ({
 
       <div className="mt-5">
         <h2 className="mb-3">Correos de la empresa</h2>
-        <div className="upFormInputsBox">
+        <div className="inputs-box">
           {correoFields.map((el, index) => (
             <div className="otherSiteBox" key={`inputEmail-${index}`}>
               <Controller
@@ -267,7 +267,7 @@ const EditorInfo = ({
 
       <div className="mt-5">
         <h2 className="mb-3">Telefonos de la empresa</h2>
-        <div className="upFormInputsBox">
+        <div className="inputs-box">
           {telfFields.map((el, index) => (
             <div className="otherSiteBox" key={`inputTelf-${index}`}>
               <Controller
@@ -333,7 +333,7 @@ const EditorInfo = ({
 
       <div className="mt-5">
         <h2 className="mb-2">Ingresos</h2>
-        <div className="upFormInputsBox">
+        <div className="inputs-box">
           <FormControl>
             <RadioGroup
               name="controlled-radio-buttons-group"
@@ -439,7 +439,7 @@ const EditorInfo = ({
 
       <div className="mt-5">
         <h2 className="mb-2">Número de empleados</h2>
-        <div className="upFormInputsBox">
+        <div className="inputs-box">
           <FormControl>
             <RadioGroup
               name="controlled-radio-buttons-group"

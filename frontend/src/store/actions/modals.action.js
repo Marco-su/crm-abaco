@@ -21,11 +21,14 @@ export const toggleUpdate =
   };
 
 export const toggleDelete =
-  (deleteType, delId, deleteName) => (dispatch, getState) => {
+  (deleteType, delId, deleteName, isDeleteDetailDel = false, idSecondaryDel) =>
+  (dispatch, getState) => {
     const changes = {
       deleteType,
       delId,
       deleteName,
+      isDeleteDetailDel,
+      idSecondaryDel,
       deleteIsOpen: !getState().modals.deleteIsOpen,
     };
 

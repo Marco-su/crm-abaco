@@ -29,7 +29,15 @@ db.Permiso = require("./models/Permiso")(db.connection, DataTypes);
 db.ClienteCrm = require("./models/Clientecrm")(db.connection, DataTypes);
 db.WebEmpresa = require("./models/Webempresa")(db.connection, DataTypes);
 db.CorreoEmpresa = require("./models/Correoempresa")(db.connection, DataTypes);
+db.CorreoContacto = require("./models/Correocontacto")(
+  db.connection,
+  DataTypes
+);
 db.TelefonoEmpresa = require("./models/Telefonoempresa")(
+  db.connection,
+  DataTypes
+);
+db.TelefonoContacto = require("./models/Telefonocontacto")(
   db.connection,
   DataTypes
 );
@@ -49,6 +57,8 @@ db.Permiso.associate(db);
 db.ClienteCrm.associate(db);
 db.WebEmpresa.associate(db);
 db.CorreoEmpresa.associate(db);
+db.CorreoContacto.associate(db);
 db.TelefonoEmpresa.associate(db);
+db.TelefonoContacto.associate(db);
 
 module.exports = db;

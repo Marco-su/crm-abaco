@@ -85,6 +85,7 @@ const EmpresaUpdateForm = ({ children }) => {
     if (item.contactos[0]) {
       contactoId = item.contactos[0].id;
     }
+
     if (item.direcciones[0]) {
       direccionId = item.direcciones[0].id;
     }
@@ -250,9 +251,9 @@ const EmpresaUpdateForm = ({ children }) => {
   });
 
   const cargoRules = register("cargo", {
-    required: {
-      value: true,
-      message: "El contacto debe tener un cargo asignado.",
+    maxLength: {
+      value: 255,
+      message: "Cargo muy largo (máximo 255 caracteres).",
     },
   });
 
@@ -343,6 +344,7 @@ const EmpresaUpdateForm = ({ children }) => {
 
             <TextField
               label="Propiedad"
+              className="input-text"
               size="small"
               select
               defaultValue="Privada"

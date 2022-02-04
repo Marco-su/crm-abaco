@@ -2,7 +2,6 @@
 @use "../utils/variables" as v;
 
 .box {
-  @include e.backdrop-filter(2px);
   border-radius: v.$border-radius;
   padding: 1rem;
   border: 1px solid v.$border-blue;

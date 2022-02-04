@@ -7,6 +7,7 @@ empleadoController.traerEmpleados = async (req, res) => {
     include: ["telefonos", "contactos", "oportunidades"],
     where: { status: "activo" },
     attributes: { exclude: ["password", "emailPassword"] },
+    order: [["updatedAt", "DESC"]],
   })
     .then((empleados) => res.json(empleados))
     .catch((err) => res.send(`Error al cargar empleados: ${err}`));

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { apiBase } from "../../constants/baseUrls";
-import actions from "../utils/actionNames";
 import types from "../utils/actionNames";
 
 axios.interceptors.request.use(function (config) {
@@ -51,7 +50,15 @@ export const getSingle = (type, urlName, id, dispatch) => {
     });
 };
 
-export const create = (data, urlPost, textName, navigate, dispatch) => {
+export const create = (
+  data,
+  getType,
+  urlPost,
+  textName,
+  navigate,
+  dispatch,
+  isDetail = false
+) => {
   axios({
     url: `${apiBase}/${urlPost}`,
     method: "POST",
@@ -67,6 +74,10 @@ export const create = (data, urlPost, textName, navigate, dispatch) => {
             upId: null,
           },
         });
+
+        if (!isDetail) {
+          get(getType, urlPost, dispatch);
+        }
 
         navigate(`/${urlPost}/${res.data.id}`);
       }
@@ -136,14 +147,25 @@ export const updateFromDetail = (urlPut, textName, data, dispatch) => {
     });
 };
 
-export const disable = (getType, urlPut, urlGet, textName, id, dispatch) => {
+export const disable = (
+  getType,
+  getTypeSingle,
+  urlGetSingle,
+  urlPut,
+  urlGet,
+  textName,
+  id,
+  idSingle,
+  dispatch,
+  isDetail
+) => {
   axios({
-    url: `${apiBase}/${urlPut}/${id}`,
+    url: `${apiBase}/${urlPut}`,
     method: "PUT",
-    data: { status: "inactivo" },
+    data: { id: id },
   })
     .then((res) => {
-      if (res.data[0] > 0) {
+      if (res.data.success) {
         dispatch({
           type: types.TOGGLE_DELETE,
           payload: {
@@ -153,10 +175,13 @@ export const disable = (getType, urlPut, urlGet, textName, id, dispatch) => {
             deleteName: "",
           },
         });
+
+        if (isDetail) {
+          getSingle(getTypeSingle, urlGetSingle, idSingle, dispatch);
+        } else {
+          get(getType, urlGet, dispatch);
+        }
       }
-    })
-    .then(() => {
-      get(getType, urlGet, dispatch);
     })
     .catch((err) => {
       console.log(`Error al eliminar ${textName}:`, err);

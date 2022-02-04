@@ -14,6 +14,7 @@ empresasController.traerEmpresas = (req, res) => {
       "correos",
     ],
     where: { status: "activo" },
+    order: [["updatedAt", "DESC"]],
   })
     .then((empresas) => res.json(empresas))
     .catch((err) => res.send(`Error al cargar empresas: ${err}`));

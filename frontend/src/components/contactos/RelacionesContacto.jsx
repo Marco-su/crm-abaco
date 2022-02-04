@@ -1,11 +1,11 @@
-import CardOportunidades from "../common/CardOportunidades";
+import OportunidadesSection from "../common/OportunidadesSection";
 import { useSelector } from "react-redux";
 
 const RelacionesContacto = () => {
   return (
     <>
       {/* Hay que colocar el empleado encargado aún */}
-      <CardOportunidades
+      <OportunidadesSection
         lista={useSelector((store) => store.contactos.contacto.oportunidades)}
       />
     </>

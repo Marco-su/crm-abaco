@@ -474,7 +474,7 @@ const DetailAccordion = () => {
           </AccordionSummary>
 
           <AccordionDetails>
-            <div className="upFormInputsBox">
+            <div className="inputs-box">
               <TextField
                 label="Notas adicionales"
                 size="small"

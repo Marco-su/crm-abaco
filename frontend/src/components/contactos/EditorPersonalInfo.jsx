@@ -44,7 +44,7 @@ const EditorPersonalInfo = ({ register, errors }) => {
 
   // RENDER
   return (
-    <div className="upFormInputsBox">
+    <div className="inputs-box">
       <TextField
         label="Nombre"
         size="small"

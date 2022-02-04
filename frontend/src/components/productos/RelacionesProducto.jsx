@@ -1,5 +1,5 @@
 import CardArchivos from "./CardArchivos";
-import CardOportunidades from "../common/CardOportunidades";
+import OportunidadesSection from "../common/OportunidadesSection";
 import { useSelector } from "react-redux";
 
 const RelacionesEmpresas = () => {
@@ -8,7 +8,7 @@ const RelacionesEmpresas = () => {
       <CardArchivos
         lista={useSelector((store) => store.productos.producto.archivos)}
       />
-      <CardOportunidades
+      <OportunidadesSection
         lista={useSelector((store) => store.productos.producto.oportunidades)}
       />
     </>

@@ -3,37 +3,21 @@ import { Facebook, LinkedIn, Instagram, Twitter } from "@mui/icons-material";
 
 const EditorWebSites = ({ register, errors }) => {
   // RULES
-  const linkedinRules = register("linkedin", {
+  const rule = {
     maxLength: {
       value: 1000,
       message: "Enlace muy largo (máximo 1000 caracteres).",
     },
-  });
+  };
 
-  const facebookRules = register("facebook", {
-    maxLength: {
-      value: 1000,
-      message: "Enlace muy largo (máximo 1000 caracteres).",
-    },
-  });
-
-  const instagramRules = register("instagram", {
-    maxLength: {
-      value: 1000,
-      message: "Enlace muy largo (máximo 1000 caracteres).",
-    },
-  });
-
-  const twitterRules = register("twitter", {
-    maxLength: {
-      value: 1000,
-      message: "Enlace muy largo (máximo 1000 caracteres).",
-    },
-  });
+  const linkedinRules = register("linkedin", rule);
+  const facebookRules = register("facebook", rule);
+  const instagramRules = register("instagram", rule);
+  const twitterRules = register("twitter", rule);
 
   // RENDER
   return (
-    <div className="upFormInputsBox">
+    <div className="inputs-box">
       <TextField
         label={
           <span className="d-flex align-items-center">

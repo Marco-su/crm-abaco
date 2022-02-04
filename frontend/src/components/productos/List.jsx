@@ -114,7 +114,7 @@ const List = () => {
             width: "100%",
           }}
           id="myGrid"
-          class="ag-theme-balham"
+          className="ag-theme-balham"
         >
           <AgGridReact
             localeText={gridEs}

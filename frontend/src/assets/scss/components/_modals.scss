@@ -28,7 +28,6 @@
     max-width: 95%;
     padding: 2rem 3rem;
     padding-right: 0;
-    text-align: center;
     position: relative;
     border-radius: v.$border-radius;
 
@@ -43,8 +42,9 @@
 
       .title {
         font-weight: bold;
-        font-size: 23px;
-        margin-bottom: 1rem;
+        font-size: 22px;
+        text-align: center;
+        margin-bottom: 0;
       }
 
       .inputs-main-box {
@@ -57,8 +57,7 @@
         h2 {
           font-size: 1rem;
           text-align: left;
-          margin-top: 2rem;
-          margin-bottom: 10px;
+          margin: 1.5rem 0 1rem;
         }
       }
 

@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { TextField, MenuItem } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { TextField, Tooltip, IconButton } from "@mui/material";
+import {
+  Close,
+  Add,
+  LinkedIn,
+  Facebook,
+  Instagram,
+  Twitter,
+} from "@mui/icons-material";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   updateContacto,
@@ -24,25 +32,65 @@ const ContactoUpdateForm = ({ children }) => {
   const readOnlyEmpresa = useSelector((store) => store.modals.readOnlyEmpresa);
   const empresa = useSelector((store) => store.empresas.empresa);
 
+  let correosDefault = [];
+  let telefonosDefault = [];
+  let item = contactos.find((el) => el.id === contactoId);
+
+  if (!item) {
+    item = {
+      nombre: "",
+      apellido: "",
+      correo: "",
+      empleados: "",
+      dni: "",
+      cargo: "",
+      correos: [],
+    };
+  }
+
+  if (item.correos.length === 0) {
+    correosDefault = [{ correo: "" }];
+    telefonosDefault = [{ numero: "" }];
+  } else {
+    correosDefault = item.correos;
+    telefonosDefault = item.telefonos;
+  }
+
   const {
-    register,
     handleSubmit,
     formState: { errors },
     setError,
-    setValue,
     clearErrors,
-  } = useForm();
+    control,
+  } = useForm({
+    defaultValues: {
+      correos: correosDefault,
+      telefonos: telefonosDefault,
+    },
+  });
 
-  const item = contactos.find((el) => el.id === contactoId);
+  const {
+    fields: fieldsCorreo,
+    append: appendCorreo,
+    remove: removeCorreo,
+  } = useFieldArray({
+    control,
+    name: "correos",
+  });
+
+  const {
+    fields: fieldsTelf,
+    append: appendTelf,
+    remove: removeTelf,
+  } = useFieldArray({
+    control,
+    name: "telefonos",
+  });
 
   // EFFECTS
   useEffect(() => {
     if (updateType === "contacto") {
       if (item) {
-        setValue("nombre", item.nombre);
-        setValue("apellido", item.apellido);
-        setValue("cargo", item.cargo);
-        setValue("correo", item.correo);
         setRealValue({
           id: item.empresa.id,
           nombre: item.empresa.nombre,
@@ -59,10 +107,9 @@ const ContactoUpdateForm = ({ children }) => {
         nombre: "",
       });
     }
+    // eslint-disable-next-line
   }, [
-    item,
     contactoId,
-    setValue,
     updateType,
     location,
     readOnlyEmpresa,
@@ -114,7 +161,7 @@ const ContactoUpdateForm = ({ children }) => {
   };
 
   // RULES
-  const nombreRules = register("nombre", {
+  const nombreRules = {
     required: {
       value: true,
       message: "El contacto debe tener un nombre.",
@@ -123,9 +170,9 @@ const ContactoUpdateForm = ({ children }) => {
       value: 120,
       message: "Nombre muy largo (máximo 120 caracteres).",
     },
-  });
+  };
 
-  const apellidoRules = register("apellido", {
+  const apellidoRules = {
     required: {
       value: true,
       message: "El contacto debe tener un apellido.",
@@ -134,23 +181,23 @@ const ContactoUpdateForm = ({ children }) => {
       value: 120,
       message: "Apellido muy largo (máximo 120 caracteres).",
     },
-  });
+  };
 
-  const cargoRules = register("cargo", {
+  const cargoRules = {
     maxLength: {
       value: 120,
       message: "Cargo muy largo (máximo 120 caracteres).",
     },
-  });
+  };
 
-  const dniRules = register("dni", {
+  const dniRules = {
     maxLength: {
       value: 255,
       message: "Documento de identidad muy largo (máximo 255 caracteres).",
     },
-  });
+  };
 
-  const empleadosRules = register("empleados", {
+  const empleadosRules = {
     max: {
       value: 1000000,
       message:
@@ -160,71 +207,118 @@ const ContactoUpdateForm = ({ children }) => {
       value: 0,
       message: "No se admiten números negativos",
     },
-  });
+  };
 
-  const correoRules = register("correo", {
-    required: {
-      value: true,
-      message: "El empleado debe tener un correo asignado.",
+  const redesRules = {
+    maxLength: {
+      value: 1000,
+      message: "Enlace muy largo (máximo 1000 caracteres).",
     },
+  };
+
+  const correoRules = {
     pattern: {
       value: /^\S+@\S+\.\S+$/,
       message: "Correo no válido. Ejemplo válido: usuario@dominio.tld",
     },
-  });
+  };
+
+  const telefonoRules = {
+    maxLength: {
+      value: 60,
+      message: "Número muy largo (máximo 60 caracteres).",
+    },
+    pattern: {
+      value: /^[0-9]*$/,
+      message: "Número no valido.",
+    },
+  };
 
   // RENDER
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <div className="inputs-main-box">
+        <h2>Información</h2>
         <div className="inputs-box">
-          <TextField
-            label="Nombre"
-            size="small"
-            error={errors.nombre ? true : false}
-            helperText={errors.nombre ? errors.nombre.message : ""}
-            {...nombreRules}
+          <Controller
+            control={control}
+            name="nombre"
+            defaultValue={item.nombre ? item.nombre : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Nombre"
+                size="small"
+                error={errors.nombre ? true : false}
+                helperText={errors.nombre ? errors.nombre.message : ""}
+              />
+            )}
+            rules={nombreRules}
           />
 
-          <TextField
-            label="Apellido"
-            size="small"
-            error={errors.apellido ? true : false}
-            helperText={errors.apellido ? errors.apellido.message : ""}
-            {...apellidoRules}
+          <Controller
+            control={control}
+            name="apellido"
+            defaultValue={item.apellido ? item.apellido : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Apellido"
+                size="small"
+                error={errors.apellido ? true : false}
+                helperText={errors.apellido ? errors.apellido.message : ""}
+              />
+            )}
+            rules={apellidoRules}
           />
 
-          <TextField
-            label="Documento de Identidad"
-            size="small"
-            error={errors.dni ? true : false}
-            helperText={errors.dni ? errors.dni.message : ""}
-            {...dniRules}
+          <Controller
+            control={control}
+            name="dni"
+            defaultValue={item.dni ? item.dni : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Documento de Identidad"
+                size="small"
+                error={errors.dni ? true : false}
+                helperText={errors.dni ? errors.dni.message : ""}
+              />
+            )}
+            rules={dniRules}
           />
 
-          <TextField
-            label="Cargo"
-            size="small"
-            error={errors.cargo ? true : false}
-            helperText={errors.cargo ? errors.cargo.message : ""}
-            {...cargoRules}
+          <Controller
+            control={control}
+            name="cargo"
+            defaultValue={item.cargo ? item.cargo : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Cargo"
+                size="small"
+                error={errors.cargo ? true : false}
+                helperText={errors.cargo ? errors.cargo.message : ""}
+              />
+            )}
+            rules={cargoRules}
           />
 
-          <TextField
-            label="Correo"
-            size="small"
-            error={errors.correo ? true : false}
-            helperText={errors.correo ? errors.correo.message : ""}
-            {...correoRules}
-          />
-
-          <TextField
-            label="Empleados a cargo"
-            type="number"
-            size="small"
-            error={errors.empleados ? true : false}
-            helperText={errors.empleados ? errors.empleados.message : ""}
-            {...empleadosRules}
+          <Controller
+            control={control}
+            name="empleados"
+            defaultValue={item.empleados ? item.empleados : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Empleados a cargo"
+                type="number"
+                size="small"
+                error={errors.empleados ? true : false}
+                helperText={errors.empleados ? errors.empleados.message : ""}
+              />
+            )}
+            rules={empleadosRules}
           />
 
           <SearchEmpresaImput
@@ -233,6 +327,217 @@ const ContactoUpdateForm = ({ children }) => {
             error={errors.empresa}
             clearErrors={clearErrors}
           />
+        </div>
+
+        <h2>Redes Sociales</h2>
+        <div className="inputs-box">
+          <Controller
+            control={control}
+            name="linkedin"
+            defaultValue={item.linkedin ? item.linkedin : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label={
+                  <span className="d-flex align-items-center">
+                    <LinkedIn fontSize="12" className="me-1" />
+                    LinkedIn
+                  </span>
+                }
+                size="small"
+                error={errors.linkedin ? true : false}
+                helperText={errors.linkedin ? errors.linkedin.message : ""}
+              />
+            )}
+            rules={redesRules}
+          />
+
+          <Controller
+            control={control}
+            name="facebook"
+            defaultValue={item.facebook ? item.facebook : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label={
+                  <span className="d-flex align-items-center">
+                    <Facebook fontSize="12" className="me-1" />
+                    Facebook
+                  </span>
+                }
+                size="small"
+                error={errors.facebook ? true : false}
+                helperText={errors.facebook ? errors.facebook.message : ""}
+              />
+            )}
+            rules={redesRules}
+          />
+
+          <Controller
+            control={control}
+            name="instagram"
+            defaultValue={item.instagram ? item.instagram : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label={
+                  <span className="d-flex align-items-center">
+                    <Instagram fontSize="12" className="me-1" />
+                    Instagram
+                  </span>
+                }
+                size="small"
+                error={errors.instagram ? true : false}
+                helperText={errors.instagram ? errors.instagram.message : ""}
+              />
+            )}
+            rules={redesRules}
+          />
+
+          <Controller
+            control={control}
+            name="twitter"
+            defaultValue={item.twitter ? item.twitter : ""}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label={
+                  <span className="d-flex align-items-center">
+                    <Twitter fontSize="12" className="me-1" />
+                    Twitter
+                  </span>
+                }
+                size="small"
+                error={errors.twitter ? true : false}
+                helperText={errors.twitter ? errors.twitter.message : ""}
+              />
+            )}
+            rules={redesRules}
+          />
+        </div>
+
+        <h2>Teléfonos</h2>
+        <div className="inputs-box">
+          {fieldsTelf.map((el, index) => (
+            <div key={`inputTelf-${index}`} className="aditional-input-text">
+              <Controller
+                control={control}
+                name={`telefonos[${index}].numero`}
+                defaultValue={el.numero ? el.numero : ""}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Número telefónico"
+                    size="small"
+                    error={
+                      errors.telefonos
+                        ? errors.telefonos[index]
+                          ? errors.telefonos[index].numero
+                            ? true
+                            : false
+                          : false
+                        : false
+                    }
+                    helperText={
+                      errors.telefonos
+                        ? errors.telefonos[index]
+                          ? errors.telefonos[index].numero
+                            ? errors.telefonos[index].numero.message
+                            : ""
+                          : ""
+                        : ""
+                    }
+                  />
+                )}
+                rules={telefonoRules}
+              />
+
+              <Tooltip title="Eliminar número telefónico">
+                <IconButton
+                  color="info"
+                  onClick={() => removeTelf(index)}
+                  className="ms-2"
+                >
+                  <Close />
+                </IconButton>
+              </Tooltip>
+            </div>
+          ))}
+
+          <div className="addButtonBox">
+            <Tooltip title="Agregar número">
+              <IconButton
+                color="primary"
+                onClick={() => {
+                  appendTelf({ numero: "" });
+                }}
+              >
+                <Add />
+              </IconButton>
+            </Tooltip>
+          </div>
+        </div>
+
+        <h2>Correos electrónicos</h2>
+        <div className="inputs-box">
+          {fieldsCorreo.map((el, index) => (
+            <div key={`inputCorreo-${index}`} className="aditional-input-text">
+              <Controller
+                control={control}
+                name={`correos[${index}].correo`}
+                defaultValue={el.correo ? el.correo : ""}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Correo electrónico"
+                    size="small"
+                    error={
+                      errors.correos
+                        ? errors.correos[index]
+                          ? errors.correos[index].correo
+                            ? true
+                            : false
+                          : false
+                        : false
+                    }
+                    helperText={
+                      errors.correos
+                        ? errors.correos[index]
+                          ? errors.correos[index].correo
+                            ? errors.correos[index].correo.message
+                            : ""
+                          : ""
+                        : ""
+                    }
+                  />
+                )}
+                rules={correoRules}
+              />
+
+              <Tooltip title="Eliminar correo">
+                <IconButton
+                  color="info"
+                  onClick={() => removeCorreo(index)}
+                  className="ms-2"
+                >
+                  <Close />
+                </IconButton>
+              </Tooltip>
+            </div>
+          ))}
+
+          <div className="addButtonBox">
+            <Tooltip title="Agregar correo">
+              <IconButton
+                color="primary"
+                onClick={() => {
+                  appendCorreo({ correo: "" });
+                }}
+              >
+                <Add />
+              </IconButton>
+            </Tooltip>
+          </div>
         </div>
       </div>
 
